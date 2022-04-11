@@ -1,11 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
+import 'package:get/get.dart';
 
-
-TextStyle _textStyle = TextStyle(
+TextStyle _textStyle = const TextStyle(
     color: kPrimaryColor,
     fontFamily: "DinMedium",
     fontSize: 15,
@@ -18,9 +17,7 @@ dynamic openImagePicker(
         return CupertinoActionSheet(
           cancelButton: CupertinoButton(
             child: Text(
-             // context.locale.languageCode == "en" ?
-              "Cancel",
-                  //: "الغاء",
+              "cancel".tr,
               style: _textStyle,
             ),
             onPressed: () => Navigator.of(context).pop(),
@@ -37,10 +34,9 @@ dynamic openImagePicker(
                       width: 20,
                     ),
                     Text(
-                     // context.locale.languageCode == "en"
-                         // ?
-                    "Camera",
-                        //  : "الكاميرا",
+
+                      "camera".tr,
+
                       style: _textStyle,
                     ),
                   ],
@@ -49,7 +45,7 @@ dynamic openImagePicker(
             CupertinoButton(
                 child: Row(
                   children: <Widget>[
-                    Icon(
+                    const Icon(
                       Icons.insert_photo,
                       color:kPrimaryColor,
                     ),
@@ -57,10 +53,9 @@ dynamic openImagePicker(
                       width: 20,
                     ),
                     Text(
-                      // context.locale.languageCode == "en"
-                      //     ?
-                      "Gallery",
-                       //   : "الاستوديو",
+
+                      "gallery".tr,
+
                       style: _textStyle,
                     ),
                   ],

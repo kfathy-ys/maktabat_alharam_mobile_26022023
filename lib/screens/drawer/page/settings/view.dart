@@ -37,8 +37,11 @@ class SettingsScreen extends StatelessWidget{
               isIcons: true,
               press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          body: ListView(
+            physics: BouncingScrollPhysics(),
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+
+            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               HeaderTitle(icon: Icons.settings, title: "settingsV".tr),
               SizedBox(height: height*0.06,),
@@ -113,13 +116,17 @@ class SettingsScreen extends StatelessWidget{
                  },
                  type: TextInputType.phone,
                ),
-               SizedBox(height: height*0.05,),
-               Image.asset("assets/image/smallarrow.png"),
-               Text("dataRegister".tr,
-                  style: const TextStyle(
-                      color: kSmallIconColor,
-                      fontSize: 18,
-                      fontFamily: 'DinLight')),
+             //  SizedBox(height: height*0.05,),
+               SizedBox(
+                 height: height*0.02,
+                   child: Image.asset("assets/image/smallarrow.png")),
+               Center(
+                 child: Text("dataRegister".tr,
+                    style: const TextStyle(
+                        color: kSmallIconColor,
+                        fontSize: 18,
+                        fontFamily: 'DinLight')),
+               ),
 
                DateCreated(typeDate:"hijri".tr, date: "15-5-1443"),
                DateCreated(typeDate:   "century".tr, date: "15-5-2022")

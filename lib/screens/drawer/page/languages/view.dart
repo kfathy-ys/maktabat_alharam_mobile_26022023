@@ -1,20 +1,29 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/page/views/header.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ContactUsScreen extends StatelessWidget {
+// ignore: must_be_immutable
+class LanguagesScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  String phone = "+966255555444";
-  String email = "Library@gmail.com";
-  String web = "Library@gmail.com";
-  String location = "Library@gmail.com";
+  LanguagesScreen({Key? key}) : super(key: key);
 
-  ContactUsScreen({Key? key}) : super(key: key);
+  final List locale =[
+    {'name':'العربية','locale': const Locale('ar','EG')},
+    {'name':'ENGLISH','locale': const Locale('en','US')},
+
+
+  ];
+  updateLanguage(Locale locale){
+    Get.back();
+    Get.updateLocale(locale);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,122 +41,94 @@ class ContactUsScreen extends StatelessWidget {
               isIcons: true,
               press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          body: ListView(
+           // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              HeaderTitle(icon: Icons.phone, title: "contactsUs".tr),
+              HeaderTitle(icon: Icons.language, title: "language".tr),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 40),
                 child: Image.asset("assets/image/bigKabah.png"),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    InkWell(
-                      onTap:(){
-                        _launchPhoneURL(email);
-                      },
-                      child: const Text("Library@gmail.com",
-                          style: TextStyle(
-                              color: kBlackText,
-                              fontSize: 16,
-                              fontFamily: 'DinLight')),
-                    ),
-                    Image.asset("assets/image/bigemail.png"),
-                    InkWell(
-                      onTap: () {
-                        _launchPhoneURL(phone);
-                      },
-                      child: const Text("+966255555444",
-                          style: TextStyle(
-                              color: kBlackText,
-                              fontSize: 16,
-                              fontFamily: 'DinLight')),
-                    ),
-                    Image.asset("assets/image/bigPhone.png"),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap:(){
-                        launch(web);
 
-                      },
-                      child: const Text("www.Library.com",
-                          style: TextStyle(
-                              color: kBlackText,
-                              fontSize: 16,
-                              fontFamily: 'DinLight')),
-                    ),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    Image.asset("assets/image/bigweb.png"),
-                  ],
-                ),
+              MediaButton(onPressed: (){  buildLanguageDialog(context);},
+              title: "changeLang".tr,
+
               ),
-              InkWell(
-                onTap:(){
-                  _launchPhoneURL(location);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Saudi Arabia ",
-                        style: TextStyle(
-                            color: kBlackText,
-                            fontSize: 16,
-                            fontFamily: 'DinLight')),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    Image.asset("assets/image/location.png"),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Text("YouCanFollowUsSocialMedia".tr,
-                    style: TextStyle(
-                        color: kSmallIconColor,
-                        fontSize: 16,
-                        fontFamily: 'DinReguler')),
-              ),
-              Image.asset("assets/image/divider.png"),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset("assets/image/Facebook.png"),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Image.asset("assets/image/Twitter.png"),
-                    ),
-                    Image.asset("assets/image/Linkedin.png")
-                  ],
-                ),
-              )
+
+
             ],
           ),
         ),
       ),
     );
   }
+  buildLanguageDialog(BuildContext context){
+    showDialog(context: context,
+        builder: (builder){
 
-  _launchPhoneURL(String phoneNumber) async {
-    String url = 'tel:' + phoneNumber;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+        return  CupertinoAlertDialog(
+            title:  Text(
+              'choosePreferredLanguage'.tr,
+              style: const TextStyle(
+                  fontFamily: 'DinBold',
+                  fontSize: 16,
+                  color: kPrimaryColor),
+            ),
+            content: SizedBox(
+              height: 100, // Change as per your requirement
+              width: 300.0,
+              child: ListView.separated(
+
+                  shrinkWrap: true,
+                  itemBuilder: (context,index){
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        child: Text(locale[index]['name'],
+                        style: const TextStyle(
+                            fontFamily: 'DinMedium',
+                            fontSize: 14,
+                            color: kBlackText),
+
+                      ),onTap: (){
+                        print(locale[index]['name']);
+                        updateLanguage(locale[index]['locale']);
+                      },),
+                    );
+                  }, separatorBuilder: (context,index){
+                return const Divider(
+                  color: kAccentColor,
+                );
+              }, itemCount: locale.length
+              ),
+            )
+
+          );
+      /*    return AlertDialog(
+
+            title: Text('Choose Your Language'),
+            content: Container(
+              width: double.maxFinite,
+              child: ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context,index){
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(child: Text(locale[index]['name']),onTap: (){
+                        print(locale[index]['name']);
+                        updateLanguage(locale[index]['locale']);
+                      },),
+                    );
+                  }, separatorBuilder: (context,index){
+                return Divider(
+                  color: Colors.blue,
+                );
+              }, itemCount: locale.length
+              ),
+            ),
+          );*/
+        }
+    );
   }
+
 }

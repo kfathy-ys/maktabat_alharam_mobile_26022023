@@ -35,6 +35,9 @@ class LocaleString extends Translations {
       "notValidNumber":"Identification number not Valid try again ..!",
       "enterId":"Please Put Your Id",
       "enterPassword":"Please Put Your password",
+      "minPassword":"Password must be minimum 6 patterns",
+
+
       "id":"Id",
       // Forget Password
       "phone": "Phone Number",
@@ -55,6 +58,13 @@ class LocaleString extends Translations {
       "countryResidence":"Country of residence",
       "createAccount":"Create account",
       "doHave": "Do have an account ?\t",
+      "enterFullName":"Please enter your full name",
+      "enterName":"Please enter your name",
+      "enterEmail":"Please enter your email",
+      "MustBeEmail":"Must be an valid email",
+      "enterPass":"Please enter the password",
+      "enterConfPassword":"Please enter confirm password",
+      "enterCountry":"Please select the country",
       // Settings
       "userNameDots":"User name :",
       "emailDots":"The email   :",
@@ -66,9 +76,35 @@ class LocaleString extends Translations {
       "saudi":"Saudi Arabia",
       "dataRegister":"Account Registration Date",
       "hijri":"Hijri :",
-      "century":"   Century :"
+      "century":"   Century :",
 
-
+     //Home page
+      "ourServices":"Services",
+      "allServices":"All services",
+      "askRelationLibrary":"Ask Library Relations",
+      "askLibrarian":"Ask librarian",
+      "libraryExternalServices":"Services outside the Kingdom",
+      "SuggestionBuyBook":"Suggestion to buy a book",
+      "Inter-LibraryExchangeAndLending":"Inter-library exchange and lending",
+      "RequestDepositScientificThesis":"Request to deposit a scientific thesis",
+       "SelectiveBroadcastingInformation":"Selective broadcasting of information",
+      "manuscriptRequest":"Manuscript request",
+      "RequestVisit":"Request to visit",
+      "RequestReserveArticleOrResearchRetreat":"Request to reserve an article or research retreat",
+      "BookGiftRequest":"Book gift request",
+      "RequestGiftBook":"Request to gift a book",
+      "potPhotographyRequest":"pot photography request",
+      "toShowEveryServicesMustLogin":"To learn about all services Please login",
+      // Profile
+      "camera":"Camera",
+      "gallery":"Gallery",
+      "cancel":"Cancel",
+      "changeImage":"Change image",
+      "YouCanFollowUsSocialMedia":"You can follow us on social media",
+      // language
+      "language":"Languages",
+      "changeLang":"Change language",
+      "choosePreferredLanguage":"Choose your preferred language",
 
     },
     'ar_EG': {
@@ -99,6 +135,8 @@ class LocaleString extends Translations {
       "enterId":"الرجاء إدخال رقم الهوية الخاص بك!",
       "enterPassword":"من فضلك أدخل رقمك السري!",
       "id":"رقمك الخاص",
+      "minPassword":" الحد الأدني لكلمه المرور 6 أنماط ",
+
       // Forget Password
       "phone": "رقم الهاتف",
       "email": "البريد الإلكتروني",
@@ -118,6 +156,17 @@ class LocaleString extends Translations {
       "countryResidence":"بلد الإقامة",
       "createAccount":"إنشاء حساب",
       "doHave": "  هل لديك حساب؟\t ",
+      "enterFullName":"من فضلك أدخل الاسم كاملاَ",
+      "enterName":"من فضلك أدخل أسمك",
+      "MustBeEmail":"لابد ان يكون بريد الكتروني",
+
+      "enterEmail":"من فضلك أدخل بريدك الإلكتروني",
+      "enterPass":"من فضلك أدخل كلمة المرور",
+      "enterConfPassword":"من فضلك أدخل تاكيد كلمة المرور",
+      "enterCountry":"من فضلك حدد الدولة",
+
+
+
       // Settings
       "userNameDots":"أسم المستخدم :",
       "emailDots":"البريد الإلكتروني :",
@@ -129,7 +178,35 @@ class LocaleString extends Translations {
       "saudi":"المملكه العربية السعودية",
       "dataRegister":"تاريخ تسجيل الجساب",
       "hijri":"هجري :",
-      "century":"ميلادي:"
+      "century":"ميلادي:",
+      //Home page
+      "ourServices":"خدماتنا",
+      "allServices":"جميع الخدمات",
+      "askRelationLibrary":"أسال علاقات المكتبة",
+      "askLibrarian":"أسال أخصائي المكتبة",
+      "libraryExternalServices":"خدمات خارجي الممكلة",
+      "SuggestionBuyBook":"اقتراح شراء كتاب",
+      "Inter-LibraryExchangeAndLending":"التبادل والإعارة بين المكتبات",
+      "RequestDepositScientificThesis":"طلب إيداع رسالة علمية",
+      "SelectiveBroadcastingInformation":"البث الإنتقالي للمعلومات",
+      "manuscriptRequest":"طلب مخطوطة",
+      "RequestVisit":"طلب زيارة",
+      "RequestReserveArticleOrResearchRetreat":"طلب حجز مادة أو خلوة بحثية",
+      "BookGiftRequest":"طلب إهداء كتاب",
+      "RequestGiftBook":"طلب إستهداء كتاب",
+      "potPhotographyRequest":"طلب تصوير وعاء",
+      "toShowEveryServicesMustLogin":"لتعرف علي جميع الجدمات  يرجي تسجيل الدخول",
+
+      // Profile
+      "camera":"الكاميرة",
+      "gallery":"الاستوديو",
+      "cancel":"الغاء",
+      "changeImage":"تغير الصورة",
+      "YouCanFollowUsSocialMedia":"يمكنك متابعتنا علي مواقع التواصل الإجتماعي",
+      // language
+    "language":"إعدادات اللغة",
+      "changeLang":"تغير اللغة",
+      "choosePreferredLanguage":"أختر لغتك المفضلة",
 
 
 

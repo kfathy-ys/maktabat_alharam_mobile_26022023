@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:maktabat_alharam/config/pick.dart';
@@ -9,6 +11,7 @@ import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/pick_image.dart';
+import 'package:maktabat_alharam/screens/widgets/profile_pick_image.dart';
 
 class ProfileScreen extends StatefulWidget {
 
@@ -32,7 +35,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final _noAccessController = TextEditingController();
 
   final _passController = TextEditingController();
+  dynamic image = "assets/image/fackImage.png";
 
+  //dynamic image = "https://media.istockphoto.com/photos/kaaba-in-mecca-picture-id482206266?k=20&m=482206266&s=612x612&w=0&h=JvXTR5ih-ieBNh2MXfyBFU8_BAvgUH_m-NUx1m8RpPc=";
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -49,21 +54,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               isIcons: true,
               press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          body: ListView(
+            physics: BouncingScrollPhysics(),
+shrinkWrap: true,
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               HeaderTitle(icon: Icons.person, title: "myProfile".tr),
-              //  Column(
-              //    children: [
-              //      CircleAvatar(radius: 50,),
-              // Text("fffffff",
-              //     style: const TextStyle(
-              //         color: kTextFieldColor,
-              //         fontSize: 14,
-              //         fontFamily: 'DinLight')),
-              //    ],
-              //  ),
-
+              _profilePic(userName: "fakeName".tr),
               CustomTextFieldSizer(
                 titleTextField: "userNameDots".tr,
                 hint: "fakeName".tr,
@@ -131,18 +129,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
                 type: TextInputType.phone,
               ),
+
+              SizedBox(
+                height: height*0.02,
+                  child: Image.asset("assets/image/smallarrow.png")),
+              Center(
+                child: Text("dataRegister".tr,
+                    style: const TextStyle(
+                        color: kSmallIconColor,
+                        fontSize: 18,
+                        fontFamily: 'DinLight')),
+              ),
+
+              DateCreated(typeDate: "hijri".tr, date: "15-5-1443"),
+              DateCreated(typeDate: "century".tr, date: "15-5-2022"),
               SizedBox(
                 height: height * 0.05,
               ),
-              Image.asset("assets/image/smallarrow.png"),
-              Text("dataRegister".tr,
-                  style: const TextStyle(
-                      color: kSmallIconColor,
-                      fontSize: 18,
-                      fontFamily: 'DinLight')),
-
-              DateCreated(typeDate: "hijri".tr, date: "15-5-1443"),
-              DateCreated(typeDate: "century".tr, date: "15-5-2022")
             ],
           ),
         ),
@@ -150,9 +153,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-/*  Widget _profilePic() {
-    return ProfileContainer(_inputData.image, () {
+  Widget _profilePic({required String userName}) {
+
+    return profilePicContainer(context,image,userName,"changeImage".tr,() {
+
       openImagePicker(
+
           context: context,
           onCameraTapped: () {
             _getPic(context, ImageSource.camera);
@@ -160,7 +166,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           onGalleryTapped: () {
             _getPic(context, ImageSource.gallery);
           });
-    });
+    },
+        false);
+
   }
 
   final ImagePicker _picker = ImagePicker();
@@ -175,10 +183,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
     if (pickedFile != null) {
       setState(() {
-        _inputData.image = File(pickedFile.path);
+        image = File(pickedFile.path);
       });
       Navigator.pop(context);
       FocusScope.of(context).unfocus();
     }
-  }*/
+  }
 }

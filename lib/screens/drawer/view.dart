@@ -4,6 +4,7 @@ import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/about_library/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/contect_us/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/settings/view.dart';
+import 'page/languages/view.dart';
 import 'page/profile/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
@@ -35,7 +36,7 @@ Widget drawer({required context}) {
                   height: MediaQuery.of(context).size.height - 180,
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width - 100,
+                  width: MediaQuery.of(context).size.width - 122,
                   child: ListView(
                     children: [
                       ListTile(
@@ -91,7 +92,10 @@ Widget drawer({required context}) {
                           title: "contactsUs".tr,
                           image: 'assets/image/TelephoneFill.png'),
                       listTile(
-                          onTap: () {},
+                          onTap: () {
+                            Get.back();
+                            Get.to(()=>LanguagesScreen());
+                          },
                           title: "languages".tr,
                           image: 'assets/image/lang.png'),
                       listTile(

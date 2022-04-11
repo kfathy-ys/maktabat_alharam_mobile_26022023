@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 enum AppTheme {
-  LightAppTheme,
-  DarkAppTheme,
+  lightAppTheme,
+  darkAppTheme,
 }
 
 final appThemeData = {
-  AppTheme.DarkAppTheme: ThemeData(
+  AppTheme.darkAppTheme: ThemeData(
     scaffoldBackgroundColor: Colors.black,
     backgroundColor:  Colors.brown ,
     textTheme: TextTheme(
@@ -15,7 +15,7 @@ final appThemeData = {
 
     ),
   ),
-  AppTheme.LightAppTheme: ThemeData(
+  AppTheme.lightAppTheme: ThemeData(
     scaffoldBackgroundColor: Colors.white,
     backgroundColor:  Colors.amber ,
     textTheme: TextTheme(

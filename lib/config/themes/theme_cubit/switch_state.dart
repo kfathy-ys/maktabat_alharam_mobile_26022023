@@ -7,9 +7,9 @@ class SwitchState {
   ThemeData? theme;
   SwitchState({required this.isDarkThemeOn}) {
     if (isDarkThemeOn) {
-      theme = appThemeData[AppTheme.DarkAppTheme];
+      theme = appThemeData[AppTheme.darkAppTheme];
     } else {
-      theme = appThemeData[AppTheme.LightAppTheme];
+      theme = appThemeData[AppTheme.lightAppTheme];
     }
   }
 

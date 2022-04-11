@@ -6,12 +6,15 @@ import 'package:get/get.dart'as g;
 
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
+import 'package:maktabat_alharam/screens/drawer/page/profile/view.dart';
+import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
 import 'package:maktabat_alharam/screens/splash/view.dart';
 import 'package:queen/queen.dart';
 
 import 'config/bloc_observer.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
+import 'screens/our_services/view.dart';
 import 'translations/locale key-value.dart';
 
 
@@ -48,14 +51,14 @@ class MaktabatAlharam extends StatelessWidget {
         builder: (context, state) {
           return GetMaterialApp(
             translations: LocaleString(),
-           // locale: const Locale('ar', 'EG'),
-            locale: const Locale('en', 'US'),
+            locale: const Locale('ar', 'EG'),
+            //locale: const Locale('en', 'US'),
             popGesture: true,
             defaultTransition: g.Transition.zoom,
             debugShowCheckedModeBanner: false,
             theme: state.theme,
             title: 'Flutter Theme Cubit',
-            home:  LoginScreen(),
+            home:  OurServicesScreen(),
           );
         },
       ),
