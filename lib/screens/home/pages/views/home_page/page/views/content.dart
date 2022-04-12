@@ -15,13 +15,14 @@ class CardContent extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-      width: width*0.3,
+      width: width*0.42,
+
       decoration: BoxDecoration(
         color: kBackgroundCardColor,
         borderRadius: BorderRadius.circular(4),
       ),
-      margin: const EdgeInsets.symmetric(horizontal: 4),
-      padding: const EdgeInsets.symmetric(horizontal:10 ),
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal:12,vertical: 10 ),
 
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +42,7 @@ class CardContent extends StatelessWidget {
           ),
           Text(
             model.subTitle,
-            maxLines: 3,
+            maxLines: 2,
             style:  TextStyle(
                 color: kBlackText,
 

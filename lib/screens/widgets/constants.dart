@@ -28,7 +28,7 @@ const Color kHomeColor = Color(0xFFFFFFFF);
 const Color kRoundColor = Color(0xFFFEBD2F);
 const Color kLightText = Color(0xFF484848);
 const Color kBlackText = Color(0xFF262626);
-
+const Color kCardBorder = Color(0xFF2C3E50);
 const Color kDrawerBackText = Color(0xFF292929);
 const Color kRoundBorderColor = Color.fromRGBO(220, 220, 220, 1);
 
@@ -87,6 +87,16 @@ Widget customBoldText( String? title) {
       )
   );
 }
+
+Widget customSliderText({required String title , required Color color}) {
+  return Text(
+      title,
+      style: TextStyle(
+          color: color, fontSize: 18, fontFamily: 'DinBold'
+      )
+  );
+}
+
 Widget customLightText( String? title) {
   return Text(
       title!,

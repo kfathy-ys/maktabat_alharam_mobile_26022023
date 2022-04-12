@@ -3,6 +3,7 @@ import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/content.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/data.dart';
 import 'package:maktabat_alharam/screens/our_services/page/views/subhead_title.dart';
+import 'package:maktabat_alharam/screens/our_services/page/views/suggest_bug_book.dart';
 import 'package:maktabat_alharam/screens/our_services/page/views/title.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -51,10 +52,15 @@ class OurServicesScreen extends StatelessWidget {
                               mainAxisSpacing: 10),
                       itemCount: ourServicesGridCard.ourServicesGrid.length,
                       itemBuilder: (BuildContext ctx, index) {
-                        return CardGridContent(
-                            fontTitle: 18,
-                            fontSubTitle: 14,
-                            model: ourServicesGridCard.ourServicesGrid[index]);
+                        return InkWell(
+                          onTap: (){
+                            Get.to(()=>SuggestBuyBook(model: ourServicesGridCard.ourServicesGrid[index]) );
+                          },
+                          child: CardGridContent(
+                              fontTitle: 18,
+                              fontSubTitle: 14,
+                              model: ourServicesGridCard.ourServicesGrid[index]),
+                        );
                       }),
                 ),
               ),

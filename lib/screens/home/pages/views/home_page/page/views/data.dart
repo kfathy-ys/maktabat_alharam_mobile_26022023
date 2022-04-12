@@ -12,6 +12,7 @@ class OurServicesContent {
       // onTap: (){
       //   Get.to(()=>MyHomeScreen());
       // },
+      id:1,
       title: "askRelationLibrary".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon:   const ImageIcon(
@@ -19,6 +20,7 @@ class OurServicesContent {
     ),
     OurServicesModel(
       // onTap: (){},
+      id:2,
       title: "askLibrarian".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon:   const ImageIcon(
@@ -28,6 +30,7 @@ class OurServicesContent {
       // onTap: (){
       //   Get.to(()=>MyHomeScreen());
       // },
+      id:3,
       title: "libraryExternalServices".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon:   const ImageIcon(
@@ -35,6 +38,7 @@ class OurServicesContent {
     ),
     OurServicesModel(
       // onTap: (){},
+      id:4,
       title: "SuggestionBuyBook".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon:   const ImageIcon(
@@ -42,6 +46,7 @@ class OurServicesContent {
     ),
     OurServicesModel(
       // onTap: (){},
+      id:5,
       title: "Inter-LibraryExchangeAndLending".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon:   const ImageIcon(
@@ -57,6 +62,7 @@ class OurServicesGridCard {
       // onTap: (){
       //   Get.to(()=>MyHomeScreen());
       // },
+      id:1,
       title: "askRelationLibrary".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon:   const ImageIcon(
@@ -64,12 +70,14 @@ class OurServicesGridCard {
     ),
     OurServicesModel(
       // onTap: (){},
+      id:2,
       title: "askLibrarian".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon:   const ImageIcon(
           AssetImage("assets/image/BigEmptyQuestion.png"),color: kSmallIconColor),
     ),
     OurServicesModel(
+      id:3,
       // onTap: (){
       //   Get.to(()=>MyHomeScreen());
       // },
@@ -79,6 +87,7 @@ class OurServicesGridCard {
           AssetImage("assets/image/BigSevrices.png"),color: kSmallIconColor),
     ),
     OurServicesModel(
+      id:4,
       // onTap: (){},
       title: "SuggestionBuyBook".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -86,6 +95,7 @@ class OurServicesGridCard {
         AssetImage("assets/image/bigBuyBook.png",),color: kSmallIconColor,),
     ),
     OurServicesModel(
+      id:5,
       // onTap: (){},
       title: "Inter-LibraryExchangeAndLending".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -95,6 +105,7 @@ class OurServicesGridCard {
 
 
     OurServicesModel(
+      id:6,
       // onTap: (){
       //   Get.to(()=>MyHomeScreen());
       // },
@@ -104,6 +115,7 @@ class OurServicesGridCard {
           AssetImage("assets/image/BigFillQuestion.png"),color: kSmallIconColor),
     ),
     OurServicesModel(
+      id:7,
       // onTap: (){},
       title: "askLibrarian".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -111,6 +123,7 @@ class OurServicesGridCard {
           AssetImage("assets/image/BigEmptyQuestion.png"),color: kSmallIconColor),
     ),
     OurServicesModel(
+      id:8,
       // onTap: (){
       //   Get.to(()=>MyHomeScreen());
       // },
@@ -120,6 +133,7 @@ class OurServicesGridCard {
           AssetImage("assets/image/BigSevrices.png"),color: kSmallIconColor),
     ),
     OurServicesModel(
+      id:9,
       // onTap: (){},
       title: "SuggestionBuyBook".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -127,6 +141,7 @@ class OurServicesGridCard {
         AssetImage("assets/image/bigBuyBook.png",),color: kSmallIconColor,),
     ),
     OurServicesModel(
+      id:10,
       // onTap: (){},
       title: "Inter-LibraryExchangeAndLending".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",

@@ -95,6 +95,7 @@ class LocaleString extends Translations {
       "RequestGiftBook":"Request to gift a book",
       "potPhotographyRequest":"pot photography request",
       "toShowEveryServicesMustLogin":"To learn about all services Please login",
+      "readAndLearn":"Read.. learn",
       // Profile
       "camera":"Camera",
       "gallery":"Gallery",
@@ -105,6 +106,9 @@ class LocaleString extends Translations {
       "language":"Languages",
       "changeLang":"Change language",
       "choosePreferredLanguage":"Choose your preferred language",
+      // Ask librarian
+
+      "head":"It is a service of communication between the library and its beneficiaries and inquiring about information about the library, such as: library working hours - coordination and prior arrangement for holding a symposium, discussion circle, lectures or workshops"
 
     },
     'ar_EG': {
@@ -196,7 +200,7 @@ class LocaleString extends Translations {
       "RequestGiftBook":"طلب إستهداء كتاب",
       "potPhotographyRequest":"طلب تصوير وعاء",
       "toShowEveryServicesMustLogin":"لتعرف علي جميع الجدمات  يرجي تسجيل الدخول",
-
+       "readAndLearn":"أقرأ .. تعلم ",
       // Profile
       "camera":"الكاميرة",
       "gallery":"الاستوديو",
@@ -208,7 +212,9 @@ class LocaleString extends Translations {
       "changeLang":"تغير اللغة",
       "choosePreferredLanguage":"أختر لغتك المفضلة",
 
+   // Ask librarian
 
+   "head":"هي خدمة تواصل بين المكتبة والمستفدين منها والإستفسار عن المعلومات الخاصة بالمكتبة مثل : أوقات عمل المكتبة - التنسيق والترتيب المسبق لإقامة ندوة أو حلقة نفاش أو محاضرات أو ورش عمل "
 
     }
   };

@@ -5,17 +5,17 @@ class ItemsBar{
   List<BottomNavigationBarItem> itemsBar = [
      BottomNavigationBarItem(
       icon: const ImageIcon( AssetImage("assets/image/homeicon.png"),),
-      label:"home".trim(),
+      label:"home".tr,
     ),
 
      BottomNavigationBarItem(
 
         icon: const ImageIcon( AssetImage("assets/image/homeicon.png"),),
-        label: "myOrders".trim(),
+        label: "myOrders".tr,
     ),
      BottomNavigationBarItem(
         icon: const ImageIcon( AssetImage("assets/image/serivesicons.png"),),
-        label:  "services".trim()),
+        label:  "services".tr),
 
   ];
 }

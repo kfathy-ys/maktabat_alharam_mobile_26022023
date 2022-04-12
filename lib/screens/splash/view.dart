@@ -18,6 +18,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
+  bool loggedIn = false;
+
   @override
   void initState() {
 goToHomePage(context);
@@ -86,7 +88,9 @@ super.initState();
     } on SocketException catch (_) {
       showNetworkErrorDialog(context, () {
         Navigator.of(context).pop();
-       Get.to(()=>MyHomeScreen()) ;
+       Get.to((){
+          loggedIn ?  const HomeTabScreen(): MyHomeScreen();
+       }) ;
       });
     }
   }

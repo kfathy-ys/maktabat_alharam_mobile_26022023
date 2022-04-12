@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:maktabat_alharam/screens/auth/register/page/intel_phone_filed.dart';
+import 'package:maktabat_alharam/screens/auth/register/page/title_subtitle.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
@@ -42,19 +43,13 @@ class SignUpScreen extends StatelessWidget {
             key: formKey,
             child: ListView(
               shrinkWrap: true,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
 
               children: [
                 SizedBox(height: height*0.05,),
                 const IconBack(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    customBoldText("welcome".tr),
-                    customLightText("createNewAccount".tr)
-                  ],
-                ),
+                const TextTitleSubTitle(),
                 SizedBox(height: height*0.02,),
                 CustomTextField(
                   dIcon: Icons.drive_file_rename_outline,
