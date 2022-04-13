@@ -27,29 +27,31 @@ class AboutLibraryScreen extends StatelessWidget {
               isIcons: true,
               press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              HeaderTitle(
-                  icon: Icons.library_books_outlined, title: "aboutLibrary".tr),
-              SizedBox(
-                height: height * 0.05,
-              ),
-              Image.asset('assets/image/kabah.png'),
-              SizedBox(
-                height: height * 0.03,
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Text(
-                  KeysConfig.kLoramText,
-                  style: TextStyle(
-                      color: kBlackText,
-                      fontSize: 18,
-                      fontFamily: "DinUltraLight"),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                HeaderTitle(
+                    icon: Icons.library_books_outlined, title: "aboutLibrary".tr),
+                SizedBox(
+                  height: height * 0.05,
                 ),
-              )
-            ],
+                Image.asset('assets/image/kabah.png'),
+                SizedBox(
+                  height: height * 0.03,
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(
+                    KeysConfig.kLoramText,
+                    style: TextStyle(
+                        color: kBlackText,
+                        fontSize: 18,
+                        fontFamily: "DinUltraLight"),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

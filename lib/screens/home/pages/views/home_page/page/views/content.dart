@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/list_model.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
@@ -65,6 +66,7 @@ class CardGridContent extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    //      onTap: ()=>Get.to(()=>model.route),
     return Container(
      // width: width*0.3,
       decoration: BoxDecoration(

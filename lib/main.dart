@@ -8,12 +8,14 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
+import 'package:maktabat_alharam/screens/home/view.dart';
 import 'package:maktabat_alharam/screens/splash/view.dart';
 import 'package:queen/queen.dart';
 
 import 'config/bloc_observer.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
+import 'screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
 import 'screens/all_services/pages/ask_Librarian/view.dart';
 import 'screens/our_services/view.dart';
 import 'translations/locale key-value.dart';
@@ -59,7 +61,7 @@ class MaktabatAlharam extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: state.theme,
             title: 'Flutter Theme Cubit',
-            home:  AskLibrarian(),
+            home:  FollowAnsweringLibrarian(),
           );
         },
       ),

@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
-class CustomTextField extends StatefulWidget {
+class CustomHeightTextField extends StatefulWidget {
   final String? hint;
   final String? label;
+
   final TextInputType? type;
   final ValueChanged<String>? onsave;
   final String? Function(String?)? validator;
@@ -21,7 +22,7 @@ class CustomTextField extends StatefulWidget {
   final Function? edit;
   final bool? isEdit;
   // ignore: use_key_in_widget_constructors
-  const CustomTextField({
+  const CustomHeightTextField({
     this.hint,
     this.onsave,
     this.onTap,
@@ -39,10 +40,10 @@ class CustomTextField extends StatefulWidget {
     this.line,
   });
   @override
-  _CustomTextFieldState createState() => _CustomTextFieldState();
+  _CustomHeightTextFieldState createState() => _CustomHeightTextFieldState();
 }
 
-class _CustomTextFieldState extends State<CustomTextField> {
+class _CustomHeightTextFieldState extends State<CustomHeightTextField> {
   bool _isHidden = true;
   void _visibility() {
     setState(() {
@@ -56,8 +57,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 6),
-         // height: MediaQuery.of(context).size.height / 12,
-          width: MediaQuery.of(context).size.width / 1.2,
+        // height: MediaQuery.of(context).size.height / 4,
+        width: MediaQuery.of(context).size.width / 1.2,
         child: TextFormField(
 
           onTap: widget.onTap,
@@ -81,8 +82,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
             //labelText: widget.label == true ? "+966" : null,
             labelText: widget.label ,
-            contentPadding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+
+          // TODO:: to controll of heights
+          //  contentPadding:const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             icon: widget.isEdit == true ? const Icon(Icons.edit,) : null,
             labelStyle: const TextStyle(
               fontSize: 16,
@@ -93,18 +95,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 fontSize: 14, color: kTextFieldColor, fontFamily: "DinReguler"),
             suffixIcon: widget.icon == Icons.lock_outline
                 ? IconButton(
-                    onPressed: _visibility,
-                    alignment: Alignment.center,
-                    icon: _isHidden
-                        ? const Icon(
-                            Icons.visibility_off,
-                            color: kTextColor,
-                          )
-                        : const Icon(
-                            Icons.visibility,
-                            color: kPrimaryColor,
-                          ),
-                  )
+              onPressed: _visibility,
+              alignment: Alignment.center,
+              icon: _isHidden
+                  ? const Icon(
+                Icons.visibility_off,
+                color: kTextColor,
+              )
+                  : const Icon(
+                Icons.visibility,
+                color: kPrimaryColor,
+              ),
+            )
                 : null,
             filled: true,
             //prefixText: widget.hint,

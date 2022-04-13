@@ -10,21 +10,23 @@ class SmallButtonSizer extends StatelessWidget {
   final VoidCallback? onPressed;
   final String? title;
   final Color? color;
-  final IconData? icon;
+  final String? image;
   // ignore: prefer_typing_uninitialized_variables
   final isLoading;
   // ignore: prefer_typing_uninitialized_variables
   final loadingColor;
   // ignore: use_key_in_widget_constructors
   const SmallButtonSizer(
-      {@required this.onPressed,
-        @required this.title,
+      {required this.onPressed,
+        required this.title,
         this.color,
         this.isLoading = false,
-        this.loadingColor = false, this.icon});
+        this.loadingColor = false, this.image,});
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+    return InkWell(
       onTap: onPressed,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -39,10 +41,8 @@ class SmallButtonSizer extends StatelessWidget {
               ? Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Icon(
-
-                    icon!,color: kAccentColor,size: 28,),
-                 // SizedBox(width: 6,),
+                  Image.asset(image!),
+                 // SizedBox(width: width*0.02,),
                   Text(
                   title!,
                   textAlign: TextAlign.center,

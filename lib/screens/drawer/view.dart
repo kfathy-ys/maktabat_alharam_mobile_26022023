@@ -28,7 +28,9 @@ Widget drawer({required context}) {
             child: Row(
               children: [
                 const SizedBox(
-                  width: 12,
+                  width: 18,
+ /// TODo:: Problem width: 12
+                 // width: 12,
                 ),
                 Container(
                   width: 3,
@@ -36,7 +38,9 @@ Widget drawer({required context}) {
                   height: MediaQuery.of(context).size.height - 180,
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width - 122,
+
+                  /// Todo :::   width: MediaQuery.of(context).size.width - 122,
+                  width: MediaQuery.of(context).size.width - 100,
                   child: ListView(
                     children: [
                       ListTile(

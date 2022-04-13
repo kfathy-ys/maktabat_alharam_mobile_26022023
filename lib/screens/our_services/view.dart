@@ -52,9 +52,12 @@ class OurServicesScreen extends StatelessWidget {
                               mainAxisSpacing: 10),
                       itemCount: ourServicesGridCard.ourServicesGrid.length,
                       itemBuilder: (BuildContext ctx, index) {
+
+
                         return InkWell(
                           onTap: (){
-                            Get.to(()=>SuggestBuyBook(model: ourServicesGridCard.ourServicesGrid[index]) );
+                          //  Navigator.push(context, MaterialPageRoute(builder: (context)=>services.ourServices[index].route));
+                            Get.to(()=>services.ourServices[index].route);
                           },
                           child: CardGridContent(
                               fontTitle: 18,

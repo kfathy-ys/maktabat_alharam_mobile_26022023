@@ -82,11 +82,10 @@ class MyHomeScreen extends StatelessWidget{
                     itemBuilder: (context , int index){
                       return InkWell(
                         onTap: (){
-
-                          Get.to(()=> SuggestBuyBook(model: services.ourServices[index]));
-                          log(services.ourServices[index].id.toString());
+                           Get.to(()=>services.ourServices[index].route);
                         },
                         child: CardContent(
+
                             fontTitle: 18,
                             fontSubTitle: 14,
                             model:services.ourServices[index] ),

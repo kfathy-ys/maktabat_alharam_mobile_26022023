@@ -13,6 +13,8 @@ import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
 import 'package:maktabat_alharam/screens/widgets/smallButton.dart';
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
+import 'follow_answering_librarian/view.dart';
+
 
 // ignore: must_be_immutable
 class AskLibrarian extends StatelessWidget{
@@ -49,7 +51,7 @@ class AskLibrarian extends StatelessWidget{
             // padding: EdgeInsets.symmetric(vertical: 10),
              // crossAxisAlignment: CrossAxisAlignment.start,
              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              // physics: const NeverScrollableScrollPhysics(),
+               physics: const BouncingScrollPhysics(),
                shrinkWrap: true,
               children:  [
                HeadTopics(title: "askLibrarian".tr,),
@@ -109,13 +111,20 @@ class AskLibrarian extends StatelessWidget{
                             color1: kBlackText,
                             //  color2: kBlackText
                           ),
-                          CustomCardButton(color: kAccentColor,title: "متابعه الطلب",onPressed: (){},
-                              icon:  Icons.visibility_outlined),
+                          CustomCardButton(color: kAccentColor,
+                            title: "متابعه الطلب",
+                            onPressed: ()=>Get.to(()=>FollowAnsweringLibrarian()),
+                            //  icon:  Icons.visibility_outlined
+                            image: "assets/image/fulleyes.png",
+
+                          ),
 
                           CustomCardButton(color: kAccentColor,
                               title: "إالغاء الطلب",
                               onPressed: (){},
-                              icon:Icons.cancel_outlined),
+                            image: "assets/image/fullerror.png",
+                            //  icon:Icons.cancel_outlined
+                          ),
 
                         ],
                       ),
@@ -124,7 +133,9 @@ class AskLibrarian extends StatelessWidget{
                   },
 
                 ),
-                Center(child: SmallButtonSizer(onPressed: (){}, title: "طلب جديد",color: kPrimaryColor,icon: Icons.add_circle_outline_outlined,))
+                Center(child: SmallButtonSizer(onPressed: (){
+                  return null;
+                }, title: "طلب جديد",color: kPrimaryColor,image: "assets/image/VectorAcc.png",))
 
 
 

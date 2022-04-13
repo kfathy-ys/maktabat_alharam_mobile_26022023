@@ -10,12 +10,15 @@ class CustomCardButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String? title;
   final Color? color;
-  final IconData? icon;
+ // final IconData? icon;
+  final String? image;
   final bool isLoading;
   const CustomCardButton(
-      {this.onPressed, this.title, this.color, this.isLoading = false, this.icon});
+      {this.onPressed, this.title, this.color, this.isLoading = false,  this.image});
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.symmetric( horizontal: 14),
       height: MediaQuery.of(context).size.height / 14,
@@ -29,8 +32,8 @@ class CustomCardButton extends StatelessWidget {
             isLoading != true
                 ? Row(
               children: [
-                Icon(icon!,color: kCardBorder,size: 28,),
-                SizedBox(width: 6,),
+                Image.asset(image!),
+                SizedBox(width: width*0.02,),
                 Text(
                   title!,
                   style: const TextStyle(
