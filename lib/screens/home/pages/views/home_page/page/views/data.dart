@@ -9,7 +9,6 @@ class OurServicesContent {
   List<OurServicesModel> ourServices = [
     OurServicesModel(
       routeName: "/AskLibrarian",
-      route: AskLibrarian(),
       title: "askRelationLibrary".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(AssetImage("assets/image/homefileQuestion.png"),
@@ -18,7 +17,6 @@ class OurServicesContent {
     OurServicesModel(
       routeName: "/AskLibrarian",
 
-      route: AskLibrarian(),
       title: "askLibrarian".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(AssetImage("assets/image/homeemptyQuestion.png"),
@@ -27,7 +25,6 @@ class OurServicesContent {
     OurServicesModel(
       routeName: "/AskLibrarian",
 
-      route: AskLibrarian(),
       title: "libraryExternalServices".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(AssetImage("assets/image/homeoutKindom.png"),
@@ -36,7 +33,6 @@ class OurServicesContent {
     OurServicesModel(
       routeName: "/AskLibrarian",
 
-      route: AskLibrarian(),
       title: "SuggestionBuyBook".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(
@@ -49,7 +45,6 @@ class OurServicesContent {
     OurServicesModel(
       routeName: "/AskLibrarian",
 
-      route: AskLibrarian(),
       title: "Inter-LibraryExchangeAndLending".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(
@@ -62,47 +57,8 @@ class OurServicesContent {
 class OurServicesGridCard {
   List<OurServicesModel> ourServicesGrid = [
     OurServicesModel(
-      routeName: "/AskLibrarian",
-
-      route: AskLibrarian(),
-      title: "askRelationLibrary".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
-      icon: const ImageIcon(AssetImage("assets/image/BigFillQuestion.png"),
-          color: kSmallIconColor),
-    ),
-    OurServicesModel(
-      routeName: "/AskLibrarian",
-
-      route: AskLibrarian(),
-      title: "askLibrarian".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
-      icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
-          color: kSmallIconColor),
-    ),
-    OurServicesModel(
-      routeName: "/AskLibrarian",
-      route: AskLibrarian(),
-      title: "libraryExternalServices".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
-      icon: const ImageIcon(AssetImage("assets/image/BigSevrices.png"),
-          color: kSmallIconColor),
-    ),
-    OurServicesModel(
-      routeName: "/AskLibrarian",
-      route: AskLibrarian(),
-      title: "SuggestionBuyBook".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
-      icon: const ImageIcon(
-        AssetImage(
-          "assets/image/bigBuyBook.png",
-        ),
-        color: kSmallIconColor,
-      ),
-    ),
-    OurServicesModel(
       routeName: "/FollowAnsweringLibrarian",
 
-      route: AskLibrarian(),
       title: "Inter-LibraryExchangeAndLending".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(
@@ -112,35 +68,72 @@ class OurServicesGridCard {
     ),
     OurServicesModel(
       routeName: "/FollowAnsweringLibrarian",
+      title: "RequestDepositScientificThesis".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(
+        AssetImage("assets/image/bigMessage.png"),
+        color: kSmallIconColor,
+      ),
+    ),
+    OurServicesModel(
+      routeName: "/FollowAnsweringLibrarian",
+      title: "SelectiveBroadcastingInformation".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(
+        AssetImage("assets/image/bigcamera.png"),
+        color: kSmallIconColor,
+      ),
+    ),
+    OurServicesModel(
+      routeName: "/FollowAnsweringLibrarian",
+      title: "manuscriptRequest".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(
+        AssetImage("assets/image/bigpincel.png"),
+        color: kSmallIconColor,
+      ),
+    ),
+    OurServicesModel(
+      routeName: "/FollowAnsweringLibrarian",
 
-      route: AskLibrarian(),
+      title: "RequestReserveArticleOrResearchRetreat".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(AssetImage("assets/image/bigRquestSubjectSientific.png"),
+          color: kSmallIconColor),
+    ),
+    OurServicesModel(
+      routeName: "/FollowAnsweringLibrarian",
+
+      title: "RequestVisit".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(AssetImage("assets/image/bigarrowRight.png"),
+          color: kSmallIconColor),
+    ),
+    OurServicesModel(
+      routeName: "/AskLibrarian",
+
       title: "askRelationLibrary".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(AssetImage("assets/image/BigFillQuestion.png"),
           color: kSmallIconColor),
     ),
     OurServicesModel(
-      routeName: "/FollowAnsweringLibrarian",
+      routeName: "/AskLibrarian",
 
-      route: AskLibrarian(),
       title: "askLibrarian".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
           color: kSmallIconColor),
     ),
     OurServicesModel(
-      routeName: "/FollowAnsweringLibrarian",
-
-      route: AskLibrarian(),
+      routeName: "/AskLibrarian",
       title: "libraryExternalServices".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(AssetImage("assets/image/BigSevrices.png"),
           color: kSmallIconColor),
     ),
     OurServicesModel(
-      routeName: "/FollowAnsweringLibrarian",
-
-      route: AskLibrarian(),
+      routeName: "/AskLibrarian",
       title: "SuggestionBuyBook".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(
@@ -150,16 +143,45 @@ class OurServicesGridCard {
         color: kSmallIconColor,
       ),
     ),
+
+
     OurServicesModel(
       routeName: "/FollowAnsweringLibrarian",
 
-      route: AskLibrarian(),
-      title: "Inter-LibraryExchangeAndLending".tr,
+      title: "BookGiftRequest".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(AssetImage("assets/image/giftright.png"),
+          color: kSmallIconColor),
+    ),
+    OurServicesModel(
+      routeName: "/FollowAnsweringLibrarian",
+
+
+      title: "RequestGiftBook".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(
-        AssetImage("assets/image/bigBook.png"),
+        AssetImage("assets/image/giftleft.png"),
         color: kSmallIconColor,
       ),
     ),
+
+    OurServicesModel(
+      routeName: "/FollowAnsweringLibrarian",
+
+
+      title: "SuggestionBuyBook".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(
+        AssetImage(
+          "assets/image/bigBuyBook.png",
+        ),
+        color: kSmallIconColor,
+      ),
+    ),
+
+
+
+
+
   ];
 }

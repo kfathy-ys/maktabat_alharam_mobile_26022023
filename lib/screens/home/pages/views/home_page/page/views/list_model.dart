@@ -5,13 +5,11 @@ class OurServicesModel {
   final Widget icon;
   final String title;
   final String subTitle;
-  final Widget route;
   final String routeName;
 
 
   OurServicesModel({
     required this.routeName,
-    required this.route,
     required this.title,
     required this.icon,
     required this.subTitle,
