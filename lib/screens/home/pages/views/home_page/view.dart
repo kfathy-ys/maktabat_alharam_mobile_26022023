@@ -85,7 +85,7 @@ class MyHomeScreen extends StatelessWidget{
                            Get.toNamed(services.ourServices[index].routeName);
                         },
                         child: CardContent(
-                            fontTitle: 18,
+                            fontTitle: 20,
                             fontSubTitle: 14,
                             model:services.ourServices[index] ),
                       );

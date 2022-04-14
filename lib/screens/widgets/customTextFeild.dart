@@ -81,8 +81,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
             //labelText: widget.label == true ? "+966" : null,
             labelText: widget.label ,
-            contentPadding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+            contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             icon: widget.isEdit == true ? const Icon(Icons.edit,) : null,
             labelStyle: const TextStyle(
               fontSize: 16,

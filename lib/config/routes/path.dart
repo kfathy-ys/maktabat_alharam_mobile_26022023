@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/new_order/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/view.dart';
 
 class AppPages {
@@ -11,6 +12,10 @@ class AppPages {
     ),  GetPage(
       name:  "/AskLibrarian",
       page: () => AskLibrarian(),
+    ),
+    GetPage(
+      name:  "/AskLibrarianNewOrder",
+      page: () => AskLibrarianNewOrder(),
     ),
 
   ];

@@ -27,13 +27,9 @@ class CardContent extends StatelessWidget {
 
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Container(
-            // TODO::: problem
-            padding: EdgeInsets.symmetric(vertical: 2),
-            child: model.icon,
-
-          ),
+          model.icon,
           Text(
             model.title,
             maxLines: 2,
@@ -91,7 +87,8 @@ class CardGridContent extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style:  TextStyle(
                 color: kBlackText,
-                fontSize: fontTitle, fontFamily: "DinBold" ),
+                fontSize: fontTitle,
+                fontFamily: "DinBold" ),
           ),
           Text(
             model.subTitle,

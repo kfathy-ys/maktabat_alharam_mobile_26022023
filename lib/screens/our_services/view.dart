@@ -32,41 +32,42 @@ class OurServicesScreen extends StatelessWidget {
               isIcons: true,
               press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          body: ListView(
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
+            //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const HeadTitle(),
+              SizedBox(height: height*0.02,),
+              Center(child: const HeadTitle()),
               const SubHeadTitle(),
-              Expanded(
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: const BouncingScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 200,
-                              childAspectRatio: 1.0,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10),
-                      itemCount: ourServicesGridCard.ourServicesGrid.length,
-                      itemBuilder: (BuildContext ctx, index) {
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                            maxCrossAxisExtent: 200,
+                            childAspectRatio: 1.0,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10),
+                    itemCount: ourServicesGridCard.ourServicesGrid.length,
+                    itemBuilder: (BuildContext ctx, index) {
 
 
-                        return InkWell(
-                          onTap: (){
-                            Get.toNamed(ourServicesGridCard.ourServicesGrid[index].routeName);
+                      return InkWell(
+                        onTap: (){
+                          Get.toNamed(ourServicesGridCard.ourServicesGrid[index].routeName);
 
-                           // Get.to(()=>services.ourServices[index].route);
-                          },
-                          child: CardGridContent(
-                              fontTitle: 18,
-                              fontSubTitle: 14,
-                              model: ourServicesGridCard.ourServicesGrid[index]),
-                        );
-                      }),
-                ),
+                         // Get.to(()=>services.ourServices[index].route);
+                        },
+                        child: CardGridContent(
+                            fontTitle: 18,
+                            fontSubTitle: 14,
+                            model: ourServicesGridCard.ourServicesGrid[index]),
+                      );
+                    }),
               ),
             ],
           ),

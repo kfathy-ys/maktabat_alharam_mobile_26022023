@@ -14,6 +14,7 @@ import 'package:maktabat_alharam/screens/widgets/smallButton.dart';
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
 import 'follow_answering_librarian/view.dart';
+import 'new_order/view.dart';
 
 
 // ignore: must_be_immutable
@@ -133,14 +134,16 @@ class AskLibrarian extends StatelessWidget{
                   },
 
                 ),
-                Center(child: SmallButtonSizer(onPressed: (){
-                  return null;
-                }, title: "طلب جديد",color: kPrimaryColor,image: "assets/image/newrequest.png",))
+                Center(child: SmallButtonSizer(
+
+
+                  onPressed: ()=>
+                  Get.toNamed('/AskLibrarianNewOrder'),
+                 title: "طلب جديد",color: kPrimaryColor,image: "assets/image/newrequest.png",))
 
 
 
 
-                //customSliderText(title: "askLibrarian".tr, color: kBlackText)
               ],
             ),
           ),
