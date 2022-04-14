@@ -13,7 +13,7 @@ class OurServicesScreen extends StatelessWidget {
   OurServicesScreen({Key? key}) : super(key: key);
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  OurServicesContent services = OurServicesContent();
+ // OurServicesContent services = OurServicesContent();
   OurServicesGridCard ourServicesGridCard = OurServicesGridCard();
 
   @override
@@ -56,8 +56,9 @@ class OurServicesScreen extends StatelessWidget {
 
                         return InkWell(
                           onTap: (){
-                          //  Navigator.push(context, MaterialPageRoute(builder: (context)=>services.ourServices[index].route));
-                            Get.to(()=>services.ourServices[index].route);
+                            Get.toNamed(ourServicesGridCard.ourServicesGrid[index].routeName);
+
+                           // Get.to(()=>services.ourServices[index].route);
                           },
                           child: CardGridContent(
                               fontTitle: 18,

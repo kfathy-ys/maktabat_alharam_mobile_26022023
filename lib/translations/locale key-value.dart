@@ -108,8 +108,13 @@ class LocaleString extends Translations {
       "choosePreferredLanguage":"Choose your preferred language",
       // Ask librarian
 
-      "head":"It is a service of communication between the library and its beneficiaries and inquiring about information about the library, such as: library working hours - coordination and prior arrangement for holding a symposium, discussion circle, lectures or workshops"
-
+      "head":"It is a service of communication between the library and its beneficiaries and inquiring about information about the library, such as: library working hours - coordination and prior arrangement for holding a symposium, discussion circle, lectures or workshops",
+  "question":"Question text",
+  "answer":"Employee response",
+      "entityName":"Entity name",
+      "librarian":"Librarian",
+      "libraryRelationships":"library relationships",
+      "technicalSupport":"Technical support"
     },
     'ar_EG': {
       "aboutLibrary": "عن المكتبة",
@@ -214,7 +219,13 @@ class LocaleString extends Translations {
 
    // Ask librarian
 
-   "head":"هي خدمة تواصل بين المكتبة والمستفدين منها والإستفسار عن المعلومات الخاصة بالمكتبة مثل : أوقات عمل المكتبة - التنسيق والترتيب المسبق لإقامة ندوة أو حلقة نفاش أو محاضرات أو ورش عمل "
+   "head":"هي خدمة تواصل بين المكتبة والمستفدين منها والإستفسار عن المعلومات الخاصة بالمكتبة مثل : أوقات عمل المكتبة - التنسيق والترتيب المسبق لإقامة ندوة أو حلقة نفاش أو محاضرات أو ورش عمل ",
+   "question":"نص السؤال",
+      "answer":"رد الموظف",
+      "entityName":"أسم الجهة",
+      "librarian":"أخصائي المكتبة",
+      "libraryRelationships":"علاقات المكتبة",
+      "technicalSupport":"الدعم الفني"
 
     }
   };

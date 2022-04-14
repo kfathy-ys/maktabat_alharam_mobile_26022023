@@ -7,7 +7,7 @@ import 'constants.dart';
 class CustomHeightTextField extends StatefulWidget {
   final String? hint;
   final String? label;
-
+final String? text;
   final TextInputType? type;
   final ValueChanged<String>? onsave;
   final String? Function(String?)? validator;
@@ -37,7 +37,7 @@ class CustomHeightTextField extends StatefulWidget {
     this.eIcon,
     this.edit,
     this.isEdit,
-    this.line,
+    this.line, this.text,
   });
   @override
   _CustomHeightTextFieldState createState() => _CustomHeightTextFieldState();
@@ -59,71 +59,86 @@ class _CustomHeightTextFieldState extends State<CustomHeightTextField> {
         margin: EdgeInsets.symmetric(horizontal: 6),
         // height: MediaQuery.of(context).size.height / 4,
         width: MediaQuery.of(context).size.width / 1.2,
-        child: TextFormField(
-
-          onTap: widget.onTap,
-          validator: widget.validator,
-          controller: widget.controller,
-          cursorColor: kPrimaryColor,
-          focusNode: widget.focus,
-          readOnly: widget.read,
-          maxLines: widget.line == true ? 7 : 1,
-          obscureText: widget.icon == Icons.lock_outline ? _isHidden : false,
-          keyboardType: widget.type,
-          onChanged: (widget.onsave),
-          style: const TextStyle(
-
-              fontSize: 14, color: kPrimaryColor),
-          decoration: InputDecoration(
-            hintText: widget.hint,
-            prefixIcon: Icon(
-              widget.dIcon,
-              color: kPrimaryColor,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.only(bottom: 8.0),
+              child: Text(widget.text!,
+                style:
+                const TextStyle(
+        fontSize: 16,
+          color: kBlackText,
+          fontFamily: "DinReguler",
+        ),),
             ),
-            //labelText: widget.label == true ? "+966" : null,
-            labelText: widget.label ,
+            TextFormField(
 
-          // TODO:: to controll of heights
-          //  contentPadding:const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-            icon: widget.isEdit == true ? const Icon(Icons.edit,) : null,
-            labelStyle: const TextStyle(
-              fontSize: 16,
-              color: kPrimaryColor,
-              fontFamily: "DinReguler",
-            ),
-            hintStyle: const TextStyle(
-                fontSize: 14, color: kTextFieldColor, fontFamily: "DinReguler"),
-            suffixIcon: widget.icon == Icons.lock_outline
-                ? IconButton(
-              onPressed: _visibility,
-              alignment: Alignment.center,
-              icon: _isHidden
-                  ? const Icon(
-                Icons.visibility_off,
-                color: kTextColor,
-              )
-                  : const Icon(
-                Icons.visibility,
-                color: kPrimaryColor,
+              onTap: widget.onTap,
+              validator: widget.validator,
+              controller: widget.controller,
+              cursorColor: kPrimaryColor,
+              focusNode: widget.focus,
+              readOnly: widget.read,
+              maxLines: widget.line == true ? 7 : 1,
+              obscureText: widget.icon == Icons.lock_outline ? _isHidden : false,
+              keyboardType: widget.type,
+              onChanged: (widget.onsave),
+              style: const TextStyle(
+
+                  fontSize: 14, color: kPrimaryColor),
+              decoration: InputDecoration(
+                hintText: widget.hint,
+                prefixIcon: Icon(
+                  widget.dIcon,
+                  color: kPrimaryColor,
+                ),
+                //labelText: widget.label == true ? "+966" : null,
+                labelText: widget.label ,
+
+              // TODO:: to controll of heights
+              //  contentPadding:const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                icon: widget.isEdit == true ? const Icon(Icons.edit,) : null,
+                labelStyle: const TextStyle(
+                  fontSize: 16,
+                  color: kPrimaryColor,
+                  fontFamily: "DinReguler",
+                ),
+                hintStyle: const TextStyle(
+                    fontSize: 14, color: kTextFieldColor, fontFamily: "DinReguler"),
+                suffixIcon: widget.icon == Icons.lock_outline
+                    ? IconButton(
+                  onPressed: _visibility,
+                  alignment: Alignment.center,
+                  icon: _isHidden
+                      ? const Icon(
+                    Icons.visibility_off,
+                    color: kTextColor,
+                  )
+                      : const Icon(
+                    Icons.visibility,
+                    color: kPrimaryColor,
+                  ),
+                )
+                    : null,
+                filled: true,
+                //prefixText: widget.hint,
+                fillColor: Colors.white,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 1),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.red),
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
-            )
-                : null,
-            filled: true,
-            //prefixText: widget.hint,
-            fillColor: Colors.white,
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: kPrimaryColor, width: 1),
-              borderRadius: BorderRadius.circular(8),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: kPrimaryColor, width: 2),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            border: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.red),
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
+          ],
         ),
       ),
     );

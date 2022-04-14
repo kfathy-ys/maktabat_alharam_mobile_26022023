@@ -13,6 +13,7 @@ import 'package:maktabat_alharam/screens/splash/view.dart';
 import 'package:queen/queen.dart';
 
 import 'config/bloc_observer.dart';
+import 'config/routes/path.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 import 'screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
@@ -53,6 +54,7 @@ class MaktabatAlharam extends StatelessWidget {
       child: BlocBuilder<SwitchCubit, SwitchState>(
         builder: (context, state) {
           return GetMaterialApp(
+            getPages: AppPages.routes,
             translations: LocaleString(),
             locale: const Locale('ar', 'EG'),
             //locale: const Locale('en', 'US'),
@@ -61,7 +63,7 @@ class MaktabatAlharam extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: state.theme,
             title: 'Flutter Theme Cubit',
-            home:  FollowAnsweringLibrarian(),
+            home:  HomeTabScreen(),
           );
         },
       ),

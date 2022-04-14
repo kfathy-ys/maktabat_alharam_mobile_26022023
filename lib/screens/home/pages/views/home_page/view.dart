@@ -82,10 +82,9 @@ class MyHomeScreen extends StatelessWidget{
                     itemBuilder: (context , int index){
                       return InkWell(
                         onTap: (){
-                           Get.to(()=>services.ourServices[index].route);
+                           Get.toNamed(services.ourServices[index].routeName);
                         },
                         child: CardContent(
-
                             fontTitle: 18,
                             fontSubTitle: 14,
                             model:services.ourServices[index] ),

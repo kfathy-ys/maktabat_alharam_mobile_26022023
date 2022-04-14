@@ -17,7 +17,7 @@ class _DropDownListState extends State<DropDownList> {
     double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      margin: EdgeInsets.symmetric(horizontal:35 ,vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal:35 ,vertical: 8),
       width: width,
      // height: height*0.09,
       decoration: BoxDecoration(
@@ -32,8 +32,8 @@ class _DropDownListState extends State<DropDownList> {
          // autofocus: true,
          // isDense: true,
           //isExpanded: true,
-          hint: Text("أسم الجهه :",
-            style: TextStyle(
+          hint: Text("entityName".tr+' :',
+            style: const TextStyle(
               color: kPrimaryColor,
               fontSize: 16,
               fontFamily: "DinReguler",
@@ -52,7 +52,7 @@ class _DropDownListState extends State<DropDownList> {
               dropdownValue = newValue!;
             });
           },
-          items: <String>["askLibrarian".tr,  "camera".tr, "cancel".tr]
+          items: <String>["librarian".tr,  "libraryRelationships".tr, "technicalSupport".tr]
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,

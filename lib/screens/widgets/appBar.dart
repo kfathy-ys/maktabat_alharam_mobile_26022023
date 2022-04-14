@@ -114,7 +114,7 @@ AppBar customAppbar(
       // ),
       isIcons
           ? InkWell(
-              onTap: () => Get.to(()=>MyHomeScreen()),
+              onTap: () => Get.back(),
               child: SizedBox(width: 40,
                 child: Icon(
                   icons,

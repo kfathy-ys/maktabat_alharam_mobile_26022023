@@ -32,6 +32,8 @@ class FollowAnsweringLibrarian extends StatelessWidget{
   final _idController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
+  final _questionController = TextEditingController();
+  final _responseController = TextEditingController();
   FollowAnsweringLibrarian({Key? key}) : super(key: key);
 
   @override
@@ -71,7 +73,7 @@ class FollowAnsweringLibrarian extends StatelessWidget{
                 DropDownList(),
                 CustomTextField(
                   hint: "userName".tr,
-                  dIcon: Icons.location_on_outlined,
+                  dIcon: Icons.drive_file_rename_outline,
                   label:"userName".tr ,
                   controller: _emailController,
                   validator: qValidator([
@@ -109,11 +111,24 @@ class FollowAnsweringLibrarian extends StatelessWidget{
                   type: TextInputType.name,
 
                 ),
-                const CustomHeightTextField(hint: "نص السؤال",),
-                SizedBox(height: height*0.05,),
-                Center(child: MediaButton(onPressed: (){
+                 CustomHeightTextField(hint:"question".tr,text: "question".tr+' :',
+                  controller: _questionController,
+                  validator: qValidator([
+                    IsRequired("question".tr),
+                    IsOptional(),
+                    MaxLength(80),
+                  ]),
+                  type: TextInputType.text,
+                ),
+                 CustomHeightTextField(hint:"answer".tr,text: "answer".tr+' :',
 
-                }, title: "طلب الخدمة",color: kSafeAreasColor))
+                  controller: _responseController,
+                  validator: qValidator([
+                    IsRequired("answer".tr),
+                    IsOptional(),
+                    MaxLength(30),
+                  ]),
+                  type: TextInputType.text,),
 
 
 
