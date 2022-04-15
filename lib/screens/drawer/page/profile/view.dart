@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:maktabat_alharam/config/pick.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/page/views/header.dart';
 import 'package:maktabat_alharam/screens/drawer/page/settings/page/views/data_created.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
@@ -24,7 +23,6 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final _nameController = TextEditingController();
 
   final _emailController = TextEditingController();
 
@@ -55,24 +53,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: ListView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
 shrinkWrap: true,
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 19),
             //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               HeaderTitle(icon: Icons.person, title: "myProfile".tr),
               _profilePic(userName: "fakeName".tr),
-              CustomTextFieldSizer(
-                titleTextField: "userNameDots".tr,
-                hint: "fakeName".tr,
-                controller: _nameController,
-                validator: (String? value) {
-                  if (value!.isEmpty) {
-                    return "Please enter your county";
-                  }
-                },
-                type: TextInputType.name,
-              ),
               CustomTextFieldSizer(
                 titleTextField: "emailDots".tr,
                 hint: "Mohamed.Rashad@gmail.com",
@@ -85,7 +72,7 @@ shrinkWrap: true,
                 type: TextInputType.emailAddress,
               ),
               CustomTextFieldSizer(
-                titleTextField: "phoneDots".tr,
+                titleTextField: "phoneDots".tr+"\t\t",
                 hint: "6555333777",
                 controller: _phoneController,
                 validator: (String? value) {
@@ -96,7 +83,7 @@ shrinkWrap: true,
                 type: TextInputType.phone,
               ),
               CustomTextFieldSizer(
-                titleTextField: "countryDots".tr,
+                titleTextField: "countryDots".tr+"\t\t",
                 hint: "saudi".tr,
                 controller: _countyController,
                 validator: (String? value) {
@@ -107,7 +94,7 @@ shrinkWrap: true,
                 type: TextInputType.text,
               ),
               CustomTextFieldSizer(
-                titleTextField: "AccessNumberDots".tr,
+                titleTextField: "AccessNumberDots".tr+"\t\t",
                 hint: "859632110",
                 controller: _noAccessController,
                 validator: (String? value) {
@@ -118,7 +105,7 @@ shrinkWrap: true,
                 type: TextInputType.number,
               ),
               CustomTextFieldSizer(
-                titleTextField: "passwordDots".tr,
+                titleTextField: "passwordDots".tr+"\t\t",
                 icon: Icons.lock_outline,
                 dIcon: Icons.lock_outline,
                 controller: _passController,

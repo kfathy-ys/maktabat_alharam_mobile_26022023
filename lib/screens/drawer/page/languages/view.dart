@@ -5,8 +5,8 @@ import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:maktabat_alharam/screens/widgets/customButton.dart';
+
 
 // ignore: must_be_immutable
 class LanguagesScreen extends StatelessWidget {
@@ -41,22 +41,23 @@ class LanguagesScreen extends StatelessWidget {
               isIcons: true,
               press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: ListView(
-           // crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              HeaderTitle(icon: Icons.language, title: "language".tr),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 40),
-                child: Image.asset("assets/image/bigKabah.png"),
-              ),
+          body: Container(
+            height: height,
+            width: width,
+            child: ListView(
+             // crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                HeaderTitle(icon: Icons.language, title: "language".tr),
+                Image.asset("assets/image/bigKabah.png"),
 
-              MediaButton(onPressed: (){  buildLanguageDialog(context);},
-              title: "changeLang".tr,
+                CustomButton(color: kSafeAreasColor,onPressed: (){  buildLanguageDialog(context);},
+                title: "changeLang".tr,
 
-              ),
+                ),
 
 
-            ],
+              ],
+            ),
           ),
         ),
       ),

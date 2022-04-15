@@ -1,8 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/sliders/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-import 'package:maktabat_alharam/screens/widgets/custom_cached_image.dart';
 
 class BannerSlider extends StatelessWidget {
   //final List<Sliders> sliders;

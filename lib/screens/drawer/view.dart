@@ -83,7 +83,7 @@ Widget drawer({required context}) {
                       listTile(
                           onTap: (){
                             Get.back();
-                            Get.to(()=>ProfileScreen());
+                            Get.to(()=>const ProfileScreen());
 
                           },
                           title: "myProfile".tr,

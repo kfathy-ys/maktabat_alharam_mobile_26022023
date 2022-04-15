@@ -1,8 +1,8 @@
+
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
 
 import 'constants.dart';
 

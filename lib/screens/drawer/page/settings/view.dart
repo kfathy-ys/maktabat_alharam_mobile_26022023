@@ -38,7 +38,7 @@ class SettingsScreen extends StatelessWidget{
               press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: ListView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
 
             // crossAxisAlignment: CrossAxisAlignment.center,

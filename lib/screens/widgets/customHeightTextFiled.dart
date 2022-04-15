@@ -56,7 +56,7 @@ class _CustomHeightTextFieldState extends State<CustomHeightTextField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 6),
+        margin: const EdgeInsets.symmetric(horizontal: 6),
         // height: MediaQuery.of(context).size.height / 4,
         width: MediaQuery.of(context).size.width / 1.2,
         child: Column(

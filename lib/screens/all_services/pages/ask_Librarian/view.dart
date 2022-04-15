@@ -49,9 +49,6 @@ class AskLibrarian extends StatelessWidget{
             width: width,
             child: ListView(
 
-            // padding: EdgeInsets.symmetric(vertical: 10),
-             // crossAxisAlignment: CrossAxisAlignment.start,
-             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                physics: const BouncingScrollPhysics(),
                shrinkWrap: true,
               children:  [
@@ -92,28 +89,28 @@ class AskLibrarian extends StatelessWidget{
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           buildRow(
-                              title: "محتوي الطلب",
-                              subTitle: "هل المكتبة متاحة يوم الجمعة؟",
+                              title: "requestContent".tr,
+                              subTitle: "المكتبة متاحة يوم الجمعة؟",
                               color1: kSmallIconColor,
                               color2: kBlackText),
                           buildRow(
-                              title: "تاريخ الطلب",
-                              subTitle: " Mar 31 , 2022                     \t\t",
+                              title: "requestDate".tr,
+                              subTitle: " Mar 31 , 2022",
                               color1: kSmallIconColor,
                               color2: kSkyButton),
                           buildRow(
-                              title: "رد  الموظف",
-                              subTitle: "    نعم                                         ",
+                              title: "nameResponsible".tr,
+                              subTitle: "نعم",
                               color1: kSmallIconColor,
                               color2: kBlackText),
                           buildRow(
-                            title: "إجراءات الطلب",
-                            subTitle: "                                             ",
+                            title: "orderProcedure".tr,
+                            subTitle: "",
                             color1: kBlackText,
                             //  color2: kBlackText
                           ),
                           CustomCardButton(color: kAccentColor,
-                            title: "متابعه الطلب",
+                            title: "followRequest".tr,
                             onPressed: ()=>Get.to(()=>FollowAnsweringLibrarian()),
                             //  icon:  Icons.visibility_outlined
                             image: "assets/image/fulleyes.png",
@@ -121,8 +118,8 @@ class AskLibrarian extends StatelessWidget{
                           ),
 
                           CustomCardButton(color: kAccentColor,
-                              title: "إالغاء الطلب",
-                              onPressed: (){},
+                            title: "cancelRequest".tr,
+                            onPressed: (){},
                             image: "assets/image/fullerror.png",
                             //  icon:Icons.cancel_outlined
                           ),
@@ -139,7 +136,7 @@ class AskLibrarian extends StatelessWidget{
 
                   onPressed: ()=>
                   Get.toNamed('/AskLibrarianNewOrder'),
-                 title: "طلب جديد",color: kPrimaryColor,image: "assets/image/newrequest.png",))
+                 title: "addOne".tr,color: kPrimaryColor,image: "assets/image/newrequest.png",))
 
 
 
@@ -152,28 +149,31 @@ class AskLibrarian extends StatelessWidget{
     );
   }
 
-  Row buildRow({required String title ,  String? subTitle , Color? color1 , Color? color2 ,}) {
-    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                         Text(
-                          title,
-                          //  "محتوي الطلب",
-//kSmallIconColor
-                            style:  TextStyle(
-                                color: color1, fontSize: 14, fontFamily: 'DinBold'
-                            )
-                        ),
-                         Text(
+  Widget buildRow({required String title ,  String? subTitle , Color? color1 , Color? color2 ,}) {
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(start: 16,end: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                           Text(
+                            title,
 
-                           subTitle!,
-                           // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-                            style:  TextStyle(
-                                color: color2, fontSize: 14, fontFamily: 'DinReguler'
-                            )
-                        ),
-                      ],
-                    );
+                              style:  TextStyle(
+                                  color: color1, fontSize: 14, fontFamily: 'DinBold'
+                              )
+                          ),
+                           SizedBox(width: 10,),
+                           Text(
+
+                             subTitle!,
+
+                              style:  TextStyle(
+                                  color: color2, fontSize: 14, fontFamily: 'DinReguler'
+                              )
+                          ),
+                        ],
+                      ),
+    );
   }
 }

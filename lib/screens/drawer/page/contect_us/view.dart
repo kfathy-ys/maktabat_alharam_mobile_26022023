@@ -115,7 +115,7 @@ class ContactUsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text("YouCanFollowUsSocialMedia".tr,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: kSmallIconColor,
                         fontSize: 16,
                         fontFamily: 'DinReguler')),

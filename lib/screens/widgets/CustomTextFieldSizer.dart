@@ -56,97 +56,90 @@ class _CustomTextFieldState extends State<CustomTextFieldSizer> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return ListView(
-      physics: NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.symmetric(vertical: 6),
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.symmetric(vertical: 6),
       shrinkWrap: true,
       children: [
       Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+
         children: [
-          Column(
-            children: [
-              Text(widget.titleTextField!,
-                style: const TextStyle(
-                    color: kBlackText,
-                    fontSize: 16,
-                    fontFamily: 'DinLight'),),
-            ],
-          ),
-          Row(
+          Text(widget.titleTextField!,
+            style: const TextStyle(
+                color: kBlackText,
+                fontSize: 16,
+                fontFamily: 'DinLight'),),
+          Container(
+            height: height*0.085,
+            width: width*0.6,
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            child: TextFormField(
+              onTap: widget.onTap,
+              validator: widget.validator,
+              controller: widget.controller,
+              cursorColor: kPrimaryColor,
+              focusNode: widget.focus,
+              readOnly: widget.read,
+              maxLines: widget.line == true ? 7 : 1,
+              obscureText: widget.icon == Icons.lock_outline ? _isHidden : false,
+              keyboardType: widget.type,
+              onChanged: (widget.onsave),
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 14, color: kPrimaryColor),
+              decoration: InputDecoration(
 
-            children: [
+                hintText: widget.hint,
+                // prefixIcon: Icon(
+                //   widget.dIcon,
+                //   color: kPrimaryColor,
+                // ),
+                //labelText: widget.label == true ? "+966" : null,
+                labelText: widget.label ,
 
-              Container(
-                height: height*0.085,
-                width: width*0.6,
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: TextFormField(
-                  onTap: widget.onTap,
-                  validator: widget.validator,
-                  controller: widget.controller,
-                  cursorColor: kPrimaryColor,
-                  focusNode: widget.focus,
-                  readOnly: widget.read,
-                  maxLines: widget.line == true ? 7 : 1,
-                  obscureText: widget.icon == Icons.lock_outline ? _isHidden : false,
-                  keyboardType: widget.type,
-                  onChanged: (widget.onsave),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 14, color: kPrimaryColor),
-                  decoration: InputDecoration(
+                icon: widget.isEdit == true ? const Icon(Icons.edit,) : null,
+                labelStyle: const TextStyle(
+                  fontSize: 16,
+                  color: kPrimaryColor,
+                  fontFamily: "DinReguler",
+                ),
+                 contentPadding:const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
 
-                    hintText: widget.hint,
-                    // prefixIcon: Icon(
-                    //   widget.dIcon,
-                    //   color: kPrimaryColor,
-                    // ),
-                    //labelText: widget.label == true ? "+966" : null,
-                    labelText: widget.label ,
-
-                    icon: widget.isEdit == true ? const Icon(Icons.edit,) : null,
-                    labelStyle: const TextStyle(
-                      fontSize: 16,
-                      color: kPrimaryColor,
-                      fontFamily: "DinReguler",
-                    ),
-                    hintStyle: const TextStyle(
-                        fontSize: 14, color: kTextFieldColor, fontFamily: "DinReguler"),
-                    suffixIcon: widget.icon == Icons.lock_outline
-                        ? IconButton(
-                      onPressed: _visibility,
-                      alignment: Alignment.center,
-                      icon: _isHidden
-                          ? const Icon(
-                        Icons.visibility_off,
-                        color: kTextFieldColor,
-                      )
-                          : const Icon(
-                        Icons.visibility,
-                        color: kTextFieldColor,
-                      ),
-                    )
-                        : null,
-                    filled: true,
-                    //prefixText: widget.hint,
-                    fillColor: Colors.white,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: kPrimaryColor, width: 1),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: kPrimaryColor, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    border: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.red),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                hintStyle: const TextStyle(
+                    fontSize: 14, color: kTextFieldColor, fontFamily: "DinReguler"),
+                suffixIcon: widget.icon == Icons.lock_outline
+                    ? IconButton(
+                  onPressed: _visibility,
+                  alignment: Alignment.center,
+                  icon: _isHidden
+                      ? const Icon(
+                    Icons.visibility_off,
+                    color: kTextFieldColor,
+                  )
+                      : const Icon(
+                    Icons.visibility,
+                    color: kTextFieldColor,
                   ),
+                )
+                    : null,
+                filled: true,
+                //prefixText: widget.hint,
+                fillColor: Colors.white,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: kPrimaryColor, width: 2),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.red),
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              Image.asset("assets/image/arrowleft.png"),
-            ],
+            ),
           ),
+          Image.asset("assets/image/arrowleft.png"),
         ],
       ),
       ],

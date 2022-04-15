@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'dart:io';
-
-import 'package:image_picker/image_picker.dart';
-import 'package:maktabat_alharam/screens/widgets/constants.dart';
+// import 'package:flutter/material.dart';
+// import 'dart:io';
+//
+// import 'package:image_picker/image_picker.dart';
+// import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
 /*class TakeImage{
    static getImage(BuildContext context , ImageSource src) async {

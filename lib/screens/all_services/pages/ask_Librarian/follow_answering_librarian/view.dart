@@ -142,28 +142,4 @@ class FollowAnsweringLibrarian extends StatelessWidget{
     );
   }
 
-  Row buildRow({required String title ,  String? subTitle , Color? color1 , Color? color2 ,}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(
-            title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:  TextStyle(
-                color: color1, fontSize: 14, fontFamily: 'DinBold'
-            )
-        ),
-        Text(
-
-            subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style:  TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler'
-            )
-        ),
-      ],
-    );
-  }
 }

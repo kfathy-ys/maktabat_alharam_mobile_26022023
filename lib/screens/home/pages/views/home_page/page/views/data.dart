@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/view.dart';
-import 'package:maktabat_alharam/screens/drawer/page/contect_us/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/list_model.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
@@ -45,7 +43,7 @@ class OurServicesContent {
       ),
     ),
     OurServicesModel(
-      routeName: "/FollowAnsweringLibrarian",
+      routeName: "/ReserveResearchRetreatScreen",
 
       title: "RequestReserveArticleOrResearchRetreat".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -168,7 +166,7 @@ class OurServicesGridCard {
       ),
     ),
     OurServicesModel(
-      routeName: "/FollowAnsweringLibrarian",
+      routeName: "/ReserveResearchRetreatScreen",
 
       title: "RequestReserveArticleOrResearchRetreat".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",

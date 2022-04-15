@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
-import 'package:maktabat_alharam/screens/auth/register/page/intel_phone_filed.dart';
 import 'package:maktabat_alharam/screens/auth/register/page/title_subtitle.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';

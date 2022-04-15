@@ -3,12 +3,12 @@ import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/content.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/data.dart';
 import 'package:maktabat_alharam/screens/our_services/page/views/subhead_title.dart';
-import 'package:maktabat_alharam/screens/our_services/page/views/suggest_bug_book.dart';
 import 'package:maktabat_alharam/screens/our_services/page/views/title.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class OurServicesScreen extends StatelessWidget {
   OurServicesScreen({Key? key}) : super(key: key);
 
@@ -19,7 +19,6 @@ class OurServicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Container(
       color: kAppBarColor,
       child: SafeArea(
@@ -38,7 +37,7 @@ class OurServicesScreen extends StatelessWidget {
             //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: height*0.02,),
-              Center(child: const HeadTitle()),
+              const Center(child: HeadTitle()),
               const SubHeadTitle(),
               Padding(
                 padding:

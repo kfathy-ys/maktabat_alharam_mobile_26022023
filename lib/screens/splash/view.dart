@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 
@@ -76,7 +77,7 @@ super.initState();
       final result = await InternetAddress.lookup('google.com');
 
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print('connected');
+        log('connected');
         Timer(
             const Duration(
               // seconds: 1,

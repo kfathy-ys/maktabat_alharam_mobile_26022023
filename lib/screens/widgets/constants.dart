@@ -147,7 +147,7 @@ void archiveClients(
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(8),
-        topRight: const Radius.circular(8),
+        topRight: Radius.circular(8),
       ),
     ),
     context: context,

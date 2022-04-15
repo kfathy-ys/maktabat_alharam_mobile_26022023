@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
+import 'package:maktabat_alharam/screens/drawer/page/profile/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/buttons_naviagtion_bar.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
-import 'package:maktabat_alharam/screens/home/pages/views/services/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
 import 'pages/views/my_requests/view.dart';
@@ -19,10 +19,11 @@ class HomeTabScreen extends StatefulWidget {
 }
 
 class _HomeTabScreenState extends State<HomeTabScreen> {
-  static  List<Widget> _widgetOptions = <Widget>[
+  static  final List<Widget> _widgetOptions = <Widget>[
+
+    const MyRequestsScreen(),
     MyHomeScreen(),
-    MyRequestsScreen(),
-    ServicesScreen(),
+    const ProfileScreen(),
 
   ];
   int _selectedIndex = 0;
@@ -63,16 +64,18 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
           unselectedIconTheme:  const IconThemeData(color: kOffColor),
 selectedItemColor: kHomeColor ,
           unselectedItemColor:kOffColor ,
-          // selectedLabelStyle:  TextStyle(
-          //     fontFamily: 'Contrail',
-          //     fontSize: 10,
-          //     fontWeight: FontWeight.bold,
-          //     color: kHomeColor),
-          // unselectedLabelStyle:  TextStyle(
-          //     fontFamily: 'Contrail',
-          //     fontSize: 10,
-          //     fontWeight: FontWeight.bold,
-          //     color: kLightText),
+
+
+          selectedLabelStyle:  const TextStyle(
+              fontFamily: 'DinMedium',
+              fontSize: 16,
+
+              color: kHomeColor),
+          unselectedLabelStyle:  const TextStyle(
+              fontFamily: 'Contrail',
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: kLightText),
           iconSize: 25,
         ),
       ),

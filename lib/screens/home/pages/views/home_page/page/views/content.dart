@@ -77,7 +77,7 @@ class CardGridContent extends StatelessWidget {
         children: <Widget>[
           Container(
             // TODO::: problem
-            padding: EdgeInsets.symmetric(vertical: 2),
+            padding: const EdgeInsets.symmetric(vertical: 2),
             child: model.icon,
 
           ),
