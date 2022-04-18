@@ -10,6 +10,7 @@ const Color kSafeAreaColor = Color(0xFF186C5C);
 const Color kAccentColor = Color(0xFFCBB176);
 const Color kAppBarColor = Color(0xFF02774D);
 
+const Color kTextTables = Color(0xFFF7F7F7);
 const Color kTextFieldColor = Color(0xFF8D8D8D);
 const Color kOffColor = Color(0xFFBDE4D6);
 const Color kSafeAreasColor = Color(0xFF004926);

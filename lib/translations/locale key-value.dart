@@ -135,6 +135,7 @@ class LocaleString extends Translations {
           "orderFollowUp": "Order follow up",
           "serviceName": "Service name",
           "libraryName": "Library name",
+          "thisFieldRequired":"This field is required",
           "phoneNumber": "Phone number",
           "qualification": "Qualification",
           "bookingDate": "Booking date",
@@ -143,7 +144,68 @@ class LocaleString extends Translations {
           "orderEvents": "Order events",
           "commentsRequest": "Comments on the request",
           "add": "Add",
-          "requestData":"Request data"
+          "requestData":"Request data",
+          "researchRetreat":"Research retreat",
+          "scientificMaterial":"Scientific material",
+          "mix":"Research retreat-Scientific material",
+          "theHolyHaramLibraryMen":"The Holy Haram Library - Men",
+          "theHolyHaramLibraryWoman":"The Holy Haram Library - Women",
+          "hallfirst":"Hall -1",
+          "hallSecand":"Hall -2",
+          "phDStudent":"PhD student",
+          "masterStudent":"Master student",
+          "phDStudentPresidency":"PhD student from presidency",
+          "hallName":"Hall name",
+          "requiredDate":"Required date:",
+          "from":"From",
+          "to":"To",
+          "visitDate":"Visit date",
+          "visitReason":"Visit reason:",
+          "saveUpdates":"Save updates",
+          "resent":"Resent",
+
+          // my orders
+
+          "orderName":" Order name",
+          "requestVisit":"Request visit",
+          "requestLibrarian":"Request to ask librarian",
+          "requestToBuyBook":"Request to suggest buy book",
+          "done":"Done",
+          "underReview":"Request is under review",
+          "refused":"Refused",
+
+         // request to visit
+          "titleHead":"This service allows the official authorities to request a visit to the library.",
+          "requiredInstructions":"Required instructions",
+          "visitsNumbers":"Visits numbers",
+  "school":"School",
+  "company":"Company",
+  "entity":"Entity",
+          "requestService":"Request service",
+
+          //Suggestion to buy a book
+          "authorAddress":"Author address:",
+          "authorName":"Author name:",
+          "publisherName":"Publisher's name",
+          "publishLocation":"Publish location:",
+          "publishYear":"Publish year",
+          "standardBookNumber":"Standard book number",
+          "bookType":"Book type",
+          "additionalInformation":"Additional information",
+          "name":"Name:",
+          "emailDot":"E-mail:",
+          "qualifications":"qualifications:",
+          "electronic":"Electronic",
+          "paper":"Paper",
+          "headBuyBook":"The service allows the beneficiary to send suggestions to the library administration to purchase a book or cover a topic.",
+          "titleOfBook":"Title of book",
+          "addToArchive":"Add to archive",
+          "removeFromArchive":"Remove from archive",
+          "kArchive":"(Archive)",
+
+
+
+
         },
         'ar_EG': {
           "aboutLibrary": "عن المكتبة",
@@ -283,7 +345,69 @@ class LocaleString extends Translations {
           "orderEvents": "أحداث الطلب",
           "commentsRequest": "التعليقات علي الطلب",
           "add": "إضافة",
-          "requestData":"بيانات الطلب"
+          "requestData":"بيانات الطلب",
+
+          "researchRetreat":"خلوة بحثية",
+          "scientificMaterial":"مادة علمية",
+          "mix":"خلوة بحثية - مادة علمية",
+          "theHolyHaramLibraryMen":"مكتبة الحرم المكي الشريف - رجال",
+          "theHolyHaramLibraryWoman":"مكتبة الحرم المكي الشريف - نساء",
+          "hallfirst":"قاعة - 1",
+          "hallSecand":"قاعة - 2",
+          "phDStudent":"طالب دكتوراة",
+          "masterStudent":"طالب ماجستير",
+          "phDStudentPresidency":"دكتوراة - ماجستير من منسوبي الرئاسة",
+          "hallName":"إسم القاعة",
+          "requiredDate":"التاريخ المطلوب :",
+          "from":"من",
+          "to":"إلي",
+          "visitReason":"سبب الزيارة :",
+          "visitDate":"تاريخ الزيارة",
+
+          "saveUpdates":"حفظ التعديلات",
+          "thisFieldRequired":"هذا الحقل مطلوب",
+          "resent":"إعادة الإرسال",
+
+          // my orders
+
+          "orderName":" إسم الطلب",
+          "requestVisit":"طلب زيارة",
+          "requestLibrarian":"طلب إسال موظف المكتبة",
+          "requestToBuyBook":"طلب اقتراح شراء كتاب",
+          "done":"تم الموافقة",
+          "underReview":"طلب قيد المراجعة",
+          "refused":"تم رفض الطلب",
+          "titleHead":"تتيح هذة الخدمة للجهات الرسمية طلب الزيارة للمكتبة.",
+           "requiredInstructions":"التعلميات المطلوبة",
+          "visitsNumbers":"عدد الزوار",
+          "school":"مدرسة",
+          "company":"شركة",
+          "entity":"جهة",
+          "requestService":"طلب الخدمة",
+          //Suggestion to buy a book
+          "authorAddress":"عنوان المؤلف:",
+          "authorName":"إسم المؤلف:",
+          "publisherName":"إسم الناشر:",
+          "publishLocation":"مكان النشر:",
+          "publishYear":"سنه النشر:",
+          "standardBookNumber":"الرقم المعياري للكتاب:",
+          "bookType":"نوع الكتاب",
+          "additionalInformation":"معلومات إضافية",
+          "name":"الإسم:",
+          "emailDot":"البريد الإلكتروني:",
+          "qualifications":"المؤهل:",
+          "electronic":"إلكتروني",
+          "paper":"ورقي",
+          "headBuyBook":"تتيح الخدمة للمستفيد إمكانية إرسال اقتراحات إالي إدارة المكتبة لشراء كتاب أو تغطية موضوع.",
+          "titleOfBook":"عنوان الكتاب",
+          "addToArchive":"إضافة إلي الأرشيف",
+          "removeFromArchive":"إزالة من الأرشيف",
+
+          "kArchive":"(الأرشيف)",
+
+
+
+
         }
       };
 }

@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:maktabat_alharam/screens/auth/login/view.dart';
-import 'package:maktabat_alharam/screens/drawer/view.dart';
+
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/content.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/data.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/sliders/banner_slider.dart';
-import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/sliders/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/title_subTitle.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/to_show_more_about_our_services.dart';
 import 'package:maktabat_alharam/screens/our_services/view.dart';
-import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/widgets/customButton.dart';
 
 
 // ignore: must_be_immutable

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/buttons_naviagtion_bar.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
+import 'package:maktabat_alharam/screens/home/pages/views/my_orders/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-
-import 'pages/views/my_requests/view.dart';
+import 'package:get/get.dart';
 
 
 class HomeTabScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class HomeTabScreen extends StatefulWidget {
 class _HomeTabScreenState extends State<HomeTabScreen> {
   static  final List<Widget> _widgetOptions = <Widget>[
 
-    const MyRequestsScreen(),
+     MyOrdersScreen(),
     MyHomeScreen(),
     const ProfileScreen(),
 
@@ -58,7 +58,19 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
               _onItemTapped(index);
             });
           },
-          items: _itemsBar.itemsBar,
+          items:  <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: const ImageIcon( AssetImage("assets/image/myOrders.png"),),
+              label: "myOrders".tr,
+            ),
+            BottomNavigationBarItem(
+              icon: const ImageIcon( AssetImage("assets/image/homeicon.png"),),
+              label:"home".tr,
+            ),
+            BottomNavigationBarItem(
+                icon: const ImageIcon( AssetImage("assets/image/user.png"),),
+                label:  "myProfile".tr),
+          ],
           type: BottomNavigationBarType.fixed,
           selectedIconTheme: const IconThemeData(color: kHomeColor),
           unselectedIconTheme:  const IconThemeData(color: kOffColor),

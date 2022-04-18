@@ -2,10 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_visit/my_orders/view.dart';
 
+import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/drop_down_entity_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/drop_down_library_name.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
+import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
+import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -13,29 +15,31 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-
+import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
+import 'package:maktabat_alharam/screens/widgets/smallButton.dart';
+import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
+import 'package:queen/validation/it/is_email.dart';
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import 'page/views/drop_down_entity_name.dart';
 
 
 
 
 // ignore: must_be_immutable
-class RequestVisitScreen extends StatefulWidget {
-  const RequestVisitScreen({Key? key}) : super(key: key);
+class UpdateOrderOfVisitRequest extends StatefulWidget {
+  const UpdateOrderOfVisitRequest({Key? key}) : super(key: key);
 
   @override
-  State<RequestVisitScreen> createState() =>
-      _RequestVisitScreenState();
+  State<UpdateOrderOfVisitRequest> createState() =>
+      _UpdateOrderOfVisitRequestState();
 }
 
-class _RequestVisitScreenState
-    extends State<RequestVisitScreen> {
+class _UpdateOrderOfVisitRequestState
+    extends State<UpdateOrderOfVisitRequest> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
@@ -87,7 +91,7 @@ class _RequestVisitScreenState
                   padding:
                   const EdgeInsets.symmetric(horizontal: 12),
                   child: HeadTopics(
-                    title: "RequestVisit".tr,
+                    title: "updateRequest".tr,
                   ),
                 ),
                 SizedBox(
@@ -259,7 +263,7 @@ class _RequestVisitScreenState
                         fontFamily: "DinReguler",
                       ),),
                       Container(
-                      //  color: Colors.red,
+                        //  color: Colors.red,
                         width: width*0.1,
                         height: height * 0.05,
                         child: TextFormField(),
@@ -282,14 +286,14 @@ class _RequestVisitScreenState
                               // },
                             );
                           },
-                      child: Image.asset("assets/image/twoarrow.png")),
+                          child: Image.asset("assets/image/twoarrow.png")),
                       Text("to".tr,style: const TextStyle(
                         color: kBlackText,
                         fontSize: 16,
                         fontFamily: "DinReguler",
                       ),),
                       Container(
-                       // color: Colors.red,
+                        // color: Colors.red,
                         width: width*0.1,
                         height: height * 0.05,
                         child: TextFormField(),
@@ -328,9 +332,9 @@ class _RequestVisitScreenState
                   child: MediaButtonSizer(
                     onPressed: () {
 
-                      Get.to(()=> MyOrderRequestVisitScreen());
+                      Get.to(()=> MyHomeScreen());
                     },
-                    title: "requestService".tr,
+                    title: "saveUpdates".tr,
                     color: kPrimaryColor,
                     image: "assets/image/rightsah.png",
                   ),

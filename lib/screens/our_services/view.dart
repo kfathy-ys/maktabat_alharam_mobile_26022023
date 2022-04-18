@@ -33,7 +33,7 @@ class OurServicesScreen extends StatelessWidget {
               context: context),
           body: ListView(
             physics: const BouncingScrollPhysics(),
-            shrinkWrap: true,
+           // shrinkWrap: true,
             //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: height*0.02,),

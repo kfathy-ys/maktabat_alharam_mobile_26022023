@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/view.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_visit/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
@@ -14,13 +14,13 @@ import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
 
 // ignore: must_be_immutable
-class FollowReservedRetreatScreen extends StatelessWidget {
+class FollowRequestVisitScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   final _addCommentController = TextEditingController();
 
 
-  FollowReservedRetreatScreen({Key? key}) : super(key: key);
+  FollowRequestVisitScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,18 +50,29 @@ class FollowReservedRetreatScreen extends StatelessWidget {
                   title: "orderFollowUp".tr,
                 ),
                 Container(
-                  padding: const EdgeInsetsDirectional.only(top: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 4),
                   margin:
                       const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
-                  height: height * 0.08,
+                  height: height * 0.12,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: kCardBorder)),
-                  child: buildRow(
-                      title: "serviceName".tr,
-                      subTitle: "خلوة بحثية",
-                      color1: kSmallIconColor,
-                      color2: kBlackText),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      buildRow(
+                          title: "serviceName".tr,
+                          subTitle: "خلوة بحثية",
+                          color1: kSmallIconColor,
+                          color2: kBlackText),
+                      buildRow(
+                          title: "requiredInstructions".tr,
+                          subTitle: " كارنيه الإستشارة",
+                          color1: kSmallIconColor,
+                          color2: kAccentColor),
+                    ],
+                  ),
                 ),
                 HeadTopics(
                   title: "requestData".tr,
@@ -69,7 +80,7 @@ class FollowReservedRetreatScreen extends StatelessWidget {
                 Container(
                   margin:
                       const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
-                  height: height * 0.5,
+                  height: height * 0.4,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: kCardBorder)),
@@ -78,40 +89,36 @@ class FollowReservedRetreatScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       buildRow(
-                          title: "serviceName".tr,
-                          subTitle: "خلوة بحثية",
+                          title: "entityName".tr,
+                          subTitle: "مدرسة",
                           color1: kSmallIconColor,
                           color2: kBlackText),
                       buildRow(
-                          title: "libraryName".tr,
-                          subTitle: "مكتبة الحرم المكي الشريف - رجال",
+                          title: "nameResponsible".tr,
+                          subTitle: "Ahmed",
+                          color1: kSmallIconColor,
+                          color2: kBlackText),
+                      buildRow(
+                          title: "email".tr,
+                          subTitle: "Ahmed78@gmail.com",
                           color1: kSmallIconColor,
                           color2: kBlackText),
                       buildRow(
                           title: "phoneNumber".tr,
-                          subTitle: "05963214587",
+                          subTitle: "955542369875",
                           color1: kSmallIconColor,
                           color2: kBlackText),
                       buildRow(
-                          title: "qualification".tr,
-                          subTitle: "طالب ماجستير",
+                          title: "visitsNumbers".tr,
+                          subTitle: "8",
                           color1: kSmallIconColor,
                           color2: kBlackText),
                       buildRow(
-                          title: "bookingDate".tr,
-                          subTitle: "Mar 22 ,2022",
-                          color1: kSmallIconColor,
-                          color2: kBlackText),
-                      buildRow(
-                          title: "dateFrom".tr,
-                          subTitle: "Mar 31 , 2022",
+                          title: "visitReason".tr,
+                          subTitle: "إستطلاع",
                           color1: kSmallIconColor,
                           color2: kSkyButton),
-                      buildRow(
-                          title: "dateTo".tr,
-                          subTitle: "Agu 31 , 2022",
-                          color1: kSmallIconColor,
-                          color2: kSkyButton),
+
                     ],
                   ),
                 ),
@@ -212,7 +219,7 @@ class FollowReservedRetreatScreen extends StatelessWidget {
                 ),
                 Center(
                     child: SmallButtonSizer(
-                  onPressed: () => Get.to(()=>ReserveResearchRetreatScreen()),
+                  onPressed: () => Get.to(()=>const RequestVisitScreen()),
                   title: "add".tr,
                   color: kPrimaryColor,
                   image: "assets/image/newrequest.png",
@@ -245,7 +252,7 @@ class FollowReservedRetreatScreen extends StatelessWidget {
               style: TextStyle(
                   color: color2, fontSize: 14, fontFamily: 'DinReguler')),
           Text(subTitle!,
-              style: TextStyle(
+              style: const TextStyle(
                   color: kAccentColor, fontSize: 14, fontFamily: 'DinReguler')),
         ],
       ),

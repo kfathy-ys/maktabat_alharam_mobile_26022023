@@ -174,7 +174,7 @@ class OurServicesGridCard {
           color: kSmallIconColor),
     ),
     OurServicesModel(
-      routeName: "/FollowAnsweringLibrarian",
+      routeName: "/RequestVisitScreen",
 
       title: "RequestVisit".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -235,7 +235,7 @@ class OurServicesGridCard {
       ),
     ),
     OurServicesModel(
-      routeName: "/FollowAnsweringLibrarian",
+      routeName: "/SuggestToBuyBook",
 
 
       title: "SuggestionBuyBook".tr,

@@ -1,41 +1,28 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_visit/my_orders/view.dart';
-
-import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/drop_down_library_name.dart';
+import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/my_order/view.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_hall_name.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_items.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_library_name.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_qualification.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/head_topices.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
-
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-
-import 'package:queen/validation/magic/is_optional.dart';
-import 'package:queen/validation/text/is_not_empty.dart';
-import 'package:queen/validation/text/max_length.dart';
-import 'package:queen/validation/validator.dart';
+import 'package:queen/validation.dart';
 import 'package:table_calendar/table_calendar.dart';
+class UpdateReserveArticleRetreated extends StatefulWidget {
 
-import 'page/views/drop_down_entity_name.dart';
-
-
-
-
-// ignore: must_be_immutable
-class RequestVisitScreen extends StatefulWidget {
-  const RequestVisitScreen({Key? key}) : super(key: key);
+  const UpdateReserveArticleRetreated({Key? key}) : super(key: key);
 
   @override
-  State<RequestVisitScreen> createState() =>
-      _RequestVisitScreenState();
+  State<UpdateReserveArticleRetreated> createState() => _UpdateReserveArticleRetreatedState();
 }
 
-class _RequestVisitScreenState
-    extends State<RequestVisitScreen> {
+class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetreated> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
@@ -87,17 +74,19 @@ class _RequestVisitScreenState
                   padding:
                   const EdgeInsets.symmetric(horizontal: 12),
                   child: HeadTopics(
-                    title: "RequestVisit".tr,
+                    title: "RequestReserveArticleOrResearchRetreat".tr,
                   ),
                 ),
                 SizedBox(
                   height: height * 0.05,
                 ),
-                const DropDownEntityName(),
+                const DropDownListServiceName(),
+                const DropDownListLibraryName(),
+                const DropDownListHallName(),
                 CustomTextField(
-                  hint: "nameResponsible".tr,
+                  hint: "userName".tr,
                   dIcon: Icons.drive_file_rename_outline,
-                  label: "nameResponsible".tr,
+                  label: "userName".tr,
                   controller: _emailController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
@@ -107,44 +96,95 @@ class _RequestVisitScreenState
                   type: TextInputType.name,
                 ),
                 CustomTextField(
-                  hint: "email".tr,
+                  hint: "phone".tr,
                   dIcon: Icons.phone,
-                  label: "email".tr,
+                  label: "phone".tr,
                   controller: _phoneController,
                   validator: qValidator([
-                    IsRequired("thisFieldRequired".tr),
+                    IsRequired("phone".tr),
                     IsOptional(),
                     MaxLength(30),
                   ]),
-                  type: TextInputType.emailAddress,
+                  type: TextInputType.name,
                 ),
+                const DropDownListQualification(),
+                buildPadding(title: "requiredDate".tr),
+                Container(
+                  height: height * 0.08,
+                  width: width * 0.8,
+                  decoration: BoxDecoration(
+                      color: kBackgroundCardColor,
+                      borderRadius: BorderRadius.circular(8)),
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  margin: const EdgeInsets.symmetric(horizontal: 28,vertical: 14),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text("from".tr,style: const TextStyle(
+                        color: kBlackText,
+                        fontSize: 16,
+                        fontFamily: "DinReguler",
+                      ),),
+                      Container(
+                        //  color: Colors.red,
+                        width: width*0.1,
+                        height: height * 0.05,
+                        child: TextFormField(),
+                      ),
+                      InkWell(
 
-                CustomTextField(
-                  hint: "phoneNumber".tr,
-                  dIcon: Icons.drive_file_rename_outline,
-                  label: "phoneNumber".tr,
-                  controller: _emailController,
-                  validator: qValidator([
-                    IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
-                    MaxLength(30),
-                  ]),
-                  type: TextInputType.phone,
-                ),
-                CustomTextField(
-                  hint: "visitsNumbers".tr,
-                  dIcon: Icons.phone,
-                  label: "visitsNumbers".tr,
-                  controller: _phoneController,
-                  validator: qValidator([
-                    IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
-                    MaxLength(30),
-                  ]),
-                  type: TextInputType.number,
-                ),
-                const DropDownListLibraryName(),
+                          onTap: () async {
+                            await showTimePicker(
+                              errorInvalidText: "No",
+                              context: context,
+                              initialTime: TimeOfDay.now(),
+                              confirmText: 'Ok',
+                              cancelText: 'Cancel',
 
+                              // builder: (BuildContext context, Widget child) {
+                              //   return Directionality(
+                              //     textDirection: TextDirection.rtl,
+                              //     child: child,
+                              //   );
+                              // },
+                            );
+                          },
+                          child: Image.asset("assets/image/twoarrow.png")),
+                      Text("to".tr,style: const TextStyle(
+                        color: kBlackText,
+                        fontSize: 16,
+                        fontFamily: "DinReguler",
+                      ),),
+                      Container(
+                        // color: Colors.red,
+                        width: width*0.1,
+                        height: height * 0.05,
+                        child: TextFormField(),
+                      ),
+                      InkWell(
+                          onTap: () async {
+                            await showTimePicker(
+                              context: context,
+                              errorInvalidText: "No",
+                              initialTime: TimeOfDay.now(),
+                              confirmText: 'Ok',
+
+                              cancelText: 'Cancel',
+
+                              // builder: (BuildContext context, Widget child) {
+                              //   return Directionality(
+                              //     textDirection: TextDirection.rtl,
+                              //     child: child,
+                              //   );
+                              // },
+                            );
+                          },
+
+                          child: Image.asset("assets/image/twoarrow.png")),
+                    ],
+                  ),
+                ),
                 buildPadding(title: "visitDate".tr),
                 Container(
                   // color: kTextFieldColor,
@@ -240,101 +280,22 @@ class _RequestVisitScreenState
                     },
                   ),
                 ),
-                buildPadding(title: "requiredDate".tr),
-                Container(
-                  height: height * 0.08,
-                  width: width * 0.8,
-                  decoration: BoxDecoration(
-                      color: kBackgroundCardColor,
-                      borderRadius: BorderRadius.circular(8)),
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  margin: const EdgeInsets.symmetric(horizontal: 28,vertical: 14),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text("from".tr,style: const TextStyle(
-                        color: kBlackText,
-                        fontSize: 16,
-                        fontFamily: "DinReguler",
-                      ),),
-                      Container(
-                      //  color: Colors.red,
-                        width: width*0.1,
-                        height: height * 0.05,
-                        child: TextFormField(),
-                      ),
-                      InkWell(
-
-                          onTap: () async {
-                            await showTimePicker(
-                              errorInvalidText: "No",
-                              context: context,
-                              initialTime: TimeOfDay.now(),
-                              confirmText: 'Ok',
-                              cancelText: 'Cancel',
-
-                              // builder: (BuildContext context, Widget child) {
-                              //   return Directionality(
-                              //     textDirection: TextDirection.rtl,
-                              //     child: child,
-                              //   );
-                              // },
-                            );
-                          },
-                      child: Image.asset("assets/image/twoarrow.png")),
-                      Text("to".tr,style: const TextStyle(
-                        color: kBlackText,
-                        fontSize: 16,
-                        fontFamily: "DinReguler",
-                      ),),
-                      Container(
-                       // color: Colors.red,
-                        width: width*0.1,
-                        height: height * 0.05,
-                        child: TextFormField(),
-                      ),
-                      InkWell(
-                          onTap: () async {
-                            await showTimePicker(
-                              context: context,
-                              errorInvalidText: "No",
-                              initialTime: TimeOfDay.now(),
-                              confirmText: 'Ok',
-
-                              cancelText: 'Cancel',
-
-                              // builder: (BuildContext context, Widget child) {
-                              //   return Directionality(
-                              //     textDirection: TextDirection.rtl,
-                              //     child: child,
-                              //   );
-                              // },
-                            );
-                          },
-
-                          child: Image.asset("assets/image/twoarrow.png")),
-                    ],
-                  ),
-                ),
                 CustomHeightTextField(
                   hint: "visitReason".tr,
                   text: "",
                 ),
+
                 SizedBox(
                   height: height * 0.05,
                 ),
                 Center(
-                  child: MediaButtonSizer(
-                    onPressed: () {
-
-                      Get.to(()=> MyOrderRequestVisitScreen());
-                    },
-                    title: "requestService".tr,
-                    color: kPrimaryColor,
-                    image: "assets/image/rightsah.png",
-                  ),
-                ),
+                    child: MediaButtonSizer(
+                      onPressed: () {
+                        Get.to(()=>MyOrderReserveArticleResearch()) ;                     },
+                      title: "saveUpdates".tr,
+                      color: kPrimaryColor,
+                      image: "assets/image/rightsah.png",
+                    ))
               ],
             ),
           ),

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/content.dart';
+import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/list_model.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/sliders/banner_slider.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/title_subTitle.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/to_show_more_about_our_services.dart';
@@ -18,6 +19,7 @@ class MyHomeScreen extends StatelessWidget{
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   OurServicesContent services = OurServicesContent();
+  OurServicesGridCard _ourServicesGridCard = OurServicesGridCard();
   bool loggedIn = true;
 
   MyHomeScreen({Key? key}) : super(key: key);
@@ -48,7 +50,7 @@ class MyHomeScreen extends StatelessWidget{
           Stack(
           children: [
           SizedBox(child: Image.asset('assets/image/headback.png')),
-    Padding(
+          Padding(
     padding: const EdgeInsetsDirectional.only(top: 40),
     child: Center(
     child: Text("readAndLearn".tr,
@@ -99,3 +101,4 @@ class MyHomeScreen extends StatelessWidget{
     );
   }
 }
+

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 
+import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/page/drop_down_book_type.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
@@ -10,32 +11,35 @@ import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/widgets/customButton.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-
+import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
+import 'package:maktabat_alharam/screens/widgets/smallButton.dart';
+import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
+import 'package:queen/validation/it/is_email.dart';
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import 'my_orders/view.dart';
 
 
 
 
 // ignore: must_be_immutable
-class SuggestToBuyBook extends StatefulWidget {
-  const SuggestToBuyBook({Key? key}) : super(key: key);
+class UpdateSuggestToBuyBook extends StatefulWidget {
+  const UpdateSuggestToBuyBook({Key? key}) : super(key: key);
 
   @override
-  State<SuggestToBuyBook> createState() =>
-      _SuggestToBuyBookState();
+  State<UpdateSuggestToBuyBook> createState() =>
+      _UpdateSuggestToBuyBookState();
 }
 
-class _SuggestToBuyBookState
-    extends State<SuggestToBuyBook> {
+class _UpdateSuggestToBuyBookState
+    extends State<UpdateSuggestToBuyBook> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
@@ -230,7 +234,7 @@ class _SuggestToBuyBookState
 
                       Get.to(()=> MyOrdersSuggestBuyBookScreen());
                     },
-                    title: "requestService".tr,
+                    title: "saveUpdates".tr,
                     color: kPrimaryColor,
                     image: "assets/image/rightsah.png",
                   ),
