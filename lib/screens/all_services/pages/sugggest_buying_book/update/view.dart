@@ -6,19 +6,14 @@ import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/v
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/page/drop_down_book_type.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
-import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/widgets/customButton.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButton.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
-import 'package:queen/validation/it/is_email.dart';
+
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';

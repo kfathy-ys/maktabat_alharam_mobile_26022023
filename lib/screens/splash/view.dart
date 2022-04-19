@@ -5,6 +5,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
 import 'package:maktabat_alharam/screens/home/view.dart';
 import 'package:maktabat_alharam/screens/widgets/network_dialog.dart';
@@ -55,7 +56,7 @@ super.initState();
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: InkWell(
-                    onTap: () => Get.offAll(() => const HomeTabScreen()),
+                    onTap: () => Get.offAll(() =>  HomeTabScreen()),
                     child: Image.asset(
                       'assets/image/Group 30.png',
 

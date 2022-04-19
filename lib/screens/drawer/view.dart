@@ -4,6 +4,8 @@ import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/about_library/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/contect_us/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/settings/view.dart';
+import 'package:maktabat_alharam/screens/home/pages/views/my_orders/view.dart';
+import 'package:maktabat_alharam/screens/our_services/view.dart';
 import 'page/languages/view.dart';
 import 'page/profile/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -61,7 +63,7 @@ Widget drawer({required context}) {
                           },
                           title: 'aboutLibrary'.tr,
                           image: 'assets/image/QuestionCircleFill.png'),
-                      listTile(
+               /*       listTile(
                           onTap: () {},
                           title: "generalMare".tr,
                           image: 'assets/image/telegram.png'),
@@ -71,13 +73,22 @@ Widget drawer({required context}) {
 
                           },
                           title: "newLibrary".tr,
-                          image: 'assets/image/newest.png'),
+                          image: 'assets/image/newest.png'),*/
                       listTile(
-                          onTap: () {},
+                          onTap: () {
+
+                            Get.back();
+                            Get.to(()=>OurServicesScreen());
+
+                          },
                           title: "servicesLibrary".tr,
                           image: 'assets/image/pubilcservies.png'),
                       listTile(
-                          onTap: () {},
+                          onTap: () {
+
+                            Get.back();
+                            Get.to(()=>MyOrdersScreen());
+                          },
                           title: "myOrders".tr,
                           image: 'assets/image/myorder.png'),
                       listTile(
@@ -102,14 +113,14 @@ Widget drawer({required context}) {
                           },
                           title: "languages".tr,
                           image: 'assets/image/lang.png'),
-                      listTile(
+                  /*    listTile(
                           onTap: () {
 
                             Get.back();
                             Get.to(()=>SettingsScreen());
                           },
                           title: "settingsV".tr,
-                          image: 'assets/image/settings.png'),
+                          image: 'assets/image/settings.png'),*/
                       listTile(
                           onTap: () {
                             Get.back();

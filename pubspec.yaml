@@ -66,6 +66,7 @@ dependencies:
   intl: ^0.17.0
   timer_count_down: ^2.2.1
   date_time_picker: ^2.1.0
+  file_picker: ^4.3.2
   queen:
     git:
       url: https://github.com/maxzod/queen.git

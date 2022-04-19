@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/view.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/follow_request_visit/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/follow_reserved_retreated/view.dart';
@@ -21,6 +22,11 @@ class AppPages {
     //   name:  "/AskLibrarianNewOrder",
     //   page: () => AskLibrarianNewOrder(),
     // ),
+   GetPage(
+  name:  "/PutScientificMessage",
+  page: () => PutScientificMessage(),
+  ),
+
     GetPage(
       name:  "/ReserveResearchRetreatScreen",
       page: () => ReserveResearchRetreatScreen(),

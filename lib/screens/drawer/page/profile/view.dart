@@ -33,7 +33,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final _noAccessController = TextEditingController();
 
   final _passController = TextEditingController();
-  dynamic image = "assets/image/fackImage.png";
+  dynamic image = "assets/image/kabah.png";
 
   //dynamic image = "https://media.istockphoto.com/photos/kaaba-in-mecca-picture-id482206266?k=20&m=482206266&s=612x612&w=0&h=JvXTR5ih-ieBNh2MXfyBFU8_BAvgUH_m-NUx1m8RpPc=";
   @override

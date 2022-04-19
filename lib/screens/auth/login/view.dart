@@ -19,7 +19,7 @@ import 'package:queen/validation/validator.dart';
 class LoginScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
-  final _idController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   LoginScreen({Key? key}) : super(key: key);
@@ -51,18 +51,17 @@ class LoginScreen extends StatelessWidget {
                     customBoldText("welcome".tr),
                     customLightText("signIn".tr),
                     CustomTextField(
-                      dIcon: Icons.confirmation_number,
-                      label: "IdentificationNumber".tr,
-                      hint: "IdentificationNumber".tr,
-                      controller: _idController,
+                      dIcon: Icons.email,
+                      label:"email".tr ,
+                      hint: "email".tr,
+                      controller: _emailController,
                       validator: qValidator([
-                        IsRequired("enterId".tr),
+                        IsRequired("enterEmail".tr),
                         IsOptional(),
-                        //const IsEmail(),
-                        MinLength(6),
+                        IsEmail("MustBeEmail".tr),
                         MaxLength(30),
                       ]),
-                      type: TextInputType.number,
+                      type: TextInputType.emailAddress,
                     ),
                     CustomTextField(
                       hint: "password".tr,
@@ -102,7 +101,7 @@ class LoginScreen extends StatelessWidget {
 
                       },
                     ),
-                    Text(
+             /*       Text(
                       "orLoginWith".tr,
                       style: const TextStyle(
                           color: kBlackText,
@@ -114,7 +113,7 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () {},
                       title: "nationalAccess".tr,
                       color: kSafeAreasColor,
-                    ),
+                    ),*/
                     DoNotHave(
                       text: "signUpNow".tr,
                       route: () => Get.to(() => SignUpScreen()),

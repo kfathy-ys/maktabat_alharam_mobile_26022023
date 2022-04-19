@@ -20,6 +20,7 @@ import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 import 'screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
 import 'screens/all_services/pages/ask_Librarian/view.dart';
+import 'screens/all_services/pages/request_scientific_message/view.dart';
 import 'screens/all_services/pages/request_visit/view.dart';
 import 'screens/all_services/pages/reserve_article_research/view.dart';
 import 'screens/our_services/view.dart';
@@ -62,14 +63,14 @@ class MaktabatAlharam extends StatelessWidget {
           return GetMaterialApp(
             getPages: AppPages.routes,
             translations: LocaleString(),
-            locale: const Locale('ar', 'EG'),
+           locale: const Locale('ar', 'EG'),
            // locale: const Locale('en', 'US'),
             popGesture: true,
             defaultTransition: g.Transition.zoom,
             debugShowCheckedModeBanner: false,
             theme: state.theme,
             title: 'Flutter Theme Cubit',
-            home:  RequestVisitScreen(),
+            home:  SplashScreen(),
           );
         },
       ),
