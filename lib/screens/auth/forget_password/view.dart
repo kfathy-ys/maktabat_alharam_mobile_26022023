@@ -35,8 +35,8 @@ class ForgetPassword extends StatelessWidget {
                   margin: const EdgeInsetsDirectional.only(start: 280),
                   child:  Image.asset("assets/image/backbutton.png"),
                 ),),
-                  SizedBox(height: height*0.1,),
-                  CustomTextField(
+                  SizedBox(height: height*0.2,),
+                /*  CustomTextField(
                     dIcon: Icons.phone,
                     label:"phone".tr ,
                     hint: "phone".tr,
@@ -48,7 +48,7 @@ class ForgetPassword extends StatelessWidget {
 
                     },
                     type: TextInputType.number,
-                  ),
+                  ),*/
                   CustomTextField(
 
                     hint: "email".tr,
@@ -63,7 +63,7 @@ class ForgetPassword extends StatelessWidget {
                     type: TextInputType.emailAddress,
 
                   ),
-                  SizedBox(height: height*0.1,),
+                  SizedBox(height: height*0.05,),
                   CustomButton(color: kSmallIconColor,title:"sendCode".tr ,onPressed: ()=> Get.to(()=>VCodeScreen()),),
                   SizedBox(height: height*0.01,),
                   GestureDetector(

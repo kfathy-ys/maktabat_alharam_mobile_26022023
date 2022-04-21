@@ -38,7 +38,8 @@ class OurServicesScreen extends StatelessWidget {
             children: [
               SizedBox(height: height*0.02,),
               const Center(child: HeadTitle()),
-              const SubHeadTitle(),
+              SizedBox(height: height*0.02,),
+             // const SubHeadTitle(),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

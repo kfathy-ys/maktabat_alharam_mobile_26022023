@@ -1,7 +1,9 @@
 import 'dart:io';
-
+import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/view.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 const kPrimaryColor = Color(0xFF258270);
 //const kSecondaryColor = Color(0xFF21927E);
@@ -386,6 +388,52 @@ Future<bool> onWillPop(BuildContext context) async {
 
   return shouldPop ?? false;
 }
+
+
+Future<bool> CustomDialog({required BuildContext context ,  String? title,String? subtitle, String? accept ,String? refuse})async{
+  final shouldPop = await showDialog(
+      context: context,
+      builder: (context) =>
+   CupertinoAlertDialog(
+    title: Text(title!
+       , style:  const TextStyle(
+        color: kBlackText, fontSize: 18, fontFamily: 'DinBold'
+    )
+
+    ),
+    content: Text(subtitle!
+        , style:  const TextStyle(
+            color: kBlackText, fontSize: 14, fontFamily: 'DinReguler'
+        )),
+    actions: [
+      CupertinoDialogAction(
+          child: Text(refuse!,
+              style:  const TextStyle(
+                  color: kButtonRedDark, fontSize: 14, fontFamily: 'DinReguler'
+              )
+
+
+          ),
+          onPressed: (){
+            Navigator.of(context).pop();
+          }
+      ),
+      CupertinoDialogAction(
+          child: Text(accept!),
+          onPressed: ()
+          {
+            Navigator.of(context).pop();
+            Prefs.getString("mark");
+             Get.to(()=> const BasicInfoScreen());
+
+          }
+      ),
+
+    ],
+  ));
+  return shouldPop ?? false;
+}
+
 
 //constant functions
 double sizeFromHeight(BuildContext context, double fraction,

@@ -6,7 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'constants.dart';
 
-class MediaButtonSizer extends StatelessWidget {
+class SmallButtonSizerUploadFile extends StatelessWidget {
   final VoidCallback? onPressed;
   final String? title;
   final Color? color;
@@ -16,7 +16,7 @@ class MediaButtonSizer extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final loadingColor;
   // ignore: use_key_in_widget_constructors
-  const MediaButtonSizer(
+  const SmallButtonSizerUploadFile(
       {required this.onPressed,
         required this.title,
         this.color,
@@ -29,12 +29,13 @@ class MediaButtonSizer extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-        height: MediaQuery.of(context).size.height / 15,
-        width: MediaQuery.of(context).size.width / 2.72,
+        height: MediaQuery.of(context).size.height / 18,
+        width: MediaQuery.of(context).size.width / 2.80,
         decoration: BoxDecoration(
-            color: color == null ? Colors.white : kSafeAreasColor,
+            color: color == kSmallIconColor ? kSmallIconColor : kAccentColor,
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: kPrimaryColor, width: 1.5)),
+            //border: Border.all(color: kPrimaryColor, width: 1.5)
+        ),
         child: Center(
           child: isLoading != true
               ? Row(
@@ -47,7 +48,7 @@ class MediaButtonSizer extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       color: Colors.white,
-                      fontFamily: 'DinBold',
+                      fontFamily: 'DinReguler',
                       fontWeight: FontWeight.bold,
                       fontSize: 16
                   )),

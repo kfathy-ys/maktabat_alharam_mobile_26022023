@@ -162,8 +162,9 @@ class LocaleString extends Translations {
           "to":"To",
           "visitDate":"Visit date",
           "visitReason":"Visit reason:",
-          "saveUpdates":"Save updates",
+          "saveUpdates":"Update",
           "resent":"Resent",
+          "contentPlus":"Content+25%Message",
 
           // my orders
 
@@ -204,7 +205,7 @@ class LocaleString extends Translations {
           "removeFromArchive":"Remove from archive",
           "kArchive":"(Archive)",
              // إيداع رسالة علمية
-          "DepositScientificThesis":"Deposit scientific thesis",
+          "DepositScientificThesis":"scientific thesis",
           "terms":"(Terms and Conditions)",
           "termsHead":"You must first review and agree to the terms of delivery of the thesis",
           "fillOut":"Fill out the thesis submission form (available within the forms on the library website).",
@@ -214,6 +215,11 @@ class LocaleString extends Translations {
           "putting":"Special stickers should be placed on 2 CDs. Each sticker contains the following: (Thesis title - researcher name - supervisor name - year of discussion).",
           "areYouOk":"Agree to the terms",
           "basicInfo":"Basic info",
+          "basicInfoArrow":"(Basic info)",
+          "basicDataArrow":"(Basic data)",
+
+          "availabilityMessageArrow":"(Availability message)",
+          "filesMessageArrow":"(Files)",
           "university":"University",
           "collage":"Collage",
           "kingSolUni":"King Solomon University",
@@ -223,7 +229,7 @@ class LocaleString extends Translations {
           "training":"AT PREMIER TRAINING & CONSULTING",
           "tarek":"AT MOHAMED TAREK PREMIER CENTER",
           "messageData":"Thesis data",
-          "avaliablityMessage":"Availability of the message",
+          "avaliablityMessage":"Availability message",
           "thesisData":"Thesis data",
           "messageAddress":"Title",
           "degree":"Degree",
@@ -232,6 +238,7 @@ class LocaleString extends Translations {
           "numbersOfParts":"Number of parts",
           "yes":"Yes",
           "no":"No",
+          "next":"Next",
           "previous":"Previous",
           "availabilityType":"Availability type",
           "oneOk":"I agree to make the thesis available on the library's website as a full text in an unrestricted format.",
@@ -250,6 +257,14 @@ class LocaleString extends Translations {
           "headWoo":"Title + Subject Index + Arabic and English Abstract + Introduction",
           "headWooO":"Title + Subject Index + Arabic and English Abstract + Introduction + 25% of the thesis",
 
+          "youMust":"You have to agree to the terms and conditions first before proceeding",
+          "department":"Department",
+          // message files
+          "filSelection":"Fil selection",
+          "downloadFile":"Download file",
+          "all":"Complete message ",
+
+          "titleMessage":"It is a service that enables postgraduate students inside and outside the Kingdom to deposit their thesis to the library according to the conditions that preserve the intellectual property rights of the author."
 
 
 
@@ -456,6 +471,7 @@ class LocaleString extends Translations {
           // إيداع رسالة علمية
           "DepositScientificThesis":"إيداع رسالة علمية",
           "terms":"(الشروط والأحكام)",
+          "youMust":"عليك أن توافق على الشروط والأحكام أولاً قبل المواصلة",
           "termsHead":"يجب أولا الإطلاع على شروط تسليم الرسالة العلمية والموافقة عليها.",
           "fillOut":"تعبئة نموذج تسليم الرسالة العلمية (متوفر ضمن النماذج بموقع المكتبة)",
           "delivered":"تسليم الرسالة العلمية لقسم الرسائل الجامعية بمكتبة الحرم المكي الشريف ",
@@ -464,8 +480,15 @@ class LocaleString extends Translations {
           "putting":"يجب وضع ملصقات خاصة على عدد 2 أقراص ممغنطة (CD) ويحتوي كل ملصق على التالي :(عنوان الرسالة – اسم الباحث – اسم المشرف – سنة المناقشة).",
            "areYouOk":"الموافقة علي الشروط",
           "basicInfo":"البيانات الاساسيه",
+          "basicInfoArrow":"(البيانات الاساسيه)",
+          "basicDataArrow":"(بيانات الرسالة)",
+
+          "availabilityMessageArrow":"(إتاحة الرسالة)",
+          "filesMessageArrow":"(ملفات الرسالة)",
+
           "university":"الجامعة",
           "collage":"كلية",
+          "department":"القسم",
           "kingSolUni":"جامعة الملك سليمان",
           "kingSodUni":"جامعة الملك سعود",
           "kingAboUni":"جامعة الملك عبد العزيز",
@@ -497,11 +520,20 @@ class LocaleString extends Translations {
           "arabicExtract":"المستخلص العربي",
           "englishExtract":"المستخلص الإنجليزي",
           "introduction":"المقدمة",
+          "all":"الرسالة بشكل متكامل",
           "headWoo":"العنوان + فهرس الموضوعات + المستخلص العربي والإنجليزي + المقدمة",
           "headWooO":"العنوان + فهرس الموضوعات + المستخلص العربي والإنجليزي + المقدمة + 25% من الرسالة",
+          "next":"التالي",
+
+//Availability of the scientific thesis
+        "availabilityScientificThesis":"إتاحه الرسالة العلمية ",
 
 
-
+              // message files
+          "filSelection":"إختيار ملف",
+          "downloadFile":"تنزيل ملف",
+          "contentPlus":"المحتوي + 25% من الرسالة",
+            "titleMessage":"هي خدمة تمكن طلاب الدراسات العليا داخل وخارج المملكة من إيداع رسالتهم العلمية للمكتبة وفق الشروط التي تحفظ حقوق الملكية الفكرية للمؤلف"
 
 
         }

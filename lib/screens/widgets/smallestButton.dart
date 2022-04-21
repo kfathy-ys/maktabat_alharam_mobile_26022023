@@ -3,10 +3,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 
 import 'constants.dart';
 
-class MediaButtonSizer extends StatelessWidget {
+class SmallestButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String? title;
   final Color? color;
@@ -16,7 +17,7 @@ class MediaButtonSizer extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final loadingColor;
   // ignore: use_key_in_widget_constructors
-  const MediaButtonSizer(
+  const SmallestButton(
       {required this.onPressed,
         required this.title,
         this.color,
@@ -24,13 +25,13 @@ class MediaButtonSizer extends StatelessWidget {
         this.loadingColor = false, this.image,});
   @override
   Widget build(BuildContext context) {
-
+double width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: onPressed,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         height: MediaQuery.of(context).size.height / 15,
-        width: MediaQuery.of(context).size.width / 2.72,
+        width:width *0.3,
         decoration: BoxDecoration(
             color: color == null ? Colors.white : kSafeAreasColor,
             borderRadius: BorderRadius.circular(8),
@@ -40,17 +41,32 @@ class MediaButtonSizer extends StatelessWidget {
               ? Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Image.asset(image!),
-              // SizedBox(width: width*0.02,),
-              Text(
-                  title!,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'DinBold',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16
-                  )),
+              Get.locale == Locale('ar','EG') ?
+              Align(alignment: Alignment.centerLeft,child: Image.asset(image!)):
+              Align(alignment: Alignment.centerRight,child: Image.asset(image!)),
+              Get.locale == Locale('ar','EG') ?Align(
+                alignment: Alignment.centerLeft ,
+                child: Text(
+                    title!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'DinBold',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16
+                    )),
+              ):Align(
+                alignment: Alignment.centerRight ,
+                child: Text(
+                    title!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'DinBold',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16
+                    )),
+              ),
             ],
           )
               : SpinKitChasingDots(

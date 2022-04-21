@@ -45,6 +45,19 @@ class OurServicesContent {
       ),
     ),*/
     OurServicesModel(
+      routeName: "/SuggestToBuyBook",
+
+
+      title: "SuggestionBuyBook".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(
+        AssetImage(
+          "assets/image/bigBuyBook.png",
+        ),
+        color: kSmallIconColor,
+      ),
+    ),
+    OurServicesModel(
       routeName: "/ReserveResearchRetreatScreen",
 
       title: "RequestReserveArticleOrResearchRetreat".tr,
@@ -113,19 +126,7 @@ class OurServicesContent {
         color: kSmallIconColor,
       ),
     ),*/
-    OurServicesModel(
-      routeName: "/SuggestToBuyBook",
 
-
-      title: "SuggestionBuyBook".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
-      icon: const ImageIcon(
-        AssetImage(
-          "assets/image/bigBuyBook.png",
-        ),
-        color: kSmallIconColor,
-      ),
-    ),
   ];
 }
 class OurServicesGridCard {
@@ -176,6 +177,19 @@ class OurServicesGridCard {
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(AssetImage("assets/image/bigRquestSubjectSientific.png"),
           color: kSmallIconColor),
+    ),
+    OurServicesModel(
+      routeName: "/SuggestToBuyBook",
+
+
+      title: "SuggestionBuyBook".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(
+        AssetImage(
+          "assets/image/bigBuyBook.png",
+        ),
+        color: kSmallIconColor,
+      ),
     ),
     OurServicesModel(
       routeName: "/RequestVisitScreen",
@@ -238,19 +252,7 @@ class OurServicesGridCard {
         color: kSmallIconColor,
       ),
     ),*/
-    OurServicesModel(
-      routeName: "/SuggestToBuyBook",
 
-
-      title: "SuggestionBuyBook".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
-      icon: const ImageIcon(
-        AssetImage(
-          "assets/image/bigBuyBook.png",
-        ),
-        color: kSmallIconColor,
-      ),
-    ),
 
 
 

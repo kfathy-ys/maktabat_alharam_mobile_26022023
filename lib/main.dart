@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart'as g;
 
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/message_files/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/view.dart';
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/view.dart';
@@ -20,6 +21,9 @@ import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 import 'screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
 import 'screens/all_services/pages/ask_Librarian/view.dart';
+import 'screens/all_services/pages/request_scientific_message/availability_message/view.dart';
+import 'screens/all_services/pages/request_scientific_message/bacis_info/view.dart';
+import 'screens/all_services/pages/request_scientific_message/message_data/view.dart';
 import 'screens/all_services/pages/request_scientific_message/view.dart';
 import 'screens/all_services/pages/request_visit/view.dart';
 import 'screens/all_services/pages/reserve_article_research/view.dart';
@@ -66,11 +70,13 @@ class MaktabatAlharam extends StatelessWidget {
            locale: const Locale('ar', 'EG'),
            // locale: const Locale('en', 'US'),
             popGesture: true,
+
             defaultTransition: g.Transition.zoom,
             debugShowCheckedModeBanner: false,
             theme: state.theme,
+
             title: 'Flutter Theme Cubit',
-            home:  SplashScreen(),
+            home:  PutScientificMessage(),
           );
         },
       ),

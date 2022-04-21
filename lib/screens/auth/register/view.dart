@@ -62,7 +62,7 @@ class SignUpScreen extends StatelessWidget {
                   ]),
                   type: TextInputType.name,
                 ),
-                CustomTextField(
+        /*        CustomTextField(
                   hint: "userName".tr,
                   dIcon: Icons.drive_file_rename_outline,
                   label:"userName".tr ,
@@ -75,7 +75,7 @@ class SignUpScreen extends StatelessWidget {
                   ]),
                   type: TextInputType.name,
 
-                ),
+                ),*/
                 CustomTextField(
                   dIcon: Icons.email,
                   label:"email".tr ,

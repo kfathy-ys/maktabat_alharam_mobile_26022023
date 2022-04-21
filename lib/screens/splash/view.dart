@@ -20,25 +20,15 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
-  bool loggedIn = false;
+  bool loggedIn = true;
 
   @override
   void initState() {
-goToHomePage(context);
+   //goToHomePage(context);
 super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
-      bool isBoarding = Prefs.getBool('onBoarding');
-      // if (isBoarding) {
-      //   Get.offAll(() =>  NavigationBar());
-      // } else {
-      //   Timer(const Duration(seconds: 2),
-      //       () => Get.offAll(() => const OnBoardingScreen()));
-      // }
-    });
-
     return SafeArea(
         child: Stack(
           fit: StackFit.expand,
@@ -56,7 +46,7 @@ super.initState();
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: InkWell(
-                    onTap: () => Get.offAll(() =>  HomeTabScreen()),
+                    onTap: () => Get.offAll(() =>   const HomeTabScreen(index: 1,) ),
                     child: Image.asset(
                       'assets/image/Group 30.png',
 
@@ -91,7 +81,7 @@ super.initState();
       showNetworkErrorDialog(context, () {
         Navigator.of(context).pop();
        Get.to((){
-          loggedIn ?  const HomeTabScreen(): MyHomeScreen();
+          loggedIn ?   MyHomeScreen(): HomeTabScreen();
        }) ;
       });
     }

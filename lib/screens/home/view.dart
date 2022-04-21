@@ -7,6 +7,7 @@ import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/my_orders/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 
 class HomeTabScreen extends StatefulWidget {
@@ -40,7 +41,8 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
     super.initState();
   }
 
-  final ItemsBar _itemsBar = ItemsBar();
+ // final ItemsBar _itemsBar = ItemsBar();
+  final token = Prefs.getString('token');
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,8 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
       },
       child: Scaffold(
         body: _widgetOptions.elementAt(_selectedIndex),
-        bottomNavigationBar: BottomNavigationBar(
+        bottomNavigationBar: token.isNotEmpty ?
+        BottomNavigationBar(
           backgroundColor: kSmallIconColor,
           currentIndex: _selectedIndex,
           onTap: (index) {
@@ -59,6 +62,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
             });
           },
           items:  <BottomNavigationBarItem>[
+
             BottomNavigationBarItem(
               icon: const ImageIcon( AssetImage("assets/image/myOrders.png"),),
               label: "myOrders".tr,
@@ -89,7 +93,7 @@ selectedItemColor: kHomeColor ,
               fontWeight: FontWeight.bold,
               color: kLightText),
           iconSize: 25,
-        ),
+        ):null,
       ),
     );
   }
