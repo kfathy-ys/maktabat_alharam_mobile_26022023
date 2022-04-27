@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/archive/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/follow_my_order/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/update/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/view.dart';
@@ -74,6 +75,14 @@ class MyOrdersScientificMessage extends StatelessWidget {
                       )
                   ),
                 ),
+                Center(child: SmallButtonSizer(
+
+
+                  onPressed: (){
+                    Get.to(()=>PutScientificMessage());
+                  },
+                  title: "addOne".tr,color: kPrimaryColor,image: "assets/image/newrequest.png",)),
+                SizedBox(height: height*0.03,),
                 ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
@@ -135,9 +144,9 @@ class MyOrdersScientificMessage extends StatelessWidget {
 
                           ),
                           CustomCardButton(color: kAccentColor,
-                            title: "cancelRequest".tr,
-                            onPressed: (){},
-                            image: "assets/image/fullerror.png",
+                            title: "addToArchive".tr,
+                              onPressed: ()=>Get.to(()=> ArchiveScientificMessageScreen()),
+                            image: "assets/image/archieve.png",
                             //  icon:Icons.cancel_outlined
                           ),
 
@@ -148,13 +157,7 @@ class MyOrdersScientificMessage extends StatelessWidget {
                   },
 
                 ),
-                Center(child: SmallButtonSizer(
 
-
-                  onPressed: (){
-                    Get.to(()=>PutScientificMessage());
-                  },
-                  title: "addOne".tr,color: kPrimaryColor,image: "assets/image/newrequest.png",))
 
 
 

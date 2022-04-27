@@ -144,7 +144,7 @@ class OurServicesGridCard {
     ),
 */
     OurServicesModel(
-      routeName: "/PutScientificMessage",
+      routeName: "/MyOrdersScientificMessage",
       title: "RequestDepositScientificThesis".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(
@@ -171,7 +171,7 @@ class OurServicesGridCard {
       ),
     ),*/
     OurServicesModel(
-      routeName: "/ReserveResearchRetreatScreen",
+      routeName: "/MyOrderReserveArticleResearch",
 
       title: "RequestReserveArticleOrResearchRetreat".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -179,7 +179,7 @@ class OurServicesGridCard {
           color: kSmallIconColor),
     ),
     OurServicesModel(
-      routeName: "/SuggestToBuyBook",
+      routeName: "/MyOrdersSuggestBuyBookScreen",
 
 
       title: "SuggestionBuyBook".tr,
@@ -192,7 +192,7 @@ class OurServicesGridCard {
       ),
     ),
     OurServicesModel(
-      routeName: "/RequestVisitScreen",
+      routeName: "/MyOrderRequestVisitScreen",
 
       title: "RequestVisit".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -208,7 +208,7 @@ class OurServicesGridCard {
           color: kSmallIconColor),
     ),*/
     OurServicesModel(
-      routeName: "/AskLibrarian",
+      routeName: "/MyOrderAskLibrarian",
 
       title: "askStaff".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",

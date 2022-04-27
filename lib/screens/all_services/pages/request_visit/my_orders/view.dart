@@ -1,21 +1,20 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_visit/archive/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/follow_request_visit/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/update_order/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_visit/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/widgets/customButton.dart';
-import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButton.dart';
+
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
+
+import '../view.dart';
 
 
 
@@ -75,6 +74,15 @@ class MyOrderRequestVisitScreen extends StatelessWidget{
                       )
                   ),
                 ),
+                Center(child: SmallButtonSizer(
+
+
+                  onPressed: (){
+                    Get.to(()=> RequestVisitScreen());
+                  },
+                  title: "addOne".tr,color: kPrimaryColor,
+                  image: "assets/image/newrequest.png",)),
+                SizedBox(height: height*0.03,),
                 ListView.builder(
                   physics: BouncingScrollPhysics(),
                   shrinkWrap: true,
@@ -133,9 +141,10 @@ class MyOrderRequestVisitScreen extends StatelessWidget{
 
                           ),
                           CustomCardButton(color: kAccentColor,
-                            title: "cancelRequest".tr,
-                            onPressed: (){},
-                            image: "assets/image/fullerror.png",
+                            title: "addToArchive".tr,
+                            onPressed: ()=>Get.to(()=> ArchiveRequestToVisitScreen()),
+
+                            image: "assets/image/archieve.png",
                             //  icon:Icons.cancel_outlined
                           ),
 
@@ -146,14 +155,7 @@ class MyOrderRequestVisitScreen extends StatelessWidget{
                   },
 
                 ),
-                Center(child: SmallButtonSizer(
 
-
-                  onPressed: (){
-                    Get.to(()=> RequestVisitScreen());
-                  },
-                  title: "addOne".tr,color: kPrimaryColor,
-                  image: "assets/image/newrequest.png",))
 
 
 

@@ -1,27 +1,23 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/archive/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/description_title.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/update/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/view.dart';
-import 'package:maktabat_alharam/screens/drawer/view.dart';
-import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
-
-import 'package:maktabat_alharam/screens/widgets/appBar.dart';
-import 'package:maktabat_alharam/screens/widgets/constants.dart';
+import 'page/views/title.dart';
+import '../my_order/page/views/cardContent.dart';
+import '../my_order/view.dart';
+import '../../../../drawer/view.dart';
+import '../../../../widgets/CustomCardButton.dart';
+import '../../../../widgets/appBar.dart';
+import '../../../../widgets/constants.dart';
 import 'package:get/get.dart';
 
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
+import '../../../../widgets/smallButtonSizer.dart';
 
-class MyOrderAskLibrarian extends StatelessWidget {
-  MyOrderAskLibrarian({Key? key}) : super(key: key);
+import '../view.dart';
 
+class ArchiveAskLibrarianScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
+
+  ArchiveAskLibrarianScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +41,14 @@ class MyOrderAskLibrarian extends StatelessWidget {
             width: width,
             child: ListView(
               physics: const BouncingScrollPhysics(),
-              // shrinkWrap: true,
+              shrinkWrap: true,
               children: [
-                HeadTopics(
-                  title: "askStaff".tr,
-                ),
-                DescriptionTitle(
-                  description: "head".tr,
-                ),
+                const HeadTitle(),
                 Center(
                     child: SmallButtonSizer(
-                  onPressed: () => Get.to(() => AskLibrarian()),
+                  onPressed: () {
+                    Get.to(() => AskLibrarian());
+                  },
                   title: "addOne".tr,
                   color: kPrimaryColor,
                   image: "assets/image/newrequest.png",
@@ -71,7 +64,7 @@ class MyOrderAskLibrarian extends StatelessWidget {
                     return Container(
                       margin: const EdgeInsetsDirectional.only(bottom: 16.0),
                       padding: const EdgeInsetsDirectional.only(bottom: 8.0),
-                      height: height * 0.42,
+                      height: height * 0.33,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(color: kCardBorder)),
@@ -80,18 +73,18 @@ class MyOrderAskLibrarian extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CardData(
-                              title: "requestContent".tr,
-                              subTitle: "المكتبة متاحة يوم الجمعة؟",
+                              title: "nameResponsible".tr,
+                              subTitle: "أحمد عبد السلام",
                               color1: kSmallIconColor,
                               color2: kBlackText),
                           CardData(
-                              title: "requestDate".tr,
-                              subTitle: " Mar 31 , 2022",
+                              title: "titleOfBook".tr,
+                              subTitle: "ASD",
                               color1: kSmallIconColor,
                               color2: kSkyButton),
                           CardData(
-                              title: "nameResponsible".tr,
-                              subTitle: "نعم",
+                              title: "requestDate".tr,
+                              subTitle: "Mar 23,2022",
                               color1: kSmallIconColor,
                               color2: kBlackText),
                           CardData(
@@ -102,23 +95,10 @@ class MyOrderAskLibrarian extends StatelessWidget {
                           ),
                           CustomCardButton(
                             color: kAccentColor,
-                            title: "followRequest".tr,
-                            onPressed: () =>
-                                Get.to(() => FollowAnsweringLibrarian()),
-                            image: "assets/image/fulleyes.png",
-                          ),
-                          CustomCardButton(
-                            color: kAccentColor,
-                            title: "updateRequest".tr,
-                            onPressed: () =>
-                                Get.to(() => UpdatesAskLibrarian()),
-                            image: "assets/image/update.png",
-                          ),
-                          CustomCardButton(
-                            color: kAccentColor,
-                            title: "addToArchive".tr,
-                            onPressed: () =>
-                                Get.to(() => ArchiveAskLibrarianScreen()),
+                            title: "removeFromArchive".tr,
+                            onPressed: () {
+                              Get.to(() => MyOrderAskLibrarian());
+                            },
                             image: "assets/image/archieve.png",
                           ),
                         ],
@@ -133,6 +113,4 @@ class MyOrderAskLibrarian extends StatelessWidget {
       ),
     );
   }
-
-
 }

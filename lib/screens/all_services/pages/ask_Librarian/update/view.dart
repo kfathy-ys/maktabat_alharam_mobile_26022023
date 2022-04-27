@@ -1,32 +1,27 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
-import 'package:maktabat_alharam/screens/drawer/view.dart';
-import 'package:maktabat_alharam/screens/widgets/appBar.dart';
-import 'package:maktabat_alharam/screens/widgets/constants.dart';
+import '../follow_answering_librarian/page/views/drop_down_items.dart';
+import '../my_order/view.dart';
+import '../page/views/head_topices.dart';
+import '../../../../drawer/view.dart';
+import '../../../../widgets/appBar.dart';
+import '../../../../widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
-import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
-import 'package:queen/validation/it/is_email.dart';
-import 'package:queen/validation/magic/is_optional.dart';
-import 'package:queen/validation/text/is_not_empty.dart';
-import 'package:queen/validation/text/max_length.dart';
-import 'package:queen/validation/validator.dart';
+import '../../../../widgets/customHeightTextFiled.dart';
+import '../../../../widgets/customTextFeild.dart';
+import '../../../../widgets/mdeiaButtonSizer.dart';
+import 'package:queen/validation.dart';
 
-import 'page/views/drop_down_items.dart';
-
-// ignore: must_be_immutable
-class FollowAnsweringLibrarian extends StatelessWidget {
+class UpdatesAskLibrarian extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
   final _userController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _questionController = TextEditingController();
-  final _responseController = TextEditingController();
 
-  FollowAnsweringLibrarian({Key? key}) : super(key: key);
+
+  UpdatesAskLibrarian({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +50,7 @@ class FollowAnsweringLibrarian extends StatelessWidget {
                 HeadTopics(
                   title: "askStaff".tr,
                 ),
-                SizedBox(
-                  height: height * 0.05,
-                ),
+                buildSizedBox(height),
                 const DropDownList(),
                 CustomTextField(
                   hint: "userName".tr,
@@ -107,17 +100,16 @@ class FollowAnsweringLibrarian extends StatelessWidget {
                   ]),
                   type: TextInputType.text,
                 ),
-                CustomHeightTextField(
-                  hint: "answer".tr,
-                  text: "answer".tr + ' :',
-                  controller: _responseController,
-                  validator: qValidator([
-                    IsRequired("answer".tr),
-                    IsOptional(),
-                    MaxLength(30),
-                  ]),
-                  type: TextInputType.text,
-                ),
+                buildSizedBox(height),
+                Center(
+                    child: MediaButtonSizer(
+                  onPressed: () {
+                       Get.to(()=>MyOrderAskLibrarian());
+                  },
+                  title: "save".tr,
+                  color: kPrimaryColor,
+                  image: "assets/image/rightsah.png",
+                ))
               ],
             ),
           ),
@@ -125,4 +117,12 @@ class FollowAnsweringLibrarian extends StatelessWidget {
       ),
     );
   }
+
+  SizedBox buildSizedBox(double height) {
+    return SizedBox(
+                height: height * 0.05,
+              );
+  }
+
+
 }

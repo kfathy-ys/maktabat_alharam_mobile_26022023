@@ -5,7 +5,6 @@ import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
-import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -14,10 +13,7 @@ import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
 
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 import 'package:queen/validation.dart';
-
-import 'follow_answering_librarian/view.dart';
 
 
 // ignore: must_be_immutable
@@ -50,7 +46,7 @@ class AskLibrarian extends StatelessWidget{
               isIcons: true,
               press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body:  Container(
+          body:  SizedBox(
             //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
             height: height,
 
@@ -62,13 +58,9 @@ class AskLibrarian extends StatelessWidget{
               shrinkWrap: true,
               children:  [
 
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 5),
-                  child: HeadTopics(title: "askStaff".tr,),
-                ),
-                SizedBox(height: height*0.05,),
-                DropDownList(),
+                HeadTopics(title: "askStaff".tr,),
+                buildSizedBox(height),
+                const DropDownList(),
                 CustomTextField(
                   hint: "userName".tr,
                   dIcon: Icons.drive_file_rename_outline,
@@ -118,7 +110,7 @@ class AskLibrarian extends StatelessWidget{
                   ]),
                   type: TextInputType.text,
                 ),
-                SizedBox(height: height*0.05,),
+                buildSizedBox(height),
                 Center(child: MediaButtonSizer(
                   onPressed: () {
                      Get.to(()=>MyOrderAskLibrarian());
@@ -133,28 +125,6 @@ class AskLibrarian extends StatelessWidget{
     );
   }
 
-  Row buildRow({required String title ,  String? subTitle , Color? color1 , Color? color2 ,}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(
-            title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:  TextStyle(
-                color: color1, fontSize: 14, fontFamily: 'DinBold'
-            )
-        ),
-        Text(
+  SizedBox buildSizedBox(double height) => SizedBox(height: height*0.05,);
 
-            subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style:  TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler'
-            )
-        ),
-      ],
-    );
-  }
 }

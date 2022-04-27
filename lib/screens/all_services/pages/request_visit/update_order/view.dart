@@ -321,6 +321,45 @@ class _UpdateOrderOfVisitRequestState
                     ],
                   ),
                 ),
+                buildPadding(title: "AvailablePeriods".tr),
+
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 8,horizontal: 22),
+                  height: height * 0.089,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 5,
+                    itemBuilder: (context , int index){
+                      return Container(
+                        height: height * 0.079,
+                        margin: const EdgeInsets.symmetric(horizontal: 4),
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+
+                        decoration: BoxDecoration(
+                            color: kBackgroundCardColor,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text("6:35 PM\t\t".tr,style: const TextStyle(
+                              color: kPrimaryColor,
+                              fontSize: 16,
+                              fontFamily: "DinReguler",
+                            ),),
+                            Text("2:35 PM".tr,style: const TextStyle(
+                              color: kBlackText,
+                              fontSize: 16,
+                              fontFamily: "DinReguler",
+                            ),),
+                          ],
+                        ),
+
+                      );
+                    },
+
+                  ),
+                ),
                 CustomHeightTextField(
                   hint: "visitReason".tr,
                   text: "",

@@ -50,6 +50,8 @@ class LocaleString extends Translations {
           // Register
           "createNewAccount": "Create a new account",
           "fullName": "Full name",
+          "firstName": "First name",
+          "lastName": "Last name",
           "userName": "User name",
           "countryResidence": "Country of residence",
           "createAccount": "Create account",
@@ -264,8 +266,9 @@ class LocaleString extends Translations {
           "downloadFile":"Download file",
           "all":"Complete message ",
 
-          "titleMessage":"It is a service that enables postgraduate students inside and outside the Kingdom to deposit their thesis to the library according to the conditions that preserve the intellectual property rights of the author."
-
+          "titleMessage":"It is a service that enables postgraduate students inside and outside the Kingdom to deposit their thesis to the library according to the conditions that preserve the intellectual property rights of the author.",
+             "more":"More",
+          "AvailablePeriods":"Available periods",
 
 
 
@@ -316,6 +319,8 @@ class LocaleString extends Translations {
           "createNewAccount": "إنشاء حساب جديد",
           "fullName": "الأسم بالكامل",
           "userName": "أسم المستخدم",
+          "firstName": "الإسم الأول",
+          "lastName": "الاإسم الأخير",
           "countryResidence": "بلد الإقامة",
           "createAccount": "إنشاء حساب",
           "doHave": "  هل لديك حساب؟\t ",
@@ -462,11 +467,12 @@ class LocaleString extends Translations {
           "qualifications":"المؤهل:",
           "electronic":"إلكتروني",
           "paper":"ورقي",
+          "more":"المزيد",
           "headBuyBook":"تتيح الخدمة للمستفيد إمكانية إرسال اقتراحات إالي إدارة المكتبة لشراء كتاب أو تغطية موضوع.",
           "titleOfBook":"عنوان الكتاب",
           "addToArchive":"إضافة إلي الأرشيف",
           "removeFromArchive":"إزالة من الأرشيف",
-
+           "AvailablePeriods":"الفترات المتاحة",
           "kArchive":"(الأرشيف)",
           // إيداع رسالة علمية
           "DepositScientificThesis":"إيداع رسالة علمية",

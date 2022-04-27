@@ -1,59 +1,59 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
+import '../../ask_Librarian/page/views/head_topices.dart';
 
-import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/page/drop_down_book_type.dart';
-import 'package:maktabat_alharam/screens/drawer/view.dart';
+import '../my_orders/view.dart';
+import '../page/drop_down_book_type.dart';
+import 'page/hint_title.dart';
+import '../../../../drawer/view.dart';
 
-import 'package:maktabat_alharam/screens/widgets/appBar.dart';
-import 'package:maktabat_alharam/screens/widgets/constants.dart';
+import '../../../../widgets/appBar.dart';
+import '../../../../widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
-import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
-import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
+import '../../../../widgets/customHeightTextFiled.dart';
+import '../../../../widgets/customTextFeild.dart';
+import '../../../../widgets/mdeiaButtonSizer.dart';
 
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 
-
-
-
-// ignore: must_be_immutable
 class UpdateSuggestToBuyBook extends StatefulWidget {
   const UpdateSuggestToBuyBook({Key? key}) : super(key: key);
 
   @override
-  State<UpdateSuggestToBuyBook> createState() =>
-      _UpdateSuggestToBuyBookState();
+  State<UpdateSuggestToBuyBook> createState() => _UpdateSuggestToBuyBookState();
 }
 
-class _UpdateSuggestToBuyBookState
-    extends State<UpdateSuggestToBuyBook> {
+class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
 
-  final _idController = TextEditingController();
+  final _nameController = TextEditingController();
 
   final _emailController = TextEditingController();
 
   final _phoneController = TextEditingController();
 
-  final _questionController = TextEditingController();
+  final _qualificationController = TextEditingController();
 
-  final _responseController = TextEditingController();
+  final _authAddressController = TextEditingController();
 
-  CalendarFormat _calendarFormat = CalendarFormat.month;
+  final _authNameController = TextEditingController();
 
-  DateTime _focusedDay = DateTime.now();
+  final _publisherNameController = TextEditingController();
 
-  DateTime? _selectedDay;
+  final _publishLocationController = TextEditingController();
+
+  final _publishYearController = TextEditingController();
+
+  final _bookController = TextEditingController();
+
+  final addCommentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +71,8 @@ class _UpdateSuggestToBuyBookState
               isIcons: true,
               press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
-            //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
+          body: SizedBox(
             height: height,
-
             width: width,
             child: ListView(
               padding: const EdgeInsets.symmetric(vertical: 18),
@@ -82,21 +80,15 @@ class _UpdateSuggestToBuyBookState
               physics: const BouncingScrollPhysics(),
               //  shrinkWrap: true,
               children: [
-                Padding(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 12),
-                  child: HeadTopics(
-                    title: "SuggestionBuyBook".tr,
-                  ),
+                HeadTopics(
+                  title: "SuggestionBuyBook".tr,
                 ),
-                SizedBox(
-                  height: height * 0.05,
-                ),
+                buildSizedBox(height),
                 CustomTextField(
                   hint: "name".tr,
                   dIcon: Icons.drive_file_rename_outline,
                   label: "name".tr,
-                  controller: _emailController,
+                  controller: _nameController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -108,7 +100,7 @@ class _UpdateSuggestToBuyBookState
                   hint: "emailDot".tr,
                   dIcon: Icons.email,
                   label: "emailDot".tr,
-                  controller: _phoneController,
+                  controller: _emailController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -120,7 +112,7 @@ class _UpdateSuggestToBuyBookState
                   hint: "phoneNumber".tr,
                   dIcon: Icons.drive_file_rename_outline,
                   label: "phoneNumber".tr,
-                  controller: _emailController,
+                  controller: _phoneController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -132,7 +124,7 @@ class _UpdateSuggestToBuyBookState
                   hint: "qualifications".tr,
                   dIcon: Icons.verified_user,
                   label: "qualifications".tr,
-                  controller: _phoneController,
+                  controller: _qualificationController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -144,7 +136,7 @@ class _UpdateSuggestToBuyBookState
                   hint: "authorAddress".tr,
                   dIcon: Icons.drive_file_rename_outline,
                   label: "authorAddress".tr,
-                  controller: _emailController,
+                  controller: _authAddressController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -156,7 +148,7 @@ class _UpdateSuggestToBuyBookState
                   hint: "authorName".tr,
                   dIcon: Icons.person_add_alt,
                   label: "authorName".tr,
-                  controller: _phoneController,
+                  controller: _authNameController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -168,7 +160,7 @@ class _UpdateSuggestToBuyBookState
                   hint: "publisherName".tr,
                   dIcon: Icons.person_add_alt,
                   label: "publisherName".tr,
-                  controller: _emailController,
+                  controller: _publisherNameController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -180,7 +172,7 @@ class _UpdateSuggestToBuyBookState
                   hint: "publishLocation".tr,
                   dIcon: Icons.location_on_outlined,
                   label: "publishLocation".tr,
-                  controller: _phoneController,
+                  controller: _publishLocationController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -192,7 +184,7 @@ class _UpdateSuggestToBuyBookState
                   hint: "publishYear".tr,
                   dIcon: Icons.drive_file_rename_outline,
                   label: "publishYear".tr,
-                  controller: _emailController,
+                  controller: _publishYearController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -204,7 +196,7 @@ class _UpdateSuggestToBuyBookState
                   hint: "standardBookNumber".tr,
                   dIcon: Icons.confirmation_number_outlined,
                   label: "standardBookNumber".tr,
-                  controller: _phoneController,
+                  controller: _bookController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -213,23 +205,19 @@ class _UpdateSuggestToBuyBookState
                   type: TextInputType.number,
                 ),
                 const DropDownBookType(),
-
-
-                buildPadding(title: "additionalInformation".tr),
+                SubHint(title: "additionalInformation".tr),
                 CustomHeightTextField(
+                  controller: addCommentController,
                   hint: "additionalInformation".tr,
                   text: "",
                 ),
-                SizedBox(
-                  height: height * 0.05,
-                ),
+                buildSizedBox(height),
                 Center(
                   child: MediaButtonSizer(
                     onPressed: () {
-
-                      Get.to(()=> MyOrdersSuggestBuyBookScreen());
+                      Get.to(() => MyOrdersSuggestBuyBookScreen());
                     },
-                    title: "saveUpdates".tr,
+                    title: "save".tr,
                     color: kPrimaryColor,
                     image: "assets/image/rightsah.png",
                   ),
@@ -242,40 +230,11 @@ class _UpdateSuggestToBuyBookState
     );
   }
 
-  Padding buildPadding({required String title}) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 40),
-      child: Text(
-        title,
-        style: const TextStyle(
-          color: kBlackText,
-          fontSize: 16,
-          fontFamily: "DinReguler",
-        ),
-      ),
-    );
+  SizedBox buildSizedBox(double height) {
+    return SizedBox(
+                height: height * 0.05,
+              );
   }
 
-  Row buildRow({
-    required String title,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:
-            TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
-        Text(subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style: TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-      ],
-    );
-  }
+
 }

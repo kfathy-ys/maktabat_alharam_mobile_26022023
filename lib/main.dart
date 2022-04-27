@@ -76,7 +76,7 @@ class MaktabatAlharam extends StatelessWidget {
             theme: state.theme,
 
             title: 'Flutter Theme Cubit',
-            home:  PutScientificMessage(),
+            home:  MyHomeScreen(),
           );
         },
       ),

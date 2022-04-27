@@ -25,6 +25,8 @@ import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
 
+import '../view.dart';
+
 
 
 
@@ -54,6 +56,7 @@ class _UpdateMessageScreenState
 
   final _fiveController = TextEditingController();
   final _sixController = TextEditingController();
+  final _addCommentController = TextEditingController();
 
   final _sevenController = TextEditingController();
 
@@ -114,38 +117,156 @@ class _UpdateMessageScreenState
                 buildContainer(height: height*0.18,title: "contentPlus".tr, controller: _sevenController,  onPressed2: (){}),
 
                 SizedBox(height: height*0.04,),
-
-                SizedBox(
-                  width: width,
-                  child: Row(
+                HeadTopics(
+                  title: "orderEvents".tr,
+                ),
+                Container(
+                  margin:
+                  const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
+                  height: height * 0.2,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: kCardBorder)),
+                  child: Column(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      SmallestButton(
-
-                        onPressed: () {
-                          Get.back();
-                          //  Get.to(()=> MyOrderUpdateMessageScreen());
-
-
-                        },
-                        title: "previous".tr,
-                        color: kPrimaryColor,
-                        image: "assets/image/twoarrowleft.png",
-                      ),
-                      SmallestButton(
-                        onPressed: () {
-
-                          Get.to(()=> MyOrdersScientificMessage());
-
-                        },
-                        title: "save".tr,
-                        color: kPrimaryColor,
-                        image: "assets/image/rightsah.png",
-                      ),
+                      buildRequestEvent(
+                          title: "requestState".tr,
+                          subTitle: "Mar 22,2022",
+                          subTitle2: "تم تاكيد الطلب ",
+                          color1: kSmallIconColor,
+                          color2: kBlackText),
+                      buildRequestEvent(
+                          title: "requestState".tr,
+                          subTitle: "Mar 23,2022",
+                          subTitle2: "الطلب قيد المراجعة",
+                          color1: kSmallIconColor,
+                          color2: kBlackText),
+                      buildRequestEvent(
+                          title: "requestState".tr,
+                          subTitle: "Mar 26,2022",
+                          subTitle2: "تم الموافقة",
+                          color1: kSmallIconColor,
+                          color2: kBlackText),
                     ],
                   ),
                 ),
+                HeadTopics(
+                  title: "commentsRequest".tr,
+                ),
+                Container(
+                  margin:
+                  const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
+                  height: height * 0.1,
+                  decoration: BoxDecoration(
+                    color: kBackgroundCardColor,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      buildRow(
+                          title: "Ahmed",
+                          subTitle: "Mar 22,2022  7:54 PM",
+                          color1: kBlackText,
+                          color2: kAccentColor),
+                      buildRow(
+                          title: "هل يمكن إستخراج البطاقة المدرسية؟",
+                          subTitle: "",
+                          color1: kSmallIconColor,
+                          color2: kBlackText),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin:
+                  const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
+                  height: height * 0.1,
+                  decoration: BoxDecoration(
+                    color: kBackgroundCardColor,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      buildRow(
+                          title: "EMP",
+                          subTitle: "Mar 22,2022  8:04 PM",
+                          color1: kBlackText,
+                          color2: kAccentColor),
+                      buildRow(
+                          title: "لا , لا يمكن !",
+                          subTitle: "",
+                          color1: kSmallIconColor,
+                          color2: kBlackText),
+                    ],
+                  ),
+                ),
+                CustomTextField(
+                  controller: _addCommentController,
+                  hint: "أضف تعليق",
+                ),
+                SizedBox(
+                  height: height * 0.05,
+                ),
+                Row(
+                  mainAxisAlignment:MainAxisAlignment.spaceAround,
+                  children: [
+                    SmallestButton(
+                      onPressed: (){
+                       // PutScientificMessage();
+                       // Get.to(()=>const RequestVisitScreen())
+                      } ,
+                      title: "add".tr,
+                      color: kPrimaryColor,
+                      image: "assets/image/newrequest.png",
+                    ),
+                    SmallestButton(
+                      onPressed: (){
+                        // PutScientificMessage();
+                        // Get.to(()=>const RequestVisitScreen())
+                      } ,
+                      title: "more".tr,
+                      color: kPrimaryColor,
+                      image: "assets/image/newrequest.png",
+                    ),
+                  ],
+                ),
+
+                // SizedBox(
+                //   width: width,
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //     mainAxisSize: MainAxisSize.min,
+                //     children: [
+                //       SmallestButton(
+                //
+                //         onPressed: () {
+                //           Get.back();
+                //           //  Get.to(()=> MyOrderUpdateMessageScreen());
+                //
+                //
+                //         },
+                //         title: "previous".tr,
+                //         color: kPrimaryColor,
+                //         image: "assets/image/twoarrowleft.png",
+                //       ),
+                //       SmallestButton(
+                //         onPressed: () {
+                //
+                //           Get.to(()=> MyOrdersScientificMessage());
+                //
+                //         },
+                //         title: "save".tr,
+                //         color: kPrimaryColor,
+                //         image: "assets/image/rightsah.png",
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -260,6 +381,31 @@ class _UpdateMessageScreenState
     );
   }
 
-
+  Widget buildRequestEvent({
+    required String title,
+    String? subTitle2,
+    String? subTitle,
+    Color? color1,
+    Color? color2,
+  }) {
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(start: 16, end: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style: TextStyle(
+                  color: color1, fontSize: 14, fontFamily: 'DinBold')),
+          Text(subTitle2!,
+              style: TextStyle(
+                  color: color2, fontSize: 14, fontFamily: 'DinReguler')),
+          Text(subTitle!,
+              style: const TextStyle(
+                  color: kAccentColor, fontSize: 14, fontFamily: 'DinReguler')),
+        ],
+      ),
+    );
+  }
 
 }

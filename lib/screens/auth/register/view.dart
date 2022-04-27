@@ -51,6 +51,31 @@ class SignUpScreen extends StatelessWidget {
                 const TextTitleSubTitle(),
                 SizedBox(height: height*0.02,),
                 CustomTextField(
+                  dIcon: Icons.person,
+                  label:"firstName".tr ,
+                  hint: "firstName".tr,
+                  controller: _idController,
+                  validator: qValidator([
+                    IsRequired("enterFullName".tr),
+                    IsOptional(),
+                    MaxLength(30),
+                  ]),
+                  type: TextInputType.name,
+                ),
+                CustomTextField(
+                  dIcon: Icons.person,
+                  label:"lastName".tr ,
+                  hint: "lastName".tr,
+                  controller: _idController,
+                  validator: qValidator([
+                    IsRequired("thisFieldRequired".tr),
+                    IsOptional(),
+                    MaxLength(30),
+                  ]),
+                  type: TextInputType.name,
+                ),
+
+                CustomTextField(
                   dIcon: Icons.drive_file_rename_outline,
                   label:"fullName".tr ,
                   hint: "fullName".tr,
@@ -62,20 +87,7 @@ class SignUpScreen extends StatelessWidget {
                   ]),
                   type: TextInputType.name,
                 ),
-        /*        CustomTextField(
-                  hint: "userName".tr,
-                  dIcon: Icons.drive_file_rename_outline,
-                  label:"userName".tr ,
-                  controller: _emailController,
-                  validator: qValidator([
-                    IsRequired("enterName".tr),
-                    IsOptional(),
 
-                    MaxLength(30),
-                  ]),
-                  type: TextInputType.name,
-
-                ),*/
                 CustomTextField(
                   dIcon: Icons.email,
                   label:"email".tr ,
@@ -89,33 +101,7 @@ class SignUpScreen extends StatelessWidget {
                   ]),
                   type: TextInputType.emailAddress,
                 ),
-              /*  CustomTextField(
-                  dIcon: Icons.home_work_rounded,
-                  label:"countryResidence".tr ,
-                  hint: "countryResidence".tr,
-                  controller: _idController,
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return "Please enter your id";
-                    }
 
-                  },
-                  type: TextInputType.text,
-                ),
-                CustomTextField(
-
-                  hint: "phone".tr,
-                  dIcon: Icons.phone,
-                  label:"phone".tr ,
-                  controller: _emailController,
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return "Please enter your phone";
-                    }
-                  },
-                  type: TextInputType.phone,
-
-                ),*/
                 CustomTextField(
 
                   hint: "password".tr,
@@ -156,11 +142,11 @@ class SignUpScreen extends StatelessWidget {
 
 
                     decoration:  InputDecoration(
-                        labelStyle:  const TextStyle(
-                          fontSize: 16,
-                          color: kPrimaryColor,
-                          fontFamily: "DinReguler",
-                        ),
+                      labelStyle:  const TextStyle(
+                        fontSize: 16,
+                        color: kPrimaryColor,
+                        fontFamily: "DinReguler",
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: kPrimaryColor, width: 1),
                         borderRadius: BorderRadius.circular(10),
@@ -184,7 +170,6 @@ class SignUpScreen extends StatelessWidget {
                     },
                   ),
                 ),
-
                 CustomButton(
                   color: kSmallIconColor,title:"createAccount".tr
                   ,onPressed: (){
