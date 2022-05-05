@@ -1,21 +1,15 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
-import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/widgets/customButton.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButton.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
-import 'package:queen/validation/it/is_email.dart';
+
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
@@ -29,7 +23,7 @@ import 'page/views/drop_down_qualification.dart';
 
 // ignore: must_be_immutable
 class NewOrderToReserveScientificResearch extends StatefulWidget {
-  NewOrderToReserveScientificResearch({Key? key}) : super(key: key);
+  const NewOrderToReserveScientificResearch({Key? key}) : super(key: key);
 
   @override
   State<NewOrderToReserveScientificResearch> createState() =>
@@ -38,19 +32,13 @@ class NewOrderToReserveScientificResearch extends StatefulWidget {
 
 class _NewOrderToReserveScientificResearchState
     extends State<NewOrderToReserveScientificResearch> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
 
-  final _idController = TextEditingController();
 
   final _emailController = TextEditingController();
 
   final _phoneController = TextEditingController();
-
-  final _questionController = TextEditingController();
-
-  final _responseController = TextEditingController();
 
   CalendarFormat _calendarFormat = CalendarFormat.month;
 
@@ -68,13 +56,12 @@ class _NewOrderToReserveScientificResearchState
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
+
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
+          body: SizedBox(
             //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
             height: height,
 

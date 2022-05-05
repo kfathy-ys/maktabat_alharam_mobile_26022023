@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/about_library/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/contect_us/view.dart';
-import 'package:maktabat_alharam/screens/drawer/page/settings/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/my_orders/view.dart';
 import 'package:maktabat_alharam/screens/our_services/view.dart';
 import 'page/languages/view.dart';
@@ -30,7 +29,7 @@ Widget drawer({required context}) {
             child: Row(
               children: [
                 const SizedBox(
-                  width: 18,
+                  width: 12,
  /// TODo:: Problem width: 12
                  // width: 12,
                 ),
@@ -42,24 +41,46 @@ Widget drawer({required context}) {
                 SizedBox(
 
                   /// Todo :::   width: MediaQuery.of(context).size.width - 122,
-                  width: MediaQuery.of(context).size.width - 100,
+                  width: MediaQuery.of(context).size.width - 122,
                   child: ListView(
                     children: [
-                      ListTile(
-                        trailing: Padding(
-                          padding: const EdgeInsets.only(top: 25),
-                          child: InkWell(
-                              onTap: () => Get.back(),
-                              child: Image.asset(
-                                'assets/image/Vector 22.png',
-                                scale: 0.6,
-                              )),
-                        ),
+
+
+
+
+                      Get.locale == const Locale('ar','EG') ?
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child:
+                          Padding(
+                            padding: const EdgeInsetsDirectional.only(top: 25,),
+                            child: InkWell(
+                                onTap: () => Get.back(),
+                                child: Image.asset(
+                                  'assets/image/left arrow.png',
+                                  scale: 0.6,
+                                )),
+                          ),
+
+                      ):Align(
+                        alignment: Alignment.topRight,
+                        child:  Padding(
+                            padding: const EdgeInsets.only(top: 25,),
+                            child: InkWell(
+                                onTap: () => Get.back(),
+                                child: Image.asset(
+
+                                  'assets/image/right arrow.png',
+                                  scale: 0.6,
+
+                                )),
+                          ),
+
                       ),
                       listTile(
                           onTap: () {
                             Get.back();
-                            Get.to(()=>AboutLibraryScreen());
+                            Get.to(()=>const AboutLibraryScreen());
                           },
                           title: 'aboutLibrary'.tr,
                           image: 'assets/image/QuestionCircleFill.png'),
@@ -87,7 +108,7 @@ Widget drawer({required context}) {
                           onTap: () {
 
                             Get.back();
-                            Get.to(()=>MyOrdersScreen());
+                            Get.to(()=>const MyOrdersScreen());
                           },
                           title: "myOrders".tr,
                           image: 'assets/image/myorder.png'),

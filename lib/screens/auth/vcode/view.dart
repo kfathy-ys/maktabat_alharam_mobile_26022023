@@ -7,7 +7,7 @@ import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 class VCodeScreen extends StatefulWidget {
-  VCodeScreen({Key? key}) : super(key: key);
+  const VCodeScreen({Key? key}) : super(key: key);
 
   @override
   State<VCodeScreen> createState() => _VCodeScreenState();
@@ -37,7 +37,7 @@ class _VCodeScreenState extends State<VCodeScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+   // double width = MediaQuery.of(context).size.width;
     return Container(
       color: kAppBarColor,
       child: SafeArea(

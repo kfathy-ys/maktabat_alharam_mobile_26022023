@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
+// ignore: must_be_immutable
 class DropDownListServiceName extends StatefulWidget {
 
-  const DropDownListServiceName({Key? key}) : super(key: key);
-
+  final List<String> items;
+   String? dropdownValue;
+  final   ValueChanged<String?> onChange;
+   DropDownListServiceName({Key? key,required this.items,
+     this.dropdownValue,required this.onChange}) : super(key: key);
   @override
   State<DropDownListServiceName> createState() => _DropDownListServiceNameState();
 }
 
 class _DropDownListServiceNameState extends State<DropDownListServiceName> {
-  String? dropdownValue;
+ // String? dropdownValue;
 
+  @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+  //  double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -28,10 +33,11 @@ class _DropDownListServiceNameState extends State<DropDownListServiceName> {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
 
-          value: dropdownValue,
+          value: widget.dropdownValue,
          // autofocus: true,
          //isDense: true,
           isExpanded: true,
+
           hint: Text("serviceName".tr+' :',
             style: const TextStyle(
               color: kPrimaryColor,
@@ -47,12 +53,17 @@ class _DropDownListServiceNameState extends State<DropDownListServiceName> {
             fontFamily: "DinReguler",
           ),
            underline: null,
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
-          },
-          items: <String>["researchRetreat".tr,  "scientificMaterial".tr, "mix".tr]
+          onChanged:widget.onChange,
+
+
+
+          //     (String? newValue) {
+          //   setState(() {
+          //     dropdownValue = newValue!;
+          //   });
+          // },
+          //<String>["researchRetreat".tr,  "scientificMaterial".tr, "mix".tr]
+          items: widget.items
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
@@ -67,6 +78,7 @@ class _DropDownListServiceNameState extends State<DropDownListServiceName> {
               ),
             );
           }).toList(),
+
         ),
       ),
     );

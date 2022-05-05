@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/list_model.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
 
 class CardContent extends StatelessWidget {
+
   final  OurServicesModel model;
   final double fontTitle;
   final double fontSubTitle;
 
-  const CardContent({Key? key,required this.model, required this.fontTitle,required this.fontSubTitle }) : super(key: key);
+
+  const CardContent({Key? key,required this.model, required this.fontTitle,required this.fontSubTitle, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+   // double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
       width: width*0.42,
@@ -60,8 +61,8 @@ class CardGridContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+  //  double height = MediaQuery.of(context).size.height;
+    //double width = MediaQuery.of(context).size.width;
     //      onTap: ()=>Get.to(()=>model.route),
     return Container(
      // width: width*0.3,

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import '../../ask_Librarian/page/views/head_topices.dart';
@@ -29,7 +28,6 @@ class UpdateSuggestToBuyBook extends StatefulWidget {
 }
 
 class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
 
@@ -65,11 +63,9 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: SizedBox(
             height: height,
@@ -215,7 +211,7 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                 Center(
                   child: MediaButtonSizer(
                     onPressed: () {
-                      Get.to(() => MyOrdersSuggestBuyBookScreen());
+                      Get.to(() => const MyOrdersSuggestBuyBookScreen());
                     },
                     title: "save".tr,
                     color: kPrimaryColor,

@@ -3,6 +3,7 @@ import 'package:maktabat_alharam/screens/widgets/loading.dart';
 
 import 'constants.dart';
 
+// ignore: unnecessary_question_mark
 Widget profilePicContainer(BuildContext context, dynamic? img, String? name,
     String mobile, dynamic onProfilePicTapped, bool loading) {
   return Container(
@@ -15,7 +16,7 @@ Widget profilePicContainer(BuildContext context, dynamic? img, String? name,
         //         bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20))),
         ),
     child: Padding(
-      padding: const EdgeInsetsDirectional.only(top: 20, end: 10),
+      padding: const EdgeInsetsDirectional.only(top: 20, end: 30,start: 30),
       child: loading
           ? LoadingSmall()
           : Row(

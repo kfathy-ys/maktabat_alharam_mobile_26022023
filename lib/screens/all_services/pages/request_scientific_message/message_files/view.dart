@@ -5,9 +5,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/availability_message/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/drop_down_university_name.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/title.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/view.dart';
 
 import 'package:maktabat_alharam/screens/drawer/view.dart';
@@ -15,16 +13,13 @@ import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFieldToUploadFile.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizerUploadFile.dart';
 import 'package:maktabat_alharam/screens/widgets/smallestButton.dart';
 
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
-import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
 
 // ignore: must_be_immutable
@@ -36,7 +31,6 @@ class MessageFilesScreen extends StatefulWidget {
 }
 
 class _MessageFilesScreenState extends State<MessageFilesScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
 
@@ -54,7 +48,6 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
   final _sevenController = TextEditingController();
   final _eightController = TextEditingController();
 
-
   bool value = false;
 
   @override
@@ -67,16 +60,12 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
-            //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
+          body: SizedBox(
             height: height,
-
             width: width,
             child: ListView(
               padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
@@ -85,17 +74,9 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
               children: [
                 Row(
                   children: [
-                    HeadTopics(
+                    HeadTitle(
                       title: "DepositScientificThesis".tr,
-                    ),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                          bottom: 8, start: 4, end: 4),
-                      child: Text("filesMessageArrow".tr,
-                          style: const TextStyle(
-                              color: kPrimaryColor,
-                              fontSize: 15,
-                              fontFamily: 'DinBold')),
+                      subTitle: "filesMessageArrow".tr,
                     ),
                   ],
                 ),
@@ -108,7 +89,6 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
                   controller: _firstController,
                   onPressed1: () {
                     _uploadFile(1);
-
                   },
                 ),
                 buildContainer(
@@ -204,9 +184,6 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
     );
   }
 
-
-
-
   dynamic video;
   File? _file1;
   File? _file2;
@@ -250,14 +227,12 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
         } else if (step == 7) {
           _file7 = file;
           _sevenController.text = file.path;
-        }else if (step == 8) {
+        } else if (step == 8) {
           _file8 = file;
           _eightController.text = file.path;
         } else {
           log("NOT Catch ONE SORRY FOR THAT .... TRY AGAIN");
         }
-
-
       });
     } else {
       // User canceled the picker
@@ -314,56 +289,6 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  ListTile buildListTile(
-      {required Color color, required String title, required String image}) {
-    return ListTile(
-      horizontalTitleGap: 1,
-      //"fillOut".tr
-      title: Text(title,
-          style:
-              TextStyle(color: color, fontSize: 14, fontFamily: 'DinReguler')),
-      //"assets/image/dot.png"
-      leading: Image.asset(image),
-    );
-  }
-
-  Padding buildPadding({required String title}) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 40),
-      child: Text(
-        title,
-        style: const TextStyle(
-          color: kBlackText,
-          fontSize: 16,
-          fontFamily: "DinReguler",
-        ),
-      ),
-    );
-  }
-
-  Row buildRow({
-    required String title,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:
-                TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
-        Text(subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style: TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-      ],
     );
   }
 }

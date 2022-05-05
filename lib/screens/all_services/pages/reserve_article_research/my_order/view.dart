@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/archive/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/update/view.dart';
@@ -12,9 +11,8 @@ import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 class MyOrderReserveArticleResearch extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-   MyOrderReserveArticleResearch({Key? key}) : super(key: key);
+   const MyOrderReserveArticleResearch({Key? key}) : super(key: key);
 
   @override
 
@@ -27,11 +25,9 @@ class MyOrderReserveArticleResearch extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer:  drawer(context: context) ,
-          key: _scaffoldKey,
           appBar:customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body:  Container(
             margin: const EdgeInsets.symmetric(horizontal: 24,vertical: 10),
@@ -66,7 +62,7 @@ class MyOrderReserveArticleResearch extends StatelessWidget {
 
 
                   onPressed: (){
-                    Get.to(()=>ReserveResearchRetreatScreen());
+                    Get.to(()=>const ReserveResearchRetreatScreen());
                   },
                   title: "addOne".tr,color: kPrimaryColor,image: "assets/image/newrequest.png",)),
                 SizedBox(height: height*0.03,),
@@ -124,13 +120,13 @@ class MyOrderReserveArticleResearch extends StatelessWidget {
                           ),
                           CustomCardButton(color: kAccentColor,
                             title: "updateRequest".tr,
-                            onPressed: ()=>Get.to(()=>UpdateReserveArticleRetreated()),
+                            onPressed: ()=>Get.to(()=>const UpdateReserveArticleRetreated()),
                             image: "assets/image/update.png",
 
                           ),
                           CustomCardButton(color: kAccentColor,
                             title: "addToArchive".tr,
-                            onPressed: ()=>Get.to(()=>ArchiveReserveArticleScreen()),
+                            onPressed: ()=>Get.to(()=>const ArchiveReserveArticleScreen()),
 
 
                             image: "assets/image/archieve.png",
@@ -171,7 +167,7 @@ class MyOrderReserveArticleResearch extends StatelessWidget {
                 color: color1, fontSize: 14, fontFamily: 'DinBold'
             )
         ),
-        SizedBox(width: 10,),
+        const SizedBox(width: 10,),
         Text(
 
             subTitle!,

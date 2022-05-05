@@ -1,19 +1,16 @@
-import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/drop_down_university_name.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/title.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/message_data/view.dart';
-
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
-import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
+
 import 'package:maktabat_alharam/screens/widgets/smallestButton.dart';
 
 import 'package:queen/validation/magic/is_optional.dart';
@@ -21,27 +18,19 @@ import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
 
-
-
-
-
 // ignore: must_be_immutable
 class BasicInfoScreen extends StatefulWidget {
   const BasicInfoScreen({Key? key}) : super(key: key);
 
   @override
-  State<BasicInfoScreen> createState() =>
-      _BasicInfoScreenState();
+  State<BasicInfoScreen> createState() => _BasicInfoScreenState();
 }
 
-class _BasicInfoScreenState
-    extends State<BasicInfoScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+class _BasicInfoScreenState extends State<BasicInfoScreen> {
 
   final formKey = GlobalKey<FormState>();
 
   final _nameController = TextEditingController();
-
 
   final _emailController = TextEditingController();
 
@@ -53,7 +42,6 @@ class _BasicInfoScreenState
 
   bool value = false;
 
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -64,40 +52,23 @@ class _BasicInfoScreenState
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
-            //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
+          body: SizedBox(
             height: height,
-
             width: width,
             child: ListView(
-              padding: const EdgeInsets.symmetric(vertical: 14,horizontal: 22),
+              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
 
               physics: const BouncingScrollPhysics(),
               //  shrinkWrap: true,
               children: [
-
-                Row(
-                  children: [
-                    HeadTopics(title: "DepositScientificThesis".tr,),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(bottom: 8,start: 4,end: 4),
-                      child: Text(
-                          "basicInfoArrow".tr,
-                          style: const TextStyle(
-                              color: kPrimaryColor, fontSize: 15, fontFamily: 'DinBold'
-                          )
-                      ),
-                    ),
-
-                  ],
+                HeadTitle(title: "DepositScientificThesis".tr,subTitle: "basicInfoArrow".tr,),
+                SizedBox(
+                  height: height * 0.04,
                 ),
-                SizedBox(height: height*0.04,),
                 CustomTextField(
                   hint: "userName".tr,
                   dIcon: Icons.drive_file_rename_outline,
@@ -110,7 +81,7 @@ class _BasicInfoScreenState
                   ]),
                   type: TextInputType.name,
                 ),
-                DropDownListUniversityName(),
+                const DropDownListUniversityName(),
                 CustomTextField(
                   hint: "collage".tr,
                   dIcon: Icons.flag_outlined,
@@ -135,7 +106,6 @@ class _BasicInfoScreenState
                   ]),
                   type: TextInputType.emailAddress,
                 ),
-
                 CustomTextField(
                   hint: "department".tr,
                   dIcon: Icons.drive_file_rename_outline,
@@ -160,31 +130,25 @@ class _BasicInfoScreenState
                   ]),
                   type: TextInputType.phone,
                 ),
-
-                SizedBox(height: height*0.04,),
-
+                SizedBox(
+                  height: height * 0.04,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SmallestButton(
-
                       onPressed: () {
                         Get.back();
                         //  Get.to(()=> MyOrderBasicInfoScreen());
-
-
                       },
                       title: "previous".tr,
                       color: kPrimaryColor,
                       image: "assets/image/twoarrowleft.png",
                     ),
                     SmallestButton(
-
                       onPressed: () {
-
-                          Get.to(()=> MessageDataScreen());
-
+                        Get.to(() => const MessageDataScreen());
                       },
                       title: "next".tr,
                       color: kPrimaryColor,
@@ -198,21 +162,18 @@ class _BasicInfoScreenState
         ),
       ),
     );
-
-
-
   }
 
-  ListTile buildListTile({required Color color ,  required String title , required String image}) {
+  ListTile buildListTile(
+      {required Color color, required String title, required String image}) {
     return ListTile(
       horizontalTitleGap: 1,
       //"fillOut".tr
-      title: Text(title, style:  TextStyle(
-          color: color, fontSize: 14, fontFamily: 'DinReguler'
-      )),
+      title: Text(title,
+          style:
+              TextStyle(color: color, fontSize: 14, fontFamily: 'DinReguler')),
       //"assets/image/dot.png"
-      leading:Image.asset(image),
-
+      leading: Image.asset(image),
     );
   }
 
@@ -243,7 +204,7 @@ class _BasicInfoScreenState
             //  "محتوي الطلب",
 //kSmallIconColor
             style:
-            TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
+                TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
         Text(subTitle!,
             // "هل المكتبة متاحة يوم الجمعة؟",
 //kBlackText
@@ -254,32 +215,4 @@ class _BasicInfoScreenState
   }
 
 
-
-  Future<void> _showMyDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('AlertDialog Title'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Text('This is a demo alert dialog.'),
-                Text('Would you like to approve of this message?'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Approve'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 }

@@ -20,7 +20,7 @@ final Widget body;
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
+              //press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: body,
         ),

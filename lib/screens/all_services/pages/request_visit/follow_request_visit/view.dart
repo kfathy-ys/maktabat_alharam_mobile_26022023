@@ -1,6 +1,6 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
@@ -12,10 +12,11 @@ import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
+import 'page/views/request_events.dart';
+
 
 // ignore: must_be_immutable
 class FollowRequestVisitScreen extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   final _addCommentController = TextEditingController();
 
@@ -32,11 +33,9 @@ class FollowRequestVisitScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: Container(
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
@@ -61,12 +60,12 @@ class FollowRequestVisitScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      buildRow(
+                      CardData(
                           title: "serviceName".tr,
                           subTitle: "خلوة بحثية",
                           color1: kSmallIconColor,
                           color2: kBlackText),
-                      buildRow(
+                      CardData(
                           title: "requiredInstructions".tr,
                           subTitle: " كارنيه الإستشارة",
                           color1: kSmallIconColor,
@@ -88,32 +87,32 @@ class FollowRequestVisitScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      buildRow(
+                      CardData(
                           title: "entityName".tr,
                           subTitle: "مدرسة",
                           color1: kSmallIconColor,
                           color2: kBlackText),
-                      buildRow(
+                      CardData(
                           title: "nameResponsible".tr,
                           subTitle: "Ahmed",
                           color1: kSmallIconColor,
                           color2: kBlackText),
-                      buildRow(
+                      CardData(
                           title: "email".tr,
                           subTitle: "Ahmed78@gmail.com",
                           color1: kSmallIconColor,
                           color2: kBlackText),
-                      buildRow(
+                      CardData(
                           title: "phoneNumber".tr,
                           subTitle: "955542369875",
                           color1: kSmallIconColor,
                           color2: kBlackText),
-                      buildRow(
+                      CardData(
                           title: "visitsNumbers".tr,
                           subTitle: "8",
                           color1: kSmallIconColor,
                           color2: kBlackText),
-                      buildRow(
+                      CardData(
                           title: "visitReason".tr,
                           subTitle: "إستطلاع",
                           color1: kSmallIconColor,
@@ -136,19 +135,19 @@ class FollowRequestVisitScreen extends StatelessWidget {
                     // crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      buildRequestEvent(
+                      RequestEvents(
                           title: "requestState".tr,
                           subTitle: "Mar 22,2022",
                           subTitle2: "تم تاكيد الطلب ",
                           color1: kSmallIconColor,
                           color2: kBlackText),
-                      buildRequestEvent(
+                      RequestEvents(
                           title: "requestState".tr,
                           subTitle: "Mar 23,2022",
                           subTitle2: "الطلب قيد المراجعة",
                           color1: kSmallIconColor,
                           color2: kBlackText),
-                      buildRequestEvent(
+                      RequestEvents(
                           title: "requestState".tr,
                           subTitle: "Mar 26,2022",
                           subTitle2: "تم الموافقة",
@@ -171,13 +170,13 @@ class FollowRequestVisitScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      buildRow(
+                    children: const [
+                      CardData(
                           title: "Ahmed",
                           subTitle: "Mar 22,2022  7:54 PM",
                           color1: kBlackText,
                           color2: kAccentColor),
-                      buildRow(
+                      CardData(
                           title: "هل يمكن إستخراج البطاقة المدرسية؟",
                           subTitle: "",
                           color1: kSmallIconColor,
@@ -196,13 +195,13 @@ class FollowRequestVisitScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      buildRow(
+                    children: const [
+                      CardData(
                           title: "EMP",
                           subTitle: "Mar 22,2022  8:04 PM",
                           color1: kBlackText,
                           color2: kAccentColor),
-                      buildRow(
+                      CardData(
                           title: "لا , لا يمكن !",
                           subTitle: "",
                           color1: kSmallIconColor,
@@ -232,53 +231,7 @@ class FollowRequestVisitScreen extends StatelessWidget {
     );
   }
 
-  Widget buildRequestEvent({
-    required String title,
-    String? subTitle2,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16, end: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,
-              style: TextStyle(
-                  color: color1, fontSize: 14, fontFamily: 'DinBold')),
-          Text(subTitle2!,
-              style: TextStyle(
-                  color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-          Text(subTitle!,
-              style: const TextStyle(
-                  color: kAccentColor, fontSize: 14, fontFamily: 'DinReguler')),
-        ],
-      ),
-    );
-  }
 
-  Widget buildRow({
-    required String title,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16, end: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,
-              style: TextStyle(
-                  color: color1, fontSize: 14, fontFamily: 'DinBold')),
-          Text(subTitle!,
-              style: TextStyle(
-                  color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-        ],
-      ),
-    );
-  }
+
+
 }

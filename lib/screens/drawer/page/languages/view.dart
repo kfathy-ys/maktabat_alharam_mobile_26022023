@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/page/views/header.dart';
@@ -6,6 +8,7 @@ import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customButton.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 
 // ignore: must_be_immutable
@@ -23,6 +26,7 @@ class LanguagesScreen extends StatelessWidget {
   updateLanguage(Locale locale){
     Get.back();
     Get.updateLocale(locale);
+
   }
 
   @override
@@ -39,9 +43,9 @@ class LanguagesScreen extends StatelessWidget {
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
+            //  press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
+          body: SizedBox(
             height: height,
             width: width,
             child: ListView(
@@ -50,7 +54,11 @@ class LanguagesScreen extends StatelessWidget {
                 HeaderTitle(icon: Icons.language, title: "language".tr),
                 Image.asset("assets/image/bigKabah.png"),
 
-                CustomButton(color: kSafeAreasColor,onPressed: (){  buildLanguageDialog(context);},
+                CustomButton(color: kSafeAreasColor,onPressed: (){
+                  buildLanguageDialog(context);
+                 Prefs.getString("saveLang");
+                 // Prefs.setString("saveLang", "saveLang");
+                  },
                 title: "changeLang".tr,
 
                 ),
@@ -92,8 +100,11 @@ class LanguagesScreen extends StatelessWidget {
                             color: kBlackText),
 
                       ),onTap: (){
-                        print(locale[index]['name']);
+                        log(locale[index]['name']);
                         updateLanguage(locale[index]['locale']);
+                        // Prefs.getString("saveLang");
+                   Prefs.setString("saveLang", "saveLang");
+
                       },),
                     );
                   }, separatorBuilder: (context,index){
@@ -105,29 +116,7 @@ class LanguagesScreen extends StatelessWidget {
             )
 
           );
-      /*    return AlertDialog(
 
-            title: Text('Choose Your Language'),
-            content: Container(
-              width: double.maxFinite,
-              child: ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (context,index){
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(child: Text(locale[index]['name']),onTap: (){
-                        print(locale[index]['name']);
-                        updateLanguage(locale[index]['locale']);
-                      },),
-                    );
-                  }, separatorBuilder: (context,index){
-                return Divider(
-                  color: Colors.blue,
-                );
-              }, itemCount: locale.length
-              ),
-            ),
-          );*/
         }
     );
   }

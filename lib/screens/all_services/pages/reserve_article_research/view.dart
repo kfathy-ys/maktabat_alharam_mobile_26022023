@@ -1,6 +1,9 @@
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_hall_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_items.dart';
@@ -16,44 +19,33 @@ import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
 import 'package:queen/validation.dart';
 import 'package:queen/validation/validator.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import 'my_order/view.dart';
 
-
-
-
 // ignore: must_be_immutable
-class ReserveResearchRetreatScreen extends StatefulWidget{
-
-
-
+class ReserveResearchRetreatScreen extends StatefulWidget {
   const ReserveResearchRetreatScreen({Key? key}) : super(key: key);
 
   @override
-  State<ReserveResearchRetreatScreen> createState() => _ReserveResearchRetreatScreenState();
+  State<ReserveResearchRetreatScreen> createState() =>
+      _ReserveResearchRetreatScreenState();
 }
 
-class _ReserveResearchRetreatScreenState extends State<ReserveResearchRetreatScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+class _ReserveResearchRetreatScreenState
+    extends State<ReserveResearchRetreatScreen> {
 
   final formKey = GlobalKey<FormState>();
 
-  final _idController = TextEditingController();
 
   final _emailController = TextEditingController();
 
   final _phoneController = TextEditingController();
 
-  final _questionController = TextEditingController();
 
-  final _responseController = TextEditingController();
 
-  CalendarFormat _calendarFormat = CalendarFormat.month;
-
-  DateTime _focusedDay = DateTime.now();
-
-  DateTime? _selectedDay;
+  String? dropdownValue;
+  dynamic selectedTimeFrom;
+  dynamic selectedTimeTo;
 
   @override
   Widget build(BuildContext context) {
@@ -65,13 +57,11 @@ class _ReserveResearchRetreatScreenState extends State<ReserveResearchRetreatScr
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
+          body: SizedBox(
             //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
             height: height,
 
@@ -82,19 +72,41 @@ class _ReserveResearchRetreatScreenState extends State<ReserveResearchRetreatScr
               physics: const BouncingScrollPhysics(),
               //  shrinkWrap: true,
               children: [
-                Padding(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 12),
-                  child: HeadTopics(
-                    title: "RequestReserveArticleOrResearchRetreat".tr,
-                  ),
+                HeadTopics(
+                  title: "RequestReserveArticleOrResearchRetreat".tr,
                 ),
                 SizedBox(
                   height: height * 0.05,
                 ),
-                const DropDownListServiceName(),
+                DropDownListServiceName(
+                  items: <String>[
+                    "researchRetreat".tr,
+                    "scientificMaterial".tr,
+                    "mix".tr
+                  ],
+                  onChange: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                      if (dropdownValue == "scientificMaterial".tr) {
+                        // ignore: void_checks
+                        _selectTextField = callNumber();
+                      } else if (dropdownValue == "researchRetreat".tr) {
+                        _selectTextField = const DropDownListHallName();
+                      } else {
+                        _selectTextField = Column(
+                          children: [
+                            callNumber(),
+                            const DropDownListHallName(),
+                          ],
+                        );
+                      }
+                    });
+                  },
+                  dropdownValue: dropdownValue,
+                ),
+                _selectTextField,
                 const DropDownListLibraryName(),
-                const DropDownListHallName(),
+                //  const DropDownListHallName(),
                 CustomTextField(
                   hint: "userName".tr,
                   dIcon: Icons.drive_file_rename_outline,
@@ -128,76 +140,55 @@ class _ReserveResearchRetreatScreenState extends State<ReserveResearchRetreatScr
                       color: kBackgroundCardColor,
                       borderRadius: BorderRadius.circular(8)),
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  margin: const EdgeInsets.symmetric(horizontal: 28,vertical: 14),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("from".tr,style: const TextStyle(
-                        color: kBlackText,
-                        fontSize: 16,
-                        fontFamily: "DinReguler",
-                      ),),
+                      Text(
+                        "from".tr,
+                        style: const TextStyle(
+                          color: kBlackText,
+                          fontSize: 16,
+                          fontFamily: "DinReguler",
+                        ),
+                      ),
                       Container(
-                        //  color: Colors.red,
-                        width: width*0.1,
+                        padding: const EdgeInsetsDirectional.only(top: 5),
+                        width: width * 0.1,
                         height: height * 0.05,
-                        child: TextFormField(),
+                        child: Text("${selectedTimeFrom ?? "" }  ",style: const TextStyle( fontSize: 16, color: kSafeAreasColor,  fontFamily: "DinReguler",),),
+
                       ),
                       InkWell(
-
-                          onTap: () async {
-                            await showTimePicker(
-                              errorInvalidText: "No",
-                              context: context,
-                              initialTime: TimeOfDay.now(),
-                              confirmText: 'Ok',
-                              cancelText: 'Cancel',
-
-                              // builder: (BuildContext context, Widget child) {
-                              //   return Directionality(
-                              //     textDirection: TextDirection.rtl,
-                              //     child: child,
-                              //   );
-                              // },
-                            );
+                          onTap: () {
+                            _showDatePicker(true);
                           },
                           child: Image.asset("assets/image/twoarrow.png")),
-                      Text("to".tr,style: const TextStyle(
-                        color: kBlackText,
-                        fontSize: 16,
-                        fontFamily: "DinReguler",
-                      ),),
+                      Text(
+                        "to".tr,
+                        style: const TextStyle(
+                          color: kBlackText,
+                          fontSize: 16,
+                          fontFamily: "DinReguler",
+                        ),
+                      ),
                       Container(
-                        // color: Colors.red,
-                        width: width*0.1,
+                        padding: const EdgeInsetsDirectional.only(top: 5),
+                        width: width * 0.1,
                         height: height * 0.05,
-                        child: TextFormField(),
+                        child: Text("${selectedTimeTo ?? ""}",style: const TextStyle( fontSize: 16, color: kSafeAreasColor,  fontFamily: "DinReguler",),),
                       ),
                       InkWell(
-                          onTap: () async {
-                            await showTimePicker(
-                              context: context,
-                              errorInvalidText: "No",
-                              initialTime: TimeOfDay.now(),
-                              confirmText: 'Ok',
-
-                              cancelText: 'Cancel',
-
-                              // builder: (BuildContext context, Widget child) {
-                              //   return Directionality(
-                              //     textDirection: TextDirection.rtl,
-                              //     child: child,
-                              //   );
-                              // },
-                            );
+                          onTap: ()  {
+                            _showDatePicker(false);
                           },
-
                           child: Image.asset("assets/image/twoarrow.png")),
                     ],
                   ),
                 ),
-                buildPadding(title: "visitDate".tr),
+                /*  buildPadding(title: "visitDate".tr),
                 Container(
                   // color: kTextFieldColor,
                   height: height * 0.4,
@@ -293,7 +284,6 @@ class _ReserveResearchRetreatScreenState extends State<ReserveResearchRetreatScr
                   ),
                 ),
                 buildPadding(title: "AvailablePeriods".tr),
-
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 8,horizontal: 22),
                   height: height * 0.089,
@@ -330,23 +320,23 @@ class _ReserveResearchRetreatScreenState extends State<ReserveResearchRetreatScr
                     },
 
                   ),
-                ),
+                ),*/
                 CustomHeightTextField(
                   hint: "visitReason".tr,
                   text: "",
                 ),
-
                 SizedBox(
                   height: height * 0.05,
                 ),
                 Center(
                     child: MediaButtonSizer(
-                      onPressed: () {
-                        Get.to(()=>MyOrderReserveArticleResearch()) ;                     },
-                      title: "requestService".tr,
-                      color: kPrimaryColor,
-                      image: "assets/image/rightsah.png",
-                    ))
+                  onPressed: () {
+                    Get.to(() => const MyOrderReserveArticleResearch());
+                  },
+                  title: "requestService".tr,
+                  color: kPrimaryColor,
+                  image: "assets/image/rightsah.png",
+                ))
               ],
             ),
           ),
@@ -369,26 +359,42 @@ class _ReserveResearchRetreatScreenState extends State<ReserveResearchRetreatScr
     );
   }
 
-  Row buildRow({
-    required String title,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:
-            TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
-        Text(subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style: TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-      ],
+  final now = DateTime.now();
+  String? datePicked;
+  DateTime? time;
+
+  void _showDatePicker(bool isFrom ) {
+    DatePicker.showTimePicker(context,
+        showTitleActions: true, onChanged: (date) {
+      log('change $date');
+    }, onConfirm: (date) {
+      setState(() {
+        if(isFrom == true){
+          selectedTimeFrom = DateFormat('hh-mm', "en_US").format(date);
+        }else{
+          selectedTimeTo = DateFormat('hh-mm', "en_US").format(date);
+
+        }
+
+        log('confirm $date');
+      });
+    }, currentTime: DateTime.now());
+  }
+
+  Widget _selectTextField = const SizedBox();
+
+  callNumber() {
+    return CustomTextField(
+      hint: "رقم النداء".tr,
+      dIcon: Icons.drive_file_rename_outline,
+      label: "رقم النداء".tr,
+      controller: _emailController,
+      validator: qValidator([
+        IsRequired("thisFieldRequired".tr),
+        IsOptional(),
+        MaxLength(30),
+      ]),
+      type: TextInputType.name,
     );
   }
 }

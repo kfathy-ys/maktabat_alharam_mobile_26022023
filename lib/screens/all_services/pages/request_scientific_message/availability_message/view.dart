@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ enum Opinion { yes, no }
 class AvailabilityMessageScreen extends StatefulWidget {
 
 
-   AvailabilityMessageScreen({Key? key}) : super(key: key);
+   const AvailabilityMessageScreen({Key? key}) : super(key: key);
 
   @override
   State<AvailabilityMessageScreen> createState() =>
@@ -34,7 +33,6 @@ class AvailabilityMessageScreen extends StatefulWidget {
 class _AvailabilityMessageScreenState
     extends State<AvailabilityMessageScreen> {
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
 
@@ -55,13 +53,11 @@ class _AvailabilityMessageScreenState
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
+          body: SizedBox(
             //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
             height: height,
 
@@ -89,7 +85,7 @@ class _AvailabilityMessageScreenState
                   ],
                 ),
                 SizedBox(height: height*0.04,),
-                SelectorOpenion(),
+                const SelectorOpenion(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   mainAxisSize: MainAxisSize.min,

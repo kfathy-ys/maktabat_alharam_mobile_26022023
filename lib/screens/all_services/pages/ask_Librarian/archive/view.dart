@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'page/views/title.dart';
@@ -10,14 +9,10 @@ import '../../../../widgets/appBar.dart';
 import '../../../../widgets/constants.dart';
 import 'package:get/get.dart';
 
-import '../../../../widgets/smallButtonSizer.dart';
-
-import '../view.dart';
 
 class ArchiveAskLibrarianScreen extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  ArchiveAskLibrarianScreen({Key? key}) : super(key: key);
+  const ArchiveAskLibrarianScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +24,9 @@ class ArchiveAskLibrarianScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: Container(
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
@@ -44,15 +37,7 @@ class ArchiveAskLibrarianScreen extends StatelessWidget {
               shrinkWrap: true,
               children: [
                 const HeadTitle(),
-                Center(
-                    child: SmallButtonSizer(
-                  onPressed: () {
-                    Get.to(() => AskLibrarian());
-                  },
-                  title: "addOne".tr,
-                  color: kPrimaryColor,
-                  image: "assets/image/newrequest.png",
-                )),
+
                 SizedBox(
                   height: height * 0.03,
                 ),

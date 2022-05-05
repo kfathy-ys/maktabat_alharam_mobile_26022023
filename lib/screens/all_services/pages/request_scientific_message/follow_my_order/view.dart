@@ -1,9 +1,7 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
@@ -17,7 +15,6 @@ import 'package:maktabat_alharam/screens/widgets/smallButtonSizerUploadFile.dart
 
 // ignore: must_be_immutable
 class FollowScientificMessage extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   final _addCommentController = TextEditingController();
 
@@ -34,11 +31,9 @@ class FollowScientificMessage extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: Container(
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
@@ -182,7 +177,7 @@ class FollowScientificMessage extends StatelessWidget {
                 ),
                 Center(
                     child: SmallButtonSizer(
-                      onPressed: () => Get.to(()=>PutScientificMessage()),
+                      onPressed: () => Get.to(()=>const PutScientificMessage()),
                       title: "add".tr,
                       color: kPrimaryColor,
                       image: "assets/image/newrequest.png",
@@ -264,7 +259,7 @@ class FollowScientificMessage extends StatelessWidget {
               style: TextStyle(
                   color: color2, fontSize: 14, fontFamily: 'DinReguler')),
           Text(subTitle!,
-              style: TextStyle(
+              style: const TextStyle(
                   color: kAccentColor, fontSize: 14, fontFamily: 'DinReguler')),
         ],
       ),

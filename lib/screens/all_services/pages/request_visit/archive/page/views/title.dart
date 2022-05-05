@@ -4,10 +4,13 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/my_orders/page/head_topices.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 class HeadTitle extends StatelessWidget {
+  final String description;
+  const HeadTitle({Key? key,required this.description}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+   // double width = MediaQuery.of(context).size.width;
     return Column(
       children: [
         Row(
@@ -35,7 +38,7 @@ class HeadTitle extends StatelessWidget {
               borderRadius: BorderRadius.circular(8)
           ),
           child: Text(
-              "titleMessage".tr,
+            description,
               maxLines: 5,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(

@@ -17,7 +17,7 @@ class CustomCardButton extends StatelessWidget {
       {this.onPressed, this.title, this.color, this.isLoading = false,  this.image});
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+   // double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.symmetric( horizontal: 14),

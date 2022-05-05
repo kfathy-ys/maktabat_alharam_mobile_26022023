@@ -1,7 +1,7 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
@@ -10,13 +10,11 @@ import 'package:maktabat_alharam/screens/widgets/CustomSearch.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/widgets/customButton.dart';
-import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButton.dart';
+
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
+import 'archive/view.dart';
 import 'follow_reserved_retreated/view.dart';
-import 'new_order/page/views/drop_down_hall_name.dart';
 import 'page/drop_down_order_name.dart';
 import 'page/drop_down_state_name.dart';
 
@@ -27,10 +25,9 @@ import 'page/drop_down_state_name.dart';
 class MyOrdersScreen extends StatelessWidget{
 
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
 
-  MyOrdersScreen({Key? key}) : super(key: key);
+  const MyOrdersScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +39,10 @@ class MyOrdersScreen extends StatelessWidget{
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer:  drawer(context: context) ,
-          key: _scaffoldKey,
+
           appBar:customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body:  Container(
             margin: const EdgeInsets.symmetric(horizontal: 24,vertical: 10),
@@ -58,13 +54,13 @@ class MyOrdersScreen extends StatelessWidget{
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               children:  [
-                HeadTopics(title: "طلباتي".tr,),
+                HeadTopics(title: "myOrders".tr,),
 
                 const DropDownListOrderName(),
                 const DropDownListStatesOrders(),
-                const CustomSearch(
+                 CustomSearch(
 
-                  hint: "بحث بكلمة",
+                  hint: "searchWithWord".tr,
                 ),
                 ListView.builder(
                   physics: const BouncingScrollPhysics(),
@@ -83,27 +79,27 @@ class MyOrdersScreen extends StatelessWidget{
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          buildRow(
+                          CardData(
                               title: "nameRequest".tr,
                               subTitle: "هل المكتبة متاحة يوم الجمعة؟",
                               color1: kSmallIconColor,
                               color2: kBlackText),
-                          buildRow(
+                          CardData(
                               title: "nameResponsible".tr,
                               subTitle: "أحمد عبد السلام",
                               color1: kSmallIconColor,
                               color2: kBlackText),
-                          buildRow(
+                          CardData(
                               title: "requestDate".tr,
                               subTitle: "Mar 31 , 2022",
                               color1: kSmallIconColor,
                               color2: kSkyButton),
-                          buildRow(
+                          CardData(
                               title: "requestState".tr,
                               subTitle: "نعم",
                               color1: kSmallIconColor,
                               color2: kBlackText),
-                          buildRow(
+                          CardData(
                             title: "orderProcedure".tr,
                             subTitle: "",
                             color1: kBlackText,
@@ -124,9 +120,10 @@ class MyOrdersScreen extends StatelessWidget{
 
                           ),
                           CustomCardButton(color: kAccentColor,
-                            title: "cancelRequest".tr,
-                            onPressed: (){},
-                            image: "assets/image/fullerror.png",
+                            title: "addToArchive".tr,
+
+                              onPressed: ()=>Get.to(()=>const ArchiveMyOrdersScreen()),
+                            image: "assets/image/archieve.png",
                             //  icon:Icons.cancel_outlined
                           ),
 
@@ -154,32 +151,4 @@ class MyOrdersScreen extends StatelessWidget{
     );
   }
 
-  Widget buildRow({required String title ,  String? subTitle , Color? color1 , Color? color2 ,}) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16,end: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,        children: [
-        Text(
-            title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:  TextStyle(
-                color: color1, fontSize: 14, fontFamily: 'DinBold'
-            )
-        ),
-        const SizedBox(width: 10,),
-        Text(
-
-            subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style:  TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler'
-            )
-        ),
-      ],
-      ),
-    );
-  }
 }

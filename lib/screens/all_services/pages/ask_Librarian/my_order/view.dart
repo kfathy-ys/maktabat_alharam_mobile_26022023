@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/archive/view.dart';
@@ -20,7 +19,6 @@ import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 class MyOrderAskLibrarian extends StatelessWidget {
   MyOrderAskLibrarian({Key? key}) : super(key: key);
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -33,11 +31,9 @@ class MyOrderAskLibrarian extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: Container(
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
@@ -118,7 +114,7 @@ class MyOrderAskLibrarian extends StatelessWidget {
                             color: kAccentColor,
                             title: "addToArchive".tr,
                             onPressed: () =>
-                                Get.to(() => ArchiveAskLibrarianScreen()),
+                                Get.to(() => const ArchiveAskLibrarianScreen()),
                             image: "assets/image/archieve.png",
                           ),
                         ],

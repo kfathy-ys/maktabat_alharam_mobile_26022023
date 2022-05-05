@@ -9,15 +9,11 @@ import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
+
 import 'package:maktabat_alharam/screens/widgets/smallestButton.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
-import 'package:queen/validation/magic/is_optional.dart';
-import 'package:queen/validation/text/is_not_empty.dart';
-import 'package:queen/validation/text/max_length.dart';
-import 'package:queen/validation/validator.dart';
+
 
 import 'bacis_info/view.dart';
 
@@ -36,11 +32,9 @@ class PutScientificMessage extends StatefulWidget {
 
 class _PutScientificMessageState
     extends State<PutScientificMessage> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
 
-  final _idController = TextEditingController();
 
   bool value = false;
 
@@ -58,14 +52,11 @@ class _PutScientificMessageState
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
-            //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
+          body: SizedBox(
             height: height,
 
             width: width,
@@ -108,7 +99,7 @@ class _PutScientificMessageState
                 buildListTile(color: kBlackText,title: "fillOut".tr ,image:"assets/image/dot.png" ),
 
                  ListTile(
-                 //  horizontalTitleGap: 1,
+
                    title: Text("areYouOk".tr, style:  const TextStyle(
                        color: kBlackText, fontSize: 14, fontFamily: 'DinReguler'
                    )),
@@ -188,56 +179,9 @@ class _PutScientificMessageState
     );
   }
 
-  Row buildRow({
-    required String title,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:
-            TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
-        Text(subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style: TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-      ],
-    );
-  }
 
 
 
-  Future<void> _showMyDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('AlertDialog Title'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Text('This is a demo alert dialog.'),
-                Text('Would you like to approve of this message?'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Approve'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+
+
 }

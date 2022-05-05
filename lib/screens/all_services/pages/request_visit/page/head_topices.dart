@@ -6,29 +6,30 @@ class HeadTopics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      // physics: BouncingScrollPhysics(),
-      // shrinkWrap: true,
-      children:  [
-        Text(
-          title,
-            style: const TextStyle(
-                color: kBlackText, fontSize: 20, fontFamily: 'DinBold'
-            )
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.only(top: 8.0),
-          child: Image.asset("assets/image/dividerAccent.png"),
-        )
+    return  Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 22),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+
+        children:  [
+          Text(
+            title,
+              style: const TextStyle(
+                  color: kBlackText, fontSize: 20, fontFamily: 'DinBold'
+              )
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(top: 8.0),
+            child: Image.asset("assets/image/dividerAccent.png"),
+          )
 
 
 
 
 
-        //customSliderText(title: "askLibrarian".tr, color: kBlackText)
-      ],
+          //customSliderText(title: "askLibrarian".tr, color: kBlackText)
+        ],
+      ),
     );
   }
 }

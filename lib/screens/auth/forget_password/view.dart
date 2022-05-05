@@ -9,7 +9,6 @@ class ForgetPassword extends StatelessWidget {
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
-  final _idController = TextEditingController();
   final _emailController = TextEditingController();
 
 
@@ -64,10 +63,10 @@ class ForgetPassword extends StatelessWidget {
 
                   ),
                   SizedBox(height: height*0.05,),
-                  CustomButton(color: kSmallIconColor,title:"sendCode".tr ,onPressed: ()=> Get.to(()=>VCodeScreen()),),
+                  CustomButton(color: kSmallIconColor,title:"sendCode".tr ,onPressed: ()=> Get.to(()=>const VCodeScreen()),),
                   SizedBox(height: height*0.01,),
                   GestureDetector(
-                     onTap:()=> Get.to(()=>VCodeScreen()),
+                     onTap:()=> Get.to(()=>const VCodeScreen()),
                     child: Text(
                       "resend".tr,
 

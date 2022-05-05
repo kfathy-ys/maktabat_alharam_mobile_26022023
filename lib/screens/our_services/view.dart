@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/content.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/data.dart';
-import 'package:maktabat_alharam/screens/our_services/page/views/subhead_title.dart';
 import 'package:maktabat_alharam/screens/our_services/page/views/title.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -12,7 +11,6 @@ import 'package:get/get.dart';
 class OurServicesScreen extends StatelessWidget {
   OurServicesScreen({Key? key}) : super(key: key);
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
  // OurServicesContent services = OurServicesContent();
   OurServicesGridCard ourServicesGridCard = OurServicesGridCard();
 
@@ -25,11 +23,9 @@ class OurServicesScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: ListView(
             physics: const BouncingScrollPhysics(),

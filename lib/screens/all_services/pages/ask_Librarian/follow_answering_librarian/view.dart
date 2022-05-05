@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
@@ -18,7 +17,6 @@ import 'page/views/drop_down_items.dart';
 
 // ignore: must_be_immutable
 class FollowAnsweringLibrarian extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   final _userController = TextEditingController();
   final _emailController = TextEditingController();
@@ -38,11 +36,9 @@ class FollowAnsweringLibrarian extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: SizedBox(
             height: height,

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import '../../ask_Librarian/my_order/page/views/cardContent.dart';
@@ -15,9 +14,8 @@ import '../../../../widgets/smallButtonSizer.dart';
 import '../view.dart';
 
 class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  MyOrdersSuggestBuyBookScreen({Key? key}) : super(key: key);
+  const MyOrdersSuggestBuyBookScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +27,10 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
+
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: Container(
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
@@ -107,7 +104,7 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
                             color: kAccentColor,
                             title: "addToArchive".tr,
                             onPressed: () =>
-                                Get.to(() => ArchiveSuggestBuyBookScreen()),
+                                Get.to(() => const ArchiveSuggestBuyBookScreen()),
                             image: "assets/image/archieve.png",
                           ),
                         ],

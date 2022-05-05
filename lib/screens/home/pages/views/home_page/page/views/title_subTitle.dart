@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 class TitleSubTitle extends StatelessWidget {
   final String title ;
@@ -15,7 +14,7 @@ class TitleSubTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+    //double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return  Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),

@@ -26,7 +26,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
     double width = MediaQuery.of(context).size.width;
     return ListView(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       children: [
         Row(
           //mainAxisAlignment: MainAxisAlignment.start,

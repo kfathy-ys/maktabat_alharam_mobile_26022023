@@ -52,7 +52,7 @@ class _CustomTextFieldUploadFileState extends State<CustomTextFieldUploadFile> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
      // margin: const EdgeInsets.symmetric(horizontal: 6),
      height: MediaQuery.of(context).size.height / 16,
       width: MediaQuery.of(context).size.width /2.20,

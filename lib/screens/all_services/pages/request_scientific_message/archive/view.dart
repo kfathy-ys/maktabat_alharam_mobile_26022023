@@ -1,27 +1,19 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/archive/page/views/title.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_visit/follow_request_visit/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_visit/update_order/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_visit/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/update/view.dart';
+
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/widgets/customButton.dart';
-import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButton.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
-import '../view.dart';
+
+
 
 
 
@@ -31,10 +23,9 @@ import '../view.dart';
 class ArchiveScientificMessageScreen extends StatelessWidget{
 
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
 
-  ArchiveScientificMessageScreen({Key? key}) : super(key: key);
+  const ArchiveScientificMessageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +37,9 @@ class ArchiveScientificMessageScreen extends StatelessWidget{
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer:  drawer(context: context) ,
-          key: _scaffoldKey,
           appBar:customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body:  Container(
             margin: const EdgeInsets.symmetric(horizontal: 24,vertical: 10),
@@ -62,9 +51,9 @@ class ArchiveScientificMessageScreen extends StatelessWidget{
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               children:  [
-                HeadTitle(),
+                const HeadTitle(),
                 ListView.builder(
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: 5,
                   itemBuilder: (context ,int index){
@@ -81,22 +70,22 @@ class ArchiveScientificMessageScreen extends StatelessWidget{
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          buildRow(
+                          CardData(
                               title: "nameResponsible".tr,
                               subTitle: "أحمد عبد السلام",
                               color1: kSmallIconColor,
                               color2: kBlackText),
-                          buildRow(
+                          CardData(
                               title: "titleOfBook".tr,
                               subTitle: "ASD",
                               color1: kSmallIconColor,
                               color2: kSkyButton),
-                          buildRow(
+                          CardData(
                               title: "requestDate".tr,
                               subTitle: "Mar 23,2022",
                               color1: kSmallIconColor,
                               color2: kBlackText),
-                          buildRow(
+                          CardData(
                             title: "orderProcedure".tr,
                             subTitle: "",
                             color1: kBlackText,
@@ -121,14 +110,14 @@ class ArchiveScientificMessageScreen extends StatelessWidget{
                   },
 
                 ),
-                Center(child: SmallButtonSizer(
+             /*   Center(child: SmallButtonSizer(
 
 
                   onPressed: (){
                     Get.to(()=> const PutScientificMessage());
                   },
                   title: "addOne".tr,color: kPrimaryColor,
-                  image: "assets/image/newrequest.png",))
+                  image: "assets/image/newrequest.png",))*/
 
 
 
@@ -141,32 +130,4 @@ class ArchiveScientificMessageScreen extends StatelessWidget{
     );
   }
 
-  Widget buildRow({required String title ,  String? subTitle , Color? color1 , Color? color2 ,}) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16,end: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,        children: [
-        Text(
-            title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:  TextStyle(
-                color: color1, fontSize: 14, fontFamily: 'DinBold'
-            )
-        ),
-        SizedBox(width: 10,),
-        Text(
-
-            subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style:  TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler'
-            )
-        ),
-      ],
-      ),
-    );
-  }
 }

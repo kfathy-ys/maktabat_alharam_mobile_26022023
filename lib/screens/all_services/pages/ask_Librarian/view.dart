@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow_answering_librarian/page/views/drop_down_items.dart';
@@ -20,12 +19,10 @@ import 'package:queen/validation.dart';
 class AskLibrarian extends StatelessWidget{
 
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _idController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _questionController = TextEditingController();
-  final _responseController = TextEditingController();
   bool loggedIn = true;
 
   AskLibrarian({Key? key}) : super(key: key);
@@ -40,11 +37,9 @@ class AskLibrarian extends StatelessWidget{
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer:  drawer(context: context) ,
-          key: _scaffoldKey,
           appBar:customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body:  SizedBox(
             //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),

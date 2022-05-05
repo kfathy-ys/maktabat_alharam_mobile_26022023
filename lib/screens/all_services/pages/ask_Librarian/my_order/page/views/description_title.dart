@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-import 'package:get/get.dart';
 class DescriptionTitle extends StatelessWidget {
 
   final String description;
@@ -9,7 +8,7 @@ class DescriptionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+  //  double width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 18),
       padding: const EdgeInsets.symmetric(horizontal: 16,vertical:6),

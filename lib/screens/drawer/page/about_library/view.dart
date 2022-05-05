@@ -7,25 +7,23 @@ import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 
 class AboutLibraryScreen extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  AboutLibraryScreen({Key? key}) : super(key: key);
+  const AboutLibraryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+   // double width = MediaQuery.of(context).size.width;
     return Container(
       color: kAppBarColor,
       child: SafeArea(
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
+
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: SingleChildScrollView(
             child: Column(
@@ -44,6 +42,7 @@ class AboutLibraryScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
                     KeysConfig.kLoramText,
+                    textAlign: TextAlign.justify,
                     style: TextStyle(
                         color: kBlackText,
                         fontSize: 18,

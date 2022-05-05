@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
 class BannerSlider extends StatelessWidget {
-  //final List<Sliders> sliders;
 
   const BannerSlider({
     Key? key,
@@ -13,7 +12,7 @@ class BannerSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Container(
+    return SizedBox(
       // margin: const EdgeInsets.symmetric(vertical: 15),
       //color: Colors.red,
       //color: Colors.yellowAccent,
@@ -39,7 +38,7 @@ class BannerSlider extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:   [
                   customSliderText(title: "عدد التحميلات ",color: kHomeColor),
-                  customSliderText(title:"335889 ",color: kAccentColor ),
+                  customSliderText(title:"358,589 ",color: kAccentColor ),
 
 
 

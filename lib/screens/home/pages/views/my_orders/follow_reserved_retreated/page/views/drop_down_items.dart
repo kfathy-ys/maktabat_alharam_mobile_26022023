@@ -12,8 +12,9 @@ class DropDownList extends StatefulWidget {
 class _DropDownListState extends State<DropDownList> {
   String? dropdownValue;
 
+  @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+   // double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -57,7 +58,7 @@ class _DropDownListState extends State<DropDownList> {
             return DropdownMenuItem<String>(
               value: value,
               child: Text(value,
-                style: TextStyle(
+                style: const TextStyle(
                   color: kTextColor,
                   fontSize: 16,
                   fontFamily: "DinReguler",

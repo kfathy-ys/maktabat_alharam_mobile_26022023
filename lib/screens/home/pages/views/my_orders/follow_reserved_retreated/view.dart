@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
@@ -14,7 +13,6 @@ import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
 // ignore: must_be_immutable
 class FollowReservedRetreatScreen extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   final _addCommentController = TextEditingController();
 
@@ -31,11 +29,10 @@ class FollowReservedRetreatScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
+
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: Container(
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
@@ -244,7 +241,7 @@ class FollowReservedRetreatScreen extends StatelessWidget {
               style: TextStyle(
                   color: color2, fontSize: 14, fontFamily: 'DinReguler')),
           Text(subTitle!,
-              style: TextStyle(
+              style: const TextStyle(
                   color: kAccentColor, fontSize: 14, fontFamily: 'DinReguler')),
         ],
       ),

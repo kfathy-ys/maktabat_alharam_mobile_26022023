@@ -18,7 +18,7 @@ class OurServicesContent {
     ),
 */
     OurServicesModel(
-      routeName: "/PutScientificMessage",
+      routeName: "/MyOrdersScientificMessage",
       title: "RequestDepositScientificThesis".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
       icon: const ImageIcon(
@@ -45,7 +45,23 @@ class OurServicesContent {
       ),
     ),*/
     OurServicesModel(
-      routeName: "/SuggestToBuyBook",
+      routeName: "/MyOrderReserveArticleResearch",
+
+      title: "RequestReserveArticleOrResearchRetreat".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(AssetImage("assets/image/bigRquestSubjectSientific.png"),
+          color: kSmallIconColor),
+    ),
+    OurServicesModel(
+      routeName: "/MyOrderAskLibrarian",
+
+      title: "askStaff".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
+          color: kSmallIconColor),
+    ),
+    OurServicesModel(
+      routeName: "/MyOrdersSuggestBuyBookScreen",
 
 
       title: "SuggestionBuyBook".tr,
@@ -58,15 +74,7 @@ class OurServicesContent {
       ),
     ),
     OurServicesModel(
-      routeName: "/ReserveResearchRetreatScreen",
-
-      title: "RequestReserveArticleOrResearchRetreat".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
-      icon: const ImageIcon(AssetImage("assets/image/bigRquestSubjectSientific.png"),
-          color: kSmallIconColor),
-    ),
-    OurServicesModel(
-      routeName: "/RequestVisitScreen",
+      routeName: "/MyOrderRequestVisitScreen",
 
       title: "RequestVisit".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -81,14 +89,7 @@ class OurServicesContent {
       icon: const ImageIcon(AssetImage("assets/image/BigFillQuestion.png"),
           color: kSmallIconColor),
     ),*/
-    OurServicesModel(
-      routeName: "/AskLibrarian",
 
-      title: "askStaff".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
-      icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
-          color: kSmallIconColor),
-    ),
     /*OurServicesModel(
       routeName: "/AskLibrarian",
       title: "libraryExternalServices".tr,
@@ -179,6 +180,14 @@ class OurServicesGridCard {
           color: kSmallIconColor),
     ),
     OurServicesModel(
+      routeName: "/MyOrderAskLibrarian",
+
+      title: "askStaff".tr,
+      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
+          color: kSmallIconColor),
+    ),
+    OurServicesModel(
       routeName: "/MyOrdersSuggestBuyBookScreen",
 
 
@@ -207,14 +216,7 @@ class OurServicesGridCard {
       icon: const ImageIcon(AssetImage("assets/image/BigFillQuestion.png"),
           color: kSmallIconColor),
     ),*/
-    OurServicesModel(
-      routeName: "/MyOrderAskLibrarian",
 
-      title: "askStaff".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
-      icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
-          color: kSmallIconColor),
-    ),
     /*OurServicesModel(
       routeName: "/AskLibrarian",
       title: "libraryExternalServices".tr,
@@ -252,10 +254,6 @@ class OurServicesGridCard {
         color: kSmallIconColor,
       ),
     ),*/
-
-
-
-
 
 
   ];

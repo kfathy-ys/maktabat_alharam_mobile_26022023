@@ -1,13 +1,13 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/avaliable_time.dart';
 
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/drop_down_entity_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/drop_down_library_name.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/hints.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
-import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -15,10 +15,7 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButton.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
-import 'package:queen/validation/it/is_email.dart';
+
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
@@ -40,19 +37,19 @@ class UpdateOrderOfVisitRequest extends StatefulWidget {
 
 class _UpdateOrderOfVisitRequestState
     extends State<UpdateOrderOfVisitRequest> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
 
-  final _idController = TextEditingController();
+
+  final _nameController = TextEditingController();
 
   final _emailController = TextEditingController();
 
   final _phoneController = TextEditingController();
 
-  final _questionController = TextEditingController();
+  final _visitorsController = TextEditingController();
 
-  final _responseController = TextEditingController();
+  final _vistorReasonController = TextEditingController();
 
   CalendarFormat _calendarFormat = CalendarFormat.month;
 
@@ -70,13 +67,11 @@ class _UpdateOrderOfVisitRequestState
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
+          body: SizedBox(
             //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
             height: height,
 
@@ -87,22 +82,16 @@ class _UpdateOrderOfVisitRequestState
               physics: const BouncingScrollPhysics(),
               //  shrinkWrap: true,
               children: [
-                Padding(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 12),
-                  child: HeadTopics(
-                    title: "updateRequest".tr,
-                  ),
+                HeadTopics(
+                  title: "RequestVisit".tr,
                 ),
-                SizedBox(
-                  height: height * 0.05,
-                ),
+                buildSizedBox(height),
                 const DropDownEntityName(),
                 CustomTextField(
                   hint: "nameResponsible".tr,
                   dIcon: Icons.drive_file_rename_outline,
                   label: "nameResponsible".tr,
-                  controller: _emailController,
+                  controller: _nameController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -114,7 +103,7 @@ class _UpdateOrderOfVisitRequestState
                   hint: "email".tr,
                   dIcon: Icons.phone,
                   label: "email".tr,
-                  controller: _phoneController,
+                  controller: _emailController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -122,12 +111,11 @@ class _UpdateOrderOfVisitRequestState
                   ]),
                   type: TextInputType.emailAddress,
                 ),
-
                 CustomTextField(
                   hint: "phoneNumber".tr,
                   dIcon: Icons.drive_file_rename_outline,
                   label: "phoneNumber".tr,
-                  controller: _emailController,
+                  controller: _phoneController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -139,7 +127,7 @@ class _UpdateOrderOfVisitRequestState
                   hint: "visitsNumbers".tr,
                   dIcon: Icons.phone,
                   label: "visitsNumbers".tr,
-                  controller: _phoneController,
+                  controller: _visitorsController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -148,14 +136,14 @@ class _UpdateOrderOfVisitRequestState
                   type: TextInputType.number,
                 ),
                 const DropDownListLibraryName(),
-
-                buildPadding(title: "visitDate".tr),
+                Hints(title: "visitDate".tr),
                 Container(
                   // color: kTextFieldColor,
                   height: height * 0.4,
                   width: width * 0.8,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  margin: const EdgeInsets.symmetric(horizontal: 28,vertical: 14),
+                  margin:
+                  const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
 
                   decoration: BoxDecoration(
                       color: kAccentColor,
@@ -176,9 +164,7 @@ class _UpdateOrderOfVisitRequestState
                       ),
                       defaultDecoration: BoxDecoration(
                         shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.all(Radius.circular(5)
-
-                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
                       ),
                     ),
                     daysOfWeekStyle: const DaysOfWeekStyle(
@@ -244,7 +230,7 @@ class _UpdateOrderOfVisitRequestState
                     },
                   ),
                 ),
-                buildPadding(title: "requiredDate".tr),
+        /*        Hints(title: "requiredDate".tr),
                 Container(
                   height: height * 0.08,
                   width: width * 0.8,
@@ -252,24 +238,27 @@ class _UpdateOrderOfVisitRequestState
                       color: kBackgroundCardColor,
                       borderRadius: BorderRadius.circular(8)),
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  margin: const EdgeInsets.symmetric(horizontal: 28,vertical: 14),
+                  margin:
+                  const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("from".tr,style: const TextStyle(
-                        color: kBlackText,
-                        fontSize: 16,
-                        fontFamily: "DinReguler",
-                      ),),
+                      Text(
+                        "from".tr,
+                        style: const TextStyle(
+                          color: kBlackText,
+                          fontSize: 16,
+                          fontFamily: "DinReguler",
+                        ),
+                      ),
                       Container(
                         //  color: Colors.red,
-                        width: width*0.1,
+                        width: width * 0.1,
                         height: height * 0.05,
                         child: TextFormField(),
                       ),
                       InkWell(
-
                           onTap: () async {
                             await showTimePicker(
                               errorInvalidText: "No",
@@ -287,14 +276,17 @@ class _UpdateOrderOfVisitRequestState
                             );
                           },
                           child: Image.asset("assets/image/twoarrow.png")),
-                      Text("to".tr,style: const TextStyle(
-                        color: kBlackText,
-                        fontSize: 16,
-                        fontFamily: "DinReguler",
-                      ),),
+                      Text(
+                        "to".tr,
+                        style: const TextStyle(
+                          color: kBlackText,
+                          fontSize: 16,
+                          fontFamily: "DinReguler",
+                        ),
+                      ),
                       Container(
                         // color: Colors.red,
-                        width: width*0.1,
+                        width: width * 0.1,
                         height: height * 0.05,
                         child: TextFormField(),
                       ),
@@ -316,64 +308,25 @@ class _UpdateOrderOfVisitRequestState
                               // },
                             );
                           },
-
                           child: Image.asset("assets/image/twoarrow.png")),
                     ],
                   ),
-                ),
-                buildPadding(title: "AvailablePeriods".tr),
-
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 8,horizontal: 22),
-                  height: height * 0.089,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (context , int index){
-                      return Container(
-                        height: height * 0.079,
-                        margin: const EdgeInsets.symmetric(horizontal: 4),
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-
-                        decoration: BoxDecoration(
-                            color: kBackgroundCardColor,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text("6:35 PM\t\t".tr,style: const TextStyle(
-                              color: kPrimaryColor,
-                              fontSize: 16,
-                              fontFamily: "DinReguler",
-                            ),),
-                            Text("2:35 PM".tr,style: const TextStyle(
-                              color: kBlackText,
-                              fontSize: 16,
-                              fontFamily: "DinReguler",
-                            ),),
-                          ],
-                        ),
-
-                      );
-                    },
-
-                  ),
-                ),
+                ),*/
+                Hints(title: "AvailablePeriods".tr),
+                AvailableTime(time1: "6:35 PM\t\t".tr, time2: "2:35 PM".tr),
                 CustomHeightTextField(
+                  controller: _vistorReasonController,
                   hint: "visitReason".tr,
                   text: "",
                 ),
-                SizedBox(
-                  height: height * 0.05,
-                ),
+                buildSizedBox(height),
                 Center(
                   child: MediaButtonSizer(
                     onPressed: () {
 
                       Get.to(()=> MyHomeScreen());
                     },
-                    title: "saveUpdates".tr,
+                    title: "save".tr,
                     color: kPrimaryColor,
                     image: "assets/image/rightsah.png",
                   ),
@@ -386,40 +339,10 @@ class _UpdateOrderOfVisitRequestState
     );
   }
 
-  Padding buildPadding({required String title}) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 40),
-      child: Text(
-        title,
-        style: const TextStyle(
-          color: kBlackText,
-          fontSize: 16,
-          fontFamily: "DinReguler",
-        ),
-      ),
-    );
-  }
 
-  Row buildRow({
-    required String title,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:
-            TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
-        Text(subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style: TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-      ],
+  SizedBox buildSizedBox(double height) {
+    return SizedBox(
+      height: height * 0.05,
     );
   }
 }

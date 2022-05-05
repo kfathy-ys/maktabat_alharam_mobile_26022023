@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
@@ -17,7 +16,6 @@ import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import 'my_orders/view.dart';
 
@@ -35,25 +33,14 @@ class SuggestToBuyBook extends StatefulWidget {
 
 class _SuggestToBuyBookState
     extends State<SuggestToBuyBook> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
 
-  final _idController = TextEditingController();
 
   final _emailController = TextEditingController();
 
   final _phoneController = TextEditingController();
 
-  final _questionController = TextEditingController();
-
-  final _responseController = TextEditingController();
-
-  CalendarFormat _calendarFormat = CalendarFormat.month;
-
-  DateTime _focusedDay = DateTime.now();
-
-  DateTime? _selectedDay;
 
   @override
   Widget build(BuildContext context) {
@@ -65,14 +52,12 @@ class _SuggestToBuyBookState
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
+
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
-            //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
+          body: SizedBox(
             height: height,
 
             width: width,
@@ -227,7 +212,7 @@ class _SuggestToBuyBookState
                   child: MediaButtonSizer(
                     onPressed: () {
 
-                      Get.to(()=> MyOrdersSuggestBuyBookScreen());
+                      Get.to(()=> const MyOrdersSuggestBuyBookScreen());
                     },
                     title: "requestService".tr,
                     color: kPrimaryColor,

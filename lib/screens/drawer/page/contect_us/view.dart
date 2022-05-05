@@ -6,19 +6,19 @@ import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// ignore: must_be_immutable
 class ContactUsScreen extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   String phone = "+966255555444";
   String email = "Library@gmail.com";
   String web = "Library@gmail.com";
   String location = "Library@gmail.com";
 
-  ContactUsScreen({Key? key}) : super(key: key);
+   ContactUsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
+  //  double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
       color: kAppBarColor,
@@ -26,11 +26,10 @@ class ContactUsScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
+
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -126,12 +125,12 @@ class ContactUsScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("assets/image/Facebook.png"),
+                    Image.asset("assets/image/youtube.png"),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Image.asset("assets/image/Twitter.png"),
                     ),
-                    Image.asset("assets/image/Linkedin.png")
+                   // Image.asset("assets/image/Linkedin.png")
                   ],
                 ),
               )

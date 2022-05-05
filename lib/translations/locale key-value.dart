@@ -6,11 +6,11 @@ class LocaleString extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
-          'aboutLibrary': 'About library',
+          'aboutLibrary': 'The library',
           "generalMare": "General mare",
           "newLibrary": "Newest",
-          "servicesLibrary": "Services library",
-          "myOrders": "My orders",
+          "servicesLibrary": "Services ",
+          "myOrders": "My requests",
           "myProfile": "My profile",
           "contactsUs": "Contact us",
           "languages": "Language",
@@ -100,6 +100,8 @@ class LocaleString extends Translations {
               "To learn about all services Please login",
           "readAndLearn": "Read.. learn",
           // Profile
+          "arabicFullName":"Arabic name",
+
           "camera": "Camera",
           "gallery": "Gallery",
           "cancel": "Cancel",
@@ -177,6 +179,7 @@ class LocaleString extends Translations {
           "done":"Done",
           "underReview":"Request is under review",
           "refused":"Refused",
+            "searchWithWord":"Search .. word",
 
          // request to visit
           "titleHead":"This service allows the official authorities to request a visit to the library.",
@@ -366,6 +369,7 @@ class LocaleString extends Translations {
               "لتعرف علي جميع الجدمات  يرجي تسجيل الدخول",
           "readAndLearn": "أقرأ .. تعلم ",
           // Profile
+           "arabicFullName":"الإسم باللغة العربية",
           "camera": "الكاميرة",
           "gallery": "الاستوديو",
           "cancel": "الغاء",
@@ -453,6 +457,7 @@ class LocaleString extends Translations {
           "company":"شركة",
           "entity":"جهة",
           "requestService":"طلب الخدمة",
+          "searchWithWord":"بحث بكلمة",
           //Suggestion to buy a book
           "authorAddress":"عنوان المؤلف:",
           "authorName":"إسم المؤلف:",

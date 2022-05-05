@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import '../follow_answering_librarian/page/views/drop_down_items.dart';
@@ -14,7 +13,6 @@ import '../../../../widgets/mdeiaButtonSizer.dart';
 import 'package:queen/validation.dart';
 
 class UpdatesAskLibrarian extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _userController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
@@ -33,11 +31,9 @@ class UpdatesAskLibrarian extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: SizedBox(
             height: height,

@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/my_order/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_hall_name.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_items.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_library_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_qualification.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/head_topices.dart';
@@ -13,7 +16,6 @@ import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
 import 'package:queen/validation.dart';
-import 'package:table_calendar/table_calendar.dart';
 class UpdateReserveArticleRetreated extends StatefulWidget {
 
   const UpdateReserveArticleRetreated({Key? key}) : super(key: key);
@@ -23,28 +25,23 @@ class UpdateReserveArticleRetreated extends StatefulWidget {
 }
 
 class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetreated> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
 
-  final _idController = TextEditingController();
 
   final _emailController = TextEditingController();
 
   final _phoneController = TextEditingController();
 
-  final _questionController = TextEditingController();
 
-  final _responseController = TextEditingController();
 
-  CalendarFormat _calendarFormat = CalendarFormat.month;
 
-  DateTime _focusedDay = DateTime.now();
-
-  DateTime? _selectedDay;
+  dynamic selectedTimeFrom;
+  dynamic selectedTimeTo;
 
   @override
   Widget build(BuildContext context) {
+
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
@@ -53,13 +50,11 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
+          body: SizedBox(
             //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
             height: height,
 
@@ -80,7 +75,7 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
                 SizedBox(
                   height: height * 0.05,
                 ),
-                const DropDownListServiceName(),
+                //const DropDownListServiceName(),
                 const DropDownListLibraryName(),
                 const DropDownListHallName(),
                 CustomTextField(
@@ -116,76 +111,55 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
                       color: kBackgroundCardColor,
                       borderRadius: BorderRadius.circular(8)),
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  margin: const EdgeInsets.symmetric(horizontal: 28,vertical: 14),
+                  margin:
+                  const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("from".tr,style: const TextStyle(
-                        color: kBlackText,
-                        fontSize: 16,
-                        fontFamily: "DinReguler",
-                      ),),
+                      Text(
+                        "from".tr,
+                        style: const TextStyle(
+                          color: kBlackText,
+                          fontSize: 16,
+                          fontFamily: "DinReguler",
+                        ),
+                      ),
                       Container(
-                        //  color: Colors.red,
-                        width: width*0.1,
+                        padding: const EdgeInsetsDirectional.only(top: 5),
+                        width: width * 0.1,
                         height: height * 0.05,
-                        child: TextFormField(),
+                        child: Text("${selectedTimeFrom ?? "" }  ",style: const TextStyle( fontSize: 16, color: kSafeAreasColor,  fontFamily: "DinReguler",),),
+
                       ),
                       InkWell(
-
-                          onTap: () async {
-                            await showTimePicker(
-                              errorInvalidText: "No",
-                              context: context,
-                              initialTime: TimeOfDay.now(),
-                              confirmText: 'Ok',
-                              cancelText: 'Cancel',
-
-                              // builder: (BuildContext context, Widget child) {
-                              //   return Directionality(
-                              //     textDirection: TextDirection.rtl,
-                              //     child: child,
-                              //   );
-                              // },
-                            );
+                          onTap: () {
+                            _showDatePicker(true);
                           },
                           child: Image.asset("assets/image/twoarrow.png")),
-                      Text("to".tr,style: const TextStyle(
-                        color: kBlackText,
-                        fontSize: 16,
-                        fontFamily: "DinReguler",
-                      ),),
+                      Text(
+                        "to".tr,
+                        style: const TextStyle(
+                          color: kBlackText,
+                          fontSize: 16,
+                          fontFamily: "DinReguler",
+                        ),
+                      ),
                       Container(
-                        // color: Colors.red,
-                        width: width*0.1,
+                        padding: const EdgeInsetsDirectional.only(top: 5),
+                        width: width * 0.1,
                         height: height * 0.05,
-                        child: TextFormField(),
+                        child: Text("${selectedTimeTo ?? ""}",style: const TextStyle( fontSize: 16, color: kSafeAreasColor,  fontFamily: "DinReguler",),),
                       ),
                       InkWell(
-                          onTap: () async {
-                            await showTimePicker(
-                              context: context,
-                              errorInvalidText: "No",
-                              initialTime: TimeOfDay.now(),
-                              confirmText: 'Ok',
-
-                              cancelText: 'Cancel',
-
-                              // builder: (BuildContext context, Widget child) {
-                              //   return Directionality(
-                              //     textDirection: TextDirection.rtl,
-                              //     child: child,
-                              //   );
-                              // },
-                            );
+                          onTap: ()  {
+                            _showDatePicker(false);
                           },
-
                           child: Image.asset("assets/image/twoarrow.png")),
                     ],
                   ),
                 ),
-                buildPadding(title: "visitDate".tr),
+          /*      buildPadding(title: "visitDate".tr),
                 Container(
                   // color: kTextFieldColor,
                   height: height * 0.4,
@@ -319,7 +293,7 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
 
                   ),
                 ),
-                CustomHeightTextField(
+              */  CustomHeightTextField(
                   hint: "visitReason".tr,
                   text: "",
                 ),
@@ -330,7 +304,7 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
                 Center(
                     child: MediaButtonSizer(
                       onPressed: () {
-                        Get.to(()=>MyOrderReserveArticleResearch()) ;                     },
+                        Get.to(()=>const MyOrderReserveArticleResearch()) ;                     },
                       title: "saveUpdates".tr,
                       color: kPrimaryColor,
                       image: "assets/image/rightsah.png",
@@ -356,27 +330,26 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
       ),
     );
   }
+  final now = DateTime.now();
+  String? datePicked;
+  DateTime? time;
 
-  Row buildRow({
-    required String title,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:
-            TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
-        Text(subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style: TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-      ],
-    );
+  void _showDatePicker(bool isFrom ) {
+    DatePicker.showTimePicker(context,
+        showTitleActions: true, onChanged: (date) {
+          log('change $date');
+        }, onConfirm: (date) {
+          setState(() {
+            if(isFrom == true){
+              selectedTimeFrom = DateFormat('hh-mm', "en_US").format(date);
+            }else{
+              selectedTimeTo = DateFormat('hh-mm', "en_US").format(date);
+
+            }
+
+            log('confirm $date');
+          });
+        }, currentTime: DateTime.now());
   }
+
 }

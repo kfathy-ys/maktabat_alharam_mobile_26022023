@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import '../../ask_Librarian/my_order/page/views/cardContent.dart';
@@ -11,14 +10,11 @@ import '../../../../widgets/appBar.dart';
 import '../../../../widgets/constants.dart';
 import 'package:get/get.dart';
 
-import '../../../../widgets/smallButtonSizer.dart';
 
-import '../view.dart';
 
 class ArchiveSuggestBuyBookScreen extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  ArchiveSuggestBuyBookScreen({Key? key}) : super(key: key);
+  const ArchiveSuggestBuyBookScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +26,10 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
+
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
           body: Container(
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
@@ -87,7 +82,7 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
                             color: kAccentColor,
                             title: "removeFromArchive".tr,
                             onPressed: () {
-                              Get.to(() => MyOrdersSuggestBuyBookScreen());
+                              Get.to(() => const MyOrdersSuggestBuyBookScreen());
                             },
                             //  icon:  Icons.visibility_outlined
                             image: "assets/image/archieve.png",
@@ -97,13 +92,7 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
                     );
                   },
                 ),
-                Center(
-                    child: SmallButtonSizer(
-                  onPressed: () => Get.to(() => const SuggestToBuyBook()),
-                  title: "addOne".tr,
-                  color: kPrimaryColor,
-                  image: "assets/image/newrequest.png",
-                ))
+
               ],
             ),
           ),

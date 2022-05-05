@@ -11,7 +11,7 @@ abstract class NetWork {
   static Dio get _dio {
     final _dio = Dio(
       BaseOptions(
-        baseUrl: 'https://student.valuxapps.com/api/',
+        baseUrl: 'http://dev-lib.cpt-it.com/api/api/',
         contentType: 'application/json',
         headers: {
           'Content-Type': 'application/json',

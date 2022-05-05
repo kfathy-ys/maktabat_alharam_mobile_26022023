@@ -7,7 +7,7 @@ class NewPasswordScreen extends StatelessWidget {
   NewPasswordScreen({Key? key}) : super(key: key);
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final _newPassController = TextEditingController();
   final _confirmPssController = TextEditingController();
 
@@ -25,7 +25,7 @@ class NewPasswordScreen extends StatelessWidget {
           key: _scaffoldKey,
           body: SingleChildScrollView(
             child: Form(
-              key: formKey,
+              key: _formKey,
               child: Column(
                 children: [
                   SizedBox(height: height*0.05,),

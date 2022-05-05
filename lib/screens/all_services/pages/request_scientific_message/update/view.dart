@@ -1,12 +1,10 @@
-import 'dart:developer';
+
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/availability_message/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/drop_down_university_name.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/view.dart';
+
 
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 
@@ -15,8 +13,7 @@ import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFieldToUploadFile.dart';
-import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
+
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizerUploadFile.dart';
 import 'package:maktabat_alharam/screens/widgets/smallestButton.dart';
 
@@ -42,7 +39,6 @@ class UpdateMessageScreen extends StatefulWidget {
 
 class _UpdateMessageScreenState
     extends State<UpdateMessageScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final formKey = GlobalKey<FormState>();
 
@@ -73,13 +69,11 @@ class _UpdateMessageScreenState
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-          key: _scaffoldKey,
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-              press: () => _scaffoldKey.currentState!.openDrawer(),
               context: context),
-          body: Container(
+          body: SizedBox(
             //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
             height: height,
 
@@ -227,7 +221,7 @@ class _UpdateMessageScreenState
                     SmallestButton(
                       onPressed: (){
                         // PutScientificMessage();
-                        // Get.to(()=>const RequestVisitScreen())
+                    Get.to(()=>const PutScientificMessage());
                       } ,
                       title: "more".tr,
                       color: kPrimaryColor,
@@ -236,37 +230,7 @@ class _UpdateMessageScreenState
                   ],
                 ),
 
-                // SizedBox(
-                //   width: width,
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                //     mainAxisSize: MainAxisSize.min,
-                //     children: [
-                //       SmallestButton(
-                //
-                //         onPressed: () {
-                //           Get.back();
-                //           //  Get.to(()=> MyOrderUpdateMessageScreen());
-                //
-                //
-                //         },
-                //         title: "previous".tr,
-                //         color: kPrimaryColor,
-                //         image: "assets/image/twoarrowleft.png",
-                //       ),
-                //       SmallestButton(
-                //         onPressed: () {
-                //
-                //           Get.to(()=> MyOrdersScientificMessage());
-                //
-                //         },
-                //         title: "save".tr,
-                //         color: kPrimaryColor,
-                //         image: "assets/image/rightsah.png",
-                //       ),
-                //     ],
-                //   ),
-                // ),
+
               ],
             ),
           ),

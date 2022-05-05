@@ -41,10 +41,10 @@ double width = MediaQuery.of(context).size.width;
               ? Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Get.locale == Locale('ar','EG') ?
+              Get.locale == const Locale('ar','EG') ?
               Align(alignment: Alignment.centerLeft,child: Image.asset(image!)):
               Align(alignment: Alignment.centerRight,child: Image.asset(image!)),
-              Get.locale == Locale('ar','EG') ?Align(
+              Get.locale == const Locale('ar','EG') ?Align(
                 alignment: Alignment.centerLeft ,
                 child: Text(
                     title!,

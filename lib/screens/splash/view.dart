@@ -5,11 +5,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
 import 'package:maktabat_alharam/screens/home/view.dart';
 import 'package:maktabat_alharam/screens/widgets/network_dialog.dart';
-import 'package:queen/core/helpers/prefs.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -46,7 +44,7 @@ super.initState();
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: InkWell(
-                    onTap: () => Get.offAll(() =>   const HomeTabScreen(index: 1,) ),
+                    onTap: () => Get.offAll(() =>   const HomeTabScreen(index: 0,) ),
                     child: Image.asset(
                       'assets/image/Group 30.png',
 
@@ -81,7 +79,7 @@ super.initState();
       showNetworkErrorDialog(context, () {
         Navigator.of(context).pop();
        Get.to((){
-          loggedIn ?   MyHomeScreen(): HomeTabScreen();
+          loggedIn ?   MyHomeScreen(): const HomeTabScreen();
        }) ;
       });
     }

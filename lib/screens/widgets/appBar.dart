@@ -90,43 +90,15 @@ AppBar customAppbar(
     {bool isIcons = false,
     IconData? icons,
     String? title,
-    required VoidCallback press,
+
     context}) {
   return AppBar(
     backgroundColor: kSafeAreasColor ,
     centerTitle: true,
-    // title: Center(
-    //     child:  customNormalText(context: context ,title: title)),
     actions: [
-      // InkWell(
-      //   onTap: () {
-      //  //Get.to(()=>  ProfileScreen());
-      //   },
-      //   child: CircleAvatar(
-      //     child: Image.asset(
-      //       'assets/image/avatar3 1.png',
-      //       width: 30,
-      //       height: 30,
-      //       fit: BoxFit.cover,
-      //     ),
-      //     backgroundColor: Colors.white,
-      //   ),
-      // ),
-      isIcons
-          ? InkWell(
-              onTap: () => Get.back(),
-              child: SizedBox(width: 40,
-                child: Icon(
-                  icons,
-                  size: 24,
-                  //color: Colors.black,
-                ),
-              ))
-          : const SizedBox(),
-      //SizedBox(width: 5,),
+      IconButton(onPressed: ()=>Get.back(), icon: const Icon(Icons.arrow_forward)),
     ],
-    leading:
-        InkWell(onTap: press, child: const Icon(Icons.menu,size: 30,)),
+
     elevation: 0,
   );
 }

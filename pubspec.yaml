@@ -42,8 +42,12 @@ dependencies:
   fluttertoast: ^8.0.7
   awesome_dialog: ^2.1.2
   font_awesome_flutter: ^9.1.0
-
+  flutter_datetime_picker:
+    git:
+      url: https://github.com/Realank/flutter_datetime_picker.git
+      ref: master
   google_fonts: ^2.1.0
+  get_storage: ^2.0.3
 
   logging: ^1.0.1
   pretty_dio_logger: ^1.1.1

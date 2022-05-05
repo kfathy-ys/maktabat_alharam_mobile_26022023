@@ -1,13 +1,10 @@
 import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/follow_request_visit/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/my_orders/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_visit/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/follow_reserved_retreated/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/my_order/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/view.dart';
@@ -29,22 +26,22 @@ class AppPages {
     ),
    GetPage(
   name:  "/PutScientificMessage",
-  page: () => PutScientificMessage(),
+  page: () => const PutScientificMessage(),
   ),
 
     GetPage(
       name:  "/ReserveResearchRetreatScreen",
-      page: () => ReserveResearchRetreatScreen(),
+      page: () => const ReserveResearchRetreatScreen(),
     ),
     GetPage(
       name:  "/MyOrdersSuggestBuyBookScreen",
-      page: () =>MyOrdersSuggestBuyBookScreen(),
+      page: () =>const MyOrdersSuggestBuyBookScreen(),
     ),
 
 
     GetPage(
       name:  "/MyOrderRequestVisitScreen",
-      page: () =>MyOrderRequestVisitScreen(),
+      page: () =>const MyOrderRequestVisitScreen(),
     ),
     GetPage(
       name:  "/FollowRequestVisitScreen",
@@ -53,11 +50,11 @@ class AppPages {
 
     GetPage(
       name:  "/SuggestToBuyBook",
-      page: () =>SuggestToBuyBook(),
+      page: () =>const SuggestToBuyBook(),
     ),
     GetPage(
       name:  "/MyOrderReserveArticleResearch",
-      page: () =>MyOrderReserveArticleResearch(),
+      page: () =>const MyOrderReserveArticleResearch(),
     ),
   ];
 }

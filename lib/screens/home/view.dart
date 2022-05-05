@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/view.dart';
-import 'package:maktabat_alharam/screens/home/pages/views/buttons_naviagtion_bar.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/my_orders/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -21,9 +20,9 @@ class HomeTabScreen extends StatefulWidget {
 
 class _HomeTabScreenState extends State<HomeTabScreen> {
   static  final List<Widget> _widgetOptions = <Widget>[
-
-     MyOrdersScreen(),
     MyHomeScreen(),
+     const MyOrdersScreen(),
+
     const ProfileScreen(),
 
   ];
@@ -62,15 +61,15 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
             });
           },
           items:  <BottomNavigationBarItem>[
-
+        BottomNavigationBarItem(
+        icon: const ImageIcon( AssetImage("assets/image/homeicon.png"),),
+      label:"home".tr,
+    ),
             BottomNavigationBarItem(
               icon: const ImageIcon( AssetImage("assets/image/myOrders.png"),),
               label: "myOrders".tr,
             ),
-            BottomNavigationBarItem(
-              icon: const ImageIcon( AssetImage("assets/image/homeicon.png"),),
-              label:"home".tr,
-            ),
+
             BottomNavigationBarItem(
                 icon: const ImageIcon( AssetImage("assets/image/user.png"),),
                 label:  "myProfile".tr),
