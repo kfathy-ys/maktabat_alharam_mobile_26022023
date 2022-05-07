@@ -92,7 +92,7 @@ class ArchiveReserveArticleScreen extends StatelessWidget{
                           CustomCardButton(color: kAccentColor,
                             title: "removeFromArchive".tr,
                             onPressed: (){
-                            Get.to(()=>MyOrdersScientificMessage());
+                            Get.to(()=>const MyOrdersScientificMessage());
                             },
                             //  icon:  Icons.visibility_outlined
                             image: "assets/image/archieve.png",

@@ -167,7 +167,7 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
                       ),
                       MediaButtonSizer(
                         onPressed: () {
-                          Get.to(() => MyOrdersScientificMessage());
+                          Get.to(() => const MyOrdersScientificMessage());
                         },
                         title: "requestService".tr,
                         color: kPrimaryColor,

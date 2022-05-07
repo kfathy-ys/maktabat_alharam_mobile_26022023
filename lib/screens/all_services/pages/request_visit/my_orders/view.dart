@@ -122,7 +122,7 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                             color: kAccentColor,
                             title: "addToArchive".tr,
                             onPressed: () =>
-                                Get.to(() => ArchiveRequestToVisitScreen()),
+                                Get.to(() => const ArchiveRequestToVisitScreen()),
                             image: "assets/image/archieve.png",
                           ),
                         ],

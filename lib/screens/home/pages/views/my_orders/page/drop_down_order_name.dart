@@ -59,7 +59,7 @@ class _DropDownListOrderNameState extends State<DropDownListOrderName> {
             "requestToBuyBook".tr,
             "RequestDepositScientificThesis".tr,
             "RequestReserveArticleOrResearchRetreat".tr,
-            "RequestDepositScientificThesis".tr,
+          //  "RequestDepositScientificThesis".tr,
           ]
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(

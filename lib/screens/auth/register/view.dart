@@ -48,9 +48,11 @@ class SignUpScreen extends StatelessWidget {
             if (state is RegisterSuccess) {
               /// TODO : Cached Token needed
               //Prefs.setString('token', state.registerModel.);
-              alertWithSuccess(context, 'تم تسجيل بنجاح');
+            //  Get.offAll(() =>  LoginScreen());
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                  LoginScreen()), (Route<dynamic> route) => false);              alertWithSuccess(context, 'تم تسجيل بنجاح');
 
-              Get.offAll(() =>  LoginScreen());
+
             } else if (state is RegisterError) {
               alertWithErr(context, state.msg);
             }

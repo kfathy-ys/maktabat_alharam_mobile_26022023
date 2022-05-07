@@ -22,7 +22,7 @@ class AppPages {
     ),
     GetPage(
       name:  "/MyOrdersScientificMessage",
-      page: () => MyOrdersScientificMessage(),
+      page: () => const MyOrdersScientificMessage(),
     ),
    GetPage(
   name:  "/PutScientificMessage",

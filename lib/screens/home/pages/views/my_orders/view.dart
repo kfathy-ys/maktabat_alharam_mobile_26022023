@@ -41,13 +41,12 @@ class MyOrdersScreen extends StatelessWidget{
           drawer:  drawer(context: context) ,
 
           appBar:customAppbar(
-              icons: Icons.arrow_forward_outlined,
+
               isIcons: true,
               context: context),
           body:  Container(
             margin: const EdgeInsets.symmetric(horizontal: 24,vertical: 10),
             height: height,
-
             width: width,
             child: ListView(
 

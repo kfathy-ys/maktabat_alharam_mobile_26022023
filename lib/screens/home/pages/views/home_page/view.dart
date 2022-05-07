@@ -38,77 +38,73 @@ class MyHomeScreen extends StatelessWidget {
                   isIcons: true,
                   context: context)
               : null,
-          body: SingleChildScrollView(
-            child: SizedBox(
-              height: height,
+          body: SizedBox(
+            height: height,
 
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                // physics: BouncingScrollPhysics(),
-                // shrinkWrap: true,
-                children: [
-                  token.isNotEmpty
-                      ? SizedBox(child: Image.asset('assets/image/kabah.png',))
-                      : Stack(
-                          children: [
-                            SizedBox(
-                              width: width,
-                                child: Image.asset('assets/image/headback.png',fit: BoxFit.fitWidth,)),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(top: 40),
-                              child: Center(
-                                child: Text("readAndLearn".tr,
-                                    style: const TextStyle(
-                                        color: kHomeColor,
-                                        fontSize: 22,
-                                        fontFamily: 'DinBold')),
-                              ),
-                            )
-                          ],
-                        ),
-                  //buildSizedBox(height),
-                  customBoldText("welcome".tr),
-                  //buildSizedBox(height),
-                  const BannerSlider(),
-                 // buildSizedBox(height),
+            child: ListView(
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              //mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                token.isNotEmpty
+                    ? SizedBox(child: Image.asset('assets/image/kabah.png',))
+                    : Stack(
+                        children: [
+                    Image.asset('assets/image/headback.png',
+                      width: double.infinity,
+                      fit: BoxFit.fill,),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.only(top: 40),
+                            child: Center(
+                              child: Text("readAndLearn".tr,
+                                  style: const TextStyle(
+                                      color: kHomeColor,
+                                      fontSize: 22,
+                                      fontFamily: 'DinBold')),
+                            ),
+                          )
+                        ],
+                      ),
+                token.isEmpty ? buildSizedBox(height):SizedBox(),
+                Center(child: customBoldText("welcome".tr)),
+                token.isEmpty ?  buildSizedBox(height):SizedBox(),
+                const BannerSlider(),
+               // buildSizedBox(height),
 
-                  TitleSubTitle(
-                    onTap: () => Get.to(() => OurServicesScreen()),
-                    title: "ourServices".tr,
-                    subtTitle: "allServices".tr,
-                  ),
-                //  buildSizedBox(height),
+                TitleSubTitle(
+                  onTap: () => Get.to(() => OurServicesScreen()),
+                  title: "ourServices".tr,
+                  subtTitle: "allServices".tr,
+                ),
+              //  buildSizedBox(height),
 
-                  SizedBox(
-                    // width: width*0.3,
-                    height: height * 0.25,
-                    child: ListView.builder(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: services.ourServices.length,
-                        itemBuilder: (context, int index) {
-                          return InkWell(
-                            onTap: () {
-                              Get.toNamed(services.ourServices[index].routeName);
-                            },
-                            child: CardContent(
+                SizedBox(
+                  // width: width*0.3,
+                  height: height * 0.25,
+                  child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: services.ourServices.length,
+                      itemBuilder: (context, int index) {
+                        return InkWell(
+                          onTap: () {
+                            Get.toNamed(services.ourServices[index].routeName);
+                          },
+                          child: CardContent(
 
-                                fontTitle: 20,
-                                fontSubTitle: 14,
-                                model: services.ourServices[index]),
-                          );
-                        }),
-                  ),
-                 // buildSizedBox(height),
-                  !token.isNotEmpty
-                      ? const ToShowMoreAboutOurServices()
-                      : const SizedBox(),
-                  buildSizedBox(height),
-                ],
-              ),
+                              fontTitle: 20,
+                              fontSubTitle: 14,
+                              model: services.ourServices[index]),
+                        );
+                      }),
+                ),
+               // buildSizedBox(height),
+                !token.isNotEmpty
+                    ? const ToShowMoreAboutOurServices()
+                    : const SizedBox(),
+                buildSizedBox(height),
+              ],
             ),
           ),
         ),

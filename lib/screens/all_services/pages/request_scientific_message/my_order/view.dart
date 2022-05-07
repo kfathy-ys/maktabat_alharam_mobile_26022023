@@ -15,7 +15,7 @@ import 'package:queen/core/helpers/prefs.dart';
 
 class MyOrdersScientificMessage extends StatelessWidget {
 
-  MyOrdersScientificMessage({Key? key}) : super(key: key);
+  const MyOrdersScientificMessage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

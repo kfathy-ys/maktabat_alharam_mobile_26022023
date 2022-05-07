@@ -153,7 +153,7 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
                     ),
                     SmallestButton(
                       onPressed: () {
-                        Get.to(() => AvailabilityMessageScreen());
+                        Get.to(() => const AvailabilityMessageScreen());
                       },
                       title: "next".tr,
                       color: kPrimaryColor,
