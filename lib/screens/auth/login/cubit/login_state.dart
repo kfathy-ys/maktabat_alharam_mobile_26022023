@@ -13,9 +13,7 @@ class LoginSuccess extends LoginState {
 
 }
 class LoginError extends LoginState {
-  final LoginModel model;
 
-  LoginError(this.model);
-  // final String msg;
-  // LoginError({required this.msg});
+  final String msg;
+  LoginError(this.msg);
 }

@@ -20,7 +20,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String country,
     required String email,
     required String password,
-    required String confirmPass,
+   required String userName,
   }) async {
     emit(RegisterLoading());
     try {
@@ -28,16 +28,14 @@ class RegisterCubit extends Cubit<RegisterState> {
         'Accounts/Register',
         body: {
 
-
-
-          "firstName": fName,
+          "email": email,
+          "password": password,
+          "firstName":fName,
           "lastName": lName,
           "nameArabic": fullName,
-          "password": phone,
-          "name": email,
-          "phoneNumber": password,
-          "email": confirmPass,
+          "phoneNumber": phone,
           "location": country,
+          "userName": userName,
           "defaultRole": "Visitor",
           "active": true,
           "roleName": [

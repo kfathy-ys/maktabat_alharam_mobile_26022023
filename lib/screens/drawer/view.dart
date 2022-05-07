@@ -5,6 +5,7 @@ import 'package:maktabat_alharam/screens/drawer/page/about_library/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/contect_us/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/my_orders/view.dart';
 import 'package:maktabat_alharam/screens/our_services/view.dart';
+import 'package:queen/core/helpers/prefs.dart';
 import 'page/languages/view.dart';
 import 'page/profile/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -146,6 +147,7 @@ Widget drawer({required context}) {
                           onTap: () {
                             Get.back();
                             Get.to(()=>LoginScreen());
+                            Prefs.clear();
                           },
                           title: "logout".tr,
                           image: 'assets/image/exit.png'),

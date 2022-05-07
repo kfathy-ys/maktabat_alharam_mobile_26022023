@@ -16,7 +16,7 @@ import 'package:maktabat_alharam/screens/widgets/smallestButton.dart';
 
 
 
-enum Opinion { yes, no }
+
 
 
 // ignore: must_be_immutable
@@ -36,7 +36,7 @@ class _AvailabilityMessageScreenState
 
   final formKey = GlobalKey<FormState>();
 
-  Opinion? _opinion;
+ Opinion? _opinion;
 
 
 
@@ -58,9 +58,7 @@ class _AvailabilityMessageScreenState
               isIcons: true,
               context: context),
           body: SizedBox(
-            //  margin:ri const EdgeInsets.symmetric(hozontal: 0,vertical: 10),
             height: height,
-
             width: width,
             child: ListView(
               padding: const EdgeInsets.symmetric(vertical: 14,horizontal: 22),
@@ -85,7 +83,12 @@ class _AvailabilityMessageScreenState
                   ],
                 ),
                 SizedBox(height: height*0.04,),
-                const SelectorOpenion(),
+                SelectorOpenion(onChange: (value){
+                  setState(() {
+                    _opinion = value;
+
+                  });
+                },),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   mainAxisSize: MainAxisSize.min,
@@ -102,8 +105,9 @@ class _AvailabilityMessageScreenState
                       color: kPrimaryColor,
                       image: "assets/image/twoarrowleft.png",
                     ),
-                    SmallestButton(
-
+                   _opinion == Opinion.no ?
+                   const SizedBox() :
+                   SmallestButton(
                       onPressed: () {
 
                       Get.to(()=> const MessageFilesScreen());
@@ -126,55 +130,10 @@ class _AvailabilityMessageScreenState
 
   }
 
-  ListTile buildListTile({required Color color ,  required String title , required String image}) {
-    return ListTile(
-      horizontalTitleGap: 1,
-      //"fillOut".tr
-      title: Text(title, style:  TextStyle(
-          color: color, fontSize: 14, fontFamily: 'DinReguler'
-      )),
-      //"assets/image/dot.png"
-      leading:Image.asset(image),
 
-    );
-  }
 
-  Padding buildPadding({required String title}) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 40),
-      child: Text(
-        title,
-        style: const TextStyle(
-          color: kBlackText,
-          fontSize: 16,
-          fontFamily: "DinReguler",
-        ),
-      ),
-    );
-  }
 
-  Row buildRow({
-    required String title,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:
-            TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
-        Text(subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style: TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-      ],
-    );
-  }
+
 
 
 }

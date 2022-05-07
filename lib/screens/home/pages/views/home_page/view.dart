@@ -40,13 +40,12 @@ class MyHomeScreen extends StatelessWidget {
               : null,
           body: SizedBox(
             height: height,
-
             child: ListView(
-              //crossAxisAlignment: CrossAxisAlignment.center,
-              //mainAxisAlignment: MainAxisAlignment.spaceAround,
+             // padding: const EdgeInsets.symmetric(vertical: 20),
+              physics: const PageScrollPhysics(),
               children: [
                 token.isNotEmpty
-                    ? SizedBox(child: Image.asset('assets/image/kabah.png',))
+                    ? SizedBox(height: height*0.2 ,child: Image.asset('assets/image/kabah.png',))
                     : Stack(
                         children: [
                     Image.asset('assets/image/headback.png',
@@ -64,11 +63,11 @@ class MyHomeScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                token.isEmpty ? buildSizedBox(height):SizedBox(),
+               buildSizedBox(height),
                 Center(child: customBoldText("welcome".tr)),
-                token.isEmpty ?  buildSizedBox(height):SizedBox(),
+                 buildSizedBox(height),
                 const BannerSlider(),
-               // buildSizedBox(height),
+                token.isNotEmpty ? buildSizedBox(height):const SizedBox(),
 
                 TitleSubTitle(
                   onTap: () => Get.to(() => OurServicesScreen()),
@@ -103,7 +102,7 @@ class MyHomeScreen extends StatelessWidget {
                 !token.isNotEmpty
                     ? const ToShowMoreAboutOurServices()
                     : const SizedBox(),
-                buildSizedBox(height),
+              ///  buildSizedBox(height),
               ],
             ),
           ),

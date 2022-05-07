@@ -23,13 +23,12 @@ import 'package:queen/validation/validator.dart';
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
   final _phoneController = TextEditingController();
   final _countryController = TextEditingController();
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
-  final _confirmPassController = TextEditingController();
+  final _userNameController = TextEditingController();
   final _arabicFullNameController = TextEditingController();
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
@@ -60,7 +59,7 @@ class SignUpScreen extends StatelessWidget {
             final cubit = BlocProvider.of<RegisterCubit>(context);
             return Scaffold(
               backgroundColor: kHomeColor,
-              key: _scaffoldKey,
+
               body: Form(
                 key: _formKey,
                 child: ListView(
@@ -114,6 +113,19 @@ class SignUpScreen extends StatelessWidget {
                       type: TextInputType.name,
                     ),
                     CustomTextField(
+                      hint: "userName".tr,
+                      dIcon: Icons.person,
+                      label: "userName".tr,
+                      controller: _userNameController,
+                      validator: qValidator([
+                        IsRequired("thisFieldRequired".tr),
+                        IsOptional(),
+
+                        MaxLength(30),
+                      ]),
+                      type: TextInputType.text,
+                    ),
+                    CustomTextField(
                       dIcon: Icons.email,
                       label: "email".tr,
                       hint: "email".tr,
@@ -126,7 +138,6 @@ class SignUpScreen extends StatelessWidget {
                       ]),
                       type: TextInputType.emailAddress,
                     ),
-
                     CustomTextField(
                       dIcon: Icons.real_estate_agent,
                       label: "countryResidence".tr,
@@ -155,20 +166,7 @@ class SignUpScreen extends StatelessWidget {
                       ]),
                       type: TextInputType.text,
                     ),
-                    CustomTextField(
-                      hint: "confirmPass".tr,
-                      icon: Icons.lock_outline,
-                      dIcon: Icons.lock_outline,
-                      label: "confirmPass".tr,
-                      controller: _confirmPassController,
-                      validator: qValidator([
-                        IsRequired("enterConfPassword".tr),
-                        IsOptional(),
-                        MinLength(6, "minPassword".tr),
-                        MaxLength(30),
-                      ]),
-                      type: TextInputType.text,
-                    ),
+
                     CustomTextField(
                       hint: "phoneNumber".tr,
 
@@ -227,14 +225,15 @@ class SignUpScreen extends StatelessWidget {
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 cubit.userRegister(
-                                  country: _countryController.text,
+                                    country: _countryController.text,
                                     fName: _firstNameController.text,
                                     lName: _lastNameController.text,
                                     fullName: _arabicFullNameController.text,
-                                    confirmPass: _confirmPassController.text,
+                                    userName: _userNameController.text,
                                     phone: _phoneController.text,
                                     email: _emailController.text,
-                                    password: _phoneController.text);
+                                    password: _passController.text
+                                );
                               }
                             })
                         : const LoadingFadingCircle(),

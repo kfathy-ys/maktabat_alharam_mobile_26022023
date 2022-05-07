@@ -41,14 +41,12 @@ class LoginScreen extends StatelessWidget {
           child: BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
               if (state is LoginSuccess) {
-                 Prefs.setString('token', state.model.data!.token!);
 
                alertWithSuccess(context, state.model.messages.toString());
 
                 Get.offAll(() => const HomeTabScreen());
               } else if (state is LoginError ) {
-               // alertWithErr(context, state.model.messages.toString());
-                alertWithErr(context, state.model.messages.toString());
+                alertWithErr(context, state.msg.toString());
 
               }
             },
@@ -56,7 +54,6 @@ class LoginScreen extends StatelessWidget {
               final cubit = BlocProvider.of<LoginCubit>(context);
               return Scaffold(
                 backgroundColor: kHomeColor,
-         //  key: _scaffoldKey,
                 body: SingleChildScrollView(
                   child: SizedBox(
                     height: height,

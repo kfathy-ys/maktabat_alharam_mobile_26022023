@@ -8,7 +8,8 @@ enum AvailableType { accept, refuse }
 enum MultiChoose { one, two, three, four }
 
 class SelectorOpenion extends StatefulWidget {
-  const SelectorOpenion({Key? key}) : super(key: key);
+  final ValueChanged <Opinion> onChange;
+  const SelectorOpenion({Key? key,required this.onChange , }) : super(key: key);
 
   @override
   _SelectorOpenionState createState() => _SelectorOpenionState();
@@ -66,6 +67,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
                     groupValue: _opinion,
                     onChanged: (_) {
                       setState(() {
+                        widget.onChange(Opinion.no);
                         _opinion = Opinion.no;
                         accept = AvailableType.accept;
                       });
