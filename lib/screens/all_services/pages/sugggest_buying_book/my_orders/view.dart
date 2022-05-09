@@ -1,5 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
+import 'package:maktabat_alharam/screens/widgets/loading.dart';
 import '../../ask_Librarian/my_order/page/views/cardContent.dart';
 import '../../ask_Librarian/page/views/head_topices.dart';
 import '../archive/view.dart';
@@ -15,7 +18,8 @@ import '../view.dart';
 
 class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
 
-  const MyOrdersSuggestBuyBookScreen({Key? key}) : super(key: key);
+
+  const MyOrdersSuggestBuyBookScreen({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +41,9 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
             height: height,
             width: width,
             child: ListView(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
+              
+             physics: const BouncingScrollPhysics(),
+             shrinkWrap: true,
               children: [
                 HeadTopics(
                   title: "SuggestionBuyBook".tr,
@@ -56,62 +61,85 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
                 SizedBox(
                   height: height * 0.03,
                 ),
-                ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 5,
-                  itemBuilder: (context, int index) {
-                    return Container(
-                      margin: const EdgeInsetsDirectional.only(bottom: 16.0),
-                      padding: const EdgeInsetsDirectional.only(bottom: 8.0),
-                      height: height * 0.42,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: kCardBorder)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CardData(
-                              title: "nameResponsible".tr,
-                              subTitle: "أحمد عبد السلام",
-                              color1: kSmallIconColor,
-                              color2: kBlackText),
-                          CardData(
-                              title: "titleOfBook".tr,
-                              subTitle: "ASD",
-                              color1: kSmallIconColor,
-                              color2: kSkyButton),
-                          CardData(
-                              title: "requestDate".tr,
-                              subTitle: "Mar 23,2022",
-                              color1: kSmallIconColor,
-                              color2: kBlackText),
-                          CardData(
-                            title: "orderProcedure".tr,
-                            subTitle: "",
-                            color1: kBlackText,
-                            //  color2: kBlackText
-                          ),
-                          CustomCardButton(
-                            color: kAccentColor,
-                            title: "updateRequest".tr,
-                            onPressed: () =>
-                                Get.to(() => const UpdateSuggestToBuyBook()),
-                            image: "assets/image/update.png",
-                          ),
-                          CustomCardButton(
-                            color: kAccentColor,
-                            title: "addToArchive".tr,
-                            onPressed: () =>
-                                Get.to(() => const ArchiveSuggestBuyBookScreen()),
-                            image: "assets/image/archieve.png",
-                          ),
-                        ],
-                      ),
-                    );
+
+                BlocConsumer<OrderSuggestCubit, OrderSuggestState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    if (state is OrderSuggestLoading){
+                      return const LoadingFadingCircle();
+
+                    }
+                    if(state is OrderSuggestSuccess){
+                      return   ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: state.orderSuggestModel.data!.length,
+                        itemBuilder: (context, int index) {
+                          return Container(
+                            margin: const EdgeInsetsDirectional.only(bottom: 16.0),
+                            padding: const EdgeInsetsDirectional.only(bottom: 8.0),
+                            height: height * 0.42,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: kCardBorder)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CardData(
+                                    title: "nameResponsible".tr,
+                                  //  subTitle: "أحمد عبد السلام",
+                                  subTitle: state.orderSuggestModel.data![index].visitorName,
+                                    color1: kSmallIconColor,
+                                    color2: kBlackText),
+                                CardData(
+                                    title: "titleOfBook".tr,
+                                    subTitle: state.orderSuggestModel.data![index].suggestedBookTitle,
+                                    color1: kSmallIconColor,
+                                    color2: kSkyButton),
+                                CardData(
+                                    title: "requestDate".tr,
+                                    subTitle: state.orderSuggestModel.data![index].createdDate,
+                                    color1: kSmallIconColor,
+                                    color2: kBlackText),
+                                CardData(
+                                  title: "orderProcedure".tr,
+                                  subTitle: "",
+                                  color1: kBlackText,
+                                  //  color2: kBlackText
+                                ),
+                                CustomCardButton(
+                                  color: kAccentColor,
+                                  title: "updateRequest".tr,
+                                  onPressed: () =>
+                                      Get.to(() => const UpdateSuggestToBuyBook()),
+                                  image: "assets/image/update.png",
+                                ),
+                                CustomCardButton(
+                                  color: kAccentColor,
+                                  title: "addToArchive".tr,
+                                  onPressed: () {
+                                    state.orderSuggestModel.data![index].isArchived=true;
+                                    Get.to(() => const ArchiveSuggestBuyBookScreen());
+                                  },
+                                  image: "assets/image/archieve.png",
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    }
+                    if(state is OrderSuggestError){
+                      return Center(child: Text(state.meg));
+                    }
+                    if(state is OrderSuggestEmpty){
+                      return Center(child:customBoldText("لا توجد طلبات الاّن"));
+                    }
+                    return const SizedBox();
                   },
                 ),
+
               ],
             ),
           ),

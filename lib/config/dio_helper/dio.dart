@@ -128,6 +128,19 @@ abstract class NetWork {
       options: Options(headers: headers),
     );
   }
+  static Future<Response> put(
+      String url, {
+        dynamic body,
+        Map<String, dynamic>? headers,
+        Map<String, dynamic>? queryParams,
+      }) async {
+    return await _dio.post(
+      '/$url',
+      data: body,
+      queryParameters: queryParams,
+      options: Options(headers: headers),
+    );
+  }
 
 
 

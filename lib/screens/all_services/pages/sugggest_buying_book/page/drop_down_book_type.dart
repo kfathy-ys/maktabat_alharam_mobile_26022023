@@ -1,16 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-class DropDownBookType extends StatefulWidget {
 
-  const DropDownBookType({Key? key}) : super(key: key);
+enum typeBooks {paper ,electronic}
+class DropDownBookType extends StatefulWidget {
+  final ValueChanged<int> onChanged;
+  const DropDownBookType({Key? key,required this.onChanged}) : super(key: key);
 
   @override
   State<DropDownBookType> createState() => _DropDownBookTypeState();
 }
 
 class _DropDownBookTypeState extends State<DropDownBookType> {
-  String? dropdownValue;
+  typeBooks? selected;
+  int? valueSelected  ;
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +32,10 @@ class _DropDownBookTypeState extends State<DropDownBookType> {
           border: Border.all(color: kPrimaryColor)
       ),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
+        child: DropdownButton<typeBooks>(
 
-          value: dropdownValue,
-          // autofocus: true,
-          // isDense: true,
-          //isExpanded: true,
+          value: selected,
+
           hint: Text("bookType".tr+' :',
             style: const TextStyle(
               color: kPrimaryColor,
@@ -48,16 +51,25 @@ class _DropDownBookTypeState extends State<DropDownBookType> {
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (String? newValue) {
+          onChanged: (typeBooks? newValue) {
+            if(newValue == null) return ;
+
             setState(() {
-              dropdownValue = newValue!;
+              selected = newValue;
+              if(selected == typeBooks.electronic){
+                valueSelected = 18;
+              }else{
+                valueSelected = 19;
+              }
+              widget.onChanged(valueSelected!);
+
             });
           },
-          items: <String>["electronic".tr,  "paper".tr]
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
+          items: typeBooks.values
+              .map<DropdownMenuItem<typeBooks>>((typeBooks value) {
+            return DropdownMenuItem<typeBooks>(
               value: value,
-              child: Text(value,
+              child: Text(describeEnum(value).tr,
                 style: const TextStyle(
                   color: kTextColor,
                   fontSize: 16,

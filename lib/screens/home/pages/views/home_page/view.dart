@@ -14,7 +14,8 @@ import 'page/views/data.dart';
 
 // ignore: must_be_immutable
 class MyHomeScreen extends StatelessWidget {
-  MyHomeScreen({Key? key}) : super(key: key);
+  final String? userId;
+  MyHomeScreen({Key? key, this.userId}) : super(key: key);
 
   OurServicesContent services = OurServicesContent();
 

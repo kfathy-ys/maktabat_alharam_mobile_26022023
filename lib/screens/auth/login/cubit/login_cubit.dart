@@ -31,7 +31,9 @@ class LoginCubit extends Cubit<LoginState> {
         throw res.data['message'];
       }
       Prefs.setString("token", res.data["data"]["token"]);
+      Prefs.setString("userId", res.data["data"]["userId"]);
       log("${res.data["data"]["token"]}");
+      log("${res.data["data"]["userId"]}");
       emit(LoginSuccess(LoginModel.fromJson((res.data))));
     } catch (e, st) {
 

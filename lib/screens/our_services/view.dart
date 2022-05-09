@@ -9,7 +9,8 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class OurServicesScreen extends StatelessWidget {
-  OurServicesScreen({Key? key}) : super(key: key);
+  final String? userId;
+  OurServicesScreen({Key? key, this.userId}) : super(key: key);
 
  // OurServicesContent services = OurServicesContent();
   OurServicesGridCard ourServicesGridCard = OurServicesGridCard();
@@ -56,7 +57,6 @@ class OurServicesScreen extends StatelessWidget {
                         onTap: (){
                           Get.toNamed(ourServicesGridCard.ourServicesGrid[index].routeName);
 
-                         // Get.to(()=>services.ourServices[index].route);
                         },
                         child: CardGridContent(
                             fontTitle: 18,

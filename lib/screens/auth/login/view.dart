@@ -44,7 +44,7 @@ class LoginScreen extends StatelessWidget {
 
                alertWithSuccess(context, state.model.messages.toString());
 
-                Get.offAll(() => const HomeTabScreen());
+                Get.offAll(() =>  HomeTabScreen(userId: state.model.data!.userId!.toString(),));
               } else if (state is LoginError ) {
                 alertWithErr(context, state.msg.toString());
 

@@ -6,6 +6,7 @@ import 'package:get/get.dart'as g;
 
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
 
 import 'package:maktabat_alharam/screens/splash/view.dart';
 import 'package:queen/queen.dart';
@@ -48,6 +49,9 @@ class MaktabatAlharam extends StatelessWidget {
       providers: [
         BlocProvider<SwitchCubit>(
           create: (context) => SwitchCubit(),
+        ),
+        BlocProvider<OrderSuggestCubit>(
+          create: (context) => OrderSuggestCubit(),
         ),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(

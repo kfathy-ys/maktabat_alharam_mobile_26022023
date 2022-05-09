@@ -11,8 +11,9 @@ import 'package:queen/core/helpers/prefs.dart';
 
 class HomeTabScreen extends StatefulWidget {
   final int index;
+  final String? userId;
 
-  const HomeTabScreen({Key? key, this.index = 0}) : super(key: key);
+  const HomeTabScreen({Key? key, this.index = 0, this.userId}) : super(key: key);
 
   @override
   State<HomeTabScreen> createState() => _HomeTabScreenState();
