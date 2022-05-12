@@ -22,7 +22,7 @@ abstract class NetWork {
       ),
     );
     if (kDebugMode) {
-      _dio.interceptors.add(PrettyDioLogger(requestBody: true, requestHeader: true));
+  _dio.interceptors.add(PrettyDioLogger(requestBody: true, requestHeader: true));
     }
     return _dio;
   }

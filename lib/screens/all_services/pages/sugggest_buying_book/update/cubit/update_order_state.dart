@@ -13,5 +13,5 @@ class UpdateOrderSuccess extends UpdateOrderState {
 class UpdateOrderError extends UpdateOrderState {
   final String msg;
 
-  UpdateOrderError({required this.msg});
+  UpdateOrderError( this.msg);
 }

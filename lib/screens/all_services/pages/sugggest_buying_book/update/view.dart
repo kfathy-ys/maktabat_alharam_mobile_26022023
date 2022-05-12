@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/models/model.dart';
 import 'package:maktabat_alharam/screens/widgets/alart.dart';
 import '../../ask_Librarian/page/views/head_topices.dart';
 
 import '../my_orders/view.dart';
 import '../page/drop_down_book_type.dart';
 import 'cubit/update_order_cubit.dart';
+import 'models/model.dart';
 import 'page/hint_title.dart';
 import '../../../../drawer/view.dart';
 
@@ -22,36 +25,15 @@ import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
 
 class UpdateSuggestToBuyBook extends StatefulWidget {
-  const UpdateSuggestToBuyBook({Key? key}) : super(key: key);
+  final OrderModel order;
+  const UpdateSuggestToBuyBook({Key? key,required this.order}) : super(key: key);
 
   @override
   State<UpdateSuggestToBuyBook> createState() => _UpdateSuggestToBuyBookState();
 }
 
 class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
-  final _formKey = GlobalKey<FormState>();
 
-  final _nameController = TextEditingController();
-
-  final _emailController = TextEditingController();
-
-  final _phoneController = TextEditingController();
-
-  final _qualificationController = TextEditingController();
-  final _addressController = TextEditingController();
-
-  final _authorNameController = TextEditingController();
-
-  final _namePublisherController = TextEditingController();
-
-  final _placePublisherController = TextEditingController();
-
-  final _yearPublishController = TextEditingController();
-
-  final _standardNumberController = TextEditingController();
-  final _typeBookController = TextEditingController();
-
-  final _addtionalInfoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,24 +50,26 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
               isIcons: true,
               context: context),
           body: BlocProvider(
-            create: (context) => UpdateOrderCubit(),
+            create: (context) => UpdateOrderCubit(widget.order),
             child: BlocConsumer<UpdateOrderCubit, UpdateOrderState>(
               listener: (context, state) {
                 if (state is UpdateOrderSuccess) {
                   alertWithSuccess(context, "تم التعديل بنجاح");
-                  Get.to(() => const MyOrdersSuggestBuyBookScreen());
-                } else if (state is UpdateOrderError) {
-                  alertWithErr(context, state.msg);
+                  BlocProvider.of<OrderSuggestCubit>(context).getOrderSuggest();
+                  Get.offAll(()=> const MyOrdersSuggestBuyBookScreen());
                 }
-                Get.offAll(() => const MyOrdersSuggestBuyBookScreen());
+                if (state is UpdateOrderError) {
+                  alertWithErr(context, state.msg.toString());
+                }
               },
               builder: (context, state) {
                 final cubit = BlocProvider.of<UpdateOrderCubit>(context);
+
                 return SizedBox(
                   height: height,
                   width: width,
                   child: Form(
-                    key: _formKey,
+                    key: cubit.formKey,
                     child: ListView(
                       padding: const EdgeInsets.symmetric(vertical: 18),
 
@@ -105,7 +89,7 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                           hint: "name".tr,
                           dIcon: Icons.drive_file_rename_outline,
                           label: "name".tr,
-                          controller: _nameController,
+                          controller: cubit.nameController,
                           validator: qValidator([
                             IsRequired("thisFieldRequired".tr),
                             IsOptional(),
@@ -114,10 +98,11 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                           type: TextInputType.name,
                         ),
                         CustomTextField(
+
                           hint: "emailDot".tr,
                           dIcon: Icons.email,
                           label: "emailDot".tr,
-                          controller: _emailController,
+                          controller: cubit.emailController,
                           validator: qValidator([
                             IsRequired("thisFieldRequired".tr),
                             IsOptional(),
@@ -126,10 +111,11 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                           type: TextInputType.emailAddress,
                         ),
                         CustomTextField(
+
                           hint: "phoneNumber".tr,
-                          dIcon: Icons.drive_file_rename_outline,
+                          dIcon: Icons.phone_bluetooth_speaker,
                           label: "phoneNumber".tr,
-                          controller: _phoneController,
+                          controller: cubit.phoneController,
                           validator: qValidator([
                             IsRequired("thisFieldRequired".tr),
                             IsOptional(),
@@ -138,10 +124,11 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                           type: TextInputType.phone,
                         ),
                         CustomTextField(
+
                           hint: "qualifications".tr,
                           dIcon: Icons.verified_user,
                           label: "qualifications".tr,
-                          controller: _qualificationController,
+                          controller: cubit.qualificationController,
                           validator: qValidator([
                             IsRequired("thisFieldRequired".tr),
                             IsOptional(),
@@ -150,10 +137,11 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                           type: TextInputType.text,
                         ),
                         CustomTextField(
+
                           hint: "authorAddress".tr,
                           dIcon: Icons.drive_file_rename_outline,
                           label: "authorAddress".tr,
-                          controller: _addressController,
+                          controller: cubit.addressController,
                           validator: qValidator([
                             IsRequired("thisFieldRequired".tr),
                             IsOptional(),
@@ -162,10 +150,11 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                           type: TextInputType.streetAddress,
                         ),
                         CustomTextField(
+
                           hint: "authorName".tr,
                           dIcon: Icons.person_add_alt,
                           label: "authorName".tr,
-                          controller: _authorNameController,
+                          controller: cubit.authorNameController,
                           validator: qValidator([
                             IsRequired("thisFieldRequired".tr),
                             IsOptional(),
@@ -174,10 +163,11 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                           type: TextInputType.name,
                         ),
                         CustomTextField(
+
                           hint: "publisherName".tr,
                           dIcon: Icons.person_add_alt,
                           label: "publisherName".tr,
-                          controller: _namePublisherController,
+                          controller: cubit.namePublisherController,
                           validator: qValidator([
                             IsRequired("thisFieldRequired".tr),
                             IsOptional(),
@@ -186,10 +176,11 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                           type: TextInputType.name,
                         ),
                         CustomTextField(
+
                           hint: "publishLocation".tr,
                           dIcon: Icons.location_on_outlined,
                           label: "publishLocation".tr,
-                          controller: _placePublisherController,
+                          controller: cubit.placePublisherController,
                           validator: qValidator([
                             IsRequired("thisFieldRequired".tr),
                             IsOptional(),
@@ -198,10 +189,11 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                           type: TextInputType.streetAddress,
                         ),
                         CustomTextField(
+
                           hint: "publishYear".tr,
                           dIcon: Icons.drive_file_rename_outline,
                           label: "publishYear".tr,
-                          controller: _yearPublishController,
+                          controller: cubit.yearPublishController,
                           validator: qValidator([
                             IsRequired("thisFieldRequired".tr),
                             IsOptional(),
@@ -210,10 +202,12 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                           type: TextInputType.datetime,
                         ),
                         CustomTextField(
+
                           hint: "standardBookNumber".tr,
                           dIcon: Icons.confirmation_number_outlined,
                           label: "standardBookNumber".tr,
-                          controller: _standardNumberController,
+                          controller: cubit.standardNumberController,
+
                           validator: qValidator([
                             IsRequired("thisFieldRequired".tr),
                             IsOptional(),
@@ -223,32 +217,35 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                         ),
                         DropDownBookType(
                           onChanged: cubit.onBookTypeChanged,
+                          initial: cubit.initial,
                         ),
-                        SubHint(title: "additionalInformation".tr),                        CustomHeightTextField(
+                        SubHint(title: "additionalInformation".tr),
+                        CustomHeightTextField(
                           hint: "additionalInformation".tr,
                           text: "",
-                          controller: _addtionalInfoController,
+                          controller: cubit.additionalInfoController,
                         ),
                         SizedBox(
                           height: height * 0.05,
                         ),
                         Center(
                           child: MediaButtonSizer(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                cubit.createOrderSuggestBook(
+                            onPressed: () async{
+                              if (cubit.formKey.currentState!.validate()) {
+                                await cubit.updatedOrderSuggestBook(
 
-                                  visitorName: _nameController.text,
-                                  visitorEmail: _emailController.text,
-                                  visitorMobile: _phoneController.text,
-                                  qualifications: _qualificationController.text,
-                                  bookTitle: _addressController.text,
-                                  authorName: _authorNameController.text,
-                                  publisherName: _namePublisherController.text,
-                                  placeOfPublication: _placePublisherController.text,
-                                  yearOfPublication: _yearPublishController.text,
-                                  standardBookNumber: _standardNumberController.text,
-                                  additionalInformation: _addtionalInfoController.text,
+
+                                  visitorName: cubit.nameController.text,
+                                  visitorEmail: cubit.emailController.text,
+                                  visitorMobile: cubit.phoneController.text,
+                                  qualifications: cubit.qualificationController.text,
+                                  bookTitle: cubit.addressController.text,
+                                  authorName: cubit.authorNameController.text,
+                                  publisherName: cubit.namePublisherController.text,
+                                  placeOfPublication: cubit.placePublisherController.text,
+                                  yearOfPublication: cubit.yearPublishController.text,
+                                  standardBookNumber: cubit.standardNumberController.text,
+                                  additionalInformation: cubit.additionalInfoController.text,
 
 
 

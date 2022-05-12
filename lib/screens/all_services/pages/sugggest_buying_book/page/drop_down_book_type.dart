@@ -5,8 +5,9 @@ import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
 enum typeBooks {paper ,electronic}
 class DropDownBookType extends StatefulWidget {
+  final int? initial;
   final ValueChanged<int> onChanged;
-  const DropDownBookType({Key? key,required this.onChanged}) : super(key: key);
+  const DropDownBookType({Key? key,required this.onChanged, this.initial }) : super(key: key);
 
   @override
   State<DropDownBookType> createState() => _DropDownBookTypeState();
@@ -14,16 +15,33 @@ class DropDownBookType extends StatefulWidget {
 
 class _DropDownBookTypeState extends State<DropDownBookType> {
   typeBooks? selected;
-  int? valueSelected  ;
+  int? valueSelected;
+
+  @override
+  void initState() {
+    if(widget.initial != null) {
+      if(widget.initial == 19){
+        selected = typeBooks.paper;
+        valueSelected = widget.initial;
+      }else{
+        selected = typeBooks.electronic;
+        valueSelected = widget.initial;
+      }
+    }
+    super.initState();
+  }
 
 
   @override
   Widget build(BuildContext context) {
-  //  double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    //  double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      margin: const EdgeInsets.symmetric(horizontal:35 ,vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 35, vertical: 8),
       width: width,
       // height: height*0.09,
       decoration: BoxDecoration(
@@ -36,7 +54,7 @@ class _DropDownBookTypeState extends State<DropDownBookType> {
 
           value: selected,
 
-          hint: Text("bookType".tr+' :',
+          hint: Text("bookType".tr + ' :',
             style: const TextStyle(
               color: kPrimaryColor,
               fontSize: 16,
@@ -52,17 +70,16 @@ class _DropDownBookTypeState extends State<DropDownBookType> {
           ),
           underline: null,
           onChanged: (typeBooks? newValue) {
-            if(newValue == null) return ;
+            if (newValue == null) return;
 
             setState(() {
               selected = newValue;
-              if(selected == typeBooks.electronic){
+              if (selected == typeBooks.electronic) {
                 valueSelected = 18;
-              }else{
+              } else {
                 valueSelected = 19;
               }
               widget.onChanged(valueSelected!);
-
             });
           },
           items: typeBooks.values
@@ -84,4 +101,5 @@ class _DropDownBookTypeState extends State<DropDownBookType> {
       ),
     );
   }
+
 }

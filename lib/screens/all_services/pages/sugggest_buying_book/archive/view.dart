@@ -1,6 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
+import 'package:maktabat_alharam/screens/widgets/loading.dart';
 import '../../ask_Librarian/my_order/page/views/cardContent.dart';
+import 'cubit/archive_cubit.dart';
 import 'page/descriptions.dart';
 import 'page/title.dart';
 import '../my_orders/view.dart';
@@ -10,14 +13,12 @@ import '../../../../widgets/appBar.dart';
 import '../../../../widgets/constants.dart';
 import 'package:get/get.dart';
 
-
-
 class ArchiveSuggestBuyBookScreen extends StatelessWidget {
-
   const ArchiveSuggestBuyBookScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<OrderSuggestCubit>(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
@@ -26,7 +27,6 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
@@ -41,58 +41,83 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
               children: [
                 const HeadTitle(),
                 DescriptionSuggest(description: "headBuyBook".tr),
-                ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 5,
-                  itemBuilder: (context, int index) {
-                    return Container(
-                      margin: const EdgeInsetsDirectional.only(bottom: 16.0),
-                      padding: const EdgeInsetsDirectional.only(bottom: 8.0),
-                      height: height * 0.33,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: kCardBorder)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CardData(
-                              title: "nameResponsible".tr,
-                              subTitle: "أحمد عبد السلام",
-                              color1: kSmallIconColor,
-                              color2: kBlackText),
-                          CardData(
-                              title: "titleOfBook".tr,
-                              subTitle: "ASD",
-                              color1: kSmallIconColor,
-                              color2: kSkyButton),
-                          CardData(
-                              title: "requestDate".tr,
-                              subTitle: "Mar 23,2022",
-                              color1: kSmallIconColor,
-                              color2: kBlackText),
-                          CardData(
-                            title: "orderProcedure".tr,
-                            subTitle: "",
-                            color1: kBlackText,
-                            //  color2: kBlackText
-                          ),
-                          CustomCardButton(
-                            color: kAccentColor,
-                            title: "removeFromArchive".tr,
-                            onPressed: () {
-                              Get.to(() => const MyOrdersSuggestBuyBookScreen());
-                            },
-                            //  icon:  Icons.visibility_outlined
-                            image: "assets/image/archieve.png",
-                          ),
-                        ],
-                      ),
-                    );
+                BlocConsumer<ArchiveCubit, ArchiveState>(
+                  listener: (context, state) {
+                  // BlocProvider.of<OrderSuggestCubit>(context).
+                  },
+                  builder: (context, state) {
+                    if (state is ArchiveLoading) {
+                      return const LoadingFadingCircle();
+                    }
+                    if (state is ArchiveSuccess) {
+
+                      return ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: state.archiveSuggestModel.data!.length,
+                        itemBuilder: (context, int index) {
+                          return Container(
+                            margin:
+                                const EdgeInsetsDirectional.only(bottom: 16.0),
+                            padding:
+                                const EdgeInsetsDirectional.only(bottom: 8.0),
+                            height: height * 0.33,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: kCardBorder)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CardData(
+                                    title: "nameResponsible".tr,
+                                    subTitle: state.archiveSuggestModel
+                                        .data![index].authorName
+                                        .toString(),
+                                    color1: kSmallIconColor,
+                                    color2: kBlackText),
+                                CardData(
+                                    title: "titleOfBook".tr,
+                                    subTitle: state.archiveSuggestModel
+                                        .data![index].suggestedBookTitle
+                                        .toString(),
+                                    color1: kSmallIconColor,
+                                    color2: kSkyButton),
+                                CardData(
+                                    title: "requestDate".tr,
+                                    subTitle: state.archiveSuggestModel
+                                        .data![index].createdDate
+                                        .toString(),
+                                    color1: kSmallIconColor,
+                                    color2: kBlackText),
+                                CardData(
+                                  title: "orderProcedure".tr,
+                                  subTitle: "",
+                                  color1: kBlackText,
+                                  //  color2: kBlackText
+                                ),
+                                CustomCardButton(
+                                  color: kAccentColor,
+                                  title: "removeFromArchive".tr,
+                                  onPressed: ()=> cubit.removeFromArchive(state.archiveSuggestModel.data![index]),
+                                  image: "assets/image/archieve.png",
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    }
+                    if (state is ArchiveError) {
+                      return Center(child: Text(state.msg));
+                    }
+                    if (state is ArchiveEmpty) {
+                      return Center(
+                          child: customBoldText("لا توجد طلبات الاّن"));
+                    }
+                    return const SizedBox();
                   },
                 ),
-
               ],
             ),
           ),

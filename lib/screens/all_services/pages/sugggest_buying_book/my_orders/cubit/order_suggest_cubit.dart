@@ -1,8 +1,15 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:get/route_manager.dart';
+import 'package:intl/intl.dart';
 import 'package:maktabat_alharam/config/dio_helper/dio.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/cubit/archive_cubit.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/models/model.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/models/model.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/view.dart';
+import 'package:maktabat_alharam/screens/widgets/alart.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
@@ -12,13 +19,12 @@ part 'order_suggest_state.dart';
 /// Suggestion/GetAllSuggestions/37678663-9902-41a9-a502-733792bd832d
 
 class OrderSuggestCubit extends Cubit<OrderSuggestState> {
+  final ArchiveCubit archiveCubit;
 
-
-  OrderSuggestCubit() : super(OrderSuggestInitial()) {
+  OrderSuggestCubit(this.archiveCubit) : super(OrderSuggestInitial()) {
     getOrderSuggest();
   }
 
-  OrderSuggestModel? orderSuggestModel;
 
   Future<void> getOrderSuggest() async {
     emit(OrderSuggestLoading());
@@ -26,7 +32,7 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
       final userId = Prefs.getString("userId");
       final res = await NetWork.get('Suggestion/GetAllSuggestions/$userId');
 
-      if (res.data['status'] == 0 || res.data['status'] == -1) {
+      if (res.data['status'] == 0 || res.data['status'] == -1 || res.statusCode != 200) {
         throw res.data['message'];
       }
 
@@ -35,9 +41,57 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
-      emit(OrderSuggestError(meg: e.toString()));
+      emit(OrderSuggestError(e.toString()));
     }
   }
+
+  Future<void> addToArchive(OrderModel order) async {
+    await archiveCubit.addedToArchive(
+      id: order.id!,
+      typeBookId: order.bookTypeId!,
+      visitorName: order.visitorName.toString(),
+      visitorEmail: order.visitorEmail.toString(),
+      visitorMobile: order.visitorMobile.toString(),
+      qualifications: order.qualifications.toString(),
+      bookTitle: order.suggestedBookTitle.toString(),
+      authorName: order.authorName.toString(),
+      publisherName: order.publisherName.toString(),
+      placeOfPublication: order.placeOfPublication.toString(),
+      yearOfPublication: order.yearOfPublication.toString(),
+      standardBookNumber: order.standardBookNumber.toString(),
+      additionalInformation: order.additionalInformation.toString(),
+    );
+    await getOrderSuggest();
+    alertWithSuccess(Get.context!, "تم إضافة الطلب إلي الأرشيف");
+   Get.to(() => const ArchiveSuggestBuyBookScreen());
+
+
+
+  }
+  Future<void> removeFromArchive(OrderArchive order) async {
+    await archiveCubit.removeFromArchive(
+      id: order.id!,
+      typeBookId: order.bookTypeId!,
+      visitorName: order.visitorName.toString(),
+      visitorEmail: order.visitorEmail.toString(),
+      visitorMobile: order.visitorMobile.toString(),
+      qualifications: order.qualifications.toString(),
+      bookTitle: order.suggestedBookTitle.toString(),
+      authorName: order.authorName.toString(),
+      publisherName: order.publisherName.toString(),
+      placeOfPublication: order.placeOfPublication.toString(),
+      yearOfPublication: order.yearOfPublication.toString(),
+      standardBookNumber: order.standardBookNumber.toString(),
+      additionalInformation: order.additionalInformation.toString(),
+    );
+    await getOrderSuggest();
+    alertWithSuccess(Get.context!, "تم إزلة الطلب من الأرشيف");
+    Get.to(() => const MyOrdersSuggestBuyBookScreen());
+
+
+
+  }
+
 
 
 }

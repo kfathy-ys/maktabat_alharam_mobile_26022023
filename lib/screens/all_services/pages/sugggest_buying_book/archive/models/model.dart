@@ -4,16 +4,18 @@
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
-class OrderSuggestModel extends Equatable{
-  List<OrderModel>? data;
+
+
+class OrderArchiveSuggestModel extends Equatable {
+  List< OrderArchive>? data;
   List<dynamic>? messages;
   int? status;
   int? dataLength;
 
-  OrderSuggestModel({this.data, this.messages, this.status, this.dataLength});
+  OrderArchiveSuggestModel({this.data, this.messages, this.status, this.dataLength});
 
-  OrderSuggestModel.fromJson(Map<String, dynamic> json) {
-    data = json["data"]==null ? null : (json["data"] as List).map((e)=>OrderModel.fromJson(e)).toList();
+  OrderArchiveSuggestModel.fromJson(Map<String, dynamic> json) {
+    data = json["data"]==null ? null : (json["data"] as List).map((e)=> OrderArchive.fromJson(e)).toList();
     messages = json["messages"] ?? [];
     status = json["status"];
     dataLength = json["dataLength"];
@@ -35,7 +37,7 @@ class OrderSuggestModel extends Equatable{
   List<Object?> get props => [data, messages ,status,dataLength];
 }
 
-class OrderModel extends Equatable{
+class  OrderArchive  extends Equatable{
   int? id;
   String? visitorName;
   String? visitorEmail;
@@ -52,12 +54,12 @@ class OrderModel extends Equatable{
   bool? isArchived;
   String? createdBy;
   String? createdDate;
-  dynamic? updatedBy;
-  dynamic? updatedDate;
+  String? updatedBy;
+  String? updatedDate;
 
-  OrderModel({this.id, this.visitorName, this.visitorEmail, this.visitorMobile, this.qualifications, this.suggestedBookTitle, this.authorName, this.publisherName, this.placeOfPublication, this.yearOfPublication, this.standardBookNumber, this.bookTypeId, this.additionalInformation, this.isArchived, this.createdBy, this.createdDate, this.updatedBy, this.updatedDate});
+   OrderArchive({this.id, this.visitorName, this.visitorEmail, this.visitorMobile, this.qualifications, this.suggestedBookTitle, this.authorName, this.publisherName, this.placeOfPublication, this.yearOfPublication, this.standardBookNumber, this.bookTypeId, this.additionalInformation, this.isArchived, this.createdBy, this.createdDate, this.updatedBy, this.updatedDate});
 
-  OrderModel.fromJson(Map<String, dynamic> json) {
+   OrderArchive.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     visitorName = json["visitorName"];
     visitorEmail = json["visitorEmail"];
@@ -125,3 +127,5 @@ class OrderModel extends Equatable{
     ];
   }
 }
+
+

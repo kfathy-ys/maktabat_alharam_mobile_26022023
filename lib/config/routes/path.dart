@@ -50,7 +50,7 @@ class AppPages {
 
     GetPage(
       name:  "/SuggestToBuyBook",
-      page: () =>const SuggestToBuyBook(),
+      page: () => SuggestToBuyBook(),
     ),
     GetPage(
       name:  "/MyOrderReserveArticleResearch",

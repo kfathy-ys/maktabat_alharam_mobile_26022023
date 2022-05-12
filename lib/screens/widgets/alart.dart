@@ -9,6 +9,7 @@ import 'package:edge_alert/edge_alert.dart';
   void alertWithSuccess(context,Object msg, {String desc = ''}) {
     EdgeAlert.show(
       context,
+
       title: msg.toString(),
       icon: FontAwesomeIcons.check,
       backgroundColor: const Color(0xFF4A189B),

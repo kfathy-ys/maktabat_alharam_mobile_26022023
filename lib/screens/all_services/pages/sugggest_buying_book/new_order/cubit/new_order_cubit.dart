@@ -6,6 +6,7 @@ import 'package:maktabat_alharam/config/dio_helper/dio.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/new_order/models/model.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
+import 'package:queen/locators.dart';
 
 part 'new_order_state.dart';
 
