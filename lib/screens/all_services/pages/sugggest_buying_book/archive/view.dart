@@ -113,7 +113,7 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
                     }
                     if (state is ArchiveEmpty) {
                       return Center(
-                          child: customBoldText("لا توجد طلبات الاّن"));
+                          child: customBoldText(title: "لا توجد طلبات الاّن"));
                     }
                     return const SizedBox();
                   },

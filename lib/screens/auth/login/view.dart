@@ -66,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Image.asset('assets/image/kabah.png'),
-                          customBoldText("welcome".tr),
+                          customBoldText(title: "welcome".tr),
                           customLightText("signIn".tr),
                           CustomTextField(
                             dIcon: Icons.email,

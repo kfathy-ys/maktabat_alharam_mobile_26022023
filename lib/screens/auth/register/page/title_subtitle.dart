@@ -9,7 +9,7 @@ class TextTitleSubTitle extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        customBoldText("welcome".tr),
+        customBoldText(title: "welcome".tr),
         customLightText("createNewAccount".tr)
       ],
     );

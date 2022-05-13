@@ -19,4 +19,7 @@ class OrderSuggestError extends OrderSuggestState {
   OrderSuggestError( this.meg);
 }
 
-class OrderSuggestEmpty extends OrderSuggestState {}
+class OrderSuggestEmpty extends OrderSuggestState {
+
+
+}

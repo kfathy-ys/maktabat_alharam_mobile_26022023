@@ -84,9 +84,9 @@ Widget customMeduimBoldText( String? title) {
     )
   );
 }
-Widget customBoldText( String? title) {
+Widget customBoldText( {required String title}) {
   return Text(
-      title!,
+      title,
       style: const TextStyle(
           color: kBlackText, fontSize: 18, fontFamily: 'DinBold'
       )

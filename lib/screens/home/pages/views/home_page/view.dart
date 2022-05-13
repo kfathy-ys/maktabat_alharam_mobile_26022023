@@ -65,7 +65,7 @@ class MyHomeScreen extends StatelessWidget {
                         ],
                       ),
                buildSizedBox(height),
-                Center(child: customBoldText("welcome".tr)),
+                Center(child: customBoldText(title: "welcome".tr)),
                  buildSizedBox(height),
                 const BannerSlider(),
                 token.isNotEmpty ? buildSizedBox(height):const SizedBox(),

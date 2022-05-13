@@ -29,6 +29,13 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
 
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
+   // Future<Null> refreshList() async{
+   //   await apiCall();
+   // }
+   // apiCall(){
+   //   cubit.getOrderSuggest()
+   // }
     return Container(
       color: kAppBarColor,
       child: SafeArea(
@@ -73,70 +80,78 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
                     }
                     if (state is OrderSuggestSuccess) {
                       return Expanded(
-                        child: ListView.builder(
-                        // physics: const NeverScrollableScrollPhysics(),
-                         // shrinkWrap: true,
-                          itemCount: state.orderSuggestModel.data!.length,
-                          itemBuilder: (context, int index) {
-                            return Container(
-                              margin:
-                                  const EdgeInsetsDirectional.only(bottom: 16.0),
-                              padding:
-                                  const EdgeInsetsDirectional.only(bottom: 8.0),
-                              height: height * 0.42,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: kCardBorder)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CardData(
-                                      title: "nameResponsible".tr,
-                                      //  subTitle: "أحمد عبد السلام",
-                                      subTitle: state.orderSuggestModel
-                                          .data![index].visitorName,
-                                      color1: kSmallIconColor,
-                                      color2: kBlackText),
-                                  CardData(
-                                      title: "titleOfBook".tr,
-                                      subTitle: state.orderSuggestModel
-                                          .data![index].suggestedBookTitle,
-                                      color1: kSmallIconColor,
-                                      color2: kSkyButton),
-                                  CardData(
-                                      title: "requestDate".tr,
-                                      subTitle: state.orderSuggestModel
-                                          .data![index].createdDate,
-                                      color1: kSmallIconColor,
-                                      color2: kBlackText),
-                                  CardData(
-                                    title: "orderProcedure".tr,
-                                    subTitle: "",
-                                    color1: kBlackText,
-                                    //  color2: kBlackText
-                                  ),
-                                  CustomCardButton(
-                                    color: kAccentColor,
-                                    title: "updateRequest".tr,
-                                    onPressed: () => Get.to(() =>
-                                        UpdateSuggestToBuyBook(
-                                            order: state
-                                                .orderSuggestModel.data![index])),
-                                    image: "assets/image/update.png",
-                                  ),
-                                  state is! OrderSuggestLoading
-                                      ? CustomCardButton(
-                                          color: kAccentColor,
-                                          title: "addToArchive".tr,
-                                          onPressed: ()=> cubit.addToArchive(state.orderSuggestModel.data![index]),
-                                          image: "assets/image/archieve.png",
-                                        )
-                                      : const LoadingFadingCircle(),
-                                ],
-                              ),
-                            );
+                        child: RefreshIndicator(
+                          onRefresh: () async {
+                           cubit.getOrderSuggest();
+                            return Future<void>.delayed(const Duration(seconds: 3));
                           },
+                          backgroundColor: kAccentColor,
+                          color: Colors.white,
+                          child: ListView.builder(
+                          // physics: const NeverScrollableScrollPhysics(),
+                           // shrinkWrap: true,
+                            itemCount: state.orderSuggestModel.data!.length,
+                            itemBuilder: (context, int index) {
+                              return Container(
+                                margin:
+                                    const EdgeInsetsDirectional.only(bottom: 16.0),
+                                padding:
+                                    const EdgeInsetsDirectional.only(bottom: 8.0),
+                                height: height * 0.42,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: kCardBorder)),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CardData(
+                                        title: "nameResponsible".tr,
+                                        //  subTitle: "أحمد عبد السلام",
+                                        subTitle: state.orderSuggestModel
+                                            .data![index].visitorName,
+                                        color1: kSmallIconColor,
+                                        color2: kBlackText),
+                                    CardData(
+                                        title: "titleOfBook".tr,
+                                        subTitle: state.orderSuggestModel
+                                            .data![index].suggestedBookTitle,
+                                        color1: kSmallIconColor,
+                                        color2: kSkyButton),
+                                    CardData(
+                                        title: "requestDate".tr,
+                                        subTitle: state.orderSuggestModel
+                                            .data![index].createdDate,
+                                        color1: kSmallIconColor,
+                                        color2: kBlackText),
+                                    CardData(
+                                      title: "orderProcedure".tr,
+                                      subTitle: "",
+                                      color1: kBlackText,
+                                      //  color2: kBlackText
+                                    ),
+                                    CustomCardButton(
+                                      color: kAccentColor,
+                                      title: "updateRequest".tr,
+                                      onPressed: () => Get.to(() =>
+                                          UpdateSuggestToBuyBook(
+                                              order: state
+                                                  .orderSuggestModel.data![index])),
+                                      image: "assets/image/update.png",
+                                    ),
+                                    state is! OrderSuggestLoading
+                                        ? CustomCardButton(
+                                            color: kAccentColor,
+                                            title: "addToArchive".tr,
+                                            onPressed: ()=> cubit.addToArchive(state.orderSuggestModel.data![index]),
+                                            image: "assets/image/archieve.png",
+                                          )
+                                        : const LoadingFadingCircle(),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       );
                     }
@@ -145,7 +160,7 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
                     }
                     if (state is OrderSuggestEmpty) {
                       return Center(
-                          child: customBoldText("لا توجد طلبات الاّن"));
+                          child: customBoldText(title: "لا توجد طلبات الاّن"));
                     }
                     return const SizedBox();
                   },
@@ -157,4 +172,6 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
       ),
     );
   }
+
+
 }
