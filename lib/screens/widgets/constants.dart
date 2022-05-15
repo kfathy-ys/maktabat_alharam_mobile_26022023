@@ -92,6 +92,36 @@ Widget customBoldText( {required String title}) {
       )
   );
 }
+void showAlertDialog(BuildContext context , VoidCallback onTap) {
+
+  showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text("الأرشيف"),
+        content: const Text( "تاكد إضافة الطلب إلي الارشيف"),
+        actions: <Widget>[
+          CupertinoDialogAction(
+              isDefaultAction: true,
+              onPressed: (){
+                onTap();
+                Get.back();
+              },
+              child:  Text("yes".tr)
+          ),
+          CupertinoDialogAction(
+              textStyle: const TextStyle(color: Colors.red),
+              isDefaultAction: true,
+              onPressed: () async {
+                Navigator.pop(context);
+               // SharedPreferences prefs = await SharedPreferences.getInstance();
+                //prefs.remove('isLogin');
+                Navigator.pop(context);
+              },
+              child:  Text("no".tr)
+          ),
+        ],
+      ));
+}
 
 Widget customSliderText({required String title , required Color color}) {
   return Text(

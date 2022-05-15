@@ -58,15 +58,27 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
                   title: "SuggestionBuyBook".tr,
                 ),
                 DescriptionBook(description: "headBuyBook".tr),
-                Center(
-                    child: SmallButtonSizer(
-                  onPressed: () {
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SmallButtonSizer(
+                      onPressed: () {
                     Get.to(() => SuggestToBuyBook());
-                  },
-                  title: "addOne".tr,
-                  color: kPrimaryColor,
-                  image: "assets/image/newrequest.png",
-                )),
+                      },
+                      title: "addOne".tr,
+                      color: kSafeAreasColor,
+                      image: "assets/image/newrequest.png",
+                    ),
+                    SmallButtonSizer(
+                      onPressed: () {
+                        Get.to(() => const ArchiveSuggestBuyBookScreen());
+                      },
+                      title: "archive".tr,
+                      color: kAccentColor,
+                      image: "assets/image/archieve.png",
+                    ),
+                  ],
+                ),
                 SizedBox(
                   height: height * 0.03,
                 ),
@@ -143,7 +155,9 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
                                         ? CustomCardButton(
                                             color: kAccentColor,
                                             title: "addToArchive".tr,
-                                            onPressed: ()=> cubit.addToArchive(state.orderSuggestModel.data![index]),
+                                            onPressed: (){
+                                              cubit.addToArchive(state.orderSuggestModel.data![index]);
+                                            },
                                             image: "assets/image/archieve.png",
                                           )
                                         : const LoadingFadingCircle(),

@@ -30,11 +30,11 @@ class SmallButtonSizer extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         height: MediaQuery.of(context).size.height / 15,
-        width: MediaQuery.of(context).size.width / 2.5,
+        width: MediaQuery.of(context).size.width / 2.8,
         decoration: BoxDecoration(
-            color: color == null ? Colors.white : kSafeAreasColor,
+            color: color ?? Colors.white,
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: kPrimaryColor, width: 1.5)),
+            border: Border.all(color: color!, width: 1.5)),
         child: Center(
           child: isLoading != true
               ? Row(

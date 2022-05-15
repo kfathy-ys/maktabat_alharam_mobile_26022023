@@ -94,7 +94,7 @@ class LoginScreen extends StatelessWidget {
                               MaxLength(30),
                             ]),
 
-                            type: TextInputType.phone,
+                            type: TextInputType.text,
                           ),
                           RecoveryWidget(
                             onTap: () => Get.to(() => ForgetPassword()),

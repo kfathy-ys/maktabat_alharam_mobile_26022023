@@ -54,7 +54,7 @@ Widget drawer({required context}) {
                         alignment: Alignment.topLeft,
                         child:
                           Padding(
-                            padding: const EdgeInsetsDirectional.only(top: 25,),
+                            padding: const EdgeInsetsDirectional.only(top: 25,end: 25),
                             child: InkWell(
                                 onTap: () => Get.back(),
                                 child: Image.asset(
@@ -66,7 +66,7 @@ Widget drawer({required context}) {
                       ):Align(
                         alignment: Alignment.topRight,
                         child:  Padding(
-                            padding: const EdgeInsets.only(top: 25,),
+                            padding: const EdgeInsetsDirectional.only(top: 25,start: 25),
                             child: InkWell(
                                 onTap: () => Get.back(),
                                 child: Image.asset(

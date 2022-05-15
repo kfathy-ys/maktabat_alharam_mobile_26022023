@@ -125,6 +125,7 @@ class LocaleString extends Translations {
           "askStaff":"Ask the library staff",
 
           // reserve retreat
+          "archive":"Archive",
           "ReserveArticleOrResearchRetreat": "Book a research retreat",
           "headReserve":
               "It is a service that enables the beneficiary to reserve a designated place in the library, where all office supplies are placed, in order to prepare the beneficiary to complete his research and study and achieve practical.",
@@ -479,6 +480,7 @@ class LocaleString extends Translations {
           "removeFromArchive":"إزالة من الأرشيف",
            "AvailablePeriods":"الفترات المتاحة",
           "kArchive":"(الأرشيف)",
+          "archive":"الأرشيف",
           // إيداع رسالة علمية
           "DepositScientificThesis":"إيداع رسالة علمية",
           "terms":"(الشروط والأحكام)",
