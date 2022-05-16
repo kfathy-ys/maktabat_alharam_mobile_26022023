@@ -83,9 +83,7 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
                   height: height * 0.03,
                 ),
                 BlocConsumer<OrderSuggestCubit, OrderSuggestState>(
-                  listener: (context, state) {
-
-                  },
+                  listener: (context, state) {},
                   builder: (context, state) {
                     if (state is OrderSuggestLoading) {
                       return const LoadingFadingCircle();

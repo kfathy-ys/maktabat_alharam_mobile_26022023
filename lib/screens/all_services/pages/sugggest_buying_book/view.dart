@@ -78,8 +78,6 @@ class SuggestToBuyBook extends StatelessWidget {
                  alertWithErr(context,  state.msg);
               }
 
-
-
             },
             builder: (context, state) {
               final cubit = BlocProvider.of<NewOrderCubit>(context);

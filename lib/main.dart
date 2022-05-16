@@ -7,6 +7,7 @@ import 'package:get/get.dart'as g;
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/cubit/my_order_ask_cubit.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/new_order/cubit/new_order_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/cubit/archive_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/new_order/cubit/new_order_cubit.dart';
@@ -57,6 +58,9 @@ class MaktabatAlharam extends StatelessWidget {
 
         BlocProvider<NewOrderCubit>(
           create: (context) => NewOrderCubit(),
+        ),
+        BlocProvider<NewOrderAskCubit>(
+          create: (context) => NewOrderAskCubit(),
         ),
         BlocProvider<ArchiveCubit>(
           create: (context) => ArchiveCubit(),

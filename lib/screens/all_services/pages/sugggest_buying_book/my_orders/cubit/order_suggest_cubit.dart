@@ -25,14 +25,15 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
     getOrderSuggest();
   }
 
-
   Future<void> getOrderSuggest() async {
     emit(OrderSuggestLoading());
     try {
       final userId = Prefs.getString("userId");
       final res = await NetWork.get('Suggestion/GetAllSuggestions/$userId');
 
-      if (res.data['status'] == 0 || res.data['status'] == -1 || res.statusCode != 200) {
+      if (res.data['status'] == 0 ||
+          res.data['status'] == -1 ||
+          res.statusCode != 200) {
         throw res.data['message'];
       }
 
@@ -63,11 +64,9 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
     );
     await getOrderSuggest();
     alertWithSuccess(Get.context!, "تم إضافة الطلب إلي الأرشيف");
-   Get.to(() => const ArchiveSuggestBuyBookScreen());
-
-
-
+    Get.to(() => const ArchiveSuggestBuyBookScreen());
   }
+
   Future<void> removeFromArchive(OrderArchive order) async {
     await archiveCubit.removeFromArchive(
       id: order.id!,
@@ -87,11 +86,5 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
     await getOrderSuggest();
     alertWithSuccess(Get.context!, "تم إزلة الطلب من الأرشيف");
     Get.to(() => const MyOrdersSuggestBuyBookScreen());
-
-
-
   }
-
-
-
 }

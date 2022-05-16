@@ -18,7 +18,7 @@ class MyOrderAskCubit extends Cubit<MyOrderAskState> {
     emit(MyOrderAskLoading());
     try {
       final userId = Prefs.getString("userId");
-      final res = await NetWork.get('Inquiry/GetArchivedInquiries/$userId');
+      final res = await NetWork.get('Inquiry/GetAllInquiries/$userId');
 
       if (res.data['status'] == 0 || res.data['status'] == -1 || res.statusCode != 200) {
         throw res.data['message'];

@@ -79,8 +79,8 @@ class LocaleString extends Translations {
           //Home page
           "ourServices": "Services",
           "allServices": "All services",
-          "askRelationLibrary": "Ask Library Relations",
-          "askLibrarian": "Ask librarian",
+          "relation": "Ask Library Relations",
+          "specialist": "Ask librarian",
           "libraryExternalServices": "Services outside the Kingdom",
           "SuggestionBuyBook": "Suggestion to buy a book",
           "Inter-LibraryExchangeAndLending":
@@ -121,7 +121,7 @@ class LocaleString extends Translations {
           "entityName": "Entity name",
           "librarian": "Librarian",
           "libraryRelationships": "library relationships",
-          "technicalSupport": "Technical support",
+          "support": "Technical support",
           "askStaff":"Ask the library staff",
 
           // reserve retreat
@@ -352,8 +352,8 @@ class LocaleString extends Translations {
           //Home page
           "ourServices": "خدماتنا",
           "allServices": "جميع الخدمات",
-          "askRelationLibrary": "أسال علاقات المكتبة",
-          "askLibrarian": "أسال أخصائي المكتبة",
+          "relation": "أسال علاقات المكتبة",
+          "specialist": "أسال أخصائي المكتبة",
           "libraryExternalServices": "خدمات خارجي الممكلة",
           "SuggestionBuyBook": "اقتراح شراء كتاب",
           "Inter-LibraryExchangeAndLending": "التبادل والإعارة بين المكتبات",
@@ -392,7 +392,7 @@ class LocaleString extends Translations {
           "entityName": "أسم الجهة",
           "librarian": "أخصائي المكتبة",
           "libraryRelationships": "علاقات المكتبة",
-          "technicalSupport": "الدعم الفني",
+          "support": "الدعم الفني",
           "askStaff":"إسال موظفي المكتبة",
 
           // reserve retreat

@@ -30,12 +30,6 @@ class NewOrderCubit extends Cubit<NewOrderState> {
     required String placeOfPublication,
     required String yearOfPublication,
     required String standardBookNumber,
-
-
-
-
-
-
     required String additionalInformation,
   }) async {
     emit(NewOrderLoading());

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/archive/view.dart';
@@ -53,13 +52,12 @@ class MyOrderAskLibrarian extends StatelessWidget {
                 DescriptionTitle(
                   description: "head".tr,
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     SmallButtonSizer(
                       onPressed: () {
-                      Get.to(() => AskLibrarian());
+                        Get.to(() => AskLibrarian());
                       },
                       title: "addOne".tr,
                       color: kSafeAreasColor,
@@ -67,7 +65,7 @@ class MyOrderAskLibrarian extends StatelessWidget {
                     ),
                     SmallButtonSizer(
                       onPressed: () {
-                      Get.to(() => const ArchiveAskLibrarianScreen());
+                        Get.to(() => const ArchiveAskLibrarianScreen());
                       },
                       title: "archive".tr,
                       color: kAccentColor,
@@ -78,96 +76,104 @@ class MyOrderAskLibrarian extends StatelessWidget {
                 SizedBox(
                   height: height * 0.03,
                 ),
-             BlocConsumer<MyOrderAskCubit ,MyOrderAskState>(
-                 listener: (context ,state){},
-                 builder: (context , state){
-                   if(state is MyOrderAskLoading){
-                  return const LoadingFadingCircle();
-                   }
-                   if(state is MyOrderAskSuccess){
-                     return    Expanded(
-                       child: RefreshIndicator(
-                         onRefresh: () async {
-                           cubit.getOrderAsk();
-                           return Future<void>.delayed(const Duration(seconds: 3));
-                         },
-                         backgroundColor: kAccentColor,
-                         color: Colors.white,
-                         child: ListView.builder(
-                          // physics: const BouncingScrollPhysics(),
-                           //  shrinkWrap: true,
-                           itemCount: state.askOrderModel.data!.length,
-                           itemBuilder: (context, int index) {
-                             return Container(
-                               margin: const EdgeInsetsDirectional.only(bottom: 16.0),
-                               padding: const EdgeInsetsDirectional.only(bottom: 8.0),
-                               height: height * 0.42,
-                               decoration: BoxDecoration(
-                                   borderRadius: BorderRadius.circular(8),
-                                   border: Border.all(color: kCardBorder)),
-                               child: Column(
-                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                 children: [
-                                   CardData(
-                                       title: "requestContent".tr,
-                                       subTitle: state.askOrderModel.data![index].visitorMessage,
-                                       color1: kSmallIconColor,
-                                       color2: kBlackText),
-                                   CardData(
-                                       title: "requestDate".tr,
-                                       subTitle: state.askOrderModel.data![index].createdDate,
-                                       color1: kSmallIconColor,
-                                       color2: kSkyButton),
-                                   CardData(
-                                       title: "الرد علي الطلب".tr,
-                                       subTitle: state.askOrderModel.data![index].response,
-                                       color1: kSmallIconColor,
-                                       color2: kBlackText),
-                                   CardData(
-                                     title: "orderProcedure".tr,
-                                     subTitle: "",
-                                     color1: kBlackText,
-                                     //  color2: kBlackText
-                                   ),
-                                   CustomCardButton(
-                                     color: kAccentColor,
-                                     title: "followRequest".tr,
-                                     onPressed: () =>
-                                         Get.to(() => FollowAnsweringLibrarian()),
-                                     image: "assets/image/fulleyes.png",
-                                   ),
-                                   CustomCardButton(
-                                     color: kAccentColor,
-                                     title: "updateRequest".tr,
-                                     onPressed: () =>
-                                         Get.to(() => UpdatesAskLibrarian()),
-                                     image: "assets/image/update.png",
-                                   ),
-                                   CustomCardButton(
-                                     color: kAccentColor,
-                                     title: "addToArchive".tr,
-                                     onPressed: () =>
-                                         Get.to(() => const ArchiveAskLibrarianScreen()),
-                                     image: "assets/image/archieve.png",
-                                   ),
-                                 ],
-                               ),
-                             );
-                           },
-                         ),
-                       ),
-                     );
-                   }
-                   if(state is MyOrderAskError){
-                     return Center(child: Text(state.msg));
-                   }
-                   if(state is MyOrderAskEmpty){
-                     return Center(
-                         child: customBoldText(title: "لا توجد طلبات الاّن"));
-                   }
-                   return const  SizedBox();
-                 }, ),
+                BlocConsumer<MyOrderAskCubit, MyOrderAskState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    if (state is MyOrderAskLoading) {
+                      return const LoadingFadingCircle();
+                    }
+                    if (state is MyOrderAskSuccess) {
+                      return Expanded(
+                        child: RefreshIndicator(
+                          onRefresh: () async {
+                            cubit.getOrderAsk();
+                            return Future<void>.delayed(
+                                const Duration(seconds: 3));
+                          },
+                          backgroundColor: kAccentColor,
+                          color: Colors.white,
+                          child: ListView.builder(
+                           physics: const BouncingScrollPhysics(),
+                        //   shrinkWrap: true,
+                            itemCount: state.askOrderModel.data!.length,
+                            itemBuilder: (context, int index) {
+                              return Container(
+                                margin: const EdgeInsetsDirectional.only(
+                                    bottom: 16.0),
+                                padding: const EdgeInsetsDirectional.only(
+                                    bottom: 8.0),
+                                height: height * 0.42,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: kCardBorder)),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CardData(
+                                        title: "requestContent".tr,
+                                        subTitle: state.askOrderModel
+                                            .data![index].visitorMessage.toString(),
+                                        color1: kSmallIconColor,
+                                        color2: kBlackText),
+                                    CardData(
+                                        title: "requestDate".tr,
+                                        subTitle: state.askOrderModel
+                                            .data![index].createdDate.toString(),
+                                        color1: kSmallIconColor,
+                                        color2: kSkyButton),
+                                    CardData(
+                                        title: "الرد علي الطلب".tr,
+                                        subTitle: state.askOrderModel
+                                            .data![index].response.toString(),
+                                        color1: kSmallIconColor,
+                                        color2: kBlackText),
+                                    CardData(
+                                      title: "orderProcedure".tr,
+                                      subTitle: "",
+                                      color1: kBlackText,
+                                      //  color2: kBlackText
+                                    ),
+                                    CustomCardButton(
+                                      color: kAccentColor,
+                                      title: "followRequest".tr,
+                                      onPressed: () => Get.to(
+                                          () => FollowAnsweringLibrarian()),
+                                      image: "assets/image/fulleyes.png",
+                                    ),
+                                    CustomCardButton(
+                                      color: kAccentColor,
+                                      title: "updateRequest".tr,
+                                      onPressed: () =>
+                                          Get.to(() => UpdatesAskLibrarian()),
+                                      image: "assets/image/update.png",
+                                    ),
+                                    CustomCardButton(
+                                      color: kAccentColor,
+                                      title: "addToArchive".tr,
+                                      onPressed: () => Get.to(() =>
+                                          const ArchiveAskLibrarianScreen()),
+                                      image: "assets/image/archieve.png",
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      );
+                    }
+                    if (state is MyOrderAskError) {
+                      return Center(child: Text(state.msg));
+                    }
+                    if (state is MyOrderAskEmpty) {
+                      return Center(
+                          child: customBoldText(title: "لا توجد طلبات الاّن"));
+                    }
+                    return const SizedBox();
+                  },
+                ),
               ],
             ),
           ),
@@ -175,6 +181,4 @@ class MyOrderAskLibrarian extends StatelessWidget {
       ),
     );
   }
-
-
 }
