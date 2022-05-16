@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/archive/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/follow_answering_librarian/view.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/cubit/my_order_ask_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/description_title.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
@@ -13,6 +15,7 @@ import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/widgets/loading.dart';
 
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
@@ -23,6 +26,7 @@ class MyOrderAskLibrarian extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<MyOrderAskCubit>(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
@@ -39,8 +43,8 @@ class MyOrderAskLibrarian extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
             height: height,
             width: width,
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
+            child: Column(
+              //physics: const BouncingScrollPhysics(),
               // shrinkWrap: true,
               children: [
                 HeadTopics(
@@ -49,79 +53,121 @@ class MyOrderAskLibrarian extends StatelessWidget {
                 DescriptionTitle(
                   description: "head".tr,
                 ),
-                Center(
-                    child: SmallButtonSizer(
-                  onPressed: () => Get.to(() => AskLibrarian()),
-                  title: "addOne".tr,
-                  color: kPrimaryColor,
-                  image: "assets/image/newrequest.png",
-                )),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SmallButtonSizer(
+                      onPressed: () {
+                      Get.to(() => AskLibrarian());
+                      },
+                      title: "addOne".tr,
+                      color: kSafeAreasColor,
+                      image: "assets/image/newrequest.png",
+                    ),
+                    SmallButtonSizer(
+                      onPressed: () {
+                      Get.to(() => const ArchiveAskLibrarianScreen());
+                      },
+                      title: "archive".tr,
+                      color: kAccentColor,
+                      image: "assets/image/archieve.png",
+                    ),
+                  ],
+                ),
                 SizedBox(
                   height: height * 0.03,
                 ),
-                ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 5,
-                  itemBuilder: (context, int index) {
-                    return Container(
-                      margin: const EdgeInsetsDirectional.only(bottom: 16.0),
-                      padding: const EdgeInsetsDirectional.only(bottom: 8.0),
-                      height: height * 0.42,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: kCardBorder)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CardData(
-                              title: "requestContent".tr,
-                              subTitle: "المكتبة متاحة يوم الجمعة؟",
-                              color1: kSmallIconColor,
-                              color2: kBlackText),
-                          CardData(
-                              title: "requestDate".tr,
-                              subTitle: " Mar 31 , 2022",
-                              color1: kSmallIconColor,
-                              color2: kSkyButton),
-                          CardData(
-                              title: "nameResponsible".tr,
-                              subTitle: "نعم",
-                              color1: kSmallIconColor,
-                              color2: kBlackText),
-                          CardData(
-                            title: "orderProcedure".tr,
-                            subTitle: "",
-                            color1: kBlackText,
-                            //  color2: kBlackText
-                          ),
-                          CustomCardButton(
-                            color: kAccentColor,
-                            title: "followRequest".tr,
-                            onPressed: () =>
-                                Get.to(() => FollowAnsweringLibrarian()),
-                            image: "assets/image/fulleyes.png",
-                          ),
-                          CustomCardButton(
-                            color: kAccentColor,
-                            title: "updateRequest".tr,
-                            onPressed: () =>
-                                Get.to(() => UpdatesAskLibrarian()),
-                            image: "assets/image/update.png",
-                          ),
-                          CustomCardButton(
-                            color: kAccentColor,
-                            title: "addToArchive".tr,
-                            onPressed: () =>
-                                Get.to(() => const ArchiveAskLibrarianScreen()),
-                            image: "assets/image/archieve.png",
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+             BlocConsumer<MyOrderAskCubit ,MyOrderAskState>(
+                 listener: (context ,state){},
+                 builder: (context , state){
+                   if(state is MyOrderAskLoading){
+                  return const LoadingFadingCircle();
+                   }
+                   if(state is MyOrderAskSuccess){
+                     return    Expanded(
+                       child: RefreshIndicator(
+                         onRefresh: () async {
+                           cubit.getOrderAsk();
+                           return Future<void>.delayed(const Duration(seconds: 3));
+                         },
+                         backgroundColor: kAccentColor,
+                         color: Colors.white,
+                         child: ListView.builder(
+                          // physics: const BouncingScrollPhysics(),
+                           //  shrinkWrap: true,
+                           itemCount: state.askOrderModel.data!.length,
+                           itemBuilder: (context, int index) {
+                             return Container(
+                               margin: const EdgeInsetsDirectional.only(bottom: 16.0),
+                               padding: const EdgeInsetsDirectional.only(bottom: 8.0),
+                               height: height * 0.42,
+                               decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(8),
+                                   border: Border.all(color: kCardBorder)),
+                               child: Column(
+                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                 crossAxisAlignment: CrossAxisAlignment.start,
+                                 children: [
+                                   CardData(
+                                       title: "requestContent".tr,
+                                       subTitle: state.askOrderModel.data![index].visitorMessage,
+                                       color1: kSmallIconColor,
+                                       color2: kBlackText),
+                                   CardData(
+                                       title: "requestDate".tr,
+                                       subTitle: state.askOrderModel.data![index].createdDate,
+                                       color1: kSmallIconColor,
+                                       color2: kSkyButton),
+                                   CardData(
+                                       title: "الرد علي الطلب".tr,
+                                       subTitle: state.askOrderModel.data![index].response,
+                                       color1: kSmallIconColor,
+                                       color2: kBlackText),
+                                   CardData(
+                                     title: "orderProcedure".tr,
+                                     subTitle: "",
+                                     color1: kBlackText,
+                                     //  color2: kBlackText
+                                   ),
+                                   CustomCardButton(
+                                     color: kAccentColor,
+                                     title: "followRequest".tr,
+                                     onPressed: () =>
+                                         Get.to(() => FollowAnsweringLibrarian()),
+                                     image: "assets/image/fulleyes.png",
+                                   ),
+                                   CustomCardButton(
+                                     color: kAccentColor,
+                                     title: "updateRequest".tr,
+                                     onPressed: () =>
+                                         Get.to(() => UpdatesAskLibrarian()),
+                                     image: "assets/image/update.png",
+                                   ),
+                                   CustomCardButton(
+                                     color: kAccentColor,
+                                     title: "addToArchive".tr,
+                                     onPressed: () =>
+                                         Get.to(() => const ArchiveAskLibrarianScreen()),
+                                     image: "assets/image/archieve.png",
+                                   ),
+                                 ],
+                               ),
+                             );
+                           },
+                         ),
+                       ),
+                     );
+                   }
+                   if(state is MyOrderAskError){
+                     return Center(child: Text(state.msg));
+                   }
+                   if(state is MyOrderAskEmpty){
+                     return Center(
+                         child: customBoldText(title: "لا توجد طلبات الاّن"));
+                   }
+                   return const  SizedBox();
+                 }, ),
               ],
             ),
           ),

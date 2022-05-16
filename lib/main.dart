@@ -6,6 +6,7 @@ import 'package:get/get.dart'as g;
 
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/cubit/my_order_ask_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/cubit/archive_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/new_order/cubit/new_order_cubit.dart';
@@ -18,6 +19,7 @@ import 'config/routes/path.dart';
 import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 
+import 'screens/all_services/pages/ask_Librarian/archive/cubit/ask_archive_cubit.dart';
 import 'translations/locale key-value.dart';
 
 
@@ -58,7 +60,14 @@ class MaktabatAlharam extends StatelessWidget {
         ),
         BlocProvider<ArchiveCubit>(
           create: (context) => ArchiveCubit(),
-        ),   BlocProvider<OrderSuggestCubit>(
+        ),
+        BlocProvider<MyOrderAskCubit>(
+          create: (context) => MyOrderAskCubit(),
+        ),
+        BlocProvider<AskArchiveCubit>(
+          create: (context) => AskArchiveCubit(),
+        ),
+        BlocProvider<OrderSuggestCubit>(
           create: (context) => OrderSuggestCubit(BlocProvider.of<ArchiveCubit>(context)),
         ),
       ],

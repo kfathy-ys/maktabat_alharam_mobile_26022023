@@ -100,7 +100,7 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
                           backgroundColor: kAccentColor,
                           color: Colors.white,
                           child: ListView.builder(
-                          // physics: const NeverScrollableScrollPhysics(),
+                         physics: const BouncingScrollPhysics(),
                            // shrinkWrap: true,
                             itemCount: state.orderSuggestModel.data!.length,
                             itemBuilder: (context, int index) {
