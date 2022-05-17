@@ -56,7 +56,7 @@ class UpdateOrderCubit extends Cubit<UpdateOrderState> {
   final additionalInfoController = TextEditingController();
   int initial = 0;
 
-  OrderUpdateSuggestModel? orderUpdateSuggestModel;
+  //OrderUpdateSuggestModel? orderUpdateSuggestModel;
   int? typeBookId;
   int onBookTypeChanged(int value)=> typeBookId= value;
 

@@ -39,8 +39,7 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
             height: height,
             width: width,
             child: Column(
-              // physics: const BouncingScrollPhysics(),
-              // shrinkWrap: true,
+
               children: [
                 const HeadTitle(),
                 DescriptionSuggest(description: "headBuyBook".tr),

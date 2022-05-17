@@ -5,22 +5,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:maktabat_alharam/config/dio_helper/dio.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/models/model.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 part 'archive_state.dart';
 
 class ArchiveCubit extends Cubit<ArchiveState> {
-  //final OrderSuggestCubit orderSuggestCubit;
   ArchiveCubit() : super(ArchiveInitial()) {
     getOrderArchiveSuggest();
   }
 
-  OrderArchive? archiveSuggestModel;
-  // int typeBookId;
-  //
-  // int onBookTypeChanged(int value) => typeBookId = value;
+ // OrderArchive? archiveSuggestModel;
+
 
   var userId = Prefs.getString("userId");
 
@@ -94,6 +90,14 @@ class ArchiveCubit extends Cubit<ArchiveState> {
       emit(ArchiveError(msg: e.toString()));
     }
   }
+
+
+
+
+
+
+
+
   Future<void> removeFromArchive({
     required int id,
     required String visitorName,

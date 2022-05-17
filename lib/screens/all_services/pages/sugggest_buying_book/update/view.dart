@@ -27,14 +27,10 @@ import 'package:queen/validation/validator.dart';
 class UpdateSuggestToBuyBook extends StatefulWidget {
   final OrderModel order;
   const UpdateSuggestToBuyBook({Key? key,required this.order}) : super(key: key);
-
   @override
   State<UpdateSuggestToBuyBook> createState() => _UpdateSuggestToBuyBookState();
 }
-
 class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
-
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -72,7 +68,6 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                     key: cubit.formKey,
                     child: ListView(
                       padding: const EdgeInsets.symmetric(vertical: 18),
-
                       physics: const BouncingScrollPhysics(),
                       //  shrinkWrap: true,
                       children: [
@@ -233,8 +228,6 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                             onPressed: () async{
                               if (cubit.formKey.currentState!.validate()) {
                                 await cubit.updatedOrderSuggestBook(
-
-
                                   visitorName: cubit.nameController.text,
                                   visitorEmail: cubit.emailController.text,
                                   visitorMobile: cubit.phoneController.text,
@@ -246,10 +239,6 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                                   yearOfPublication: cubit.yearPublishController.text,
                                   standardBookNumber: cubit.standardNumberController.text,
                                   additionalInformation: cubit.additionalInfoController.text,
-
-
-
-
                                 );
                               }
                             },

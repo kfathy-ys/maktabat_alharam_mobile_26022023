@@ -43,8 +43,7 @@ class MyOrderAskLibrarian extends StatelessWidget {
             height: height,
             width: width,
             child: Column(
-              //physics: const BouncingScrollPhysics(),
-              // shrinkWrap: true,
+
               children: [
                 HeadTopics(
                   title: "askStaff".tr,
@@ -113,6 +112,7 @@ class MyOrderAskLibrarian extends StatelessWidget {
                                   children: [
                                     CardData(
                                         title: "requestContent".tr,
+
                                         subTitle: state.askOrderModel
                                             .data![index].visitorMessage.toString(),
                                         color1: kSmallIconColor,
@@ -146,14 +146,18 @@ class MyOrderAskLibrarian extends StatelessWidget {
                                       color: kAccentColor,
                                       title: "updateRequest".tr,
                                       onPressed: () =>
-                                          Get.to(() => UpdatesAskLibrarian()),
+                                          Get.to(() => UpdatesAskLibrarian(askMyOrder: state
+                                            .askOrderModel.data![index],)),
                                       image: "assets/image/update.png",
                                     ),
                                     CustomCardButton(
                                       color: kAccentColor,
                                       title: "addToArchive".tr,
-                                      onPressed: () => Get.to(() =>
-                                          const ArchiveAskLibrarianScreen()),
+                                      onPressed: () {
+                                        cubit.addToArchiveAsk(state.askOrderModel.data![index]);
+
+
+                                      },
                                       image: "assets/image/archieve.png",
                                     ),
                                   ],

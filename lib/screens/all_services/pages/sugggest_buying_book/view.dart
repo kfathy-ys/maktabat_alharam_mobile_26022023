@@ -90,7 +90,7 @@ class SuggestToBuyBook extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 18),
 
                     physics: const BouncingScrollPhysics(),
-                    //  shrinkWrap: true,
+                      shrinkWrap: true,
                     children: [
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 12),

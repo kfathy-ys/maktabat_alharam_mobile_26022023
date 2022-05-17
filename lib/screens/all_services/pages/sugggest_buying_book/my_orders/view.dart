@@ -30,12 +30,7 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
-   // Future<Null> refreshList() async{
-   //   await apiCall();
-   // }
-   // apiCall(){
-   //   cubit.getOrderSuggest()
-   // }
+
     return Container(
       color: kAppBarColor,
       child: SafeArea(

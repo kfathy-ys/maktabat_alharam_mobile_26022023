@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/archive/cubit/ask_archive_cubit.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/cubit/my_order_ask_cubit.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
 import 'page/views/title.dart';
 import '../my_order/page/views/cardContent.dart';
@@ -20,6 +21,7 @@ class ArchiveAskLibrarianScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubitAskArchive = BlocProvider.of<AskArchiveCubit>(context);
+    final cubit = BlocProvider.of<MyOrderAskCubit>(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
@@ -76,7 +78,7 @@ class ArchiveAskLibrarianScreen extends StatelessWidget {
                                     children: [
                                       CardData(
                                           title: "nameResponsible".tr,
-                                          subTitle: state.askArchivedModel.data![index].visitorName,
+                                          subTitle: state.askArchivedModel.data![index].visitorName.toString(),
                                           color1: kSmallIconColor,
                                           color2: kBlackText),
                                       CardData(
@@ -98,9 +100,10 @@ class ArchiveAskLibrarianScreen extends StatelessWidget {
                                       CustomCardButton(
                                         color: kAccentColor,
                                         title: "removeFromArchive".tr,
-                                        onPressed: () {
-                                          Get.to(() => MyOrderAskLibrarian());
-                                        },
+
+
+                                      onPressed: ()=> cubit.removeFromArchiveAsk(state.askArchivedModel.data![index]),
+
                                         image: "assets/image/archieve.png",
                                       ),
                                     ],
