@@ -2,16 +2,16 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:get/route_manager.dart';
-import 'package:intl/intl.dart';
 import 'package:maktabat_alharam/config/dio_helper/dio.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/cubit/archive_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/models/model.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/models/model.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/view.dart';
-import 'package:maktabat_alharam/screens/widgets/alart.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
+
+import '../../../../../widgets/alerts.dart';
 
 part 'order_suggest_state.dart';
 
@@ -63,7 +63,7 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
       additionalInformation: order.additionalInformation.toString(),
     );
     await getOrderSuggest();
-    alertWithSuccess(Get.context!, "تم إضافة الطلب إلي الأرشيف");
+    Alert.success(  "تم إضافة الطلب إلي الأرشيف");
     Get.to(() => const ArchiveSuggestBuyBookScreen());
   }
 
@@ -84,7 +84,7 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
       additionalInformation: order.additionalInformation.toString(),
     );
     await getOrderSuggest();
-    alertWithSuccess(Get.context!, "تم إزلة الطلب من الأرشيف");
+    Alert.success(  "تم إزلة الطلب من الأرشيف");
     Get.to(() => const MyOrdersSuggestBuyBookScreen());
   }
 }

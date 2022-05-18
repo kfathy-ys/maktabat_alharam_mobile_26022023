@@ -6,6 +6,7 @@ import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/v
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/update/cubit/update_ask_lib_cubit.dart';
 import 'package:maktabat_alharam/screens/widgets/alart.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
+import '../../../../widgets/alerts.dart';
 import '../follow_answering_librarian/page/views/drop_down_items.dart';
 import '../my_order/view.dart';
 import '../page/views/head_topices.dart';
@@ -43,13 +44,13 @@ class UpdatesAskLibrarian extends StatelessWidget {
             child: BlocConsumer<UpdateAskLibCubit, UpdateAskLibState>(
               listener: (context, state) {
                 if (state is UpdateAskLibSuccess) {
-                  alertWithSuccess(context, "تم التعديل بنجاح");
+                  Alert.success( "تم التعديل بنجاح");
 
                   BlocProvider.of<MyOrderAskCubit>(context).getOrderAsk();
                   Get.to(()=>MyOrderAskLibrarian());
                 }
                 if (state is UpdateAskLibError) {
-                  alertWithErr(context, state.msg.toString());
+                  Alert.error( state.msg.toString());
                 }
               },
               builder: (context, state) {

@@ -5,7 +5,6 @@ import 'package:maktabat_alharam/screens/auth/forget_password/view.dart';
 import 'package:maktabat_alharam/screens/auth/login/page/recovery_password.dart';
 import 'package:maktabat_alharam/screens/auth/register/view.dart';
 import 'package:maktabat_alharam/screens/home/view.dart';
-import 'package:maktabat_alharam/screens/widgets/alart.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:maktabat_alharam/screens/widgets/customButton.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
@@ -19,6 +18,7 @@ import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/text/min_length.dart';
 import 'package:queen/validation/validator.dart';
 
+import '../../widgets/alerts.dart';
 import 'cubit/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -42,11 +42,11 @@ class LoginScreen extends StatelessWidget {
             listener: (context, state) {
               if (state is LoginSuccess) {
 
-               alertWithSuccess(context, state.model.messages.toString());
+                Alert.success(  state.model.messages.toString());
 
                 Get.offAll(() =>  HomeTabScreen(userId: state.model.data!.userId!.toString(),));
               } else if (state is LoginError ) {
-                alertWithErr(context, state.msg.toString());
+                Alert.error( state.msg.toString());
 
               }
             },

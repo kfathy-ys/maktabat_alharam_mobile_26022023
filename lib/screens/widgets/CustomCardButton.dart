@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:legacy_buttons/LegacyRaisedButton.dart';
 
 import 'constants.dart';
 
@@ -23,7 +24,7 @@ class CustomCardButton extends StatelessWidget {
       margin: const EdgeInsets.symmetric( horizontal: 14),
       height: MediaQuery.of(context).size.height / 14,
       width: MediaQuery.of(context).size.width / 1.2,
-      child: RaisedButton(
+      child: LegacyRaisedButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

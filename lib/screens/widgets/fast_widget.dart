@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:html/parser.dart';
 
-void showSnackBar({
+/*void showSnackBar({
   @required String? text,
   VoidCallback? press,
   @required GlobalKey<ScaffoldState>? scaffoldKey,
@@ -31,7 +31,7 @@ void showSnackBar({
           : null,
     ),
   );
-}
+}*/
 
 void navigateTo(context, widget) => Navigator.push(
       context,
@@ -104,7 +104,7 @@ Widget defaultButton({
           radius,
         ),
       ),
-      child: FlatButton(
+      child: TextButton(
         onPressed: function,
         child: Text(
           toUpper ? text!.toUpperCase() : text!,

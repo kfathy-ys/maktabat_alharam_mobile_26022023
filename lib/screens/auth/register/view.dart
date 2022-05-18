@@ -11,6 +11,7 @@ import 'package:maktabat_alharam/screens/widgets/customButton.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/donotHave.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
+import '../../widgets/alerts.dart';
 import 'cubit/register_cubit.dart';
 import 'page/back_icon.dart';
 import 'package:queen/validation/it/is_email.dart';
@@ -49,11 +50,12 @@ class SignUpScreen extends StatelessWidget {
               //Prefs.setString('token', state.registerModel.);
             //  Get.offAll(() =>  LoginScreen());
               Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                  LoginScreen()), (Route<dynamic> route) => false);              alertWithSuccess(context, 'تم تسجيل بنجاح');
+                  LoginScreen()), (Route<dynamic> route) => false);
+              Alert.success(  'تم تسجيل بنجاح');
 
 
             } else if (state is RegisterError) {
-              alertWithErr(context, state.msg);
+              Alert.error(  state.msg);
             }
           }, builder: (context, state) {
             final cubit = BlocProvider.of<RegisterCubit>(context);

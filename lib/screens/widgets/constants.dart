@@ -8,7 +8,8 @@ import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_m
 import 'package:queen/core/helpers/prefs.dart';
 
 const kPrimaryColor = Color(0xFF258270);
-//const kSecondaryColor = Color(0xFF21927E);
+
+const kSuccessAlertColor = Color(0xFF000080);
 const Color kTextColor = Color(0xFF21927E);
 const Color kSafeAreaColor = Color(0xFF186C5C);
 const Color kAccentColor = Color(0xFFCBB176);

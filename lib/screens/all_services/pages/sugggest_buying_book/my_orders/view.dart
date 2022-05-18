@@ -22,15 +22,11 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
   const MyOrdersSuggestBuyBookScreen({
     Key? key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
    final cubit = BlocProvider.of<OrderSuggestCubit>(context);
-
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
-
     return Container(
       color: kAppBarColor,
       child: SafeArea(
@@ -46,8 +42,8 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
             height: height,
             width: width,
             child: Column(
-              // physics: const BouncingScrollPhysics(),
-              // shrinkWrap: true,
+              crossAxisAlignment: CrossAxisAlignment.start,
+
               children: [
                 HeadTopics(
                   title: "SuggestionBuyBook".tr,
@@ -92,11 +88,13 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
                           },
                           backgroundColor: kAccentColor,
                           color: Colors.white,
-                          child: ListView.builder(
-                         physics: const BouncingScrollPhysics(),
+                          child: state.orderSuggestModel.data!.isEmpty ?
+                           Center(child: customBoldText(title: "لا توجد طلبات الاّن")):ListView.builder(
+                           physics: const BouncingScrollPhysics(),
                            // shrinkWrap: true,
                             itemCount: state.orderSuggestModel.data!.length,
                             itemBuilder: (context, int index) {
+                              print("Success");
                               return Container(
                                 margin:
                                     const EdgeInsetsDirectional.only(bottom: 16.0),
@@ -166,6 +164,7 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
                       return Center(child: Text(state.meg));
                     }
                     if (state is OrderSuggestEmpty) {
+                      print("Empty");
                       return Center(
                           child: customBoldText(title: "لا توجد طلبات الاّن"));
                     }

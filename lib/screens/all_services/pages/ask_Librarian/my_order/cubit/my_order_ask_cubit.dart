@@ -12,6 +12,8 @@ import 'package:maktabat_alharam/screens/widgets/alart.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
+import '../../../../../widgets/alerts.dart';
+
 part 'my_order_ask_state.dart';
 
 class MyOrderAskCubit extends Cubit<MyOrderAskState> {
@@ -51,7 +53,7 @@ class MyOrderAskCubit extends Cubit<MyOrderAskState> {
       type: order.type!,
     );
     await getOrderAsk();
-    alertWithSuccess(Get.context!, "تم إضافة الطلب إلي الأرشيف");
+    Alert.success( "تم إضافة الطلب إلي الأرشيف");
     Get.to(() => const ArchiveAskLibrarianScreen());
   }
 
@@ -65,7 +67,7 @@ class MyOrderAskCubit extends Cubit<MyOrderAskState> {
       type: order.type!,
     );
     await getOrderAsk();
-    alertWithSuccess(Get.context!, "تم إزلة الطلب من الأرشيف");
+    Alert.success( "تم إزلة الطلب من الأرشيف");
 Get.to(() =>  MyOrderAskLibrarian());
   }
 }

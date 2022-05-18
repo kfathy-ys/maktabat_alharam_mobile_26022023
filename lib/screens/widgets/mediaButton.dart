@@ -11,6 +11,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:legacy_buttons/LegacyRaisedButton.dart';
 
 import 'constants.dart';
 
@@ -28,7 +29,7 @@ class MediaButton extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
           height: MediaQuery.of(context).size.height / 15,
           width: MediaQuery.of(context).size.width / 1.7,
-    child: RaisedButton(
+    child: LegacyRaisedButton(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

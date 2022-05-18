@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:legacy_buttons/LegacyRaisedButton.dart';
 
 import 'constants.dart';
 
@@ -19,7 +20,8 @@ class CustomButton extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
      height: MediaQuery.of(context).size.height / 14,
      width: MediaQuery.of(context).size.width / 1.2,
-      child: RaisedButton(
+      child: LegacyRaisedButton(
+
        padding:const EdgeInsetsDirectional.only(bottom: 6.0,),
 
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -41,6 +43,8 @@ class CustomButton extends StatelessWidget {
                     size: 20,
                     color: Colors.white,
                   ),
+
+
           ],
         ),
         color: color ?? kPrimaryColor,

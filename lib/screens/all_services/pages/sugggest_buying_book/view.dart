@@ -21,6 +21,7 @@ import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
 
+import '../../../widgets/alerts.dart';
 import 'my_orders/cubit/order_suggest_cubit.dart';
 import 'my_orders/view.dart';
 
@@ -69,13 +70,13 @@ class SuggestToBuyBook extends StatelessWidget {
           body: BlocConsumer<NewOrderCubit, NewOrderState>(
             listener: (context, state) {
                if(state is NewOrderSuccess){
-                 alertWithSuccess(context, "تم إضافة طلبك بنجاح");
+                 Alert.success(  "تم إضافة طلبك بنجاح");
                  BlocProvider.of<OrderSuggestCubit>(context).getOrderSuggest();
                  Get.off(
                          () => const MyOrdersSuggestBuyBookScreen());
                }
                else if (state is NewOrderError){
-                 alertWithErr(context,  state.msg);
+                 Alert.error(  state.msg);
               }
 
             },

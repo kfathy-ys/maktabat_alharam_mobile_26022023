@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/models/model.dart';
 import 'package:maktabat_alharam/screens/widgets/alart.dart';
+import '../../../../widgets/alerts.dart';
 import '../../ask_Librarian/page/views/head_topices.dart';
 
 import '../my_orders/view.dart';
@@ -50,12 +51,12 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
             child: BlocConsumer<UpdateOrderCubit, UpdateOrderState>(
               listener: (context, state) {
                 if (state is UpdateOrderSuccess) {
-                  alertWithSuccess(context, "تم التعديل بنجاح");
+                  Alert.success(  "تم التعديل بنجاح");
                   BlocProvider.of<OrderSuggestCubit>(context).getOrderSuggest();
                   Get.offAll(()=> const MyOrdersSuggestBuyBookScreen());
                 }
                 if (state is UpdateOrderError) {
-                  alertWithErr(context, state.msg.toString());
+                  Alert.error( state.msg.toString());
                 }
               },
               builder: (context, state) {

@@ -18,6 +18,7 @@ import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
 
 import 'package:queen/validation.dart';
 
+import '../../../widgets/alerts.dart';
 import 'page/views/drop_down_order_ask_type.dart';
 
 // ignore: must_be_immutable
@@ -47,11 +48,11 @@ class AskLibrarian extends StatelessWidget {
           body: BlocConsumer<NewOrderAskCubit, NewOrderState>(
             listener: (context, state) {
               if (state is NewOrderSuccess) {
-                alertWithSuccess(context, "تم إضافة طلبك بنجاح");
+                Alert.success( "تم إضافة طلبك بنجاح");
                 BlocProvider.of<MyOrderAskCubit>(context).getOrderAsk();
               Get.off(() => MyOrderAskLibrarian());
               } else if (state is NewOrderError) {
-                alertWithErr(context, state.msg);
+                Alert.error( state.msg);
               }
             },
             builder: (context, state) {
