@@ -139,7 +139,7 @@ class MyOrderAskLibrarian extends StatelessWidget {
                                       color: kAccentColor,
                                       title: "followRequest".tr,
                                       onPressed: () => Get.to(
-                                          () => FollowAnsweringLibrarian()),
+                                          () => FollowAnsweringLibrarian(askMyOrder:state.askOrderModel.data![index] ,)),
                                       image: "assets/image/fulleyes.png",
                                     ),
                                     CustomCardButton(
