@@ -10,7 +10,6 @@ import 'package:maktabat_alharam/screens/widgets/customButton.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/donotHave.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
-import 'package:queen/core/helpers/prefs.dart';
 import 'package:queen/validation/it/is_email.dart';
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';

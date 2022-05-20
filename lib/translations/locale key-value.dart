@@ -112,7 +112,7 @@ class LocaleString extends Translations {
           "changeLang": "Change language",
           "choosePreferredLanguage": "Choose your preferred language",
           // Ask librarian
-
+"response":"Response",
           "head":
               "It is a service of communication between the library and its beneficiaries and inquiring about information about the library, such as: library working hours - coordination and prior arrangement for holding a symposium, discussion circle, lectures or workshops",
           "question": "Question text",
@@ -274,7 +274,9 @@ class LocaleString extends Translations {
              "more":"More",
           "AvailablePeriods":"Available periods",
 
-
+          "pending":"Pending",
+          "unRespond":"UnRespond",
+          "rejected":"Rejected"
 
         },
         'ar_EG': {
@@ -370,6 +372,8 @@ class LocaleString extends Translations {
               "لتعرف علي جميع الجدمات  يرجي تسجيل الدخول",
           "readAndLearn": "أقرأ .. تعلم ",
           // Profile
+
+          "response":"الرد علي الطلب",
            "arabicFullName":"الإسم باللغة العربية",
           "camera": "الكاميرة",
           "gallery": "الاستوديو",
@@ -546,8 +550,10 @@ class LocaleString extends Translations {
           "filSelection":"إختيار ملف",
           "downloadFile":"تنزيل ملف",
           "contentPlus":"المحتوي + 25% من الرسالة",
-            "titleMessage":"هي خدمة تمكن طلاب الدراسات العليا داخل وخارج المملكة من إيداع رسالتهم العلمية للمكتبة وفق الشروط التي تحفظ حقوق الملكية الفكرية للمؤلف"
-
+            "titleMessage":"هي خدمة تمكن طلاب الدراسات العليا داخل وخارج المملكة من إيداع رسالتهم العلمية للمكتبة وفق الشروط التي تحفظ حقوق الملكية الفكرية للمؤلف",
+"pending":"قيد الإنتظار",
+          "unRespond":"لم يتم الرد",
+          "rejected":"تم رفض الطلب"
 
         }
       };

@@ -18,10 +18,11 @@ class CreateOrderModel  extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["data"] = this.data;
-    if(messages != null)
+    if(messages != null) {
       data["messages"] = messages;
+    }
     data["status"] = status;
     data["dataLength"] = dataLength;
     return data;

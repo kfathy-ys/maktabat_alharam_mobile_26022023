@@ -126,7 +126,7 @@ class MyOrderAskLibrarian extends StatelessWidget {
                                           color1: kSmallIconColor,
                                           color2: kSkyButton),
                                       CardData(
-                                          title: "الرد علي الطلب".tr,
+                                          title: "response".tr,
                                           subTitle: state.askOrderModel
                                               .data![index].response.toString(),
                                           color1: kSmallIconColor,

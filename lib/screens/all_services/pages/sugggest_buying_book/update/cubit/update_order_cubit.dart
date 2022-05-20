@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:maktabat_alharam/config/dio_helper/dio.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/models/model.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/update/models/model.dart';
-import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 part 'update_order_state.dart';

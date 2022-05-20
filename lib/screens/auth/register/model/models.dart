@@ -52,7 +52,7 @@ class Messages extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["code"] = code;
     data["body"] = body;
     data["title"] = title;

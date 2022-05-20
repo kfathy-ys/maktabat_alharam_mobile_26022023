@@ -21,6 +21,7 @@ import 'config/themes/theme_cubit/switch_cubit.dart';
 import 'config/themes/theme_cubit/switch_state.dart';
 
 import 'screens/all_services/pages/ask_Librarian/archive/cubit/ask_archive_cubit.dart';
+import 'screens/all_services/pages/request_visit/my_orders/cubit/visit_order_cubit.dart';
 import 'translations/locale key-value.dart';
 
 
@@ -74,7 +75,14 @@ class MaktabatAlharam extends StatelessWidget {
         ),
         BlocProvider<OrderSuggestCubit>(
           create: (context) => OrderSuggestCubit(BlocProvider.of<ArchiveCubit>(context)),
+
+
         ),
+
+        BlocProvider<VisitOrderCubit>(
+          create: (context) => VisitOrderCubit(),
+        ),
+
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
         builder: (context, state) {

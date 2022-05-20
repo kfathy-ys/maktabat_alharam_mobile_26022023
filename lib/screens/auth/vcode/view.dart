@@ -68,6 +68,7 @@ class _VCodeScreenState extends State<VCodeScreen> {
                       if (value!.isEmpty) {
                         return "Please enter a verify code";
                       }
+                      return null;
                     },
                     type: TextInputType.emailAddress,
 

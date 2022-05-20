@@ -16,7 +16,6 @@ import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
 
 import 'cubit/follow_cubit.dart';
-import 'page/views/drop_down_items.dart';
 
 // ignore: must_be_immutable
 class FollowAnsweringLibrarian extends StatelessWidget {

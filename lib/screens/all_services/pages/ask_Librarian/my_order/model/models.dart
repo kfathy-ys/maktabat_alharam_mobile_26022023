@@ -20,11 +20,13 @@ class AskOrderModel extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if(this.data != null)
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if(this.data != null) {
       data["data"] = this.data?.map((e)=>e.toJson()).toList();
-    if(messages != null)
+    }
+    if(messages != null) {
       data["messages"] = messages;
+    }
     data["status"] = status;
     data["dataLength"] = dataLength;
     return data;
@@ -67,7 +69,7 @@ class AskMyOrder extends Equatable{
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["type"] = type;
     data["visitorName"] = visitorName;

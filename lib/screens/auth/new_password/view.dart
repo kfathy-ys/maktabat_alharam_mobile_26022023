@@ -47,6 +47,7 @@ class NewPasswordScreen extends StatelessWidget {
                       if (value!.isEmpty) {
                         return "Please enter a new password";
                       }
+                      return null;
                     },
                     type: TextInputType.phone,
 
@@ -62,6 +63,7 @@ class NewPasswordScreen extends StatelessWidget {
                       if (value!.isEmpty) {
                         return "Please enter confirm password";
                       }
+                      return null;
                     },
                     type: TextInputType.phone,
 

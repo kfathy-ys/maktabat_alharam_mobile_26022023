@@ -15,7 +15,6 @@ import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
 import 'package:maktabat_alharam/screens/widgets/pick_image.dart';
 import 'package:maktabat_alharam/screens/widgets/profile_pick_image.dart';
 import 'package:queen/validation.dart';
-import 'package:queen/validation/validator.dart';
 
 class ProfileScreen extends StatefulWidget {
 

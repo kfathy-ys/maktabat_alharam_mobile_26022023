@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:maktabat_alharam/screens/auth/register/page/title_subtitle.dart';
 
-import 'package:maktabat_alharam/screens/widgets/alart.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customButton.dart';

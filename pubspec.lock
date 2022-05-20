@@ -151,9 +151,11 @@ packages:
   device_preview:
     dependency: "direct main"
     description:
-      name: device_preview
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: device_preview
+      ref: HEAD
+      resolved-ref: "73c91514e5ab092bb7f911acc8a447e07e751120"
+      url: "https://github.com/monkeydaichan/flutter_device_preview.git"
+    source: git
     version: "1.0.0"
   dio:
     dependency: "direct main"

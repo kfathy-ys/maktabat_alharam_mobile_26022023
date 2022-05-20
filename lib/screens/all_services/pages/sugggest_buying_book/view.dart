@@ -5,7 +5,6 @@ import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book
 
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/page/drop_down_book_type.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
-import 'package:maktabat_alharam/screens/widgets/alart.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -14,7 +13,6 @@ import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-import 'package:queen/core/helpers/prefs.dart';
 
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';

@@ -52,6 +52,7 @@ class SettingsScreen extends StatelessWidget{
                   if (value!.isEmpty) {
                     return "Please enter your county";
                   }
+                  return null;
                 },
                 type: TextInputType.name,
               ),
@@ -63,6 +64,7 @@ class SettingsScreen extends StatelessWidget{
                    if (value!.isEmpty) {
                      return "Please enter your county";
                    }
+                   return null;
                  },
                  type: TextInputType.emailAddress,
                ),
@@ -75,6 +77,7 @@ class SettingsScreen extends StatelessWidget{
                    if (value!.isEmpty) {
                      return "Please enter your phone";
                    }
+                   return null;
                  },
                  type: TextInputType.phone,
 
@@ -87,6 +90,7 @@ class SettingsScreen extends StatelessWidget{
                    if (value!.isEmpty) {
                      return "Please enter your county";
                    }
+                   return null;
                  },
                  type: TextInputType.text,
                ),
@@ -99,6 +103,7 @@ class SettingsScreen extends StatelessWidget{
                    if (value!.isEmpty) {
                      return "Please enter Access no.";
                    }
+                   return null;
                  },
                  type: TextInputType.number,
                ),
@@ -111,6 +116,7 @@ class SettingsScreen extends StatelessWidget{
                    if (value!.isEmpty) {
                      return "Please enter your password";
                    }
+                   return null;
                  },
                  type: TextInputType.phone,
                ),

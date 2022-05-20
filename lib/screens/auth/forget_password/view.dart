@@ -58,6 +58,7 @@ class ForgetPassword extends StatelessWidget {
                       if (value!.isEmpty) {
                         return "Please enter your email";
                       }
+                      return null;
                     },
                     type: TextInputType.emailAddress,
 

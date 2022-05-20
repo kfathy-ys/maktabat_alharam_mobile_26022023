@@ -43,7 +43,7 @@ class FollowRequestVisitScreen extends StatelessWidget {
             width: width,
             child: ListView(
               physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
+             // shrinkWrap: true,
               children: [
                 HeadTopics(
                   title: "orderFollowUp".tr,
