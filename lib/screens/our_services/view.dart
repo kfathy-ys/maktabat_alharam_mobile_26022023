@@ -10,9 +10,10 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class OurServicesScreen extends StatelessWidget {
   final String? userId;
+
   OurServicesScreen({Key? key, this.userId}) : super(key: key);
 
- // OurServicesContent services = OurServicesContent();
+  // OurServicesContent services = OurServicesContent();
   OurServicesGridCard ourServicesGridCard = OurServicesGridCard();
 
   @override
@@ -30,13 +31,17 @@ class OurServicesScreen extends StatelessWidget {
               context: context),
           body: ListView(
             physics: const BouncingScrollPhysics(),
-           // shrinkWrap: true,
+            // shrinkWrap: true,
             //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: height*0.02,),
+              SizedBox(
+                height: height * 0.02,
+              ),
               const Center(child: HeadTitle()),
-              SizedBox(height: height*0.02,),
-             // const SubHeadTitle(),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              // const SubHeadTitle(),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -51,12 +56,18 @@ class OurServicesScreen extends StatelessWidget {
                             mainAxisSpacing: 10),
                     itemCount: ourServicesGridCard.ourServicesGrid.length,
                     itemBuilder: (BuildContext ctx, index) {
-
-
                       return InkWell(
-                        onTap: (){
+                        onTap: () {
+                          // if( userId == null){
+                          //   if( (ourServicesGridCard.ourServicesGrid[index].id == 0) ||
+                          //       (ourServicesGridCard.ourServicesGrid[index].id == 1) ||
+                          //       (ourServicesGridCard.ourServicesGrid[index].id == 4)){
+                          //     onWillPopSignIn(context);
+                          //   }
+                          // }else if ( userId != null) {
+                          //   Get.toNamed(ourServicesGridCard.ourServicesGrid[index].routeName);
+                          // }
                           Get.toNamed(ourServicesGridCard.ourServicesGrid[index].routeName);
-
                         },
                         child: CardGridContent(
                             fontTitle: 18,

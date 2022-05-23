@@ -134,7 +134,7 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                                           color1: kSmallIconColor,
                                           color2: kSkyButton),
                                       CardData(
-                                          title: "response".tr,
+                                          title: "requestState".tr,
                                           subTitle:
                                           ((state.allOrderVisitModel.data![index].requestStatusId)==4)? "pending".tr:
                                           ((state.allOrderVisitModel.data![index].requestStatusId)==5)? "unRespond".tr:
@@ -164,8 +164,11 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                                       CustomCardButton(
                                         color: kAccentColor,
                                         title: "addToArchive".tr,
-                                        onPressed: () =>
-                                            Get.to(() => const ArchiveRequestToVisitScreen()),
+
+                                        onPressed: () {
+                                         cubit.addToArchiveVisit(state.allOrderVisitModel.data![index]);
+                                        //  Get.to(() => const ArchiveRequestToVisitScreen());
+                                        },
                                         image: "assets/image/archieve.png",
                                       ),
                                     ],

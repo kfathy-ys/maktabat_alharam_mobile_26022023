@@ -18,6 +18,7 @@ class OurServicesContent {
     ),
 */
     OurServicesModel(
+      id:0 ,
       routeName: "/MyOrdersScientificMessage",
       title: "RequestDepositScientificThesis".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -45,6 +46,7 @@ class OurServicesContent {
       ),
     ),*/
     OurServicesModel(
+      id:1 ,
       routeName: "/MyOrderReserveArticleResearch",
 
       title: "RequestReserveArticleOrResearchRetreat".tr,
@@ -53,6 +55,7 @@ class OurServicesContent {
           color: kSmallIconColor),
     ),
     OurServicesModel(
+      id:2 ,
       routeName: "/MyOrderAskLibrarian",
 
       title: "askStaff".tr,
@@ -61,6 +64,7 @@ class OurServicesContent {
           color: kSmallIconColor),
     ),
     OurServicesModel(
+      id:3 ,
       routeName: "/MyOrdersSuggestBuyBookScreen",
 
 
@@ -74,6 +78,7 @@ class OurServicesContent {
       ),
     ),
     OurServicesModel(
+      id:4 ,
       routeName: "/MyOrderRequestVisitScreen",
 
       title: "RequestVisit".tr,
@@ -145,6 +150,7 @@ class OurServicesGridCard {
     ),
 */
     OurServicesModel(
+      id:0 ,
       routeName: "/MyOrdersScientificMessage",
       title: "RequestDepositScientificThesis".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -172,6 +178,7 @@ class OurServicesGridCard {
       ),
     ),*/
     OurServicesModel(
+      id:1 ,
       routeName: "/MyOrderReserveArticleResearch",
 
       title: "RequestReserveArticleOrResearchRetreat".tr,
@@ -180,6 +187,7 @@ class OurServicesGridCard {
           color: kSmallIconColor),
     ),
     OurServicesModel(
+      id:2 ,
       routeName: "/MyOrderAskLibrarian",
 
       title: "askStaff".tr,
@@ -188,6 +196,7 @@ class OurServicesGridCard {
           color: kSmallIconColor),
     ),
     OurServicesModel(
+      id:3 ,
       routeName: "/MyOrdersSuggestBuyBookScreen",
 
 
@@ -201,6 +210,7 @@ class OurServicesGridCard {
       ),
     ),
     OurServicesModel(
+      id:4 ,
       routeName: "/MyOrderRequestVisitScreen",
 
       title: "RequestVisit".tr,

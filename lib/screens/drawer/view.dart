@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/about_library/view.dart';
 import 'package:maktabat_alharam/screens/drawer/page/contect_us/view.dart';
+import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/my_orders/view.dart';
+import 'package:maktabat_alharam/screens/home/view.dart';
 import 'package:maktabat_alharam/screens/our_services/view.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'page/languages/view.dart';
@@ -14,8 +16,6 @@ import 'package:maktabat_alharam/screens/widgets/constants.dart';
 // double width = MediaQuery.of(context).size.width;
 Widget drawer({required context}) {
   return
-      // context.locale == Locale('en', 'US')
-      //   ?
       Container(
           margin: const EdgeInsets.only(bottom: 40, top: 65),
           child: Drawer(
@@ -44,11 +44,9 @@ Widget drawer({required context}) {
                   /// Todo :::   width: MediaQuery.of(context).size.width - 122,
                   width: MediaQuery.of(context).size.width - 122,
                   child: ListView(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
                     children: [
-
-
-
-
                       Get.locale == const Locale('ar','EG') ?
                       Align(
                         alignment: Alignment.topLeft,
@@ -78,6 +76,13 @@ Widget drawer({required context}) {
                           ),
 
                       ),
+                      listTile(
+                          onTap: () {
+                            Get.back();
+                            Get.to(()=> const HomeTabScreen());
+                          },
+                          title: 'home'.tr,
+                          image: 'assets/image/QuestionCircleFill.png'),
                       listTile(
                           onTap: () {
                             Get.back();

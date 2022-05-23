@@ -58,7 +58,7 @@ class BannerSlider extends StatelessWidget {
           viewportFraction: 0.45,
           initialPage: 0,
           enableInfiniteScroll: true,
-          reverse: true,
+          reverse: false,
           autoPlay: true,
           autoPlayInterval: const Duration(seconds: 3),
           autoPlayAnimationDuration: const Duration(milliseconds: 800),

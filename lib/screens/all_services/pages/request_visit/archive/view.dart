@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/archive/page/views/title.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_visit/my_orders/cubit/visit_order_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/my_orders/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
@@ -12,8 +13,8 @@ import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 
 import '../../../../widgets/loading.dart';
-import '../cubit/my_archive_visit_cubit.dart';
 import '../my_orders/page/custom_container.dart';
+import 'cubit/my_archive_visit_cubit.dart';
 
 
 class ArchiveRequestToVisitScreen extends StatelessWidget {
@@ -24,7 +25,9 @@ class ArchiveRequestToVisitScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    final cubit = BlocProvider.of<MyArchiveVisitCubit>(context);
+    final cubitVisitArchive = BlocProvider.of<MyArchiveVisitCubit>(context);
+
+    final cubit = BlocProvider.of<VisitOrderCubit>(context);
     return Container(
       color: kAppBarColor,
       child: SafeArea(
@@ -55,7 +58,7 @@ class ArchiveRequestToVisitScreen extends StatelessWidget {
                          return Expanded(
                            child: RefreshIndicator(
                                onRefresh: () async {
-                                 cubit.getOrderArchiveVisit();
+                                 cubitVisitArchive.getOrderArchiveVisit();
                                  return Future<void>.delayed(const Duration(seconds: 3));
                                },
                                backgroundColor: kAccentColor,
@@ -88,7 +91,7 @@ class ArchiveRequestToVisitScreen extends StatelessWidget {
                                            color1: kSmallIconColor,
                                            color2: kSkyButton),
                                        CardData(
-                                           title: "response".tr,
+                                           title: "requestState".tr,
                                            subTitle:
                                            ((state.archiveVisitModel.data![index].requestStatusId)==4)? "pending".tr:
                                            ((state.archiveVisitModel.data![index].requestStatusId)==5)? "unRespond".tr:
@@ -104,10 +107,11 @@ class ArchiveRequestToVisitScreen extends StatelessWidget {
                                        CustomCardButton(
                                          color: kAccentColor,
                                          title: "removeFromArchive".tr,
-                                         onPressed: () {
-                                           Get.to(() => const MyOrderRequestVisitScreen());
-                                         },
-                                         //  icon:  Icons.visibility_outlined
+
+                                           onPressed: ()=> cubit.removeFromArchiveVisit(state.archiveVisitModel.data![index]),
+
+
+
                                          image: "assets/image/archieve.png",
                                        ),
                                      ],

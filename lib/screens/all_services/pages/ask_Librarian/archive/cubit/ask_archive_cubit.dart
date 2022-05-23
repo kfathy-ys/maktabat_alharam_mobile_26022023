@@ -15,7 +15,6 @@ class AskArchiveCubit extends Cubit<AskArchiveState> {
   }
 
   var userId = Prefs.getString("userId");
- // AskArchiveData? askArchivedModel;
 
   Future<void> getAskArchive() async {
     emit(AskArchiveLoading());

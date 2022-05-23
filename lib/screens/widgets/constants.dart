@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/view.dart';
+import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 const kPrimaryColor = Color(0xFF258270);
@@ -407,6 +408,60 @@ Future<bool> onWillPop(BuildContext context) async {
             textStyle: const TextStyle(color: Colors.red),
             isDefaultAction: true,
             onPressed: () => exit(0),
+            child: const Text(
+              "تسجيل خروج",
+              style: TextStyle(
+                fontFamily: 'Contrail',
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
+      ],
+    ),
+  );
+
+  return shouldPop ?? false;
+}
+Future<bool> onWillPopSignIn(BuildContext context) async {
+  final shouldPop = await showDialog(
+    context: context,
+    builder: (context) => CupertinoAlertDialog(
+      title: const Text(
+        ' تسجيل الدخول؟',
+        style: TextStyle(
+            fontFamily: 'Contrail',
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: kBlackText),
+      ),
+      content: const Text(
+        'هل أنت متأكد إنك  تريد  تسجيل الدخول ؟',
+        style: TextStyle(
+            fontFamily: 'Contrail',
+            fontSize: 12,
+            // fontWeight: FontWeight.bold,
+            color: kBlackText),
+      ),
+      actions: <Widget>[
+        CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+             Navigator.pop(context);
+            },
+            child: const Text(
+              "إلغاء",
+              style: TextStyle(
+                fontFamily: 'Contrail',
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            )),
+        CupertinoDialogAction(
+            textStyle: const TextStyle(color: Colors.red),
+            isDefaultAction: true,
+            onPressed: () {
+              Get.offAll(()=>LoginScreen());
+            },
             child: const Text(
               "تسجيل خروج",
               style: TextStyle(
