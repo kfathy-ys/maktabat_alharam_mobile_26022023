@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/config/keys.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/page/views/header.dart';
@@ -38,17 +39,22 @@ class AboutLibraryScreen extends StatelessWidget {
                 SizedBox(
                   height: height * 0.03,
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
-                  child: Text(
-                    KeysConfig.kLoramText,
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                        color: kBlackText,
-                        fontSize: 18,
-                        fontFamily: "DinUltraLight"),
+                 Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: FadeInUp(
+                    child: const Text(
+                      KeysConfig.kLoramText,
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                          color: kBlackText,
+                          fontSize: 18,
+                          fontFamily: "DinUltraLight"),
+                    ),
                   ),
-                )
+                ),
+                SizedBox(
+                  height: height * 0.1,
+                ),
               ],
             ),
           ),

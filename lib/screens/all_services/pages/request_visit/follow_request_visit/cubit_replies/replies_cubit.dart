@@ -1,31 +1,44 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:maktabat_alharam/screens/widgets/alerts.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
-import '../../my_orders/models/model.dart';
-import '../models/model.dart';
+
 import '../models/replies_model.dart';
+import 'package:flutter/material.dart';
 
 part 'replies_state.dart';
 
 class RepliesCubit extends Cubit<RepliesState> {
-  final int? id;
-
-  RepliesCubit({required this.id}) : super(RepliesInitial()) {
-    getFollowRepliesVisit(visitRequestId: id!);
-  }
+   int? id;
+  final formKey = GlobalKey<FormState>();
+  final addCommentController = TextEditingController();
+  static RepliesCubit of(context)=>BlocProvider.of(context);
+      RepliesCubit() : super(RepliesInitial()) ;
+  //     {
+  //   getFollowRepliesVisit(visitRequestId: id!);
+  // }
 
   var userId = Prefs.getString("userId");
 
-  Future<void> getFollowRepliesVisit({required int visitRequestId}) async {
+
+  void init ( int id){
+    this.id=id;
+    getFollowRepliesVisit();
+  }
+
+  Future<void> getFollowRepliesVisit() async {
     emit(RepliesLoading());
     try {
       // final userId = Prefs.getString("userId");
       final res = await NetWork.get(
-          'VisitRequest/GetAllVisitRequestReplies/$visitRequestId');
+          'VisitRequest/GetAllVisitRequestReplies/$id');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -40,5 +53,53 @@ class RepliesCubit extends Cubit<RepliesState> {
       log(es.toString());
       emit(RepliesError(msg: e.toString()));
     }
+  }
+
+  Future<void> addedCommentToFollowVisit({
+
+    required int visitRequestId,
+    required String userName,
+    required String userMessage,
+  }) async {
+    try {
+      var now = DateTime.now();
+      final body = {
+        "id": 0,
+        "visitRequestId": visitRequestId,
+        "userName": userName,
+        "userMessage": userMessage,
+        "createdBy": userId,
+        "createdDate": DateFormat('yyyy-MM-dd').format(now),
+        "updatedBy": userId,
+        "updatedDate": DateFormat('yyyy-MM-dd').format(now)
+      };
+      final res = await NetWork.post('VisitRequest/CreateNewVisitRequestReply',
+          body: body);
+      if (res.data['status'] == 0 || res.data['status'] == -1) {
+        throw res.data['message'];
+      }
+
+      emit(RepliesSuccess(
+          repliesMessagesModel: RepliesMessagesModel.fromJson(res.data)));
+      await getFollowRepliesVisit();
+    } catch (e, st) {
+      log(e.toString());
+      log(st.toString());
+      emit(RepliesError(msg: e.toString()));
+    }
+  }
+
+  Future<void> addToCommentVisit(RepliesMessage order) async {
+    if( addCommentController.text.trim().isEmpty){
+      Alert.error("error");
+    }
+    await addedCommentToFollowVisit(
+
+      visitRequestId: order.visitRequestId!,
+      userName: order.userName.toString(),
+      userMessage: order.userMessage.toString(),
+    );
+    await getFollowRepliesVisit();
+    Alert.success("تم إضافة تعلقيك الرجاء انتظار رد الموظف");
   }
 }

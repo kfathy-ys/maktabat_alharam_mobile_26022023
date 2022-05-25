@@ -30,10 +30,14 @@ class LoginCubit extends Cubit<LoginState> {
       if (res.data['status']==0 || res.data['status']==-1) {
         throw res.data['message'];
       }
+      LoginModel loginModel =  LoginModel.fromJson((res.data));
       Prefs.setString("token", res.data["data"]["token"]);
       Prefs.setString("userId", res.data["data"]["userId"]);
+
+      Prefs.setString("fullName", loginModel.data!.fullName!);
       log("${res.data["data"]["token"]}");
       log("${res.data["data"]["userId"]}");
+
       emit(LoginSuccess(LoginModel.fromJson((res.data))));
     } catch (e, st) {
 

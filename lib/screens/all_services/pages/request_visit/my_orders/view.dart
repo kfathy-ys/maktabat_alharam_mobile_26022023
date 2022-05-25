@@ -172,7 +172,6 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
 
                                         onPressed: () {
                                          cubit.addToArchiveVisit(state.allOrderVisitModel.data![index]);
-                                        //  Get.to(() => const ArchiveRequestToVisitScreen());
                                         },
                                         image: "assets/image/archieve.png",
                                       ),

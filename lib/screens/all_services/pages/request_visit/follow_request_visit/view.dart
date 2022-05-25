@@ -14,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../widgets/loading.dart';
 import '../my_orders/models/model.dart';
@@ -24,18 +25,31 @@ import 'models/replies_model.dart';
 import 'page/views/request_events.dart';
 
 // ignore: must_be_immutable
-class FollowRequestVisitScreen extends StatelessWidget {
+class FollowRequestVisitScreen extends StatefulWidget {
   MyOrderToVisit? myFollowOrder;
 
-  final formKey = GlobalKey<FormState>();
-  final _addCommentController = TextEditingController();
-
   FollowRequestVisitScreen({Key? key, this.myFollowOrder }) : super(key: key);
+
+  @override
+  State<FollowRequestVisitScreen> createState() => _FollowRequestVisitScreenState();
+}
+
+class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
+  final commentController = TextEditingController();
+
+   ScrollController? _controller;
+
+  @override
+  void initState() {
+    _controller = ScrollController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    var fullName = Prefs.getString("fullName");
     return Container(
       color: kAppBarColor,
       child: SafeArea(
@@ -79,7 +93,7 @@ class FollowRequestVisitScreen extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (context) =>
-                      FollowVisitCubit(myFollowOrder: myFollowOrder!),
+                      FollowVisitCubit(myFollowOrder: widget.myFollowOrder!),
                   child: BlocConsumer<FollowVisitCubit, FollowVisitState>(
                     listener: (context, state) {},
                     builder: (context, state) {
@@ -232,10 +246,12 @@ class FollowRequestVisitScreen extends StatelessWidget {
                   title: "commentsRequest".tr,
                 ),
                 BlocProvider(
-                  create: (context) => RepliesCubit(id: myFollowOrder!.id),
+                  create: (context) => RepliesCubit( )..init(widget.myFollowOrder!.id!),
                   child: BlocConsumer<RepliesCubit, RepliesState>(
                     listener: (context, state) {},
                     builder: (context, state) {
+                      final cubit = RepliesCubit.of(context);
+
                       if (state is RepliesLoading) {
                         return const Center(
                           child: LoadingFadingCircle(),
@@ -244,21 +260,51 @@ class FollowRequestVisitScreen extends StatelessWidget {
                       if (state is RepliesSuccess) {
                         return RefreshIndicator(
                           onRefresh: ()async{
-                          await  RepliesCubit(id:myFollowOrder!.id! ).getFollowRepliesVisit(visitRequestId: myFollowOrder!.id!);
+                          await  cubit.getFollowRepliesVisit();
 
                           },
                           color: Colors.redAccent,
 
-                          child: ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: state.repliesMessagesModel.data!.length,
-                              itemBuilder: (context, index) {
-                                return  Message(
-                                    name:  state.repliesMessagesModel.data![index].userName.toString() ,
-                                    comment:  state.repliesMessagesModel.data![index].userMessage.toString().substring(0,10),
-                                    data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
-                              }),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                ListView.builder(
+
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                     controller: _controller,
+                                    itemCount: state.repliesMessagesModel.data!.length,
+                                    itemBuilder: (context, index) {
+                                      return  Message(
+                                          name:  state.repliesMessagesModel.data![index].userName.toString() ,
+                                          comment:  state.repliesMessagesModel.data![index].userMessage.toString().trim(),
+                                          data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
+                                    }),
+                                CustomTextField(
+                                  controller: cubit.addCommentController,
+                                  hint: "أضف تعليقك هنا ..!",
+                                ),
+                                buildSizedBox(height),
+                                Center(
+                                    child: SmallButtonSizer(
+                                      onPressed: () {
+                                        cubit.addToCommentVisit(
+                                            RepliesMessage(
+                                                userName:   widget.myFollowOrder!.responsibleName,
+                                                createdDate: widget.myFollowOrder!.createdDate,
+                                                updatedBy: widget.myFollowOrder!.updatedBy,
+                                                userMessage:cubit.addCommentController.text.trim() ,
+                                                visitRequestId: widget.myFollowOrder!.id
+                                            ));
+
+                                      },
+                                      title: "add".tr,
+                                      color: kPrimaryColor,
+                                      image: "assets/image/newrequest.png",
+                                    ))
+                              ],
+                            ),
+                          ),
                         );
                       }
                       if (state is RepliesError) {
@@ -266,22 +312,11 @@ class FollowRequestVisitScreen extends StatelessWidget {
                       }
                       return const SizedBox();
                     },
+
                   ),
+
                 ),
-                CustomTextField(
-                  controller: _addCommentController,
-                  hint: "أضف تعليق",
-                ),
-                buildSizedBox(height),
-                Center(
-                    child: SmallButtonSizer(
-                  onPressed: () {
-                    //Get.to(() => const RequestVisitScreen());
-                  },
-                  title: "add".tr,
-                  color: kPrimaryColor,
-                  image: "assets/image/newrequest.png",
-                ))
+
               ],
             ),
           ),

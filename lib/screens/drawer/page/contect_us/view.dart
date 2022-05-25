@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/page/views/header.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
@@ -9,11 +10,12 @@ import 'package:url_launcher/url_launcher.dart';
 // ignore: must_be_immutable
 class ContactUsScreen extends StatelessWidget {
 
-  String phone = "+966255555444";
-  String email = "Library@gmail.com";
-  String web = "Library@gmail.com";
-  String location = "Library@gmail.com";
-
+  String phone = "+1 5598 55488";
+  String email = "lib@gph.gov.sa";
+  String web = "http://stage-lib.cpt-it.com/ar/#";
+  String location = "https://www.google.com/maps/@21.375498,39.833892,18z?hl=en";
+String twitter = "https://twitter.com/GPHLIBRARY";
+String youTube = "https://www.youtube.com/channel/UCfocGgF5-ngvNJQ45NqRoCQ/featured";
    ContactUsScreen({Key? key}) : super(key: key);
 
   @override
@@ -35,9 +37,11 @@ class ContactUsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               HeaderTitle(icon: Icons.phone, title: "contactsUs".tr),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 40),
-                child: Image.asset("assets/image/bigKabah.png"),
+              FadeInUp(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 40),
+                  child: Image.asset("assets/image/bigKabah.png"),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 22),
@@ -46,9 +50,9 @@ class ContactUsScreen extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap:(){
-                        _launchPhoneURL(email);
+                        launch(email);
                       },
-                      child: const Text("Library@gmail.com",
+                      child: const Text("lib@gph.gov.sa",
                           style: TextStyle(
                               color: kBlackText,
                               fontSize: 16,
@@ -59,7 +63,7 @@ class ContactUsScreen extends StatelessWidget {
                       onTap: () {
                         _launchPhoneURL(phone);
                       },
-                      child: const Text("+966255555444",
+                      child: const Text("+1 5598 55488",
                           style: TextStyle(
                               color: kBlackText,
                               fontSize: 16,
@@ -79,7 +83,7 @@ class ContactUsScreen extends StatelessWidget {
                         launch(web);
 
                       },
-                      child: const Text("www.Library.com",
+                      child: const Text("http://stage-lib.cpt-it.com",
                           style: TextStyle(
                               color: kBlackText,
                               fontSize: 16,
@@ -94,7 +98,7 @@ class ContactUsScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap:(){
-                  _launchPhoneURL(location);
+                  launch(location);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -111,13 +115,15 @@ class ContactUsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Text("YouCanFollowUsSocialMedia".tr,
-                    style: const TextStyle(
-                        color: kSmallIconColor,
-                        fontSize: 16,
-                        fontFamily: 'DinReguler')),
+              FadeInUpBig(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text("YouCanFollowUsSocialMedia".tr,
+                      style: const TextStyle(
+                          color: kSmallIconColor,
+                          fontSize: 16,
+                          fontFamily: 'DinReguler')),
+                ),
               ),
               Image.asset("assets/image/divider.png"),
               Padding(
@@ -125,10 +131,21 @@ class ContactUsScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("assets/image/youtube.png"),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Image.asset("assets/image/Twitter.png"),
+                    InkWell(
+                      onTap: (){
+                        launch(youTube);
+                      },
+                      child: Image.asset("assets/image/youtube.png") ,
+                    ),
+
+                    InkWell(
+                      onTap: (){
+                        launch(twitter);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Image.asset("assets/image/Twitter.png"),
+                      ),
                     ),
                    // Image.asset("assets/image/Linkedin.png")
                   ],
