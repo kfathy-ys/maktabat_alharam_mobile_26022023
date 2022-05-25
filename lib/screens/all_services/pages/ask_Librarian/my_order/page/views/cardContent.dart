@@ -21,6 +21,10 @@ class CardData extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title,
+              maxLines: 1,
+              overflow: TextOverflow.visible,
+
+              softWrap: true,
               style: TextStyle(
                   color: color1, fontSize: 14, fontFamily: 'DinBold')),
           const SizedBox(

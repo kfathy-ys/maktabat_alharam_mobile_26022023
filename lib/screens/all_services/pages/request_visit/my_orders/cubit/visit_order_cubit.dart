@@ -17,7 +17,7 @@ part 'visit_order_state.dart';
 
 class VisitOrderCubit extends Cubit<VisitOrderState> {
  MyArchiveVisitCubit myArchiveVisitCubit;
-//this.myArchiveVisitCubit
+
   VisitOrderCubit(this.myArchiveVisitCubit) : super(VisitOrderInitial()) {
     getOrderVisit();
   }

@@ -19,6 +19,7 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
 import '../../../../widgets/loading.dart';
+import '../follow_request_visit/models/model.dart';
 import '../view.dart';
 import 'cubit/visit_order_cubit.dart';
 
@@ -112,6 +113,7 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                               // shrinkWrap: true,
                               itemCount: state.allOrderVisitModel.data!.length,
                               itemBuilder: (context, int index) {
+                                final MyFollowOrder myFollowOrder;
                                 return CustomContainer(
                                   height: height * 0.5,
                                   child: Column(
@@ -151,7 +153,10 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                                         color: kAccentColor,
                                         title: "followRequest".tr,
                                         onPressed: () =>
-                                            Get.to(() => FollowRequestVisitScreen()),
+                                            Get.to(() => FollowRequestVisitScreen(
+                                              myFollowOrder: state.allOrderVisitModel.data![index],
+
+                                            )),
                                         image: "assets/image/fulleyes.png",
                                       ),
                                       CustomCardButton(
