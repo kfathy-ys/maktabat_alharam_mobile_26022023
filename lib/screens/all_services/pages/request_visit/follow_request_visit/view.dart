@@ -258,52 +258,44 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                         );
                       }
                       if (state is RepliesSuccess) {
-                        return RefreshIndicator(
-                          onRefresh: ()async{
-                          await  cubit.getFollowRepliesVisit();
+                        return SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              ListView.builder(
 
-                          },
-                          color: Colors.redAccent,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                 shrinkWrap: true,
+                                 //  controller: _controller,
+                                  itemCount: state.repliesMessagesModel.data!.length,
+                                  itemBuilder: (context, index) {
+                                    return  Message(
+                                        name:  state.repliesMessagesModel.data![index].userName.toString() ,
+                                        comment:  state.repliesMessagesModel.data![index].userMessage.toString().trim(),
+                                        data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
+                                  }),
+                              CustomTextField(
+                                controller: cubit.addCommentController,
+                                hint: "أضف تعليقك هنا ..!",
+                              ),
+                              buildSizedBox(height),
+                              state is! RepliesLoading ?    Center(
+                                  child: SmallButtonSizer(
+                                    onPressed: () {
+                                      cubit.addToCommentVisit(
+                                          RepliesMessage(
+                                              userName:   widget.myFollowOrder!.responsibleName,
+                                              createdDate: widget.myFollowOrder!.createdDate,
+                                              updatedBy: widget.myFollowOrder!.updatedBy,
+                                              userMessage:cubit.addCommentController.text.trim() ,
+                                              visitRequestId: widget.myFollowOrder!.id
+                                          ));
 
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                ListView.builder(
-
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                     controller: _controller,
-                                    itemCount: state.repliesMessagesModel.data!.length,
-                                    itemBuilder: (context, index) {
-                                      return  Message(
-                                          name:  state.repliesMessagesModel.data![index].userName.toString() ,
-                                          comment:  state.repliesMessagesModel.data![index].userMessage.toString().trim(),
-                                          data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
-                                    }),
-                                CustomTextField(
-                                  controller: cubit.addCommentController,
-                                  hint: "أضف تعليقك هنا ..!",
-                                ),
-                                buildSizedBox(height),
-                                Center(
-                                    child: SmallButtonSizer(
-                                      onPressed: () {
-                                        cubit.addToCommentVisit(
-                                            RepliesMessage(
-                                                userName:   widget.myFollowOrder!.responsibleName,
-                                                createdDate: widget.myFollowOrder!.createdDate,
-                                                updatedBy: widget.myFollowOrder!.updatedBy,
-                                                userMessage:cubit.addCommentController.text.trim() ,
-                                                visitRequestId: widget.myFollowOrder!.id
-                                            ));
-
-                                      },
-                                      title: "add".tr,
-                                      color: kPrimaryColor,
-                                      image: "assets/image/newrequest.png",
-                                    ))
-                              ],
-                            ),
+                                    },
+                                    title: "addComment".tr,
+                                    color: kSafeAreasColor,
+                                    image: "assets/image/newrequest.png",
+                                  )): const LoadingFadingCircle(),
+                            ],
                           ),
                         );
                       }

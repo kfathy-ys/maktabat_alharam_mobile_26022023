@@ -9,17 +9,23 @@ import 'package:maktabat_alharam/screens/drawer/view.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 
 
+// ignore: must_be_immutable
 class Message extends StatelessWidget {
   final String name;
   final String comment ;
   final String data;
-  const Message({Key? key, required this.name, required this.comment, required this.data}) : super(key: key);
+
+   const Message({Key? key,required this.name, required this.comment, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    // var createdBy = Prefs.getString("createdBy");
+     var userId = Prefs.getString("userId");
     double height = MediaQuery
         .of(context)
         .size
@@ -28,29 +34,51 @@ class Message extends StatelessWidget {
         .of(context)
         .size
         .width;
-    return   Container(
-      margin:
-      const EdgeInsetsDirectional.only(bottom: 10.0, top: 10.0),
-     height: height * 0.1,
-      decoration: BoxDecoration(
-        color: kBackgroundCardColor,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:  [
-          CardData(
-              title: name,
-              subTitle: "",
-              color1: kAccentColor,
-              color2: kAccentColor),
-          CardData(
-              title: comment,
-              subTitle:data,
-              color1: kSmallIconColor,
-              color2: kAccentColor),
-        ],
+    return   Expanded(
+      child: Container(
+        margin:
+        const EdgeInsetsDirectional.only(bottom: 10.0, top: 10.0),
+      // height: height * 0.12,
+        decoration: BoxDecoration(
+          color: (userId  == userId)? kBackgroundCardColor: kIcon,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children:  [
+
+
+
+            CardData(
+                title: name,
+                subTitle: "",
+                color1: kAccentColor,
+                color2: kAccentColor),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(start: 16, end: 16,),            child: Wrap(
+
+                children: [
+                  Text(comment,
+                      // maxLines: 1,
+                      // overflow: TextOverflow.visible,
+                      //
+                      // softWrap: true,
+                      style: const TextStyle(
+                          color: kSmallIconColor, fontSize: 14, fontFamily: 'DinBold')),
+
+                  Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: Text(data,
+                        style: const TextStyle(
+                            color: kAccentColor, fontSize: 14, fontFamily: 'DinReguler')),
+                  ),
+                ],
+              ),
+            ),
+
+          ],
+        ),
       ),
     );
   }

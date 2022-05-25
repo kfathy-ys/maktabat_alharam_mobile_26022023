@@ -133,6 +133,7 @@ class LocaleString extends Translations {
           "updateRequest": "Update request",
           "cancelRequest": "Cancel request",
           "addOne": "Add one",
+          "addComment":"Add Comment",
           "nameRequest": "Request Name",
           "nameResponsible": "Name responsible",
           "requestDate": "Request date",
@@ -310,6 +311,8 @@ class LocaleString extends Translations {
           "minPassword": " الحد الأدني لكلمه المرور 6 أنماط ",
 
           // Forget Password
+          "addComment":"أضف تعليق",
+
           "phone": "رقم الهاتف",
           "email": "البريد الإلكتروني",
           "sendCode": "إرسال الرمز",

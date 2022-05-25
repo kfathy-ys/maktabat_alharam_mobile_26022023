@@ -45,6 +45,9 @@ class RepliesCubit extends Cubit<RepliesState> {
           res.statusCode != 200) {
         throw res.data['message'];
       }
+      /// Cached createdBy
+      // Prefs.setString("createdBy", res.data["data"]["data"]["createdBy"]);
+      // log("${res.data["data"]["createdBy"]}");
 
       emit(RepliesSuccess(
           repliesMessagesModel: RepliesMessagesModel.fromJson(res.data)));
@@ -100,6 +103,6 @@ class RepliesCubit extends Cubit<RepliesState> {
       userMessage: order.userMessage.toString(),
     );
     await getFollowRepliesVisit();
-    Alert.success("تم إضافة تعلقيك الرجاء انتظار رد الموظف");
+    Alert.success(" الرجاء انتظار رد الموظف المختص");
   }
 }
