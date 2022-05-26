@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
+import 'data.dart';
+
 class OurServicesModel {
-final int id;
+final  Pages pages ;
   final Widget icon;
   final String title;
   final String subTitle;
@@ -9,7 +11,7 @@ final int id;
 
 
   OurServicesModel( {
-   required this.id,
+   required this.pages,
     required this.routeName,
     required this.title,
     required this.icon,

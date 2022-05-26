@@ -45,9 +45,7 @@ class RepliesCubit extends Cubit<RepliesState> {
           res.statusCode != 200) {
         throw res.data['message'];
       }
-      /// Cached createdBy
-      // Prefs.setString("createdBy", res.data["data"]["data"]["createdBy"]);
-      // log("${res.data["data"]["createdBy"]}");
+
 
       emit(RepliesSuccess(
           repliesMessagesModel: RepliesMessagesModel.fromJson(res.data)));
@@ -81,7 +79,9 @@ class RepliesCubit extends Cubit<RepliesState> {
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
       }
-
+      /// Cached createdBy
+      Prefs.setString("createdBy", res.data["data"][4]["createdBy"]);
+      log("${res.data["data"][4]["createdBy"]}");
       emit(RepliesSuccess(
           repliesMessagesModel: RepliesMessagesModel.fromJson(res.data)));
       await getFollowRepliesVisit();

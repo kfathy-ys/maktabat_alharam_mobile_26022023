@@ -24,7 +24,7 @@ class Message extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // var createdBy = Prefs.getString("createdBy");
+     var createdBy = Prefs.getString("createdBy");
      var userId = Prefs.getString("userId");
     double height = MediaQuery
         .of(context)
@@ -41,7 +41,7 @@ class Message extends StatelessWidget {
       const EdgeInsetsDirectional.only(bottom: 10.0, top: 10.0),
 
       decoration: BoxDecoration(
-        color: (userId  == userId)? kBackgroundCardColor: kIcon,
+        color: (userId  != createdBy)? kBackgroundCardColor: kIcon,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(

@@ -34,6 +34,9 @@ class NewOrderCubit extends Cubit<NewOrderState> {
     emit(NewOrderLoading());
     try {
       var now = DateTime.now();
+
+
+      var date= DateFormat.yMMMMEEEEd().format(DateTime.now());;
       final res = await NetWork.post(
         'Suggestion/CreateNewSuggestion',
         body: {
@@ -52,9 +55,9 @@ class NewOrderCubit extends Cubit<NewOrderState> {
           "additionalInformation": additionalInformation,
           "isArchived": false,
           "createdBy": userId,
-          "createdDate": DateFormat.yMMMMd().format(now),
+          "createdDate": date,
           "updatedBy": userId,
-          "updatedDate": DateFormat.yMMMMd().format(now)
+          "updatedDate": date
         },
       );
       if (res.data['status'] == 0 || res.data['status'] == -1) {

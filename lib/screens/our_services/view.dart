@@ -3,21 +3,24 @@ import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/content.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/data.dart';
 import 'package:maktabat_alharam/screens/our_services/page/views/title.dart';
+import 'package:maktabat_alharam/screens/widgets/alerts.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 // ignore: must_be_immutable
 class OurServicesScreen extends StatelessWidget {
-  final String? userId;
 
-  OurServicesScreen({Key? key, this.userId}) : super(key: key);
+  OurServicesScreen({Key? key, }) : super(key: key);
 
   // OurServicesContent services = OurServicesContent();
   OurServicesGridCard ourServicesGridCard = OurServicesGridCard();
 
   @override
   Widget build(BuildContext context) {
+
+
     double height = MediaQuery.of(context).size.height;
     return Container(
       color: kAppBarColor,
@@ -58,16 +61,14 @@ class OurServicesScreen extends StatelessWidget {
                     itemBuilder: (BuildContext ctx, index) {
                       return InkWell(
                         onTap: () {
-                          // if( userId == null){
-                          //   if( (ourServicesGridCard.ourServicesGrid[index].id == 0) ||
-                          //       (ourServicesGridCard.ourServicesGrid[index].id == 1) ||
-                          //       (ourServicesGridCard.ourServicesGrid[index].id == 4)){
-                          //     onWillPopSignIn(context);
-                          //   }
-                          // }else if ( userId != null) {
-                          //   Get.toNamed(ourServicesGridCard.ourServicesGrid[index].routeName);
-                          // }
-                          Get.toNamed(ourServicesGridCard.ourServicesGrid[index].routeName);
+                          final page = ourServicesGridCard.ourServicesGrid[index].pages;
+                          print(page);
+                          print(Prefs.getString("token").isEmpty);
+                          if(((page == Pages.one) || (page== Pages.two) || (page== Pages.five)) && Prefs.getString("token").isEmpty){
+                            onWillPopSignIn(context);
+                            return;
+                          }
+                              Get.toNamed(ourServicesGridCard.ourServicesGrid[index].routeName);
                         },
                         child: CardGridContent(
                             fontTitle: 18,

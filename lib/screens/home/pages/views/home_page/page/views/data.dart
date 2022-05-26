@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/list_model.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-
+enum  Pages{ one ,two ,three ,four  ,five }
 class OurServicesContent {
   List<OurServicesModel> ourServices = [
-    /*
+/*
     OurServicesModel(
       routeName: "/FollowAnsweringLibrarian",
 
@@ -18,7 +18,7 @@ class OurServicesContent {
     ),
 */
     OurServicesModel(
-      id:0 ,
+      pages: Pages.one ,
       routeName: "/MyOrdersScientificMessage",
       title: "RequestDepositScientificThesis".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -46,7 +46,7 @@ class OurServicesContent {
       ),
     ),*/
     OurServicesModel(
-      id:1 ,
+      pages: Pages.two ,
       routeName: "/MyOrderReserveArticleResearch",
 
       title: "RequestReserveArticleOrResearchRetreat".tr,
@@ -55,7 +55,7 @@ class OurServicesContent {
           color: kSmallIconColor),
     ),
     OurServicesModel(
-      id:2 ,
+      pages: Pages.three ,
       routeName: "/MyOrderAskLibrarian",
 
       title: "askStaff".tr,
@@ -64,7 +64,7 @@ class OurServicesContent {
           color: kSmallIconColor),
     ),
     OurServicesModel(
-      id:3 ,
+      pages: Pages.four ,
       routeName: "/MyOrdersSuggestBuyBookScreen",
 
 
@@ -78,7 +78,7 @@ class OurServicesContent {
       ),
     ),
     OurServicesModel(
-      id:4 ,
+      pages: Pages.five ,
       routeName: "/MyOrderRequestVisitScreen",
 
       title: "RequestVisit".tr,
@@ -150,7 +150,7 @@ class OurServicesGridCard {
     ),
 */
     OurServicesModel(
-      id:0 ,
+        pages: Pages.one ,
       routeName: "/MyOrdersScientificMessage",
       title: "RequestDepositScientificThesis".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -178,7 +178,7 @@ class OurServicesGridCard {
       ),
     ),*/
     OurServicesModel(
-      id:1 ,
+        pages: Pages.two ,
       routeName: "/MyOrderReserveArticleResearch",
 
       title: "RequestReserveArticleOrResearchRetreat".tr,
@@ -187,7 +187,7 @@ class OurServicesGridCard {
           color: kSmallIconColor),
     ),
     OurServicesModel(
-      id:2 ,
+        pages: Pages.three ,
       routeName: "/MyOrderAskLibrarian",
 
       title: "askStaff".tr,
@@ -196,7 +196,7 @@ class OurServicesGridCard {
           color: kSmallIconColor),
     ),
     OurServicesModel(
-      id:3 ,
+        pages: Pages.four ,
       routeName: "/MyOrdersSuggestBuyBookScreen",
 
 
@@ -210,7 +210,7 @@ class OurServicesGridCard {
       ),
     ),
     OurServicesModel(
-      id:4 ,
+        pages: Pages.five ,
       routeName: "/MyOrderRequestVisitScreen",
 
       title: "RequestVisit".tr,

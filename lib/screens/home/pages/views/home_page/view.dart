@@ -89,6 +89,13 @@ class MyHomeScreen extends StatelessWidget {
                       itemBuilder: (context, int index) {
                         return InkWell(
                           onTap: () {
+                            final page = services.ourServices[index].pages;
+                            print(page);
+                            print(Prefs.getString("token").isEmpty);
+                            if(((page == Pages.one) || (page== Pages.two) || (page== Pages.five)) && Prefs.getString("token").isEmpty){
+                              onWillPopSignIn(context);
+                              return;
+                            }
                             Get.toNamed(services.ourServices[index].routeName);
                           },
                           child: CardContent(
