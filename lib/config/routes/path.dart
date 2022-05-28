@@ -41,7 +41,7 @@ class AppPages {
 
     GetPage(
       name:  "/MyOrderRequestVisitScreen",
-      page: () =>const MyOrderRequestVisitScreen(),
+      page: () => MyOrderRequestVisitScreen(),
     ),
     GetPage(
       name:  "/FollowRequestVisitScreen",

@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/list_model.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-enum  Pages{ one ,two ,three ,four  ,five }
+
+enum Pages { one, two, three, four, five }
+
 class OurServicesContent {
   List<OurServicesModel> ourServices = [
 /*
@@ -18,10 +20,10 @@ class OurServicesContent {
     ),
 */
     OurServicesModel(
-      pages: Pages.one ,
+      pages: Pages.one,
       routeName: "/MyOrdersScientificMessage",
       title: "RequestDepositScientificThesis".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      subTitle: "titleMessage".tr,
       icon: const ImageIcon(
         AssetImage("assets/image/bigMessage.png"),
         color: kSmallIconColor,
@@ -46,30 +48,27 @@ class OurServicesContent {
       ),
     ),*/
     OurServicesModel(
-      pages: Pages.two ,
+      pages: Pages.two,
       routeName: "/MyOrderReserveArticleResearch",
-
       title: "RequestReserveArticleOrResearchRetreat".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
-      icon: const ImageIcon(AssetImage("assets/image/bigRquestSubjectSientific.png"),
+      subTitle: "headReserve".tr,
+      icon: const ImageIcon(
+          AssetImage("assets/image/bigRquestSubjectSientific.png"),
           color: kSmallIconColor),
     ),
     OurServicesModel(
-      pages: Pages.three ,
+      pages: Pages.three,
       routeName: "/MyOrderAskLibrarian",
-
       title: "askStaff".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      subTitle: "head".tr,
       icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
           color: kSmallIconColor),
     ),
     OurServicesModel(
-      pages: Pages.four ,
+      pages: Pages.four,
       routeName: "/MyOrdersSuggestBuyBookScreen",
-
-
       title: "SuggestionBuyBook".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      subTitle: "headBuyBook".tr,
       icon: const ImageIcon(
         AssetImage(
           "assets/image/bigBuyBook.png",
@@ -78,11 +77,10 @@ class OurServicesContent {
       ),
     ),
     OurServicesModel(
-      pages: Pages.five ,
+      pages: Pages.five,
       routeName: "/MyOrderRequestVisitScreen",
-
       title: "RequestVisit".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      subTitle: "titleHead".tr,
       icon: const ImageIcon(AssetImage("assets/image/bigarrowRight.png"),
           color: kSmallIconColor),
     ),
@@ -132,9 +130,9 @@ class OurServicesContent {
         color: kSmallIconColor,
       ),
     ),*/
-
   ];
 }
+
 class OurServicesGridCard {
   List<OurServicesModel> ourServicesGrid = [
 /*
@@ -150,16 +148,16 @@ class OurServicesGridCard {
     ),
 */
     OurServicesModel(
-        pages: Pages.one ,
+      pages: Pages.one,
       routeName: "/MyOrdersScientificMessage",
       title: "RequestDepositScientificThesis".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      subTitle: "titleMessage".tr,
       icon: const ImageIcon(
         AssetImage("assets/image/bigMessage.png"),
         color: kSmallIconColor,
       ),
     ),
-  /*  OurServicesModel(
+    /*  OurServicesModel(
       routeName: "/FollowAnsweringLibrarian",
       title: "SelectiveBroadcastingInformation".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -168,7 +166,7 @@ class OurServicesGridCard {
         color: kSmallIconColor,
       ),
     ),*/
-  /*  OurServicesModel(
+    /*  OurServicesModel(
       routeName: "/FollowAnsweringLibrarian",
       title: "manuscriptRequest".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -178,30 +176,27 @@ class OurServicesGridCard {
       ),
     ),*/
     OurServicesModel(
-        pages: Pages.two ,
+      pages: Pages.two,
       routeName: "/MyOrderReserveArticleResearch",
-
       title: "RequestReserveArticleOrResearchRetreat".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
-      icon: const ImageIcon(AssetImage("assets/image/bigRquestSubjectSientific.png"),
+      subTitle: "headReserve".tr,
+      icon: const ImageIcon(
+          AssetImage("assets/image/bigRquestSubjectSientific.png"),
           color: kSmallIconColor),
     ),
     OurServicesModel(
-        pages: Pages.three ,
+      pages: Pages.three,
       routeName: "/MyOrderAskLibrarian",
-
       title: "askStaff".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      subTitle: "head".tr,
       icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
           color: kSmallIconColor),
     ),
     OurServicesModel(
-        pages: Pages.four ,
+      pages: Pages.four,
       routeName: "/MyOrdersSuggestBuyBookScreen",
-
-
       title: "SuggestionBuyBook".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      subTitle: "headBuyBook".tr,
       icon: const ImageIcon(
         AssetImage(
           "assets/image/bigBuyBook.png",
@@ -210,15 +205,14 @@ class OurServicesGridCard {
       ),
     ),
     OurServicesModel(
-        pages: Pages.five ,
+      pages: Pages.five,
       routeName: "/MyOrderRequestVisitScreen",
-
       title: "RequestVisit".tr,
-      subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
+      subTitle: "titleHead".tr,
       icon: const ImageIcon(AssetImage("assets/image/bigarrowRight.png"),
           color: kSmallIconColor),
     ),
-   /* OurServicesModel(
+    /* OurServicesModel(
       routeName: "/AskLibrarian",
 
       title: "askRelationLibrary".tr,
@@ -234,7 +228,7 @@ class OurServicesGridCard {
       icon: const ImageIcon(AssetImage("assets/image/BigSevrices.png"),
           color: kSmallIconColor),
     ),*/
-  /*  OurServicesModel(
+    /*  OurServicesModel(
       routeName: "/AskLibrarian",
       title: "SuggestionBuyBook".tr,
       subTitle: "هده الخدمة ستوفر العديد من المزايا الممكنه",
@@ -245,7 +239,7 @@ class OurServicesGridCard {
         color: kSmallIconColor,
       ),
     ),*/
-  /*  OurServicesModel(
+    /*  OurServicesModel(
       routeName: "/FollowAnsweringLibrarian",
 
       title: "BookGiftRequest".tr,
@@ -264,7 +258,5 @@ class OurServicesGridCard {
         color: kSmallIconColor,
       ),
     ),*/
-
-
   ];
 }

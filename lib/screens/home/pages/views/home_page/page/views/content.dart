@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/list_model.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-
+import 'package:get/get.dart';
 
 class CardContent extends StatelessWidget {
 
@@ -32,14 +32,14 @@ class CardContent extends StatelessWidget {
         children: <Widget>[
           model.icon,
           Text(
-            model.title,
+            model.title.tr,
             maxLines: 2,
             style:  TextStyle(
                   color: kBlackText,
                  fontSize: fontTitle, fontFamily: "DinBold" ),
           ),
           Text(
-            model.subTitle,
+            model.subTitle.tr,
             maxLines: 2,
             style:  TextStyle(
                 color: kBlackText,
@@ -83,7 +83,7 @@ class CardGridContent extends StatelessWidget {
 
           ),
           Text(
-            model.title,
+            model.title.tr,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style:  TextStyle(
@@ -92,7 +92,7 @@ class CardGridContent extends StatelessWidget {
                 fontFamily: "DinBold" ),
           ),
           Text(
-            model.subTitle,
+            model.subTitle.tr,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
 

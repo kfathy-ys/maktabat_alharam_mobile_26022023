@@ -16,6 +16,7 @@ import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
+import '../../../../widgets/date_convertors.dart';
 import '../../../../widgets/loading.dart';
 import '../my_orders/models/model.dart';
 import '../my_orders/page/custom_container.dart';
@@ -271,7 +272,8 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                                     return  Message(
                                         name:  state.repliesMessagesModel.data![index].userName.toString() ,
                                         comment:  state.repliesMessagesModel.data![index].userMessage.toString().trim(),
-                                        data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
+                                        data: DateConverter.dateConverterMonth("${state.repliesMessagesModel.data![index].createdDate}"));
+                                       // data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
                                   }),
                               CustomTextField(
                                 controller: cubit.addCommentController,

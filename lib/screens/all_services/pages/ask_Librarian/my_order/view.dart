@@ -18,6 +18,8 @@ import 'package:maktabat_alharam/screens/widgets/loading.dart';
 
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
+import '../../../../widgets/date_convertors.dart';
+
 class MyOrderAskLibrarian extends StatelessWidget {
   MyOrderAskLibrarian({Key? key}) : super(key: key);
 
@@ -121,8 +123,9 @@ class MyOrderAskLibrarian extends StatelessWidget {
                                           color2: kBlackText),
                                       CardData(
                                           title: "requestDate".tr,
-                                          subTitle: state.askOrderModel
-                                              .data![index].createdDate.toString(),
+                                          subTitle: DateConverter.dateConverterMonth("${state.askOrderModel.data![index].createdDate}"),
+
+                                        //  subTitle: state.askOrderModel.data![index].createdDate.toString(),
                                           color1: kSmallIconColor,
                                           color2: kSkyButton),
                                       CardData(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
+import '../../../../widgets/date_convertors.dart';
 import '../../ask_Librarian/my_order/page/views/cardContent.dart';
 import 'cubit/archive_cubit.dart';
 import 'page/descriptions.dart';
@@ -94,9 +95,9 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
                                           color2: kSkyButton),
                                       CardData(
                                           title: "requestDate".tr,
-                                          subTitle: state.archiveSuggestModel
-                                              .data![index].createdDate
-                                              .toString(),
+                                          subTitle: DateConverter.dateConverterMonth("${state.archiveSuggestModel.data![index].createdDate}"),
+
+                                         // subTitle: state.archiveSuggestModel.data![index].createdDate.toString(),
                                           color1: kSmallIconColor,
                                           color2: kBlackText),
                                       CardData(

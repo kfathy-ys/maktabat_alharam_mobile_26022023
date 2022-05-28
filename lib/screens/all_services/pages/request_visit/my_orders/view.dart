@@ -15,6 +15,7 @@ import 'package:maktabat_alharam/screens/widgets/alerts.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/widgets/date_convertors.dart';
 
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
@@ -26,8 +27,8 @@ import 'cubit/visit_order_cubit.dart';
 
 class MyOrderRequestVisitScreen extends StatelessWidget {
 
-  const MyOrderRequestVisitScreen({Key? key}) : super(key: key);
-
+   MyOrderRequestVisitScreen({Key? key}) : super(key: key);
+  final DateConverter dateConverter = DateConverter();
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<VisitOrderCubit>(context);
@@ -132,7 +133,7 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                                           color2: kBlackText),
                                       CardData(
                                           title: "requestDate".tr,
-                                          subTitle: state.allOrderVisitModel.data![index].createdDate.toString(),
+                                          subTitle: DateConverter.dateConverterMonth("${state.allOrderVisitModel.data![index].createdDate}"),
                                           color1: kSmallIconColor,
                                           color2: kSkyButton),
                                       CardData(

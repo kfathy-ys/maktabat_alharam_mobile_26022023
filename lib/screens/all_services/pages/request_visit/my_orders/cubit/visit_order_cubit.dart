@@ -76,6 +76,6 @@ class VisitOrderCubit extends Cubit<VisitOrderState> {
     );
     await getOrderVisit();
     Alert.success("تم إزلة الطلب من الأرشيف");
-  Get.to(() => const MyOrderRequestVisitScreen());
+  Get.to(() =>  MyOrderRequestVisitScreen());
   }
 }

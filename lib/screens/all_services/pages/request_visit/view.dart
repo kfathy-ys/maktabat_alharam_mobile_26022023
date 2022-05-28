@@ -314,7 +314,7 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                 Center(
                   child: MediaButtonSizer(
                     onPressed: () {
-                      Get.to(() => const MyOrderRequestVisitScreen());
+                      Get.to(() =>  MyOrderRequestVisitScreen());
                     },
                     title: "requestService".tr,
                     color: kPrimaryColor,

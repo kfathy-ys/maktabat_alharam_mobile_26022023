@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/archive/cubit/ask_archive_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/cubit/my_order_ask_cubit.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
+import '../../../../widgets/date_convertors.dart';
 import 'page/views/title.dart';
 import '../my_order/page/views/cardContent.dart';
 import '../../../../drawer/view.dart';
@@ -88,7 +89,9 @@ class ArchiveAskLibrarianScreen extends StatelessWidget {
                                             color2: kSkyButton),
                                         CardData(
                                             title: "requestDate".tr,
-                                            subTitle: state.askArchivedModel.data![index].createdDate,
+                                            subTitle: DateConverter.dateConverterMonth("${state.askArchivedModel.data![index].createdDate}"),
+
+                                          //  subTitle: state.askArchivedModel.data![index].createdDate,
                                             color1: kSmallIconColor,
                                             color2: kBlackText),
                                         CardData(

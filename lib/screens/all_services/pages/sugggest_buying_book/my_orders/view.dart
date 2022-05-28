@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
+import '../../../../widgets/date_convertors.dart';
 import '../../ask_Librarian/my_order/page/views/cardContent.dart';
 import '../../ask_Librarian/page/views/head_topices.dart';
 import '../archive/view.dart';
@@ -120,8 +121,9 @@ class MyOrdersSuggestBuyBookScreen extends StatelessWidget {
                                         color2: kSkyButton),
                                     CardData(
                                         title: "requestDate".tr,
-                                        subTitle: state.orderSuggestModel
-                                            .data![index].createdDate,
+                                        subTitle: DateConverter.dateConverterMonth("${state.orderSuggestModel.data![index].createdDate}"),
+
+                                        //subTitle: state.orderSuggestModel.data![index].createdDate,
                                         color1: kSmallIconColor,
                                         color2: kBlackText),
                                     CardData(

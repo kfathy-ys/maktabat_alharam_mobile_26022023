@@ -12,6 +12,7 @@ import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 
+import '../../../../widgets/date_convertors.dart';
 import '../../../../widgets/loading.dart';
 import '../my_orders/page/custom_container.dart';
 import 'cubit/my_archive_visit_cubit.dart';
@@ -87,7 +88,9 @@ class ArchiveRequestToVisitScreen extends StatelessWidget {
                                            color2: kBlackText),
                                        CardData(
                                            title: "requestDate".tr,
-                                           subTitle:state.archiveVisitModel.data![index].createdDate.toString(),
+                                           subTitle: DateConverter.dateConverterMonth("${state.archiveVisitModel.data![index].createdDate}"),
+
+                                         //  subTitle:state.archiveVisitModel.data![index].createdDate.toString(),
                                            color1: kSmallIconColor,
                                            color2: kSkyButton),
                                        CardData(
