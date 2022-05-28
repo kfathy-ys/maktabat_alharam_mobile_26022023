@@ -62,9 +62,9 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      SmallButtonSizer(
-                        onPressed: () {
-                          Get.to(() => SmallButtonSizer(
+
+
+                         SmallButtonSizer(
 
                             onPressed: () {
                               Get.to(() => const RequestVisitScreen());
@@ -72,12 +72,7 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                             title: "addOne".tr,
                             color: kSafeAreasColor,
                             image: "assets/image/newrequest.png",
-                          ));
-                        },
-                        title: "addOne".tr,
-                        color: kSafeAreasColor,
-                        image: "assets/image/newrequest.png",
-                      ),
+            ),
                       SmallButtonSizer(
                         onPressed: () {
                        Get.to(() => const ArchiveRequestToVisitScreen());
