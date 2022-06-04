@@ -1,17 +1,38 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
+
+import '../../../../../../config/dio_helper/dio.dart';
+import '../../new_order/models/all_libraries_model.dart';
+// enum typeLibraryName {theHolyHaramLibraryMen ,theHolyHaramLibraryWoman}
 class DropDownListLibraryName extends StatefulWidget {
 
-  const DropDownListLibraryName({Key? key}) : super(key: key);
+  final ValueChanged<int> onChanged;
+  const DropDownListLibraryName({Key? key, required this.onChanged}) : super(key: key);
 
   @override
   State<DropDownListLibraryName> createState() => _DropDownListLibraryNameState();
 }
 
 class _DropDownListLibraryNameState extends State<DropDownListLibraryName> {
-  String? dropdownValue;
-
+  AllLibraries? selected;
+  final libs = <AllLibraries>[];
+  int? valueSelected;
+  @override
+  void initState() {
+    // if(widget.initial != null) {
+    //   if(widget.initial == 1){
+    //     selected = typeLibraryName.theHolyHaramLibraryMen;
+    //     valueSelected = widget.initial;
+    //   }else{
+    //     selected = typeLibraryName.theHolyHaramLibraryWoman;
+    //     valueSelected = widget.initial;
+    //   }
+    // }
+    getLibs();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
   //  double height = MediaQuery.of(context).size.height;
@@ -27,12 +48,10 @@ class _DropDownListLibraryNameState extends State<DropDownListLibraryName> {
           border: Border.all(color: kPrimaryColor)
       ),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
+        child: DropdownButton<AllLibraries>(
 
-          value: dropdownValue,
-          // autofocus: true,
-          // isDense: true,
-          //isExpanded: true,
+          value: selected,
+
           hint: Text("libraryName".tr+' :',
             style: const TextStyle(
               color: kPrimaryColor,
@@ -48,16 +67,19 @@ class _DropDownListLibraryNameState extends State<DropDownListLibraryName> {
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
+          onChanged: (AllLibraries? newValue) {
+            if (newValue == null) return;
+            selected = newValue;
+
+            widget.onChanged(selected!.id!);
+
+            setState(() {});
           },
-          items: <String>["theHolyHaramLibraryMen".tr,  "theHolyHaramLibraryWoman".tr]
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
+          items:  libs
+              .map<DropdownMenuItem<AllLibraries>>((AllLibraries value) {
+            return DropdownMenuItem<AllLibraries>(
               value: value,
-              child: Text(value,
+              child: Text( value.nameAr!,
                 style: const TextStyle(
                   color: kTextColor,
                   fontSize: 16,
@@ -71,5 +93,13 @@ class _DropDownListLibraryNameState extends State<DropDownListLibraryName> {
         ),
       ),
     );
+  }
+  
+  Future<void> getLibs()async{
+    libs.clear();
+    final res = await NetWork.get('Library/GetAllLibraries');
+    (res.data['data'] as List).map((e) => libs.add(AllLibraries.fromJson(e))).toList();
+    setState(() {});
+
   }
 }

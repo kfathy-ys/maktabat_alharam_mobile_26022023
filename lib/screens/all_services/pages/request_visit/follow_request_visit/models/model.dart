@@ -18,7 +18,7 @@ class FollowOrderVisitModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) data["data"] = this.data?.toJson();
     if (messages != null) data["messages"] = messages;
     data["status"] = status;
@@ -101,7 +101,7 @@ class MyFollowOrder extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["userId"] = userId;
     data["libraryId"] = libraryId;
@@ -120,8 +120,9 @@ class MyFollowOrder extends Equatable {
     data["createdDate"] = createdDate;
     data["updatedBy"] = updatedBy;
     data["updatedDate"] = updatedDate;
-    if (visitAvailableDate != null)
+    if (visitAvailableDate != null) {
       data["visitAvailableDate"] = visitAvailableDate?.toJson();
+    }
     data["visitRequestReply"] = visitRequestReply;
     return data;
   }
@@ -192,7 +193,7 @@ class VisitAvailableDate extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["libraryId"] = libraryId;
     data["periodId"] = periodId;

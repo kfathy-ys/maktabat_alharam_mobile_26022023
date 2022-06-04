@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
@@ -7,24 +6,22 @@ import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
-
 class HomeTabScreen extends StatefulWidget {
   final int index;
   final String? userId;
 
-  const HomeTabScreen({Key? key, this.index = 0, this.userId}) : super(key: key);
+  const HomeTabScreen({Key? key, this.index = 0, this.userId})
+      : super(key: key);
 
   @override
   State<HomeTabScreen> createState() => _HomeTabScreenState();
 }
 
 class _HomeTabScreenState extends State<HomeTabScreen> {
-  static  final List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     MyHomeScreen(),
-     const MyOrdersScreen(),
-
+    const MyOrdersScreen(),
     const ProfileScreen(),
-
   ];
   int _selectedIndex = 0;
 
@@ -40,7 +37,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
     super.initState();
   }
 
- // final ItemsBar _itemsBar = ItemsBar();
+  // final ItemsBar _itemsBar = ItemsBar();
   final token = Prefs.getString('token');
 
   @override
@@ -50,49 +47,51 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
         return onWillPop(context);
       },
       child: Scaffold(
+        //_widgetOptions[_selectedIndex]
         body: _widgetOptions.elementAt(_selectedIndex),
-        bottomNavigationBar: token.isNotEmpty ?
-        BottomNavigationBar(
-          backgroundColor: kSmallIconColor,
-          currentIndex: _selectedIndex,
-          onTap: (index) {
-            setState(() {
-              _onItemTapped(index);
-            });
-          },
-          items:  <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-        icon: const ImageIcon( AssetImage("assets/image/homeicon.png"),),
-      label:"home".tr,
-    ),
-            BottomNavigationBarItem(
-              icon: const ImageIcon( AssetImage("assets/image/myOrders.png"),),
-              label: "myOrders".tr,
-            ),
-
-            BottomNavigationBarItem(
-                icon: const ImageIcon( AssetImage("assets/image/user.png"),),
-                label:  "myProfile".tr),
-          ],
-          type: BottomNavigationBarType.fixed,
-          selectedIconTheme: const IconThemeData(color: kHomeColor),
-          unselectedIconTheme:  const IconThemeData(color: kOffColor),
-selectedItemColor: kHomeColor ,
-          unselectedItemColor:kOffColor ,
-
-
-          selectedLabelStyle:  const TextStyle(
-              fontFamily: 'DinMedium',
-              fontSize: 16,
-
-              color: kHomeColor),
-          unselectedLabelStyle:  const TextStyle(
-              fontFamily: 'Contrail',
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: kLightText),
-          iconSize: 25,
-        ):null,
+        bottomNavigationBar: token.isNotEmpty
+            ? BottomNavigationBar(
+                backgroundColor: kSmallIconColor,
+                currentIndex: _selectedIndex,
+                onTap: (index) {
+                  setState(() {
+                    _onItemTapped(index);
+                  });
+                },
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: const ImageIcon(
+                      AssetImage("assets/image/homeicon.png"),
+                    ),
+                    label: "home".tr,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: const ImageIcon(
+                      AssetImage("assets/image/myOrders.png"),
+                    ),
+                    label: "myOrders".tr,
+                  ),
+                  BottomNavigationBarItem(
+                      icon: const ImageIcon(
+                        AssetImage("assets/image/user.png"),
+                      ),
+                      label: "myProfile".tr),
+                ],
+                type: BottomNavigationBarType.fixed,
+                selectedIconTheme: const IconThemeData(color: kHomeColor),
+                unselectedIconTheme: const IconThemeData(color: kOffColor),
+                selectedItemColor: kHomeColor,
+                unselectedItemColor: kOffColor,
+                selectedLabelStyle: const TextStyle(
+                    fontFamily: 'DinMedium', fontSize: 16, color: kHomeColor),
+                unselectedLabelStyle: const TextStyle(
+                    fontFamily: 'Contrail',
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: kLightText),
+                iconSize: 25,
+              )
+            : null,
       ),
     );
   }

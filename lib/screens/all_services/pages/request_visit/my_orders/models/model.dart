@@ -21,9 +21,10 @@ class AllOrderVisitModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null)
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
       data["data"] = this.data?.map((e) => e.toJson()).toList();
+    }
     if (messages != null) data["messages"] = messages;
     data["status"] = status;
     data["dataLength"] = dataLength;
@@ -34,6 +35,7 @@ class AllOrderVisitModel extends Equatable {
   List<Object?> get props => [data, messages, status, dataLength];
 }
 
+// ignore: must_be_immutable
 class MyOrderToVisit extends Equatable {
   int? id;
   String? userId;
@@ -102,7 +104,7 @@ class MyOrderToVisit extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["userId"] = userId;
     data["libraryId"] = libraryId;

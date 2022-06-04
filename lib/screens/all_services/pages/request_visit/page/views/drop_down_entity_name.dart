@@ -1,16 +1,39 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
+enum typeEntityName {school ,company,entity}
 class DropDownEntityName extends StatefulWidget {
-
-  const DropDownEntityName({Key? key}) : super(key: key);
+  final int? initial;
+  final ValueChanged<int> onChanged;
+   const DropDownEntityName({Key? key, this.initial, required this.onChanged}) : super(key: key);
 
   @override
   State<DropDownEntityName> createState() => _DropDownEntityNameState();
 }
 
 class _DropDownEntityNameState extends State<DropDownEntityName> {
-  String? dropdownValue;
+  typeEntityName? selected;
+  int? valueSelected;
+
+
+
+  @override
+  void initState() {
+    if(widget.initial != null) {
+      if(widget.initial == 1){
+        selected = typeEntityName.school;
+        valueSelected = widget.initial;
+      }else if(widget.initial == 2){
+        selected = typeEntityName.company;
+        valueSelected = widget.initial;
+      }else{
+        selected = typeEntityName.entity;
+        valueSelected = widget.initial;
+      }
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +50,10 @@ class _DropDownEntityNameState extends State<DropDownEntityName> {
           border: Border.all(color: kPrimaryColor)
       ),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
+        child: DropdownButton<typeEntityName>(
 
-          value: dropdownValue,
-         // autofocus: true,
-         // isDense: true,
-          //isExpanded: true,
+          value: selected,
+
           hint: Text("entityName".tr+' :',
             style: const TextStyle(
               color: kPrimaryColor,
@@ -48,16 +69,28 @@ class _DropDownEntityNameState extends State<DropDownEntityName> {
             fontFamily: "DinReguler",
           ),
            underline: null,
-          onChanged: (String? newValue) {
+          onChanged: (typeEntityName? newValue) {
+            if (newValue == null) return;
+
             setState(() {
-              dropdownValue = newValue!;
+              selected = newValue;
+              if (selected == typeEntityName.school) {
+                valueSelected = 1;
+              }
+              else if (selected == typeEntityName.company){
+                valueSelected = 2;
+              }
+              else {
+                valueSelected = 3;
+              }
+              widget.onChanged(valueSelected!);
             });
           },
-          items: <String>["school".tr,  "company".tr, "entity".tr]
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
+          items: typeEntityName.values
+              .map<DropdownMenuItem<typeEntityName>>((typeEntityName value) {
+            return DropdownMenuItem<typeEntityName>(
               value: value,
-              child: Text(value,
+              child: Text(describeEnum(value).tr,
                 style: const TextStyle(
                   color: kTextColor,
                   fontSize: 16,
@@ -67,7 +100,7 @@ class _DropDownEntityNameState extends State<DropDownEntityName> {
 
               ),
             );
-          }).toList(),
+          }).toList()
         ),
       ),
     );

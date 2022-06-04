@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:html/parser.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/view.dart';
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:queen/core/helpers/prefs.dart';
@@ -48,7 +49,12 @@ const kFavouriteColor = Color(0xFFAB0D03);
 const kPrimaryFDarkColor = Color(0xFF0A4E75);
 const kPrimaryBlueColor = Color(0xFF3080D1);
 const khTextColor = Color(0xFF323232);*/
+String parseHtmlString(String htmlString) {
+  final document = parse(htmlString);
+  final String parsedString = parse(document.body!.text).documentElement!.text;
 
+  return parsedString;
+}
 Widget customDivider(double height) => Container(
       width: double.infinity,
       height: height,

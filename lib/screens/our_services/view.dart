@@ -3,7 +3,6 @@ import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/content.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/page/views/data.dart';
 import 'package:maktabat_alharam/screens/our_services/page/views/title.dart';
-import 'package:maktabat_alharam/screens/widgets/alerts.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
@@ -47,16 +46,16 @@ class OurServicesScreen extends StatelessWidget {
               // const SubHeadTitle(),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: GridView.builder(
                     shrinkWrap: true,
                     physics: const BouncingScrollPhysics(),
                     gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 200,
-                            childAspectRatio: 1.0,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10),
+                    const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 200,
+                        childAspectRatio: 1.0,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10),
                     itemCount: ourServicesGridCard.ourServicesGrid.length,
                     itemBuilder: (BuildContext ctx, index) {
                       return InkWell(
@@ -68,7 +67,7 @@ class OurServicesScreen extends StatelessWidget {
                             onWillPopSignIn(context);
                             return;
                           }
-                              Get.toNamed(ourServicesGridCard.ourServicesGrid[index].routeName);
+                          Get.toNamed(ourServicesGridCard.ourServicesGrid[index].routeName);
                         },
                         child: CardGridContent(
                             fontTitle: 18,

@@ -1,21 +1,19 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:equatable/equatable.dart';
 
-// ignore: must_be_immutable
-class RepliesMessagesModel extends Equatable {
-  List<RepliesMessage>? data;
+class AllLibrariesModel extends Equatable {
+  List<AllLibraries>? data;
   List<dynamic>? messages;
   int? status;
   int? dataLength;
 
-  RepliesMessagesModel(
-      {this.data, this.messages, this.status, this.dataLength});
+  AllLibrariesModel({this.data, this.messages, this.status, this.dataLength});
 
-  RepliesMessagesModel.fromJson(Map<String, dynamic> json) {
+  AllLibrariesModel.fromJson(Map<String, dynamic> json) {
     data = json["data"] == null
         ? null
-        : (json["data"] as List)
-            .map((e) => RepliesMessage.fromJson(e))
-            .toList();
+        : (json["data"] as List).map((e) => AllLibraries.fromJson(e)).toList();
     messages = json["messages"] ?? [];
     status = json["status"];
     dataLength = json["dataLength"];
@@ -36,32 +34,28 @@ class RepliesMessagesModel extends Equatable {
   List<Object?> get props => [data, messages, status, dataLength];
 }
 
-// ignore: must_be_immutable
-class RepliesMessage extends Equatable {
+class AllLibraries extends Equatable {
   int? id;
-  int? visitRequestId;
-  String? userName;
-  String? userMessage;
+  String? nameAr;
+  String? nameEn;
   String? createdBy;
   String? createdDate;
-  String? updatedBy;
-  String? updatedDate;
+  dynamic updatedBy;
+  dynamic updatedDate;
 
-  RepliesMessage(
+  AllLibraries(
       {this.id,
-      this.visitRequestId,
-      this.userName,
-      this.userMessage,
+      this.nameAr,
+      this.nameEn,
       this.createdBy,
       this.createdDate,
       this.updatedBy,
       this.updatedDate});
 
-  RepliesMessage.fromJson(Map<String, dynamic> json) {
+  AllLibraries.fromJson(Map<String, dynamic> json) {
     id = json["id"];
-    visitRequestId = json["visitRequestId"];
-    userName = json["userName"];
-    userMessage = json["userMessage"];
+    nameAr = json["nameAr"];
+    nameEn = json["nameEn"];
     createdBy = json["createdBy"];
     createdDate = json["createdDate"];
     updatedBy = json["updatedBy"];
@@ -71,9 +65,8 @@ class RepliesMessage extends Equatable {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
-    data["visitRequestId"] = visitRequestId;
-    data["userName"] = userName;
-    data["userMessage"] = userMessage;
+    data["nameAr"] = nameAr;
+    data["nameEn"] = nameEn;
     data["createdBy"] = createdBy;
     data["createdDate"] = createdDate;
     data["updatedBy"] = updatedBy;
@@ -85,13 +78,12 @@ class RepliesMessage extends Equatable {
   List<Object?> get props {
     return [
       id,
-      visitRequestId,
-      userName,
-      userMessage,
+      nameAr,
+      nameEn,
       createdBy,
       createdDate,
       updatedBy,
-      updatedDate
+      updatedDate,
     ];
   }
 }

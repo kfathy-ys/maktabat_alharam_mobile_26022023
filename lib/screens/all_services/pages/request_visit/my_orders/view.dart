@@ -10,7 +10,6 @@ import 'package:maktabat_alharam/screens/all_services/pages/request_visit/my_ord
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/update_order/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
-import 'package:maktabat_alharam/screens/widgets/alerts.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';

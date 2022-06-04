@@ -1,56 +1,113 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-class AvailableTime  extends StatelessWidget {
-  final String time1;
-  final String time2;
 
-  const AvailableTime({Key? key,required this.time1,required this.time2}) : super(key: key);
+import '../../new_order/models/avalible_periods_model.dart';
+
+class AvailableTime extends StatefulWidget {
+  final List<AvailablePeriods> periods;
+
+   const AvailableTime({
+    Key? key,
+    required this.periods,
+  }) : super(key: key);
+
+  @override
+  State<AvailableTime> createState() => _AvailableTimeState();
+}
+
+class _AvailableTimeState extends State<AvailableTime> {
+  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
+
     double height = MediaQuery.of(context).size.height;
-   // double width = MediaQuery.of(context).size.width;
-    return   Container(
-      margin: const EdgeInsets.symmetric(vertical: 8,horizontal: 22),
+    double width = MediaQuery.of(context).size.width;
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 22),
       height: height * 0.089,
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: 5,
-        itemBuilder: (context , int index){
-          return Container(
-            height: height * 0.079,
-            margin: const EdgeInsets.symmetric(horizontal: 4),
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+        itemCount: widget.periods.length,
+        itemBuilder: (context, int index) {
+          return InkWell(
+            onTap: (){
+          setState(() {
+           isPressed=!isPressed;
+          });
+            },
+            child: Container(
+              height: height * 0.079,
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                border:isPressed ? Border.all(color: kHomeColor) : Border.all(color:kAccentColor),
+                  color:isPressed ?kAccentColor: kHomeColor,
+                  borderRadius: BorderRadius.circular(8)),
+              child: Row(
+               mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
 
-            decoration: BoxDecoration(
-                color: kBackgroundCardColor,
-                borderRadius: BorderRadius.circular(8)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                 // "6:35 PM\t\t".tr
-                  time1,
-                  style: const TextStyle(
-                  color: kPrimaryColor,
-                  fontSize: 16,
-                  fontFamily: "DinReguler",
-                ),),
-                Text(
-                  //"2:35 PM".tr,
-                  time2,
-                  style: const TextStyle(
-                  color: kBlackText,
-                  fontSize: 16,
-                  fontFamily: "DinReguler",
-                ),),
-              ],
+                  Text(
+                    // "6:35 PM\t\t".tr
+                    widget.periods[index].periodFrom ?? '',
+                    style:  TextStyle(
+                      color:isPressed ? kHomeColor :kAccentColor,
+                      fontSize: 16,
+                      fontFamily: "DinReguler",
+                    ),
+                  ),
+                  Text(
+                    // "6:35 PM\t\t".tr
+                    parseHtmlString( widget.periods[index].periodOfTheDayFromAr ?? '',),
+
+                  // widget.periods[index].periodOfTheDayFromAr ?? '',
+                    style:  TextStyle(
+                      color: isPressed ? kHomeColor :kAccentColor,
+                      fontSize: 16,
+                      overflow: TextOverflow.ellipsis,
+                      fontFamily: "DinReguler",
+                    ),
+                  ),
+                  const Text(
+
+                    ' : ',
+                    style: TextStyle(
+                      color: kBlackText,
+                      fontSize: 16,
+                      fontFamily: "DinBold",
+                    ),
+                  ),
+
+                  Text(
+                    //"2:35 PM".tr,
+                    widget.periods[index].periodTo ?? '',
+                    style:  TextStyle(
+                      color: isPressed ? kHomeColor :kAccentColor,
+                      fontSize: 16,
+                      fontFamily: "DinReguler",
+                    ),
+
+                  ),
+                  Text(
+                    parseHtmlString(widget.periods[index].periodOfTheDayToAr ?? ''),
+
+                    style:  TextStyle(
+                      color: isPressed ? kHomeColor :kAccentColor,
+                      overflow: TextOverflow.ellipsis,
+
+                      fontSize: 16,
+                      fontFamily: "DinReguler",
+                    ),
+                  ),
+
+                ],
+              ),
             ),
-
           );
         },
-
       ),
     );
   }

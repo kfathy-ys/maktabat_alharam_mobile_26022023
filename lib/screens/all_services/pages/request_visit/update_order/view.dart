@@ -86,7 +86,9 @@ class _UpdateOrderOfVisitRequestState
                   title: "RequestVisit".tr,
                 ),
                 buildSizedBox(height),
-                const DropDownEntityName(),
+
+                /// TODO:: DropDownEntityName
+                 DropDownEntityName(onChanged: (int index){}),
                 CustomTextField(
                   hint: "nameResponsible".tr,
                   dIcon: Icons.drive_file_rename_outline,
@@ -135,7 +137,7 @@ class _UpdateOrderOfVisitRequestState
                   ]),
                   type: TextInputType.number,
                 ),
-                const DropDownListLibraryName(),
+                 DropDownListLibraryName(onChanged: (int index){}),
                 Hints(title: "visitDate".tr),
                 Container(
                   // color: kTextFieldColor,
@@ -313,7 +315,7 @@ class _UpdateOrderOfVisitRequestState
                   ),
                 ),*/
                 Hints(title: "AvailablePeriods".tr),
-                AvailableTime(time1: "6:35 PM\t\t".tr, time2: "2:35 PM".tr),
+                // AvailableTime(time1: "6:35 PM\t\t".tr, time2: "2:35 PM".tr),
                 CustomHeightTextField(
                   controller: _vistorReasonController,
                   hint: "visitReason".tr,

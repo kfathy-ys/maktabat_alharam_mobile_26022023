@@ -1,20 +1,20 @@
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
-class RepliesMessagesModel extends Equatable {
-  List<RepliesMessage>? data;
+class AvailablePeriodsModel extends Equatable {
+  List<AvailablePeriods>? data;
   List<dynamic>? messages;
   int? status;
   int? dataLength;
 
-  RepliesMessagesModel(
+  AvailablePeriodsModel(
       {this.data, this.messages, this.status, this.dataLength});
 
-  RepliesMessagesModel.fromJson(Map<String, dynamic> json) {
+  AvailablePeriodsModel.fromJson(Map<String, dynamic> json) {
     data = json["data"] == null
         ? null
         : (json["data"] as List)
-            .map((e) => RepliesMessage.fromJson(e))
+            .map((e) => AvailablePeriods.fromJson(e))
             .toList();
     messages = json["messages"] ?? [];
     status = json["status"];
@@ -33,35 +33,46 @@ class RepliesMessagesModel extends Equatable {
   }
 
   @override
-  List<Object?> get props => [data, messages, status, dataLength];
+  List<Object?> get props {
+    return [data, status, messages, dataLength];
+  }
 }
 
 // ignore: must_be_immutable
-class RepliesMessage extends Equatable {
+class AvailablePeriods extends Equatable {
   int? id;
-  int? visitRequestId;
-  String? userName;
-  String? userMessage;
+  String? periodFrom;
+  String? periodTo;
+  String? periodOfTheDayFrom;
+  String? periodOfTheDayFromAr;
+  String? periodOfTheDayTo;
+  String? periodOfTheDayToAr;
   String? createdBy;
   String? createdDate;
-  String? updatedBy;
-  String? updatedDate;
+  dynamic? updatedBy;
+  dynamic? updatedDate;
 
-  RepliesMessage(
+  AvailablePeriods(
       {this.id,
-      this.visitRequestId,
-      this.userName,
-      this.userMessage,
+      this.periodFrom,
+      this.periodTo,
+      this.periodOfTheDayFrom,
+      this.periodOfTheDayFromAr,
+      this.periodOfTheDayTo,
+      this.periodOfTheDayToAr,
       this.createdBy,
       this.createdDate,
       this.updatedBy,
       this.updatedDate});
 
-  RepliesMessage.fromJson(Map<String, dynamic> json) {
+  AvailablePeriods.fromJson(Map<String, dynamic> json) {
     id = json["id"];
-    visitRequestId = json["visitRequestId"];
-    userName = json["userName"];
-    userMessage = json["userMessage"];
+    periodFrom = json["periodFrom"];
+    periodTo = json["periodTo"];
+    periodOfTheDayFrom = json["periodOfTheDayFrom"];
+    periodOfTheDayFromAr = json["periodOfTheDayFromAr"];
+    periodOfTheDayTo = json["periodOfTheDayTo"];
+    periodOfTheDayToAr = json["periodOfTheDayToAr"];
     createdBy = json["createdBy"];
     createdDate = json["createdDate"];
     updatedBy = json["updatedBy"];
@@ -71,9 +82,12 @@ class RepliesMessage extends Equatable {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
-    data["visitRequestId"] = visitRequestId;
-    data["userName"] = userName;
-    data["userMessage"] = userMessage;
+    data["periodFrom"] = periodFrom;
+    data["periodTo"] = periodTo;
+    data["periodOfTheDayFrom"] = periodOfTheDayFrom;
+    data["periodOfTheDayFromAr"] = periodOfTheDayFromAr;
+    data["periodOfTheDayTo"] = periodOfTheDayTo;
+    data["periodOfTheDayToAr"] = periodOfTheDayToAr;
     data["createdBy"] = createdBy;
     data["createdDate"] = createdDate;
     data["updatedBy"] = updatedBy;
@@ -85,9 +99,12 @@ class RepliesMessage extends Equatable {
   List<Object?> get props {
     return [
       id,
-      visitRequestId,
-      userName,
-      userMessage,
+      periodFrom,
+      periodTo,
+      periodOfTheDayFrom,
+      periodOfTheDayFromAr,
+      periodOfTheDayTo,
+      periodOfTheDayToAr,
       createdBy,
       createdDate,
       updatedBy,

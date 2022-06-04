@@ -36,7 +36,7 @@ class NewOrderCubit extends Cubit<NewOrderState> {
       var now = DateTime.now();
 
 
-      var date= DateFormat.yMMMMEEEEd().format(DateTime.now());;
+      var date= DateFormat.yMMMMEEEEd().format(DateTime.now());
       final res = await NetWork.post(
         'Suggestion/CreateNewSuggestion',
         body: {
