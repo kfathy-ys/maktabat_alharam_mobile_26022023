@@ -16,6 +16,7 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
@@ -55,6 +56,10 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    final fullName = Prefs.getString('fullName');
+    final email = Prefs.getString('email');
+    final phoneNumber = Prefs.getString('phoneNumber');
+
     return Container(
       color: kAppBarColor,
       child: Scaffold(
@@ -71,17 +76,6 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
             width: width,
             child: BlocConsumer<AvailableDatesCubit, AvailableDatesState>(
               listener: (context, state) {
-                // if(state is AvailableDatesSuccess){
-                //   Alert.success(  "تم إضافة طلبك بنجاح");
-                //   BlocProvider.of<VisitOrderCubit>(context).getOrderVisit();
-                //   Get.off(
-                //           () =>  MyOrderRequestVisitScreen());
-                // }
-                // else if (state is AvailableDatesError){
-                //   Alert.error(  state.msg);
-                // }
-
-
               },
               builder: (context, state) {
                 final cubit = BlocProvider.of<AvailableDatesCubit>(context);
@@ -102,9 +96,9 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
 
                     ),
                     CustomTextField(
-                      hint: "nameResponsible".tr,
+                      hint: fullName,
                       dIcon: Icons.drive_file_rename_outline,
-                      label: "nameResponsible".tr,
+                      label: fullName,
                       controller: _nameController,
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
@@ -114,9 +108,9 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                       type: TextInputType.name,
                     ),
                     CustomTextField(
-                      hint: "email".tr,
+                      hint: email,
                       dIcon: Icons.email_outlined,
-                      label: "email".tr,
+                      label: email,
                       controller: _emailController,
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
@@ -126,9 +120,9 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                       type: TextInputType.emailAddress,
                     ),
                     CustomTextField(
-                      hint: "phoneNumber".tr,
+                      hint: phoneNumber,
                       dIcon: Icons.drive_file_rename_outline,
-                      label: "phoneNumber".tr,
+                      label: phoneNumber,
                       controller: _phoneController,
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
