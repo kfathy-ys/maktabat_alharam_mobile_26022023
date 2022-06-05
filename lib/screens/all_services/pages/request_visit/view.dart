@@ -96,9 +96,9 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
 
                     ),
                     CustomTextField(
-                      hint: fullName,
+                      hint: "nameResponsible".tr,
                       dIcon: Icons.drive_file_rename_outline,
-                      label: fullName,
+                      label: "nameResponsible".tr,
                       controller: _nameController,
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
@@ -108,9 +108,9 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                       type: TextInputType.name,
                     ),
                     CustomTextField(
-                      hint: email,
+                      hint: "email".tr,
                       dIcon: Icons.email_outlined,
-                      label: email,
+                      label: "email".tr,
                       controller: _emailController,
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
@@ -120,9 +120,9 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                       type: TextInputType.emailAddress,
                     ),
                     CustomTextField(
-                      hint: phoneNumber,
+                      hint: "phoneNumber".tr,
                       dIcon: Icons.drive_file_rename_outline,
-                      label: phoneNumber,
+                      label: "phoneNumber".tr,
                       controller: _phoneController,
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
@@ -145,8 +145,10 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     ),
 
                     /// TODO:: DropDownListLibraryName
-                    DropDownListLibraryName(onChanged: (value) {
-                      cubit.getAvailableDatesVisit(value);
+                    DropDownListLibraryName(
+
+                        onChanged: (value) {
+                      cubit.getAvailableDatesVisit(value.id!);
                       cubit.onLibChang(value);
                     }),
                     Hints(title: "visitDate".tr),
@@ -312,16 +314,19 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             cubit.createOrderToVisit(
-                              responsibleName: _nameController.text,
-                              responsibleMobile: _phoneController.text,
-                              responsibleEmail: _emailController.text,
+                            responsibleName: _nameController.text,
+                            responsibleMobile: _phoneController.text,
+                             responsibleEmail: _emailController.text,
                               numberOfVisitors: _visitorsController.text,
                               visitReason: _vistorReasonController.text,
-                              requestStatusId: 4,
+                             // requestStatusId: 4,
                             );
+                            Get.offAll(() => MyOrderRequestVisitScreen());
+                          }else{
+                            Alert.error("الرجاء التاكيد من الطلب ");
                           }
 
-                            Get.to(() => MyOrderRequestVisitScreen());
+
                         },
                         title: "requestService".tr,
                         color: kPrimaryColor,

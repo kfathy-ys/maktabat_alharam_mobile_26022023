@@ -8,8 +8,9 @@ import '../../new_order/models/all_libraries_model.dart';
 // enum typeLibraryName {theHolyHaramLibraryMen ,theHolyHaramLibraryWoman}
 class DropDownListLibraryName extends StatefulWidget {
 
-  final ValueChanged<int> onChanged;
-  const DropDownListLibraryName({Key? key, required this.onChanged}) : super(key: key);
+  final ValueChanged<AllLibraries> onChanged;
+  final AllLibraries? initial;
+  const DropDownListLibraryName({Key? key, required this.onChanged, this.initial}) : super(key: key);
 
   @override
   State<DropDownListLibraryName> createState() => _DropDownListLibraryNameState();
@@ -21,15 +22,10 @@ class _DropDownListLibraryNameState extends State<DropDownListLibraryName> {
   int? valueSelected;
   @override
   void initState() {
-    // if(widget.initial != null) {
-    //   if(widget.initial == 1){
-    //     selected = typeLibraryName.theHolyHaramLibraryMen;
-    //     valueSelected = widget.initial;
-    //   }else{
-    //     selected = typeLibraryName.theHolyHaramLibraryWoman;
-    //     valueSelected = widget.initial;
-    //   }
-    // }
+    if(widget.initial != null) {
+       selected = widget.initial;
+
+    }
     getLibs();
     super.initState();
   }
@@ -71,7 +67,7 @@ class _DropDownListLibraryNameState extends State<DropDownListLibraryName> {
             if (newValue == null) return;
             selected = newValue;
 
-            widget.onChanged(selected!.id!);
+            widget.onChanged(selected!);
 
             setState(() {});
           },

@@ -469,7 +469,7 @@ Future<bool> onWillPopSignIn(BuildContext context) async {
               Get.offAll(()=>LoginScreen());
             },
             child: const Text(
-              "تسجيل خروج",
+              "تسجيل الدخول",
               style: TextStyle(
                 fontFamily: 'Contrail',
                 fontSize: 16,

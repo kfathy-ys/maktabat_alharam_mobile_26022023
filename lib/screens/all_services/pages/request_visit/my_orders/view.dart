@@ -157,8 +157,9 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                                       CustomCardButton(
                                         color: kAccentColor,
                                         title: "updateRequest".tr,
-                                        onPressed: () =>
-                                            Get.to(() => const UpdateOrderOfVisitRequest()),
+                                        onPressed: () {
+                                          Get.to(() =>  UpdateOrderOfVisitRequest(order:state.allOrderVisitModel.data![index] ,));
+                                        },
                                         image: "assets/image/update.png",
                                       ),
                                       CustomCardButton(

@@ -27,93 +27,80 @@ class MyHomeScreen extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Container(
 
-      color: kAppBarColor,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: kHomeColor,
-          drawer: token.isNotEmpty ? drawer(context: context) : null,
-
-          appBar: token.isNotEmpty
-              ? customAppbar(
-                  icons: Icons.arrow_forward_outlined,
-                  isIcons: true,
-                  context: context)
-              : null,
-          body: SizedBox(
-            height: height,
-            child: ListView(
-             // padding: const EdgeInsets.symmetric(vertical: 20),
-              physics: const PageScrollPhysics(),
+      color: kHomeColor,
+      child: SizedBox(
+        height: height,
+        child: ListView(
+          // padding: const EdgeInsets.symmetric(vertical: 20),
+          physics: const PageScrollPhysics(),
+          children: [
+            token.isNotEmpty
+                ? SizedBox(height: height*0.2 ,child: Image.asset('assets/image/kabah.png',))
+                : Stack(
               children: [
-                token.isNotEmpty
-                    ? SizedBox(height: height*0.2 ,child: Image.asset('assets/image/kabah.png',))
-                    : Stack(
-                        children: [
-                    Image.asset('assets/image/headback.png',
-                      width: double.infinity,
-                      fit: BoxFit.fill,),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.only(top: 40),
-                            child: Center(
-                              child: Text("readAndLearn".tr,
-                                  style: const TextStyle(
-                                      color: kHomeColor,
-                                      fontSize: 22,
-                                      fontFamily: 'DinBold')),
-                            ),
-                          )
-                        ],
-                      ),
-               buildSizedBox(height),
-                Center(child: customBoldText(title: "welcome".tr)),
-                 buildSizedBox(height),
-                const BannerSlider(),
-                token.isNotEmpty ? buildSizedBox(height):const SizedBox(),
-
-                TitleSubTitle(
-                  onTap: () => Get.to(() => OurServicesScreen()),
-                  title: "ourServices".tr,
-                  subtTitle: "allServices".tr,
-                ),
-              //  buildSizedBox(height),
-
-                SizedBox(
-                  // width: width*0.3,
-                  height: height * 0.25,
-                  child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: services.ourServices.length,
-                      itemBuilder: (context, int index) {
-                        return InkWell(
-                          onTap: () {
-                            final page = services.ourServices[index].pages;
-                            print(page);
-                            print(Prefs.getString("token").isEmpty);
-                            if(((page == Pages.one) || (page== Pages.two) || (page== Pages.five)) && Prefs.getString("token").isEmpty){
-                              onWillPopSignIn(context);
-                              return;
-                            }
-                            Get.toNamed(services.ourServices[index].routeName);
-                          },
-                          child: CardContent(
-
-                              fontTitle: 20,
-                              fontSubTitle: 14,
-                              model: services.ourServices[index]),
-                        );
-                      }),
-                ),
-               // buildSizedBox(height),
-                !token.isNotEmpty
-                    ? const ToShowMoreAboutOurServices()
-                    : const SizedBox(),
-              ///  buildSizedBox(height),
+                Image.asset('assets/image/headback.png',
+                  width: double.infinity,
+                  fit: BoxFit.fill,),
+                Padding(
+                  padding: const EdgeInsetsDirectional.only(top: 40),
+                  child: Center(
+                    child: Text("readAndLearn".tr,
+                        style: const TextStyle(
+                            color: kHomeColor,
+                            fontSize: 22,
+                            fontFamily: 'DinBold')),
+                  ),
+                )
               ],
             ),
-          ),
+            buildSizedBox(height),
+            Center(child: customBoldText(title: "welcome".tr)),
+            buildSizedBox(height),
+            const BannerSlider(),
+            token.isNotEmpty ? buildSizedBox(height):const SizedBox(),
+
+            TitleSubTitle(
+              onTap: () => Get.to(() => OurServicesScreen()),
+              title: "ourServices".tr,
+              subtTitle: "allServices".tr,
+            ),
+            //  buildSizedBox(height),
+
+            SizedBox(
+              // width: width*0.3,
+              height: height * 0.25,
+              child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: services.ourServices.length,
+                  itemBuilder: (context, int index) {
+                    return InkWell(
+                      onTap: () {
+                        final page = services.ourServices[index].pages;
+                        print(page);
+                        print(Prefs.getString("token").isEmpty);
+                        if(((page == Pages.one) || (page== Pages.two) || (page== Pages.five)) && Prefs.getString("token").isEmpty){
+                          onWillPopSignIn(context);
+                          return;
+                        }
+                        Get.toNamed(services.ourServices[index].routeName);
+                      },
+                      child: CardContent(
+
+                          fontTitle: 20,
+                          fontSubTitle: 14,
+                          model: services.ourServices[index]),
+                    );
+                  }),
+            ),
+            // buildSizedBox(height),
+            !token.isNotEmpty
+                ? const ToShowMoreAboutOurServices()
+                : const SizedBox(),
+            ///  buildSizedBox(height),
+          ],
         ),
       ),
     );
