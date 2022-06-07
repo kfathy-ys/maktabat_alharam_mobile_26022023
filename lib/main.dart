@@ -10,6 +10,7 @@ import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_ord
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/new_order/cubit/new_order_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/archive/cubit/my_archive_visit_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/new_order/cubit_available_dates/available_dates_cubit.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/my_order/cubit/my_order_research_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/cubit/archive_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/new_order/cubit/new_order_cubit.dart';
@@ -83,17 +84,28 @@ class MaktabatAlharam extends StatelessWidget {
           create: (context) =>
               MyOrderAskCubit(BlocProvider.of<AskArchiveCubit>(context)),
         ),
+
         BlocProvider<OrderSuggestCubit>(
           create: (context) =>
               OrderSuggestCubit(BlocProvider.of<ArchiveCubit>(context)),
         ),
+
+
+         /// TODO ::
         BlocProvider<MyArchiveVisitCubit>(
           create: (context) => MyArchiveVisitCubit(),
         ),
         BlocProvider<VisitOrderCubit>(
           create: (context) =>
               VisitOrderCubit(BlocProvider.of<MyArchiveVisitCubit>(context)),
-          //BlocProvider.of<MyArchiveVisitCubit>(context)
+
+        ),
+
+
+
+
+        BlocProvider<MyOrderResearchCubit>(
+          create: (context) => MyOrderResearchCubit(),
         ),
 
       ],
