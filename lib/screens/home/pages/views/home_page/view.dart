@@ -8,6 +8,7 @@ import 'package:maktabat_alharam/screens/our_services/view.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/widgets/fast_widget.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'page/views/data.dart';
 
@@ -60,7 +61,10 @@ class MyHomeScreen extends StatelessWidget {
             token.isNotEmpty ? buildSizedBox(height):const SizedBox(),
 
             TitleSubTitle(
-              onTap: () => Get.to(() => OurServicesScreen()),
+              onTap: () {
+               // navigateTo(context, OurServicesScreen());
+                Get.to(() => OurServicesScreen());
+              },
               title: "ourServices".tr,
               subtTitle: "allServices".tr,
             ),

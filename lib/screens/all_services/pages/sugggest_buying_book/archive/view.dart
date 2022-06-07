@@ -24,114 +24,111 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
 
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Container(
-      color: kAppBarColor,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: kHomeColor,
-          drawer: drawer(context: context),
-          appBar: customAppbar(
-              icons: Icons.arrow_forward_outlined,
-              isIcons: true,
-              context: context),
-          body: SingleChildScrollView(
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-              height: height,
-              width: width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: kHomeColor,
+        drawer: drawer(context: context),
+        appBar: customAppbar(
+            icons: Icons.arrow_forward_outlined,
+            isIcons: true,
+            context: context),
+        body: SingleChildScrollView(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+            height: height,
+            width: width,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
 
-                children: [
-                  const HeadTitle(),
-                  DescriptionSuggest(description: "headBuyBook".tr),
-                  BlocConsumer<ArchiveCubit, ArchiveState>(
-                    listener: (context, state) {},
-                    builder: (context, state) {
-                      if (state is ArchiveLoading) {
-                        return const LoadingFadingCircle();
-                      }
-                      if (state is ArchiveSuccess) {
-                        return Expanded(
-                          child: RefreshIndicator(
-                            onRefresh: () async {
-                              cubitArchive.getOrderArchiveSuggest();
-                              return Future<void>.delayed(const Duration(seconds: 3));
+              children: [
+                const HeadTitle(),
+                DescriptionSuggest(description: "headBuyBook".tr),
+                BlocConsumer<ArchiveCubit, ArchiveState>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    if (state is ArchiveLoading) {
+                      return const LoadingFadingCircle();
+                    }
+                    if (state is ArchiveSuccess) {
+                      return Expanded(
+                        child: RefreshIndicator(
+                          onRefresh: () async {
+                            cubitArchive.getOrderArchiveSuggest();
+                            return Future<void>.delayed(const Duration(seconds: 3));
+                          },
+                          backgroundColor: kAccentColor,
+                          color: Colors.white,
+                          child:state.archiveSuggestModel.data!.isEmpty ?
+                          Center(child: customBoldText(title: "لا توجد طلبات مؤرشفة الاّن")): ListView.builder(
+                          //  physics: const BouncingScrollPhysics(),
+                            //shrinkWrap: true,
+                            itemCount: state.archiveSuggestModel.data!.length ,
+                            itemBuilder: (context, int index) {
+                              return Container(
+                                margin:
+                                    const EdgeInsetsDirectional.only(bottom: 16.0),
+                                padding:
+                                    const EdgeInsetsDirectional.only(bottom: 8.0),
+                                height: height * 0.33,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: kCardBorder)),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CardData(
+                                        title: "nameResponsible".tr,
+                                        subTitle: state.archiveSuggestModel
+                                            .data![index].authorName
+                                            .toString(),
+                                        color1: kSmallIconColor,
+                                        color2: kBlackText),
+                                    CardData(
+                                        title: "titleOfBook".tr,
+                                        subTitle: state.archiveSuggestModel
+                                            .data![index].suggestedBookTitle
+                                            .toString(),
+                                        color1: kSmallIconColor,
+                                        color2: kSkyButton),
+                                    CardData(
+                                        title: "requestDate".tr,
+                                        subTitle: DateConverter.dateConverterMonth("${state.archiveSuggestModel.data![index].createdDate}"),
+
+                                       // subTitle: state.archiveSuggestModel.data![index].createdDate.toString(),
+                                        color1: kSmallIconColor,
+                                        color2: kBlackText),
+                                    CardData(
+                                      title: "orderProcedure".tr,
+                                      subTitle: "",
+                                      color1: kBlackText,
+                                      //  color2: kBlackText
+                                    ),
+                                    CustomCardButton(
+                                      color: kAccentColor,
+                                      title: "removeFromArchive".tr,
+                                      onPressed: ()=> cubit.removeFromArchive(state.archiveSuggestModel.data![index]),
+                                      image: "assets/image/archieve.png",
+                                    ),
+                                  ],
+                                ),
+                              );
                             },
-                            backgroundColor: kAccentColor,
-                            color: Colors.white,
-                            child:state.archiveSuggestModel.data!.isEmpty ?
-                            Center(child: customBoldText(title: "لا توجد طلبات مؤرشفة الاّن")): ListView.builder(
-                            //  physics: const BouncingScrollPhysics(),
-                              //shrinkWrap: true,
-                              itemCount: state.archiveSuggestModel.data!.length ,
-                              itemBuilder: (context, int index) {
-                                return Container(
-                                  margin:
-                                      const EdgeInsetsDirectional.only(bottom: 16.0),
-                                  padding:
-                                      const EdgeInsetsDirectional.only(bottom: 8.0),
-                                  height: height * 0.33,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(color: kCardBorder)),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      CardData(
-                                          title: "nameResponsible".tr,
-                                          subTitle: state.archiveSuggestModel
-                                              .data![index].authorName
-                                              .toString(),
-                                          color1: kSmallIconColor,
-                                          color2: kBlackText),
-                                      CardData(
-                                          title: "titleOfBook".tr,
-                                          subTitle: state.archiveSuggestModel
-                                              .data![index].suggestedBookTitle
-                                              .toString(),
-                                          color1: kSmallIconColor,
-                                          color2: kSkyButton),
-                                      CardData(
-                                          title: "requestDate".tr,
-                                          subTitle: DateConverter.dateConverterMonth("${state.archiveSuggestModel.data![index].createdDate}"),
-
-                                         // subTitle: state.archiveSuggestModel.data![index].createdDate.toString(),
-                                          color1: kSmallIconColor,
-                                          color2: kBlackText),
-                                      CardData(
-                                        title: "orderProcedure".tr,
-                                        subTitle: "",
-                                        color1: kBlackText,
-                                        //  color2: kBlackText
-                                      ),
-                                      CustomCardButton(
-                                        color: kAccentColor,
-                                        title: "removeFromArchive".tr,
-                                        onPressed: ()=> cubit.removeFromArchive(state.archiveSuggestModel.data![index]),
-                                        image: "assets/image/archieve.png",
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
                           ),
-                        );
-                      }
-                      if (state is ArchiveError) {
-                        return Center(child: Text(state.msg));
-                      }
-                      if (state is ArchiveEmpty) {
-                        return Center(
-                            child: customBoldText(title: "لا توجد طلبات الاّن"));
-                      }
-                      return const SizedBox();
-                    },
-                  ),
-                ],
-              ),
+                        ),
+                      );
+                    }
+                    if (state is ArchiveError) {
+                      return Center(child: Text(state.msg));
+                    }
+                    if (state is ArchiveEmpty) {
+                      return Center(
+                          child: customBoldText(title: "لا توجد طلبات الاّن"));
+                    }
+                    return const SizedBox();
+                  },
+                ),
+              ],
             ),
           ),
         ),

@@ -21,12 +21,17 @@ class OurServicesScreen extends StatelessWidget {
 
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Container(
-      width: width,
-      height: height,
-      color: kAppBarColor,
-      child:Card(
-        child: ListView(
+    return Scaffold(
+      backgroundColor: kHomeColor,
+      drawer: drawer(context: context),
+      appBar: customAppbar(
+          icons: Icons.arrow_forward_outlined,
+          isIcons: true,
+          context: context),
+      body: Container(
+
+
+        child:ListView(
           physics: const BouncingScrollPhysics(),
           //shrinkWrap: true,
           //crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,8 +77,8 @@ class OurServicesScreen extends StatelessWidget {
                   }),
             ),
           ],
-        ),
-      )
+        )
+      ),
     );
   }
 }

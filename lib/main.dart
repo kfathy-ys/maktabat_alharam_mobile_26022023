@@ -15,6 +15,7 @@ import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/new_order/cubit/new_order_cubit.dart';
 
 import 'package:maktabat_alharam/screens/splash/view.dart';
+import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:queen/queen.dart';
 
 import 'config/bloc_observer.dart';
@@ -28,6 +29,7 @@ import 'translations/locale key-value.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await GetStorage.init();
   Bloc.observer = MyBlocObserver();
   await App.boot();
@@ -42,7 +44,13 @@ void main() async {
         );
       }));
   SystemChrome.setPreferredOrientations(
+
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        systemNavigationBarColor: kButtonRedDark, // navigation bar color
+        statusBarColor: kAppBarColor, // status bar color
+      ));
 }
 
 class MaktabatAlharam extends StatelessWidget {

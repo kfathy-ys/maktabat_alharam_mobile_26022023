@@ -30,6 +30,11 @@ class RepliesCubit extends Cubit<RepliesState> {
     getFollowRepliesVisit();
   }
 
+   // /// Cached createdBy
+   // Prefs.setString("createdBy", res.data["data"]["data"]["createdBy"]);
+   //
+   // log("CreatedBy =  ${res.data["data"]["data"]["createdBy"]}");
+
   Future<void> getFollowRepliesVisit() async {
     emit(RepliesLoading());
     try {
@@ -37,15 +42,19 @@ class RepliesCubit extends Cubit<RepliesState> {
       final res = await NetWork.get(
           'VisitRequest/GetAllVisitRequestReplies/$id');
 
+
+
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
           res.statusCode != 200) {
         throw res.data['message'];
       }
 
-
+       log("CreatedBy =  ${res.data["data"][0]["createdBy"]}");
       emit(RepliesSuccess(
           repliesMessagesModel: RepliesMessagesModel.fromJson(res.data)));
+
+
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
@@ -76,9 +85,7 @@ class RepliesCubit extends Cubit<RepliesState> {
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
       }
-      /// Cached createdBy
-      Prefs.setString("createdBy", res.data["data"][4]["createdBy"]);
-      log("${res.data["data"][4]["createdBy"]}");
+
       emit(RepliesSuccess(
           repliesMessagesModel: RepliesMessagesModel.fromJson(res.data)));
       await getFollowRepliesVisit();

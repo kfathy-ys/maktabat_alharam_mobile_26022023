@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
@@ -35,19 +36,23 @@ super.initState();
               "assets/image/splash screen.png",
               fit: BoxFit.fill,
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: InkWell(
-                    onTap: () => Get.offAll(() =>   const HomeTabScreen(index: 0,) ),
-                    child: Image.asset(
-                      'assets/image/Group 30.png',
+            FadeInUpBig(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 30),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                       Get.offAll(() =>   const HomeTabScreen(index: 0,) );
+                      },
+                      child: Image.asset(
+                        'assets/image/Group 30.png',
 
+                      ),
                     ),
                   ),
                 ),
