@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,16 +16,11 @@ import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
 import 'package:queen/core/helpers/prefs.dart';
+import 'package:queen/validation.dart';
 
-import 'package:queen/validation/magic/is_optional.dart';
-import 'package:queen/validation/text/is_not_empty.dart';
-import 'package:queen/validation/text/max_length.dart';
-import 'package:queen/validation/validator.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import '../../../widgets/alerts.dart';
 import '../../../widgets/loading.dart';
-import 'my_orders/cubit/visit_order_cubit.dart';
 import 'page/views/drop_down_entity_name.dart';
 import 'page/views/hints.dart';
 
@@ -100,7 +94,8 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     controller: _nameController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+                     // IsOptional(),
+                   //   NotContains ("^\\s*([A-Za-z]{1,}([\\.,] |[-']| ))+[A-Za-z]+\\.?\\s*\$"),
                       MaxLength(30),
                     ]),
                     type: TextInputType.name,
@@ -113,6 +108,7 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
                       IsOptional(),
+                      const IsEmail(),
                       MaxLength(30),
                     ]),
                     type: TextInputType.emailAddress,
@@ -123,9 +119,10 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     label: "phoneNumber".tr,
                     controller: _phoneController,
                     validator: qValidator([
-                      IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
-                      MaxLength(30),
+                      IsRequired("minPassword".tr),
+                     // IsOptional(),
+                      MinLength(11),
+                      MaxLength(15),
                     ]),
                     type: TextInputType.phone,
                   ),
@@ -136,7 +133,9 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     controller: _visitorsController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+                     // IsOptional(),
+                      IsNumber(),
+                      MinLength(1),
                       MaxLength(30),
                     ]),
                     type: TextInputType.number,
@@ -163,101 +162,7 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                               border: Border.all(color: kSafeAreasColor),
                               color: kHomeColor,
                               borderRadius: BorderRadius.circular(8)),
-                          // child: TableCalendar(
-                          //   calendarStyle: const CalendarStyle(
-                          //     outsideDaysVisible: true,
-                          //     todayDecoration: BoxDecoration(
-                          //       shape: BoxShape.rectangle,
-                          //       color: kButtonGreenDark,
-                          //       // borderRadius: BorderRadius.circular(5)
-                          //     ),
-                          //     selectedDecoration: BoxDecoration(
-                          //       shape: BoxShape.rectangle,
-                          //       color: kPrimaryColor,
-                          //
-                          //       // borderRadius: BorderRadius.circular(5),
-                          //     ),
-                          //     defaultDecoration: BoxDecoration(
-                          //       shape: BoxShape.rectangle,
-                          //       borderRadius: BorderRadius.all(Radius.circular(5)),
-                          //     ),
-                          //   ),
-                          //   daysOfWeekStyle: const DaysOfWeekStyle(
-                          //     weekdayStyle: TextStyle(
-                          //       color: kSafeAreasColor,
-                          //       fontSize: 16,
-                          //       fontFamily: "DinReguler",
-                          //     ),
-                          //     weekendStyle: TextStyle(
-                          //       color: kSafeAreasColor,
-                          //       fontSize: 16,
-                          //       fontFamily: "DinReguler",
-                          //     ),
-                          //   ),
-                          //   startingDayOfWeek: StartingDayOfWeek.sunday,
-                          //   headerStyle: const HeaderStyle(
-                          //     leftChevronVisible: true,
-                          //     rightChevronVisible: true,
-                          //     titleCentered: true,
-                          //     headerPadding: EdgeInsets.symmetric(horizontal: 30.0),
-                          //     titleTextStyle: TextStyle(
-                          //       color: kSafeAreasColor,
-                          //       fontSize: 16,
-                          //       fontFamily: "DinReguler",
-                          //     ),
-                          //     formatButtonVisible: false,
-                          //   ),
-                          //   daysOfWeekHeight: 28.0,
-                          //   // height between the date rows, default is 52.0
-                          //   rowHeight: 30.0,
-                          //   enabledDayPredicate: (day){
-                          //     log(day.toString());
-                          //     // return cubit.availableDates.contains(day);
-                          //     if(cubit.availableDates.contains(day)) {
-                          //       return true;
-                          //     }else{
-                          //       return false;
-                          //     }
-                          //
-                          //   },
-                          //   // selectedDayPredicate: (day){
-                          //   //   return cubit.availableDates.contains(day);
-                          //   // },
-                          //   firstDay:cubit.dates.isNotEmpty?cubit.dates.first.date: DateTime.now(),
-                          //   lastDay: cubit.dates.isNotEmpty?cubit.dates.last.date:DateTime(2031),
-                          //   focusedDay: _focusedDay,
-                          //   // calendarFormat: _calendarFormat,
-                          //   // selectedDayPredicate: (day) {
-                          //   //   // Use `selectedDayPredicate` to determine which day is currently selected.
-                          //   //   // If this returns true, then `day` will be marked as selected.
-                          //   //
-                          //   //   // Using `isSameDay` is recommended to disregard
-                          //   //   // the time-part of compared DateTime objects.
-                          //   //   return isSameDay(_selectedDay, day);
-                          //   // },
-                          //   //
-                          //   // onDaySelected: (selectedDay, focusedDay) {
-                          //   //   if (!isSameDay(_selectedDay, selectedDay)) {
-                          //   //     // Call `setState()` when updating the selected day
-                          //   //     setState(() {
-                          //   //       _selectedDay = selectedDay;
-                          //   //       _focusedDay = focusedDay;
-                          //   //     });
-                          //   //   }
-                          //   // },
-                          //   // onFormatChanged: (format) {
-                          //   //   if (_calendarFormat != format) {
-                          //   //     // Call `setState()` when updating calendar format
-                          //   //     setState(() {
-                          //   //       _calendarFormat = format;
-                          //   //     });
-                          //   //   }
-                          //   // },
-                          //   // onPageChanged: (focusedDay) {
-                          //   //   // No need to call `setState()` here
-                          //   //   _focusedDay = focusedDay;
-                          //   // },
-                          // ),
+
                           child: CalendarDatePicker(
                             initialDate: cubit.dates.isNotEmpty
                                 ? cubit.dates.first.date
@@ -318,7 +223,9 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                             numberOfVisitors: _visitorsController.text,
                             visitReason: _vistorReasonController.text,
                            // requestStatusId: 4,
+
                           );
+                          Alert.success("تم إضافة طلبك بنجاح ");
                           Get.offAll(() => MyOrderRequestVisitScreen());
                         }else{
                           Alert.error("الرجاء التاكيد من الطلب ");

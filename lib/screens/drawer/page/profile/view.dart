@@ -9,8 +9,6 @@ import 'package:maktabat_alharam/screens/drawer/page/profile/cubit/user_info_cub
 import 'package:maktabat_alharam/screens/drawer/page/profile/models/model.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/page/views/header.dart';
 import 'package:maktabat_alharam/screens/drawer/page/settings/page/views/data_created.dart';
-import 'package:maktabat_alharam/screens/drawer/view.dart';
-import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';

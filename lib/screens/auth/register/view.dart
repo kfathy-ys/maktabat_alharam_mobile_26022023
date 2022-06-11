@@ -10,6 +10,7 @@ import 'package:maktabat_alharam/screens/widgets/customButton.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/donotHave.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
+import 'package:queen/validation.dart';
 import '../../widgets/alerts.dart';
 import 'cubit/register_cubit.dart';
 import 'page/back_icon.dart';
@@ -151,7 +152,7 @@ class SignUpScreen extends StatelessWidget {
                         MaxLength(30),
                       ],
                      ),
-                      type: TextInputType.text,
+                      type: TextInputType.streetAddress,
                     ),
                     CustomTextField(
                       hint: "password".tr,
@@ -177,6 +178,7 @@ class SignUpScreen extends StatelessWidget {
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
                         IsOptional(),
+                        Match("not match"),
                         MinLength(6, "minPassword".tr),
                         MaxLength(30),
                       ]),

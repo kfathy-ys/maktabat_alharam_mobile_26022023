@@ -32,7 +32,7 @@ class LocaleString extends Translations {
           "notValidNumber": "Identification number not Valid try again ..!",
           "enterId": "Please Put Your Id",
           "enterPassword": "Please Put Your password",
-          "minPassword": "Password must be minimum 6 patterns",
+          "minPassword": "Password must be minimum 11 patterns",
 
           "id": "Id",
           // Forget Password
@@ -276,7 +276,7 @@ class LocaleString extends Translations {
           "AvailablePeriods":"Available periods",
 
           "pending":"Pending",
-          "unRespond":"UnRespond",
+          "unRespond":"Accepted",
           "rejected":"Rejected"
 
         },
@@ -308,7 +308,7 @@ class LocaleString extends Translations {
           "enterId": "الرجاء إدخال رقم الهوية الخاص بك!",
           "enterPassword": "من فضلك أدخل رقمك السري!",
           "id": "رقمك الخاص",
-          "minPassword": " الحد الأدني لكلمه المرور 6 أنماط ",
+          "minPassword": " الحد الأدني لكلمه المرور 11 أنماط ",
 
           // Forget Password
           "addComment":"أضف تعليق",
@@ -555,7 +555,7 @@ class LocaleString extends Translations {
           "contentPlus":"المحتوي + 25% من الرسالة",
             "titleMessage":"هي خدمة تمكن طلاب الدراسات العليا داخل وخارج المملكة من إيداع رسالتهم العلمية للمكتبة وفق الشروط التي تحفظ حقوق الملكية الفكرية للمؤلف",
 "pending":"قيد الإنتظار",
-          "unRespond":"لم يتم الرد",
+          "unRespond":"تم الموافقة",
           "rejected":"تم رفض الطلب"
 
         }

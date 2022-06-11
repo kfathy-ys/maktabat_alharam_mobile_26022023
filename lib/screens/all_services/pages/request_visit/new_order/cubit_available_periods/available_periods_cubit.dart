@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
-import '../models/available_dates_model.dart';
 import '../models/avalible_periods_model.dart';
 
 part 'available_periods_state.dart';
@@ -13,7 +12,7 @@ part 'available_periods_state.dart';
 class AvailablePeriodsCubit extends Cubit<AvailablePeriodsState> {
   // final AvailableDates availableDates;
 
-  AvailablePeriodsCubit() : super(AvailablePeriodsInitial()) {}
+  AvailablePeriodsCubit() : super(AvailablePeriodsInitial());
 
   Future<void> getAvailablePeriodsVisit({
     required String selectedDate,

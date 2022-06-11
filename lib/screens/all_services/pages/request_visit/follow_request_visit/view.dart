@@ -64,8 +64,8 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
           height: height,
           width: width,
           child: ListView(
-           // physics: const BouncingScrollPhysics(),
-           // shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
             children: [
               HeadTopics(
                 title: "orderFollowUp".tr,
@@ -262,8 +262,9 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                           children: [
                             ListView.builder(
 
-                                physics: const NeverScrollableScrollPhysics(),
+                               physics: const NeverScrollableScrollPhysics(),
                                shrinkWrap: true,
+
                                //  controller: _controller,
                                 itemCount: state.repliesMessagesModel.data!.length,
                                 itemBuilder: (context, index) {
@@ -279,7 +280,8 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                               hint: "أضف تعليقك هنا ..!",
                             ),
                             buildSizedBox(height),
-                            state is! RepliesLoading ?    Center(
+                            state is! RepliesLoading ?
+                            Center(
                                 child: SmallButtonSizer(
                                   onPressed: () {
                                     cubit.addToCommentVisit(
@@ -295,11 +297,33 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                                   title: "addComment".tr,
                                   color: kSafeAreasColor,
                                   image: "assets/image/newrequest.png",
-                                )): const LoadingFadingCircle(),
+                                )):
+                            const LoadingFadingCircle(),
+
+
+
                           ],
                         ),
+
                       );
                     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     if (state is RepliesError) {
                       return Text(state.msg);
                     }

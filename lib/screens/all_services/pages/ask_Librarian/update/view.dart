@@ -72,6 +72,7 @@ class UpdatesAskLibrarian extends StatelessWidget {
                           initial: cubit.initial,
                         ),
                         CustomTextField(
+                          read: true,
                           hint: "userName".tr,
                           dIcon: Icons.drive_file_rename_outline,
                           label: "userName".tr,
@@ -84,6 +85,7 @@ class UpdatesAskLibrarian extends StatelessWidget {
                           type: TextInputType.name,
                         ),
                         CustomTextField(
+                          read: true,
                           dIcon: Icons.email,
                           label: "email".tr,
                           hint: "email".tr,
@@ -97,14 +99,16 @@ class UpdatesAskLibrarian extends StatelessWidget {
                           type: TextInputType.emailAddress,
                         ),
                         CustomTextField(
+                          read: true,
                           hint: "phone".tr,
                           dIcon: Icons.phone,
                           label: "phone".tr,
                           controller: cubit.phoneController,
                           validator: qValidator([
                             IsRequired("phone".tr),
-                            IsOptional(),
-                            MaxLength(30),
+                            //IsOptional(),
+                            MinLength(11),
+                            MaxLength(14),
                           ]),
                           type: TextInputType.phone,
                         ),

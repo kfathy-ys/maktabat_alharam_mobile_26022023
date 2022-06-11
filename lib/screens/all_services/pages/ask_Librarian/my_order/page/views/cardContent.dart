@@ -19,7 +19,7 @@ class CardData extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
+
         children: [
           Text(title,
               maxLines: 1,
@@ -32,7 +32,15 @@ class CardData extends StatelessWidget {
             width: 10,
           ),
           Text(subTitle!,
+              maxLines: 2,
+
+              overflow: TextOverflow.ellipsis,
+              softWrap: true,
+
               style: TextStyle(
+
+                overflow: TextOverflow.ellipsis,
+
                   color: color2, fontSize: 14, fontFamily: 'DinReguler')),
         ],
       ),

@@ -98,7 +98,7 @@ class UserModel extends Equatable{
   }
 // userInfo.toJson
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["firstName"] = firstName;
     data["lastName"] = lastName;
     data["nameArabic"] = nameArabic;

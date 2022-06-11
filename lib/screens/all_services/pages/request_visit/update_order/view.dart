@@ -7,7 +7,6 @@ import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/v
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/drop_down_library_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/hints.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
-import 'package:maktabat_alharam/screens/home/pages/views/home_page/view.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -20,7 +19,6 @@ import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../widgets/alerts.dart';
 import '../../../../widgets/loading.dart';
@@ -96,6 +94,7 @@ class UpdateOrderOfVisitRequest extends StatelessWidget {
 
                       ),
                       CustomTextField(
+                        read: true,
                         hint: "nameResponsible".tr,
                         dIcon: Icons.drive_file_rename_outline,
                         label: "nameResponsible".tr,
@@ -108,6 +107,7 @@ class UpdateOrderOfVisitRequest extends StatelessWidget {
                         type: TextInputType.name,
                       ),
                       CustomTextField(
+                        read: true,
                         hint: "email".tr,
                         dIcon: Icons.email_outlined,
                         label: "email".tr,
@@ -120,6 +120,7 @@ class UpdateOrderOfVisitRequest extends StatelessWidget {
                         type: TextInputType.emailAddress,
                       ),
                       CustomTextField(
+                        read: true,
                         hint: "phoneNumber".tr,
                         dIcon: Icons.drive_file_rename_outline,
                         label: "phoneNumber".tr,

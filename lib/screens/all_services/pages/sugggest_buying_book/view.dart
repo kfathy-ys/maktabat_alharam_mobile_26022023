@@ -13,6 +13,7 @@ import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
+import 'package:queen/validation.dart';
 
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
@@ -104,7 +105,7 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _nameController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+                     // IsOptional(),
                       MaxLength(30),
                     ]),
                     type: TextInputType.name,
@@ -116,7 +117,8 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _emailController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+                    //  IsOptional(),
+                      const IsEmail(),
                       MaxLength(30),
                     ]),
                     type: TextInputType.emailAddress,
@@ -128,8 +130,9 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _phoneController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
-                      MaxLength(30),
+                      //IsOptional(),
+                      MinLength(11),
+                      MaxLength(14),
                     ]),
                     type: TextInputType.phone,
                   ),
@@ -164,7 +167,8 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _authorNameController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+                     // IsOptional(),
+                      MinLength(5),
                       MaxLength(30),
                     ]),
                     type: TextInputType.name,
@@ -176,7 +180,8 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _namePublisherController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+                     // IsOptional(),
+                      MinLength(5),
                       MaxLength(30),
                     ]),
                     type: TextInputType.name,
@@ -188,7 +193,8 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _placePublisherController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+                      //IsOptional(),
+                      MinLength(5),
                       MaxLength(30),
                     ]),
                     type: TextInputType.streetAddress,
@@ -200,7 +206,8 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _yearPublishController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+                     // IsOptional(),
+
                       MaxLength(30),
                     ]),
                     type: TextInputType.datetime,
@@ -210,9 +217,10 @@ class SuggestToBuyBook extends StatelessWidget {
                     dIcon: Icons.confirmation_number_outlined,
                     label: "standardBookNumber".tr,
                     controller: _standardNumberController,
+
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+                      //IsOptional(),
                       MaxLength(30),
                     ]),
                     type: TextInputType.number,

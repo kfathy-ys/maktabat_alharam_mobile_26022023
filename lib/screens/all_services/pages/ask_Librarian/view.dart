@@ -98,16 +98,17 @@ class AskLibrarian extends StatelessWidget {
                         type: TextInputType.emailAddress,
                       ),
                       CustomTextField(
-                        hint: "phone".tr,
+                        hint: "phoneNumber".tr,
                         dIcon: Icons.phone,
-                        label: "phone".tr,
+                        label: "phoneNumber".tr,
                         controller: _phoneController,
                         validator: qValidator([
-                          IsRequired("phone".tr),
-                          IsOptional(),
+                          IsRequired("phoneNumber".tr),
+                         // IsOptional(),
+
                           MaxLength(30),
                         ]),
-                        type: TextInputType.text,
+                        type: TextInputType.phone,
                       ),
                       CustomHeightTextField(
                         hint: "question".tr,

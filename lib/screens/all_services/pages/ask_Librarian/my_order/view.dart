@@ -130,8 +130,14 @@ class MyOrderAskLibrarian extends StatelessWidget {
                                           color2: kSkyButton),
                                       CardData(
                                           title: "response".tr,
-                                          subTitle: state.askOrderModel
+                                          subTitle:state.askOrderModel
                                               .data![index].response.toString(),
+                                          // ((state.askOrderModel.data![index].requestStatusId)==4)? "pending".tr:
+                                          // ((state.askOrderModel.data![index].requestStatusId)==5)? "unRespond".tr:
+                                          // ((state.askOrderModel.data![index].requestStatusId)==6)? "rejected".tr:"--",
+
+                                          /*state.askOrderModel
+                                              .data![index].response.toString(),*/
                                           color1: kSmallIconColor,
                                           color2: kBlackText),
                                       CardData(

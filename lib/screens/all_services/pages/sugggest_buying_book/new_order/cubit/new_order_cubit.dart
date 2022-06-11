@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:maktabat_alharam/config/dio_helper/dio.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/new_order/models/model.dart';
+import 'package:maktabat_alharam/screens/widgets/date_convertors.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
@@ -34,9 +35,8 @@ class NewOrderCubit extends Cubit<NewOrderState> {
     emit(NewOrderLoading());
     try {
       var now = DateTime.now();
+    var dataNow=  DateConverter.dateConverterOnly(now.toString());
 
-
-      var date= DateFormat.yMMMMEEEEd().format(DateTime.now());
       final res = await NetWork.post(
         'Suggestion/CreateNewSuggestion',
         body: {
@@ -55,14 +55,17 @@ class NewOrderCubit extends Cubit<NewOrderState> {
           "additionalInformation": additionalInformation,
           "isArchived": false,
           "createdBy": userId,
-          "createdDate": date,
+          "createdDate": dataNow,
           "updatedBy": userId,
-          "updatedDate": date
+          "updatedDate": dataNow
         },
       );
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
       }
+
+      // Prefs.setString("userId", res.data["data"]["userId"]);
+      // log("${res.data["data"]["fullName"]}");
       emit(NewOrderSuccess(
           createOrderModel: CreateOrderModel.fromJson(res.data)));
     } catch (e, st) {

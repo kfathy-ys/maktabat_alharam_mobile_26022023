@@ -2,20 +2,15 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_visit/my_orders/cubit/visit_order_cubit.dart';
 import 'package:maktabat_alharam/screens/widgets/date_convertors.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
-import '../../../../../widgets/alerts.dart';
 import '../../my_orders/models/model.dart';
-import '../../my_orders/view.dart';
 import '../models/all_libraries_model.dart';
 import '../models/available_dates_model.dart';
 import '../models/avalible_periods_model.dart';
-import '../models/create_model.dart';
 
 part 'available_dates_state.dart';
 
@@ -120,7 +115,9 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
    // required int requestStatusId,
   }) async {
     try {
+
       var now = DateTime.now();
+      var dataNow=  DateConverter.dateConverterOnly(now.toString());
       final userId = Prefs.getString("userId");
       final body = {
         "id": 0,

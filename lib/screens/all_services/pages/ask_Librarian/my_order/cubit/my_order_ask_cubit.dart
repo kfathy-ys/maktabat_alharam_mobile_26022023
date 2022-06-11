@@ -50,6 +50,7 @@ class MyOrderAskCubit extends Cubit<MyOrderAskState> {
       visitorMobile: order.visitorMobile.toString(),
       visitorMessage: order.visitorMessage.toString(),
       type: order.type!,
+      createdDate: order.createdDate.toString(),
     );
     await getOrderAsk();
     Alert.success( "تم إضافة الطلب إلي الأرشيف");
@@ -64,6 +65,7 @@ class MyOrderAskCubit extends Cubit<MyOrderAskState> {
       visitorMobile: order.visitorMobile.toString(),
       visitorMessage: order.visitorMessage.toString(),
       type: order.type!,
+      createdDate: order.createdDate.toString(),
     );
     await getOrderAsk();
     Alert.success( "تم إزلة الطلب من الأرشيف");

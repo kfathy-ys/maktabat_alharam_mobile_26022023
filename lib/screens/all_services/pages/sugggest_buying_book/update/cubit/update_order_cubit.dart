@@ -8,6 +8,8 @@ import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/update/models/model.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
+import '../../../../../widgets/date_convertors.dart';
+
 part 'update_order_state.dart';
 
 class UpdateOrderCubit extends Cubit<UpdateOrderState> {
@@ -80,6 +82,7 @@ class UpdateOrderCubit extends Cubit<UpdateOrderState> {
     emit(UpdateOrderLoading());
     try {
       var now = DateTime.now();
+      var dataNow=  DateConverter.dateConverterOnly(now.toString());
       final res = await NetWork.post(
         'Suggestion/UpdateSuggestion',
         body: {
@@ -98,16 +101,16 @@ class UpdateOrderCubit extends Cubit<UpdateOrderState> {
           "additionalInformation": additionalInformation,
           "isArchived": false,
           "createdBy": userId,
-          "createdDate": DateFormat('yyyy-MM-dd').format(now),
+          "createdDate": dataNow,
           "updatedBy": userId,
-          "updatedDate": DateFormat('yyyy-MM-dd').format(now)
+          "updatedDate": dataNow
         },
       );
       if (res.data['status'] == 0 || res.data['status'] == -1 ) {
         throw res.data["messages"] ?? res.data;
       }
       emit(UpdateOrderSuccess(
-            orderUpdateSuggestModel: OrderUpdateSuggestModel.fromJson(res.data)));
+          orderUpdateSuggestModel: OrderUpdateSuggestModel.fromJson(res.data)));
     } catch (e, st) {
 
       log(e.toString());

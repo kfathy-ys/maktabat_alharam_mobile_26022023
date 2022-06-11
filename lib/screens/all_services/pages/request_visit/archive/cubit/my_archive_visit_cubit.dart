@@ -6,6 +6,7 @@ import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
+import '../../../../../widgets/date_convertors.dart';
 import '../models/model.dart';
 
 part 'my_archive_visit_state.dart';
@@ -50,9 +51,11 @@ class MyArchiveVisitCubit extends Cubit<MyArchiveVisitState> {
     required int numberOfVisitors,
     required String visitReason,
     required int requestStatusId,
+    required String createdDate,
   }) async {
     try {
       var now = DateTime.now();
+      var dataNow=  DateConverter.dateConverterOnly(now.toString());
       final body = {
         "id": id,
         "userId": userId,
@@ -69,7 +72,7 @@ class MyArchiveVisitCubit extends Cubit<MyArchiveVisitState> {
         "requestStatusId": requestStatusId,
         "isArchived": true,
         "createdBy": userId,
-        "createdDate": DateFormat('yyyy-MM-dd').format(now),
+        "createdDate": createdDate,
         "updatedBy": null,
         "updatedDate": null,
         "visitAvailableDate": null,
@@ -102,6 +105,7 @@ class MyArchiveVisitCubit extends Cubit<MyArchiveVisitState> {
     required int numberOfVisitors,
     required String visitReason,
     required int requestStatusId,
+    required String createdDate,
   }) async {
     try {
       var now = DateTime.now();
@@ -121,7 +125,7 @@ class MyArchiveVisitCubit extends Cubit<MyArchiveVisitState> {
         "requestStatusId": requestStatusId,
         "isArchived": false,
         "createdBy": userId,
-        "createdDate": DateFormat('yyyy-MM-dd').format(now),
+        "createdDate": createdDate,
         "updatedBy": null,
         "updatedDate": null,
         "visitAvailableDate": null,

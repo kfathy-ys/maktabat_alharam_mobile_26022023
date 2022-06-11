@@ -15,7 +15,7 @@ class ArchiveCubit extends Cubit<ArchiveState> {
     getOrderArchiveSuggest();
   }
 
- // OrderArchive? archiveSuggestModel;
+  OrderArchive? archiveSuggestModel;
 
 
   var userId = Prefs.getString("userId");
@@ -53,6 +53,7 @@ class ArchiveCubit extends Cubit<ArchiveState> {
     required String yearOfPublication,
     required String standardBookNumber,
     required String additionalInformation,
+    required String createdDate,
   }) async {
     try {
       var now = DateTime.now();
@@ -72,7 +73,7 @@ class ArchiveCubit extends Cubit<ArchiveState> {
         "additionalInformation": additionalInformation,
         "isArchived": true,
         "createdBy": userId,
-        "createdDate": DateFormat('yyyy-MM-dd').format(now),
+        "createdDate": createdDate,
         "updatedBy": userId,
         "updatedDate": DateFormat('yyyy-MM-dd').format(now)
       };
@@ -112,6 +113,7 @@ class ArchiveCubit extends Cubit<ArchiveState> {
     required String yearOfPublication,
     required String standardBookNumber,
     required String additionalInformation,
+    required String createdDate,
   }) async {
     try {
       var now = DateTime.now();
@@ -131,7 +133,7 @@ class ArchiveCubit extends Cubit<ArchiveState> {
         "additionalInformation": additionalInformation,
         "isArchived": false,
         "createdBy": userId,
-        "createdDate": DateFormat('yyyy-MM-dd').format(now),
+        "createdDate": createdDate,
         "updatedBy": userId,
         "updatedDate": DateFormat('yyyy-MM-dd').format(now)
       };

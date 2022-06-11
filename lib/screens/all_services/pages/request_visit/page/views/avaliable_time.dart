@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:queen/core/helpers/prefs.dart';

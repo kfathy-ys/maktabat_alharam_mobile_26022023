@@ -61,6 +61,7 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
       yearOfPublication: order.yearOfPublication.toString(),
       standardBookNumber: order.standardBookNumber.toString(),
       additionalInformation: order.additionalInformation.toString(),
+      createdDate:  order.createdDate.toString()
     );
     await getOrderSuggest();
     Alert.success(  "تم إضافة الطلب إلي الأرشيف");
@@ -82,6 +83,7 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
       yearOfPublication: order.yearOfPublication.toString(),
       standardBookNumber: order.standardBookNumber.toString(),
       additionalInformation: order.additionalInformation.toString(),
+      createdDate: order.createdDate.toString(),
     );
     await getOrderSuggest();
     Alert.success(  "تم إزلة الطلب من الأرشيف");

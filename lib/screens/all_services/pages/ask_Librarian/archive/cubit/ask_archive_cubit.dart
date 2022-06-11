@@ -44,6 +44,7 @@ class AskArchiveCubit extends Cubit<AskArchiveState> {
     required String visitorMobile,
     required String visitorMessage,
     required int type,
+    required String createdDate
   }) async {
     try {
       var now = DateTime.now();
@@ -57,7 +58,7 @@ class AskArchiveCubit extends Cubit<AskArchiveState> {
         "response": "",
         "isArchived": true,
         "createdBy": userId,
-        "createdDate": DateFormat('yyyy-MM-dd').format(now),
+        "createdDate":  createdDate,
         "updatedBy": userId,
         "updatedDate": DateFormat('yyyy-MM-dd').format(now)
       };
@@ -82,6 +83,7 @@ class AskArchiveCubit extends Cubit<AskArchiveState> {
     required String visitorMobile,
     required String visitorMessage,
     required int type,
+    required String createdDate
   }) async {
     try {
       var now = DateTime.now();
@@ -95,7 +97,7 @@ class AskArchiveCubit extends Cubit<AskArchiveState> {
         "response": "",
         "isArchived": false,
         "createdBy": userId,
-        "createdDate": DateFormat('yyyy-MM-dd').format(now),
+        "createdDate": createdDate,
         "updatedBy": userId,
         "updatedDate": DateFormat('yyyy-MM-dd').format(now)
       };

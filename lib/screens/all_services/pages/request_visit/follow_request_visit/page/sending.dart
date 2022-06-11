@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:queen/core/helpers/prefs.dart';
@@ -32,7 +31,7 @@ class Message extends StatelessWidget {
           const EdgeInsetsDirectional.only(bottom: 4, top: 4, start: 10, end: 10),
       margin: const EdgeInsetsDirectional.only(bottom: 10.0, top: 10.0),
       width: width,
-      //height: height*0.12,
+     // height: height*0.12,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color:  kBackgroundCardColor ),

@@ -49,7 +49,7 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        systemNavigationBarColor: kButtonRedDark, // navigation bar color
+       // systemNavigationBarColor: kButtonRedDark, // navigation bar color
         statusBarColor: kAppBarColor, // status bar color
       ));
 }

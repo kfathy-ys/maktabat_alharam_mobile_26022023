@@ -55,6 +55,7 @@ class VisitOrderCubit extends Cubit<VisitOrderState> {
       numberOfVisitors: order.numberOfVisitors!,
       visitReason: order.visitReason.toString(),
       requestStatusId: order.requestStatusId!,
+      createdDate: order.createdDate.toString()
     );
     await getOrderVisit();
     Alert.success("تم إضافة الطلب إلي الأرشيف");
@@ -73,6 +74,7 @@ class VisitOrderCubit extends Cubit<VisitOrderState> {
       numberOfVisitors: order.numberOfVisitors!,
       visitReason: order.visitReason.toString(),
       requestStatusId: order.requestStatusId!,
+      createdDate: order.createdDate.toString()
     );
     await getOrderVisit();
     Alert.success("تم إزلة الطلب من الأرشيف");
