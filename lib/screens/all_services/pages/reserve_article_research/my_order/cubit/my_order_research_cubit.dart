@@ -59,6 +59,7 @@ class MyOrderResearchCubit extends Cubit<MyOrderResearchState> {
       createdDate: order.createdDate.toString(),
       dateFrom: order.dateFrom.toString(),
       dateTo: order.dateTo.toString(),
+      roomId: order.roomId!.toInt()
     );
     await getOrderResearch();
     Alert.success("تم إضافة الطلب إلي الأرشيف");
@@ -79,6 +80,7 @@ class MyOrderResearchCubit extends Cubit<MyOrderResearchState> {
       createdDate: order.createdDate.toString(),
       dateFrom: order.dateFrom.toString(),
       dateTo: order.dateTo.toString(),
+        roomId:order.roomId!.toInt()
     );
 
     await getOrderResearch();

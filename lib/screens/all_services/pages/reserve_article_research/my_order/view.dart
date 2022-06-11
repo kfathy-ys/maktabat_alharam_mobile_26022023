@@ -183,10 +183,9 @@ class MyOrderReserveArticleResearch extends StatelessWidget {
                                 CustomCardButton(
                                   color: kAccentColor,
                                   title: "addToArchive".tr,
-                                  onPressed: () => Get.to(() {
+                                  onPressed: () {
                                     cubit.addToArchiveResearch(state.orderResearchModel.data![index]);
-
-                                  }),
+                                  },
 
                                   image: "assets/image/archieve.png",
                                   //  icon:Icons.cancel_outlined
