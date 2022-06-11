@@ -10,6 +10,7 @@ import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_ord
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/new_order/cubit/new_order_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/archive/cubit/my_archive_visit_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/new_order/cubit_available_dates/available_dates_cubit.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/archive/cubit/archived_order_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/my_order/cubit/my_order_research_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/cubit/archive_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
@@ -106,6 +107,10 @@ class MaktabatAlharam extends StatelessWidget {
 
         BlocProvider<MyOrderResearchCubit>(
           create: (context) => MyOrderResearchCubit(),
+        ),
+
+        BlocProvider<ArchivedOrderCubit>(
+          create: (context) => ArchivedOrderCubit(),
         ),
 
       ],

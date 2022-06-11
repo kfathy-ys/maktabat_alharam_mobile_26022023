@@ -168,6 +168,11 @@ class MyOrderReserveArticleResearch extends StatelessWidget {
                                   },
                                   image: "assets/image/fulleyes.png",
                                 ),
+                                ((state
+                                    .orderResearchModel
+                                    .data![index]
+                                    .requestStatusId) ==
+                                    5) ?  const SizedBox():
                                 CustomCardButton(
                                   color: kAccentColor,
                                   title: "updateRequest".tr,
