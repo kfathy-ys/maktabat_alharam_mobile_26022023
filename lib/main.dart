@@ -104,14 +104,16 @@ class MaktabatAlharam extends StatelessWidget {
 
 
 
-
-        BlocProvider<MyOrderResearchCubit>(
-          create: (context) => MyOrderResearchCubit(),
-        ),
-
         BlocProvider<ArchivedOrderCubit>(
           create: (context) => ArchivedOrderCubit(),
         ),
+        BlocProvider<MyOrderResearchCubit>(
+          create: (context) => MyOrderResearchCubit(
+              BlocProvider.of<ArchivedOrderCubit>(context)
+          ),
+        ),
+
+
 
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(

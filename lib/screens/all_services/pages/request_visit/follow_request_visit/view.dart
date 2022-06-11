@@ -260,6 +260,7 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                       return SingleChildScrollView(
                         child: Column(
                           children: [
+                            state.repliesMessagesModel.data!.isEmpty ? const SizedBox.shrink():
                             ListView.builder(
 
                                physics: const NeverScrollableScrollPhysics(),
@@ -309,21 +310,6 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     if (state is RepliesError) {
                       return Text(state.msg);
                     }
@@ -333,6 +319,10 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                 ),
 
               ),
+              // CustomTextField(
+              //   controller: BlocProvider.of<RepliesCubit>(context).addCommentController,
+              //   hint: "أضف تعليقك هنا ..!",
+              // ),
 
             ],
           ),

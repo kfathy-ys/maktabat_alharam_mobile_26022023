@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
@@ -17,6 +18,7 @@ import '../../../../home/pages/views/my_orders/page/head_topices.dart';
 import '../../../../widgets/date_convertors.dart';
 import '../../../../widgets/loading.dart';
 import '../../request_visit/my_orders/page/custom_container.dart';
+import '../my_order/cubit/my_order_research_cubit.dart';
 import '../page/description.dart';
 
 // ignore: must_be_immutable
@@ -28,6 +30,7 @@ class ArchiveReserveArticleScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     final cubitResearchArchive = BlocProvider.of<ArchivedOrderCubit>(context);
+    final cubit = BlocProvider.of<MyOrderResearchCubit>(context);
     return Container(
       color: kAppBarColor,
       child: SafeArea(
@@ -66,7 +69,7 @@ class ArchiveReserveArticleScreen extends StatelessWidget {
                             backgroundColor: kAccentColor,
                             color: Colors.white,
                             child:    state.archivedResearchModel.data!.isEmpty ?
-                          Center(child: customBoldText(title: "لا توجد طلبات مؤرشفة الاّن")):
+                            Center(child: customBoldText(title: "لا توجد طلبات مؤرشفة الاّن")):
                             ListView.builder(
                               physics: const BouncingScrollPhysics(),
                               shrinkWrap: true,
@@ -114,13 +117,7 @@ class ArchiveReserveArticleScreen extends StatelessWidget {
                                       CustomCardButton(
                                         color: kAccentColor,
                                         title: "removeFromArchive".tr,
-
-                                        onPressed: () {
-                                          //cubit.removeFromArchiveVisit(state.archivedResearchModel.data![index]);
-                                        },
-
-
-
+                                        onPressed: ()=> cubit.removeFromArchiveResearch(state.archivedResearchModel.data![index]),
                                         image: "assets/image/archieve.png",
                                       ),
                                     ],
