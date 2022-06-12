@@ -277,7 +277,8 @@ class LocaleString extends Translations {
 
           "pending":"Pending",
           "unRespond":"Accepted",
-          "rejected":"Rejected"
+          "rejected":"Rejected",
+  "notResponse":"Not Response",
 
         },
         'ar_EG': {
@@ -377,6 +378,7 @@ class LocaleString extends Translations {
           // Profile
 
           "response":"الرد علي الطلب",
+          "notResponse":"لم يتم الرد",
            "arabicFullName":"الإسم باللغة العربية",
           "camera": "الكاميرة",
           "gallery": "الاستوديو",

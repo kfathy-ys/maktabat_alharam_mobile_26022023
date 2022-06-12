@@ -1,7 +1,20 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_visit/my_orders/page/custom_container.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/follow_reserved_retreated/cubit/follow_research_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 
@@ -9,17 +22,22 @@ import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
+import 'package:maktabat_alharam/screens/widgets/date_convertors.dart';
 
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
+import '../../../../widgets/loading.dart';
+import '../../request_visit/follow_request_visit/page/views/request_events.dart';
+import '../my_order/models/model.dart';
 
 // ignore: must_be_immutable
-class FollowReservedRetreatScreen extends StatelessWidget {
+class FollowResearchScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   final _addCommentController = TextEditingController();
+  MyOrdersToResearch? myOrdersToResearch;
 
-
-  FollowReservedRetreatScreen({Key? key}) : super(key: key);
+  FollowResearchScreen({Key? key, this.myOrdersToResearch})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,131 +61,222 @@ class FollowReservedRetreatScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               children: [
-                HeadTopics(
-                  title: "orderFollowUp".tr,
-                ),
-                Container(
-                  padding: const EdgeInsetsDirectional.only(top: 10),
-                  margin:
-                      const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
-                  height: height * 0.08,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: kCardBorder)),
-                  child: buildRow(
-                      title: "serviceName".tr,
-                      subTitle: "خلوة بحثية",
-                      color1: kSmallIconColor,
-                      color2: kBlackText),
-                ),
-                HeadTopics(
-                  title: "requestData".tr,
-                ),
-                Container(
-                  margin:
-                      const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
-                  height: height * 0.5,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: kCardBorder)),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      buildRow(
-                          title: "serviceName".tr,
-                          subTitle: "خلوة بحثية",
-                          color1: kSmallIconColor,
-                          color2: kBlackText),
-                      buildRow(
-                          title: "libraryName".tr,
-                          subTitle: "مكتبة الحرم المكي الشريف - رجال",
-                          color1: kSmallIconColor,
-                          color2: kBlackText),
-                      buildRow(
-                          title: "phoneNumber".tr,
-                          subTitle: "05963214587",
-                          color1: kSmallIconColor,
-                          color2: kBlackText),
-                      buildRow(
-                          title: "qualification".tr,
-                          subTitle: "طالب ماجستير",
-                          color1: kSmallIconColor,
-                          color2: kBlackText),
-                      buildRow(
-                          title: "bookingDate".tr,
-                          subTitle: "Mar 22 ,2022",
-                          color1: kSmallIconColor,
-                          color2: kBlackText),
-                      buildRow(
-                          title: "dateFrom".tr,
-                          subTitle: "Mar 31 , 2022",
-                          color1: kSmallIconColor,
-                          color2: kSkyButton),
-                      buildRow(
-                          title: "dateTo".tr,
-                          subTitle: "Agu 31 , 2022",
-                          color1: kSmallIconColor,
-                          color2: kSkyButton),
-                    ],
-                  ),
-                ),
-                HeadTopics(
-                  title: "orderEvents".tr,
-                ),
-                Container(
-                  margin:
-                      const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
-                  height: height * 0.2,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: kCardBorder)),
-                  child: Column(
-                    // crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      buildRequestEvent(
-                          title: "requestState".tr,
-                          subTitle: "Mar 22,2022",
-                          subTitle2: "تم تاكيد الطلب ",
-                          color1: kSmallIconColor,
-                          color2: kBlackText),
-                      buildRequestEvent(
-                          title: "requestState".tr,
-                          subTitle: "Mar 23,2022",
-                          subTitle2: "الطلب قيد المراجعة",
-                          color1: kSmallIconColor,
-                          color2: kBlackText),
-                      buildRequestEvent(
-                          title: "requestState".tr,
-                          subTitle: "Mar 26,2022",
-                          subTitle2: "تم الموافقة",
-                          color1: kSmallIconColor,
-                          color2: kBlackText),
-                    ],
+                BlocProvider(
+                  create: (context) => FollowResearchCubit(
+                      myOrdersToResearch: myOrdersToResearch!),
+                  child: BlocConsumer<FollowResearchCubit, FollowResearchState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      if (state is FollowResearchLoading) {
+                        return const Center(
+                          child: LoadingFadingCircle(),
+                        );
+                      }
+                      if (state is FollowResearchSuccess) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            HeadTopics(
+                              title: "orderFollowUp".tr,
+                            ),
+                            buildSizedBox(height),
+                            CustomContainer(
+
+                              height: height * 0.08,
+                              child: CardData(
+                                  title: "serviceName".tr,
+                                  subTitle: ((state.followResearchModel.data!
+                                              .libraryId) ==
+                                          1)
+                                      ? "ReserveArticleOrResearchRetreat".tr
+                                      : ((state.followResearchModel.data!
+                                                  .libraryId) ==
+                                              2)
+                                          ? "scientificMaterial".tr
+                                          : ((state.followResearchModel.data!
+                                                      .libraryId) ==
+                                                  3)
+                                              ? "mix".tr
+                                              : "--",
+                                  color1: kSmallIconColor,
+                                  color2: kBlackText),
+                            ),
+                            HeadTopics(
+                              title: "requestData".tr,
+                            ),
+                            buildSizedBox(height),
+                            CustomContainer(
+                              height: height * 0.5,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CardData(
+                                      title: "serviceName".tr,
+                                      subTitle: ((state.followResearchModel
+                                                  .data!.libraryId) ==
+                                              1)
+                                          ? "ReserveArticleOrResearchRetreat".tr
+                                          : ((state.followResearchModel.data!
+                                                      .libraryId) ==
+                                                  2)
+                                              ? "scientificMaterial".tr
+                                              : ((state.followResearchModel
+                                                          .data!.libraryId) ==
+                                                      3)
+                                                  ? "mix".tr
+                                                  : "--",
+                                      color1: kSmallIconColor,
+                                      color2: kBlackText),
+                                  CardData(
+                                      title: "libraryName".tr,
+                                      subTitle: ((state.followResearchModel
+                                                  .data!.libraryId) ==
+                                              1)
+                                          ? "ReserveArticleOrResearchRetreat".tr
+                                          : ((state.followResearchModel.data!
+                                                      .libraryId) ==
+                                                  2)
+                                              ? "scientificMaterial".tr
+                                              : ((state.followResearchModel
+                                                          .data!.libraryId) ==
+                                                      3)
+                                                  ? "mix".tr
+                                                  : "--",
+                                      color1: kSmallIconColor,
+                                      color2: kBlackText),
+                                  CardData(
+                                      title: "phoneNumber".tr,
+                                      subTitle: state.followResearchModel.data!
+                                          .responsibleMobile
+                                          .toString(),
+                                      color1: kSmallIconColor,
+                                      color2: kBlackText),
+                                  CardData(
+                                      title: "qualification".tr,
+                                      subTitle: state
+                                          .followResearchModel.data!.callNum
+                                          .toString(),
+                                      color1: kSmallIconColor,
+                                      color2: kBlackText),
+                                  CardData(
+                                      title: "bookingDate".tr,
+                                      subTitle:
+                                          DateConverter.dateConverterMonth(state
+                                              .followResearchModel
+                                              .data!
+                                              .createdDate
+                                              .toString()),
+                                      color1: kSmallIconColor,
+                                      color2: kBlackText),
+                                  CardData(
+                                      title: "dateFrom".tr,
+                                      subTitle:
+                                          DateConverter.dateConverterMonth(state
+                                              .followResearchModel
+                                              .data!
+                                              .dateFrom
+                                              .toString()),
+                                      color1: kSmallIconColor,
+                                      color2: kSkyButton),
+                                  CardData(
+                                      title: "dateTo".tr,
+                                      subTitle:
+                                          DateConverter.dateConverterMonth(state
+                                              .followResearchModel.data!.dateTo
+                                              .toString()),
+                                      color1: kSmallIconColor,
+                                      color2: kSkyButton),
+                                ],
+                              ),
+                            ),
+                            HeadTopics(
+                              title: "orderEvents".tr,
+                            ),
+                            buildSizedBox(height),
+                            CustomContainer(
+                              height: height * 0.2,
+                              child: Column(
+                                // crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  RequestEvents(
+                                      title: "requestState".tr,
+                                      subTitle: state.followResearchModel
+                                          .data!.createdDate!
+                                          .substring(0, 10),
+                                      subTitle2: ((state.followResearchModel
+                                          .data!.requestStatusId) ==
+                                          4)
+                                          ? "تم تاكيد الطلب"
+                                          : ((state.followResearchModel.data!
+                                          .requestStatusId) ==
+                                          5)
+                                          ? "الطلب قيد المراجعه"
+                                          : ((state
+                                          .followResearchModel
+                                          .data!
+                                          .requestStatusId) ==
+                                          6)
+                                          ? " تم رفض الطلب"
+                                          : "---",
+                                      color1: kSmallIconColor,
+                                      color2: kBlackText),
+                                  RequestEvents(
+                                      title: "requestState".tr,
+                                      subTitle: state.followResearchModel
+                                          .data!.createdDate!
+                                          .substring(0, 10),
+                                      subTitle2: ((state.followResearchModel
+                                          .data!.requestStatusId) ==
+                                          4)
+                                          ? "الطلب قيد المراجعه"
+                                          : "---",
+                                      color1: kSmallIconColor,
+                                      color2: kBlackText),
+                                  RequestEvents(
+                                      title: "requestState".tr,
+                                      subTitle: state.followResearchModel
+                                          .data!.updatedDate!
+                                          .substring(0, 10),
+                                      subTitle2: ((state.followResearchModel
+                                          .data!.requestStatusId) ==
+                                          5)
+                                          ? "تم الموافقه"
+                                          : "notResponse".tr,
+                                      color1: kSmallIconColor,
+                                      color2: kBlackText),
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
+                      }
+                      if (state is FollowResearchError) {
+                        return Text(state.msg);
+                      }
+                      return const SizedBox();
+                    },
                   ),
                 ),
                 HeadTopics(
                   title: "commentsRequest".tr,
                 ),
-                Container(
-                  margin:
-                      const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
+                CustomContainer(
                   height: height * 0.1,
-                  decoration: BoxDecoration(
-                    color: kBackgroundCardColor,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      buildRow(
+                    children: const [
+                      CardData(
                           title: "Ahmed",
                           subTitle: "Mar 22,2022  7:54 PM",
                           color1: kBlackText,
                           color2: kAccentColor),
-                      buildRow(
+                      CardData(
                           title: "هل يمكن إستخراج البطاقة المدرسية؟",
                           subTitle: "",
                           color1: kSmallIconColor,
@@ -175,24 +284,18 @@ class FollowReservedRetreatScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  margin:
-                      const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
+                CustomContainer(
                   height: height * 0.1,
-                  decoration: BoxDecoration(
-                    color: kBackgroundCardColor,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      buildRow(
+                    children: const [
+                      CardData(
                           title: "EMP",
                           subTitle: "Mar 22,2022  8:04 PM",
                           color1: kBlackText,
                           color2: kAccentColor),
-                      buildRow(
+                      CardData(
                           title: "لا , لا يمكن !",
                           subTitle: "",
                           color1: kSmallIconColor,
@@ -209,7 +312,8 @@ class FollowReservedRetreatScreen extends StatelessWidget {
                 ),
                 Center(
                     child: SmallButtonSizer(
-                  onPressed: () => Get.to(()=>const ReserveResearchRetreatScreen()),
+                  onPressed: () =>
+                      Get.to(() => const ReserveResearchRetreatScreen()),
                   title: "add".tr,
                   color: kPrimaryColor,
                   image: "assets/image/newrequest.png",
@@ -222,53 +326,12 @@ class FollowReservedRetreatScreen extends StatelessWidget {
     );
   }
 
-  Widget buildRequestEvent({
-    required String title,
-    String? subTitle2,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16, end: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,
-              style: TextStyle(
-                  color: color1, fontSize: 14, fontFamily: 'DinBold')),
-          Text(subTitle2!,
-              style: TextStyle(
-                  color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-          Text(subTitle!,
-              style: const TextStyle(
-                  color: kAccentColor, fontSize: 14, fontFamily: 'DinReguler')),
-        ],
-      ),
-    );
+  SizedBox buildSizedBox(double height) {
+    return SizedBox(
+                            height: height * 0.02,
+                          );
   }
 
-  Widget buildRow({
-    required String title,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16, end: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,
-              style: TextStyle(
-                  color: color1, fontSize: 14, fontFamily: 'DinBold')),
-          Text(subTitle!,
-              style: TextStyle(
-                  color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-        ],
-      ),
-    );
-  }
+
+
 }

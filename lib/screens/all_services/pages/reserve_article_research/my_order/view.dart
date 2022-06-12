@@ -18,6 +18,7 @@ import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
 import '../../../../widgets/loading.dart';
 import '../../request_visit/my_orders/page/custom_container.dart';
+import '../follow_reserved_retreated/view.dart';
 
 class MyOrderReserveArticleResearch extends StatelessWidget {
   const MyOrderReserveArticleResearch({Key? key}) : super(key: key);
@@ -164,7 +165,9 @@ class MyOrderReserveArticleResearch extends StatelessWidget {
                                   color: kAccentColor,
                                   title: "followRequest".tr,
                                   onPressed: () {
-                                    Get.to(() => FollowReservedRetreatScreen());
+                                    Get.to(() {
+                                      return FollowResearchScreen(myOrdersToResearch: state.orderResearchModel.data![index],);
+                                    });
                                   },
                                   image: "assets/image/fulleyes.png",
                                 ),
@@ -176,8 +179,9 @@ class MyOrderReserveArticleResearch extends StatelessWidget {
                                 CustomCardButton(
                                   color: kAccentColor,
                                   title: "updateRequest".tr,
-                                  onPressed: () => Get.to(() =>
-                                      const UpdateReserveArticleRetreated()),
+                                  onPressed: () => Get.to(() {
+                                    return const UpdateReserveArticleRetreated();
+                                  }),
                                   image: "assets/image/update.png",
                                 ),
                                 CustomCardButton(

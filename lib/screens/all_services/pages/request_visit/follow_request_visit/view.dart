@@ -35,13 +35,13 @@ class FollowRequestVisitScreen extends StatefulWidget {
 class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
   final commentController = TextEditingController();
 
-   ScrollController? _controller;
+
 
   @override
   void initState() {
     id = Prefs.getString("userId");
 
-    _controller = ScrollController();
+
     super.initState();
   }
  String id = "";
@@ -225,7 +225,7 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                                                 .data!.requestStatusId) ==
                                             5)
                                         ? "تم الموافقه"
-                                        : "---",
+                                        : "notResponse".tr,
                                     color1: kSmallIconColor,
                                     color2: kBlackText),
                               ],
@@ -319,10 +319,7 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                 ),
 
               ),
-              // CustomTextField(
-              //   controller: BlocProvider.of<RepliesCubit>(context).addCommentController,
-              //   hint: "أضف تعليقك هنا ..!",
-              // ),
+
 
             ],
           ),
