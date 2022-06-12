@@ -18,9 +18,7 @@ class RepliesCubit extends Cubit<RepliesState> {
   final addCommentController = TextEditingController();
   static RepliesCubit of(context)=>BlocProvider.of(context);
       RepliesCubit() : super(RepliesInitial()) ;
-  //     {
-  //   getFollowRepliesVisit(visitRequestId: id!);
-  // }
+
 
   var userId = Prefs.getString("userId");
 
@@ -30,10 +28,7 @@ class RepliesCubit extends Cubit<RepliesState> {
     getFollowRepliesVisit();
   }
 
-   // /// Cached createdBy
-   // Prefs.setString("createdBy", res.data["data"]["data"]["createdBy"]);
-   //
-   // log("CreatedBy =  ${res.data["data"]["data"]["createdBy"]}");
+
 
   Future<void> getFollowRepliesVisit() async {
     emit(RepliesLoading());
@@ -50,7 +45,6 @@ class RepliesCubit extends Cubit<RepliesState> {
         throw res.data['message'];
       }
 
-      // log("CreatedBy =  ${res.data["data"][0]["createdBy"]}");
       emit(RepliesSuccess(
           repliesMessagesModel: RepliesMessagesModel.fromJson(res.data)));
 

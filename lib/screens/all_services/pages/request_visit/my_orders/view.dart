@@ -151,9 +151,9 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                                         )),
                                     image: "assets/image/fulleyes.png",
                                   ),
-                                  ((state.allOrderVisitModel.data![index].requestStatusId)==5)?
-                                  const SizedBox():
-                                  CustomCardButton(
+
+                                  ((state.allOrderVisitModel.data![index].requestStatusId) == 5 || (state.allOrderVisitModel.data![index].requestStatusId) == 6 ) ?
+                                  const SizedBox.shrink():  CustomCardButton(
                                     color: kAccentColor,
                                     title: "updateRequest".tr,
                                     onPressed: () {

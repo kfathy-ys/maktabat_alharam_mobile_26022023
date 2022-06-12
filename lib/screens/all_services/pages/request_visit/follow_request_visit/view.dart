@@ -33,7 +33,7 @@ class FollowRequestVisitScreen extends StatefulWidget {
 }
 
 class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
-  final commentController = TextEditingController();
+  //final commentController = TextEditingController();
 
 
 
