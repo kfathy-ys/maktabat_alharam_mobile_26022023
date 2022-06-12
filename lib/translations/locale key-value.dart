@@ -279,6 +279,7 @@ class LocaleString extends Translations {
           "unRespond":"Accepted",
           "rejected":"Rejected",
   "notResponse":"Not Response",
+          "refuseReason":"Refuse reason",
 
         },
         'ar_EG': {
@@ -445,6 +446,7 @@ class LocaleString extends Translations {
           "from":"من",
           "to":"إلي",
           "visitReason":"سبب الزيارة :",
+          "refuseReason":"سبب الرفض",
           "visitDate":"تاريخ الزيارة",
 
           "saveUpdates":"حفظ التعديلات",

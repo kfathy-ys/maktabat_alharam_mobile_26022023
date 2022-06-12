@@ -15,11 +15,8 @@ import '../models/avalible_periods_model.dart';
 part 'available_dates_state.dart';
 
 class AvailableDatesCubit extends Cubit<AvailableDatesState> {
-  // final AllLibraries allLibraries;
 
-  AvailableDatesCubit() : super(AvailableDatesInitial()) {
-    // getAvailableDatesVisit(libraryId: allLibraries.id!);
-  }
+  AvailableDatesCubit() : super(AvailableDatesInitial());
 
 
    AllLibraries? selectedLIB;

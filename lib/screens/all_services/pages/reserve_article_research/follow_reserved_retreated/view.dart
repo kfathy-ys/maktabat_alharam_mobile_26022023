@@ -38,8 +38,7 @@ import 'models/replies_research_model.dart';
 class FollowResearchScreen extends StatefulWidget {
   MyOrdersToResearch? myOrdersToResearch;
 
-  FollowResearchScreen({Key? key, this.myOrdersToResearch})
-      : super(key: key);
+  FollowResearchScreen({Key? key, this.myOrdersToResearch}) : super(key: key);
 
   @override
   State<FollowResearchScreen> createState() => _FollowResearchScreenState();
@@ -50,9 +49,9 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
   void initState() {
     id = Prefs.getString("userId");
 
-
     super.initState();
   }
+
   String id = "";
 
   @override
@@ -98,7 +97,6 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                             ),
                             buildSizedBox(height),
                             CustomContainer(
-
                               height: height * 0.08,
                               child: CardData(
                                   title: "serviceName".tr,
@@ -132,16 +130,16 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                                   CardData(
                                       title: "serviceName".tr,
                                       subTitle: ((state.followResearchModel
-                                                  .data!.libraryId) ==
-                                              1)
-                                          ? "ReserveArticleOrResearchRetreat".tr
+                                                  .data!.requestTypeId) ==
+                                              11)
+                                          ? "researchRetreat".tr
                                           : ((state.followResearchModel.data!
-                                                      .libraryId) ==
-                                                  2)
+                                                      .requestTypeId) ==
+                                                  12)
                                               ? "scientificMaterial".tr
                                               : ((state.followResearchModel
-                                                          .data!.libraryId) ==
-                                                      3)
+                                                          .data!.requestTypeId) ==
+                                                      13)
                                                   ? "mix".tr
                                                   : "--",
                                       color1: kSmallIconColor,
@@ -151,15 +149,15 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                                       subTitle: ((state.followResearchModel
                                                   .data!.libraryId) ==
                                               1)
-                                          ? "ReserveArticleOrResearchRetreat".tr
+                                          ? "تست".tr
                                           : ((state.followResearchModel.data!
                                                       .libraryId) ==
                                                   2)
-                                              ? "scientificMaterial".tr
+                                              ? "theHolyHaramLibraryMen".tr
                                               : ((state.followResearchModel
                                                           .data!.libraryId) ==
                                                       3)
-                                                  ? "mix".tr
+                                                  ? "theHolyHaramLibraryWoman".tr
                                                   : "--",
                                       color1: kSmallIconColor,
                                       color2: kBlackText),
@@ -172,9 +170,19 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                                       color2: kBlackText),
                                   CardData(
                                       title: "qualification".tr,
-                                      subTitle: state
-                                          .followResearchModel.data!.callNum
-                                          .toString(),
+                                      subTitle: ((state.followResearchModel
+                                          .data!.responsibleGradeId) ==
+                                          14)
+                                          ? "phDStudent".tr
+                                          : ((state.followResearchModel.data!
+                                          .responsibleGradeId) ==
+                                          15)
+                                          ? "masterStudent".tr
+                                          : ((state.followResearchModel
+                                          .data!.responsibleGradeId) ==
+                                          16)
+                                          ? "phDStudentPresidency".tr
+                                          : "--",
                                       color1: kSmallIconColor,
                                       color2: kBlackText),
                                   CardData(
@@ -205,6 +213,18 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                                               .toString()),
                                       color1: kSmallIconColor,
                                       color2: kSkyButton),
+                                  CardData(
+                                      title: "refuseReason".tr,
+                                      subTitle: state.followResearchModel.data!
+                                              .reasonOfRejection
+                                              .toString()
+                                              .isEmpty
+                                          ? "فارغ"
+                                          : state.followResearchModel.data!
+                                              .reasonOfRejection
+                                              .toString(),
+                                      color1: kSmallIconColor,
+                                      color2: kBlackText),
                                 ],
                               ),
                             ),
@@ -221,46 +241,55 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                                 children: [
                                   RequestEvents(
                                       title: "requestState".tr,
-                                      subTitle: state.followResearchModel
-                                          .data!.createdDate!
-                                          .substring(0, 10),
+                                      subTitle:
+                                          DateConverter.dateConverterMonth(
+                                        state.followResearchModel.data!
+                                            .createdDate
+                                            .toString(),
+                                      ),
                                       subTitle2: ((state.followResearchModel
-                                          .data!.requestStatusId) ==
-                                          4)
+                                                  .data!.requestStatusId) ==
+                                              4)
                                           ? "تم تاكيد الطلب"
                                           : ((state.followResearchModel.data!
-                                          .requestStatusId) ==
-                                          5)
+                                                      .requestStatusId) ==
+                                                  5)
+                                              ? "الطلب قيد المراجعه"
+                                              : ((state
+                                                          .followResearchModel
+                                                          .data!
+                                                          .requestStatusId) ==
+                                                      6)
+                                                  ? " تم رفض الطلب"
+                                                  : "---",
+                                      color1: kSmallIconColor,
+                                      color2: kBlackText),
+                                  RequestEvents(
+                                      title: "requestState".tr,
+                                      subTitle:
+                                          DateConverter.dateConverterMonth(
+                                        state.followResearchModel.data!
+                                            .createdDate!
+                                            .toString(),
+                                      ),
+                                      subTitle2: ((state.followResearchModel
+                                                  .data!.requestStatusId) ==
+                                              4)
                                           ? "الطلب قيد المراجعه"
-                                          : ((state
-                                          .followResearchModel
-                                          .data!
-                                          .requestStatusId) ==
-                                          6)
-                                          ? " تم رفض الطلب"
                                           : "---",
                                       color1: kSmallIconColor,
                                       color2: kBlackText),
                                   RequestEvents(
                                       title: "requestState".tr,
-                                      subTitle: state.followResearchModel
-                                          .data!.createdDate!
-                                          .substring(0, 10),
+                                      subTitle:
+                                          DateConverter.dateConverterMonth(
+                                        state.followResearchModel.data!
+                                            .updatedDate!
+                                            .toString(),
+                                      ),
                                       subTitle2: ((state.followResearchModel
-                                          .data!.requestStatusId) ==
-                                          4)
-                                          ? "الطلب قيد المراجعه"
-                                          : "---",
-                                      color1: kSmallIconColor,
-                                      color2: kBlackText),
-                                  RequestEvents(
-                                      title: "requestState".tr,
-                                      subTitle: state.followResearchModel
-                                          .data!.updatedDate!
-                                          .substring(0, 10),
-                                      subTitle2: ((state.followResearchModel
-                                          .data!.requestStatusId) ==
-                                          5)
+                                                  .data!.requestStatusId) ==
+                                              5)
                                           ? "تم الموافقه"
                                           : "notResponse".tr,
                                       color1: kSmallIconColor,
@@ -281,11 +310,11 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                 HeadTopics(
                   title: "commentsRequest".tr,
                 ),
-
-
                 BlocProvider(
-                  create: (context) => RepliesResearchCubit()..init(widget.myOrdersToResearch!.id!),
-                  child: BlocConsumer<RepliesResearchCubit, RepliesResearchState>(
+                  create: (context) => RepliesResearchCubit()
+                    ..init(widget.myOrdersToResearch!.id!),
+                  child:
+                      BlocConsumer<RepliesResearchCubit, RepliesResearchState>(
                     listener: (context, state) {},
                     builder: (context, state) {
                       final cubit = RepliesResearchCubit.of(context);
@@ -299,64 +328,70 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                         return SingleChildScrollView(
                           child: Column(
                             children: [
-                              state.repliesResearchModel.data!.isEmpty ? const SizedBox.shrink():
-                              ListView.builder(
-
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-
-
-                                  itemCount: state.repliesResearchModel.data!.length,
-                                  itemBuilder: (context, index) {
-                                    return  Message(
-                                        isMe: state.repliesResearchModel.data![index].createdBy.toString() == id,
-                                        name:  state.repliesResearchModel.data![index].userName.toString() ,
-                                        comment:  state.repliesResearchModel.data![index].userMessage.toString().trim(),
-                                        data: DateConverter.dateConverterMonth("${state.repliesResearchModel.data![index].createdDate}"));
-                                    // data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
-                                  }),
+                              state.repliesResearchModel.data!.isEmpty
+                                  ? const SizedBox.shrink()
+                                  : ListView.builder(
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: state
+                                          .repliesResearchModel.data!.length,
+                                      itemBuilder: (context, index) {
+                                        return Message(
+                                            isMe: state.repliesResearchModel
+                                                    .data![index].createdBy
+                                                    .toString() ==
+                                                id,
+                                            name: state.repliesResearchModel
+                                                .data![index].userName
+                                                .toString(),
+                                            comment: state.repliesResearchModel
+                                                .data![index].userMessage
+                                                .toString()
+                                                .trim(),
+                                            data: DateConverter.dateConverterMonth(
+                                                "${state.repliesResearchModel.data![index].createdDate}"));
+                                        // data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
+                                      }),
                               CustomTextField(
                                 controller: cubit.addCommentController,
                                 hint: "أضف تعليقك هنا ..!",
                               ),
                               buildSizedBox(height),
-                              state is! RepliesResearchLoading ?
-                              Center(
-                                  child: SmallButtonSizer(
-                                    onPressed: () {
-                                      cubit.addToCommentResearch(
-                                          RepliesResearch(
-                                              userName:   widget.myOrdersToResearch!.responsibleName,
-                                              createdDate: widget.myOrdersToResearch!.createdDate,
-                                              updatedBy: widget.myOrdersToResearch!.updatedBy,
-                                              userMessage:cubit.addCommentController.text.trim() ,
-                                              researchRequestId: widget.myOrdersToResearch!.id
-                                          ));
-
-                                    },
-                                    title: "addComment".tr,
-                                    color: kSafeAreasColor,
-                                    image: "assets/image/newrequest.png",
-                                  )):
-                              const LoadingFadingCircle(),
-
-
-
+                              state is! RepliesResearchLoading
+                                  ? Center(
+                                      child: SmallButtonSizer(
+                                      onPressed: () {
+                                        cubit.addToCommentResearch(RepliesResearch(
+                                            userName: widget.myOrdersToResearch!
+                                                .responsibleName,
+                                            createdDate: widget
+                                                .myOrdersToResearch!
+                                                .createdDate,
+                                            updatedBy: widget
+                                                .myOrdersToResearch!.updatedBy,
+                                            userMessage: cubit
+                                                .addCommentController.text
+                                                .trim(),
+                                            researchRequestId:
+                                                widget.myOrdersToResearch!.id));
+                                      },
+                                      title: "addComment".tr,
+                                      color: kSafeAreasColor,
+                                      image: "assets/image/newrequest.png",
+                                    ))
+                                  : const LoadingFadingCircle(),
                             ],
                           ),
-
                         );
                       }
-
 
                       if (state is RepliesResearchError) {
                         return Text(state.msg);
                       }
                       return const SizedBox();
                     },
-
                   ),
-
                 ),
               ],
             ),
@@ -368,7 +403,7 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
 
   SizedBox buildSizedBox(double height) {
     return SizedBox(
-                            height: height * 0.02,
-                          );
+      height: height * 0.02,
+    );
   }
 }

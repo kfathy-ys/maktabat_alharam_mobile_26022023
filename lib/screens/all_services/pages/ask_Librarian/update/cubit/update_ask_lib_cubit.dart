@@ -55,7 +55,7 @@ class UpdateAskLibCubit extends Cubit<UpdateAskLibState> {
           "visitorEmail": visitorEmail,
           "visitorMobile": visitorMobile,
           "visitorMessage": question,
-          "response": " ",
+          "response": null,
           "isArchived": false,
           "createdBy": userId,
           "createdDate": DateFormat('yyyy-MM-dd').format(now),
