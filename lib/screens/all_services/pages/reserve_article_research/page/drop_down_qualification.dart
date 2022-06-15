@@ -1,20 +1,39 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/models/all_grads_model.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-class DropDownListQualification extends StatefulWidget {
 
-  const DropDownListQualification({Key? key}) : super(key: key);
+import '../../../../../config/dio_helper/dio.dart';
 
+
+
+
+
+//enum typeEntityName {phDStudent ,masterStudent,phDStudentPresidency}
+class DropDownListQualifications extends StatefulWidget {
+  final AllGrade? initial;
+  final ValueChanged<AllGrade> onChanged;
+  const DropDownListQualifications({Key? key, this.initial, required this.onChanged}) : super(key: key);
   @override
-  State<DropDownListQualification> createState() => _DropDownListQualificationState();
+  State<DropDownListQualifications> createState() => _DropDownListQualificationsState();
 }
 
-class _DropDownListQualificationState extends State<DropDownListQualification> {
-  String? dropdownValue;
-
+class _DropDownListQualificationsState extends State<DropDownListQualifications> {
+  AllGrade? selected;
+  final grads = <AllGrade>[];
+  int? valueSelected;
+  @override
+  void initState() {
+    if(widget.initial != null) {
+      selected = widget.initial;
+    }
+    getQualifications();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
-   // double height = MediaQuery.of(context).size.height;
+    //  double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -27,37 +46,40 @@ class _DropDownListQualificationState extends State<DropDownListQualification> {
           border: Border.all(color: kPrimaryColor)
       ),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
+        child: DropdownButton<AllGrade>(
 
-          value: dropdownValue,
-          // autofocus: true,
-          // isDense: true,
-          //isExpanded: true,
-          hint: Text("qualification".tr+' :',
+            value: selected,
+
+            isExpanded: true,
+
+            hint: Text("qualifications".tr+' :',
+              style: const TextStyle(
+                color: kPrimaryColor,
+                fontSize: 16,
+                fontFamily: "DinReguler",
+              ),),
+            borderRadius: BorderRadius.circular(10),
+            icon: Image.asset("assets/image/smallarrow.png"),
+            //  elevation: 16,
             style: const TextStyle(
-              color: kPrimaryColor,
+              color: kTextColor,
               fontSize: 16,
               fontFamily: "DinReguler",
-            ),),
-          borderRadius: BorderRadius.circular(10),
-          icon: Image.asset("assets/image/smallarrow.png"),
-          //  elevation: 16,
-          style: const TextStyle(
-            color: kTextColor,
-            fontSize: 16,
-            fontFamily: "DinReguler",
-          ),
-          underline: null,
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
+            ),
+            underline: null,
+          onChanged: (AllGrade? newValue) {
+            if (newValue == null) return;
+            selected = newValue;
+
+            widget.onChanged(selected!);
+
+            setState(() {});
           },
-          items: <String>["phDStudent".tr,"masterStudent".tr,"phDStudentPresidency".tr]
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
+          items:  grads
+              .map<DropdownMenuItem<AllGrade>>((AllGrade value) {
+            return DropdownMenuItem<AllGrade>(
               value: value,
-              child: Text(value,
+              child: Text( value.valueArabic!,
                 style: const TextStyle(
                   color: kTextColor,
                   fontSize: 16,
@@ -68,8 +90,17 @@ class _DropDownListQualificationState extends State<DropDownListQualification> {
               ),
             );
           }).toList(),
+
         ),
       ),
     );
+  }
+
+  Future<void> getQualifications()async{
+    grads.clear();
+    final res = await NetWork.get('ResearchRequest/GetGrades');
+    (res.data['data'] as List).map((e) => grads.add(AllGrade.fromJson(e))).toList();
+    setState(() {});
+
   }
 }

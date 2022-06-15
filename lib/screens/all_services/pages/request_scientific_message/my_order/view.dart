@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/archive/view.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/cubit/order_thesis_cubit.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/cubit/order_thesis_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/page/description.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/update/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/view.dart';
@@ -10,11 +13,14 @@ import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/widgets/date_convertors.dart';
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
-class MyOrdersScientificMessage extends StatelessWidget {
+import '../../../../widgets/loading.dart';
+import '../../request_visit/my_orders/page/custom_container.dart';
 
+class MyOrdersScientificMessage extends StatelessWidget {
   const MyOrdersScientificMessage({Key? key}) : super(key: key);
 
   @override
@@ -31,104 +37,188 @@ class MyOrdersScientificMessage extends StatelessWidget {
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
               context: context),
-          body: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-            height: height,
-            width: width,
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              children: [
-                HeadTopics(
-                  title: "DepositScientificThesis".tr,
-                ),
-                DescriptionMessage(description: "titleMessage".tr),
-                Center(
-                    child: SmallButtonSizer(
-                  onPressed: () {
-                    Get.to(() => const PutScientificMessage());
-                  },
-                  title: "addOne".tr,
-                  color: kPrimaryColor,
-                  image: "assets/image/newrequest.png",
-                )),
-                SizedBox(
-                  height: height * 0.03,
-                ),
-                ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 5,
-                  itemBuilder: (context, int index) {
-                    return Container(
-                      margin: const EdgeInsetsDirectional.only(bottom: 16.0),
-                      padding: const EdgeInsetsDirectional.only(bottom: 8.0),
-                      height: height * 0.6,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: kCardBorder)),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CardData(
-                              title: "nameRequest".tr,
-                              subTitle: "هل المكتبة متاحة يوم الجمعة؟",
-                              color1: kSmallIconColor,
-                              color2: kBlackText),
-                          CardData(
-                              title: "nameResponsible".tr,
-                              subTitle: "أحمد عبد السلام",
-                              color1: kSmallIconColor,
-                              color2: kBlackText),
-                          CardData(
-                              title: "requestDate".tr,
-                              subTitle: "Mar 31 , 2022",
-                              color1: kSmallIconColor,
-                              color2: kSkyButton),
-                          CardData(
-                              title: "requestState".tr,
-                              subTitle: "نعم",
-                              color1: kSmallIconColor,
-                              color2: kBlackText),
-                          CardData(
-                            title: "orderProcedure".tr,
-                            subTitle: "",
-                            color1: kBlackText,
-                            //  color2: kBlackText
-                          ),
-                          CustomCardButton(
-                            color: kAccentColor,
-                            title: "followRequest".tr,
-                            onPressed: () {
-                              Prefs.getString("mark");
-                              Get.to(() => const UpdateMessageScreen());
-                            },
-                            //  icon:  Icons.visibility_outlined
-                            image: "assets/image/fulleyes.png",
-                          ),
-                          CustomCardButton(
-                            color: kAccentColor,
-                            title: "updateRequest".tr,
-                            onPressed: () =>
-                                Get.to(() => const PutScientificMessage()),
-                            //  icon:  Icons.visibility_outlined
-                            image: "assets/image/update.png",
-                          ),
-                          CustomCardButton(
-                            color: kAccentColor,
-                            title: "addToArchive".tr,
-                            onPressed: () =>
-                                Get.to(() => const ArchiveScientificMessageScreen()),
-                            image: "assets/image/archieve.png",
-                            //  icon:Icons.cancel_outlined
-                          ),
-                        ],
+          body: SingleChildScrollView(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+              height: height,
+              width: width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HeadTopics(
+                    title: "DepositScientificThesis".tr,
+                  ),
+                  DescriptionMessage(description: "titleMessage".tr),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SmallButtonSizer(
+                        onPressed: () {
+                          Get.to(() => const PutScientificMessage());
+                        },
+                        title: "addOne".tr,
+                        color: kSafeAreasColor,
+                        image: "assets/image/newrequest.png",
                       ),
-                    );
-                  },
-                ),
-              ],
+                      SmallButtonSizer(
+                        onPressed: () {
+                          Get.to(() => const ArchiveScientificMessageScreen());
+                        },
+                        title: "archive".tr,
+                        color: kAccentColor,
+                        image: "assets/image/archieve.png",
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: height * 0.03,
+                  ),
+                  BlocConsumer<OrderThesisCubit, OrderThesisState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      final cubit = BlocProvider.of<OrderThesisCubit>(context);
+                      if (state is OrderThesisLoading) {
+                        return const LoadingFadingCircle();
+                      }
+                      if (state is OrderThesisSuccess) {
+                        return Expanded(
+                          child: RefreshIndicator(
+                            onRefresh: () async {
+                              cubit.getOrderThesis();
+                              return Future<void>.delayed(
+                                  const Duration(seconds: 3));
+                            },
+                            backgroundColor: kAccentColor,
+                            color: Colors.white,
+                            child: state.orderThesisModel.data!.isEmpty
+                                ? Center(
+                                    child: customBoldText(
+                                        title: "لا توجد طلبات الاّن"))
+                                : ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount:
+                                        state.orderThesisModel.data!.length,
+                                    itemBuilder: (context, int index) {
+                                      return CustomContainer(
+                                        height: height * 0.5,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            CardData(
+                                                title: "nameRequest".tr,
+                                                subTitle:
+                                                    "RequestDepositScientificThesis"
+                                                        .tr,
+                                                color1: kSmallIconColor,
+                                                color2: kBlackText),
+                                            CardData(
+                                                title: "nameResponsible".tr,
+                                                subTitle: state.orderThesisModel
+                                                    .data![index].applicantName,
+                                                color1: kSmallIconColor,
+                                                color2: kBlackText),
+                                            CardData(
+                                                title: "requestDate".tr,
+                                                subTitle: DateConverter
+                                                    .dateConverterMonth(state
+                                                        .orderThesisModel
+                                                        .data![index]
+                                                        .createdDate
+                                                        .toString()),
+                                                color1: kSmallIconColor,
+                                                color2: kSkyButton),
+                                            CardData(
+                                                title: "requestState".tr,
+                                                subTitle: ((state
+                                                            .orderThesisModel
+                                                            .data![index]
+                                                            .requestStatusId) ==
+                                                        4)
+                                                    ? "pending".tr
+                                                    : ((state
+                                                                .orderThesisModel
+                                                                .data![index]
+                                                                .requestStatusId) ==
+                                                            5)
+                                                        ? "unRespond".tr
+                                                        : ((state
+                                                                    .orderThesisModel
+                                                                    .data![
+                                                                        index]
+                                                                    .requestStatusId) ==
+                                                                6)
+                                                            ? "rejected".tr
+                                                            : "--",
+                                                color1: kSmallIconColor,
+                                                color2: kBlackText),
+                                            CardData(
+                                              title: "orderProcedure".tr,
+                                              subTitle: "",
+                                              color1: kBlackText,
+                                              //  color2: kBlackText
+                                            ),
+                                            CustomCardButton(
+                                              color: kAccentColor,
+                                              title: "followRequest".tr,
+                                              onPressed: () {
+                                                Prefs.getString("mark");
+                                                Get.to(() =>
+                                                    const UpdateMessageScreen());
+                                              },
+                                              //  icon:  Icons.visibility_outlined
+                                              image:
+                                                  "assets/image/fulleyes.png",
+                                            ),
+                                            ((state
+                                                        .orderThesisModel
+                                                        .data![index]
+                                                        .requestStatusId) ==
+                                                    5)
+                                                ? const SizedBox()
+                                                : CustomCardButton(
+                                                    color: kAccentColor,
+                                                    title: "updateRequest".tr,
+                                                    onPressed: () => Get.to(() =>
+                                                        const PutScientificMessage()),
+                                                    //  icon:  Icons.visibility_outlined
+                                                    image:
+                                                        "assets/image/update.png",
+                                                  ),
+                                            CustomCardButton(
+                                              color: kAccentColor,
+                                              title: "addToArchive".tr,
+                                              onPressed: () {
+                                                cubit.addToArchiveThesis(state
+                                                    .orderThesisModel
+                                                    .data![index]);
+                                              },
+                                              image:
+                                                  "assets/image/archieve.png",
+                                              //  icon:Icons.cancel_outlined
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
+                          ),
+                        );
+                      }
+                      if (state is OrderThesisError) {
+                        return Text(state.msg);
+                      }
+                      if (state is OrderThesisEmpty) {
+                        return customBoldText(title: "Empty");
+                      }
+                      return const SizedBox();
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

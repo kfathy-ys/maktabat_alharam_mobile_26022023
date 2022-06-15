@@ -1,16 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/models/all_room_model.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
+
+import '../../../../../config/dio_helper/dio.dart';
 class DropDownListHallName extends StatefulWidget {
 
-  const DropDownListHallName({Key? key}) : super(key: key);
+  final AllRooms? initial;
+  final ValueChanged<AllRooms> onChanged;
+
+  const DropDownListHallName({Key? key,required this.onChanged ,this.initial}) : super(key: key);
 
   @override
   State<DropDownListHallName> createState() => _DropDownListHallNameState();
 }
 
 class _DropDownListHallNameState extends State<DropDownListHallName> {
-  String? dropdownValue;
+  AllRooms? selected;
+  final rooms = <AllRooms>[];
+  int? valueSelected;
+  @override
+  void initState() {
+    if(widget.initial != null) {
+      selected = widget.initial;
+    }
+    getAllRooms();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +43,10 @@ class _DropDownListHallNameState extends State<DropDownListHallName> {
           border: Border.all(color: kPrimaryColor)
       ),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
+        child: DropdownButton<AllRooms>(
 
-          value: dropdownValue,
-          // autofocus: true,
-          // isDense: true,
-          //isExpanded: true,
+          value: selected,
+
           hint: Text("hallName".tr+' :',
             style: const TextStyle(
               color: kPrimaryColor,
@@ -48,16 +62,19 @@ class _DropDownListHallNameState extends State<DropDownListHallName> {
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
+          onChanged: (AllRooms? newValue) {
+            if (newValue == null) return;
+            selected = newValue;
+
+            widget.onChanged(selected!);
+
+            setState(() {});
           },
-          items: <String>["hallfirst".tr,  "hallSecand".tr]
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
+          items:  rooms
+              .map<DropdownMenuItem<AllRooms>>((AllRooms value) {
+            return DropdownMenuItem<AllRooms>(
               value: value,
-              child: Text(value,
+              child: Text( value.nameAr!,
                 style: const TextStyle(
                   color: kTextColor,
                   fontSize: 16,
@@ -71,5 +88,13 @@ class _DropDownListHallNameState extends State<DropDownListHallName> {
         ),
       ),
     );
+  }
+
+  Future<void> getAllRooms()async{
+    rooms.clear();
+    final res = await NetWork.get('Room/GetAllRooms');
+    (res.data['data'] as List).map((e) => rooms.add(AllRooms.fromJson(e))).toList();
+    setState(() {});
+
   }
 }

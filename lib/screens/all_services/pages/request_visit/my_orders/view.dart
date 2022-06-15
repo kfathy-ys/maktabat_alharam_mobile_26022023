@@ -107,7 +107,7 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                           itemBuilder: (context, int index) {
                             final MyFollowOrder myFollowOrder;
                             return CustomContainer(
-                              height: height * 0.5,
+                              height: height * 0.4,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.start,

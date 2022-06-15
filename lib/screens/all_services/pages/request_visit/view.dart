@@ -212,7 +212,8 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     text: "",
                   ),
                   buildSizedBox(height),
-                  state is! AvailableDatesLoading?  Center(
+                  state is! AvailableDatesLoading?
+                  Center(
                     child: MediaButtonSizer(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {

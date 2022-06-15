@@ -77,7 +77,7 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
                 ),
                 //const DropDownListServiceName(),
                 const DropDownListLibraryName(),
-                const DropDownListHallName(),
+              //  const DropDownListHallName(),
                 CustomTextField(
                   hint: "userName".tr,
                   dIcon: Icons.drive_file_rename_outline,
@@ -102,7 +102,7 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
                   ]),
                   type: TextInputType.name,
                 ),
-                const DropDownListQualification(),
+             //   const DropDownListQualification(),
                 buildPadding(title: "requiredDate".tr),
                 Container(
                   height: height * 0.08,

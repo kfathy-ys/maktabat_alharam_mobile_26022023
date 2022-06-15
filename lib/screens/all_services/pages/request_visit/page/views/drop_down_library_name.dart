@@ -18,7 +18,6 @@ class DropDownListLibraryName extends StatefulWidget {
 class _DropDownListLibraryNameState extends State<DropDownListLibraryName> {
   AllLibraries? selected;
   final libs = <AllLibraries>[];
-  int? valueSelected;
   @override
   void initState() {
     if(widget.initial != null) {

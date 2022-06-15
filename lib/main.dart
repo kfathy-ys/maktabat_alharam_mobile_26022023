@@ -8,6 +8,8 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/cubit/my_order_ask_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/new_order/cubit/new_order_cubit.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/archive/cubit/archived_thesis_cubit.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/cubit/order_thesis_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/archive/cubit/my_archive_visit_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/new_order/cubit_available_dates/available_dates_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/archive/cubit/archived_order_cubit.dart';
@@ -27,6 +29,7 @@ import 'config/themes/theme_cubit/switch_state.dart';
 
 import 'screens/all_services/pages/ask_Librarian/archive/cubit/ask_archive_cubit.dart';
 import 'screens/all_services/pages/request_visit/my_orders/cubit/visit_order_cubit.dart';
+import 'screens/all_services/pages/reserve_article_research/new_order/cubit_avalible_dates_research/avalible_dates_research_cubit.dart';
 import 'translations/locale key-value.dart';
 
 void main() async {
@@ -67,6 +70,11 @@ class MaktabatAlharam extends StatelessWidget {
         ),
         BlocProvider<AvailableDatesCubit>(
           create: (context) => AvailableDatesCubit(),
+        ),
+
+
+        BlocProvider<AvalibleDatesResearchCubit>(
+          create: (context) => AvalibleDatesResearchCubit(),
         ),
 
         BlocProvider<NewOrderCubit>(
@@ -111,6 +119,17 @@ class MaktabatAlharam extends StatelessWidget {
           create: (context) => MyOrderResearchCubit(
               BlocProvider.of<ArchivedOrderCubit>(context)
           ),
+        ),
+
+
+
+
+
+        BlocProvider<ArchivedThesisCubit>(
+          create: (context) => ArchivedThesisCubit(),
+        ),
+        BlocProvider<OrderThesisCubit>(
+          create: (context) => OrderThesisCubit( BlocProvider.of<ArchivedThesisCubit>(context)),
         ),
 
 
