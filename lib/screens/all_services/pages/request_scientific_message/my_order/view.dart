@@ -19,6 +19,7 @@ import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../widgets/loading.dart';
 import '../../request_visit/my_orders/page/custom_container.dart';
+import '../follow_my_order/view.dart';
 
 class MyOrdersScientificMessage extends StatelessWidget {
   const MyOrdersScientificMessage({Key? key}) : super(key: key);
@@ -167,7 +168,7 @@ class MyOrdersScientificMessage extends StatelessWidget {
                                               onPressed: () {
                                                 Prefs.getString("mark");
                                                 Get.to(() =>
-                                                    const UpdateMessageScreen());
+                                                     FollowScientificMessage(myOrderThesis:  state.orderThesisModel.data![index],));
                                               },
                                               //  icon:  Icons.visibility_outlined
                                               image:

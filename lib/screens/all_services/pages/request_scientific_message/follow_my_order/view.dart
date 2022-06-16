@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/follow_my_order/models/model.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 
@@ -11,15 +14,38 @@ import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizerUploadFile.dart';
+import 'package:queen/core/helpers/prefs.dart';
+
+import '../../../../widgets/date_convertors.dart';
+import '../../../../widgets/loading.dart';
+import '../../request_visit/follow_request_visit/page/sending.dart';
+import '../../request_visit/follow_request_visit/page/views/request_events.dart';
+import '../../request_visit/my_orders/page/custom_container.dart';
+import '../my_order/models/model.dart';
+import 'cubit_replies/thesis_replies_cubit.dart';
 
 
 // ignore: must_be_immutable
-class FollowScientificMessage extends StatelessWidget {
-  final formKey = GlobalKey<FormState>();
-  final _addCommentController = TextEditingController();
+class FollowScientificMessage extends StatefulWidget {
 
 
-  FollowScientificMessage({Key? key}) : super(key: key);
+  MyOrderThesis?  myOrderThesis;
+
+  FollowScientificMessage({Key? key,this.myOrderThesis}) : super(key: key);
+
+  @override
+  State<FollowScientificMessage> createState() => _FollowScientificMessageState();
+}
+
+class _FollowScientificMessageState extends State<FollowScientificMessage> {
+  @override
+  void initState() {
+    id = Prefs.getString("userId");
+
+    super.initState();
+  }
+
+  String id = "";
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +72,9 @@ class FollowScientificMessage extends StatelessWidget {
                 HeadTopics(
                   title: "orderFollowUp".tr,
                 ),
-                Container(
-                  padding: const EdgeInsetsDirectional.only(top: 10),
-                  margin: const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
+               CustomContainer(
                   height: height * 0.08,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: kCardBorder)),
-                  child: buildRow(
+                  child: CardData(
                       title: "serviceName".tr,
                       subTitle: "خلوة بحثية",
                       color1: kSmallIconColor,
@@ -83,30 +104,25 @@ class FollowScientificMessage extends StatelessWidget {
                 HeadTopics(
                   title: "orderEvents".tr,
                 ),
-                Container(
-                  margin:
-                  const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
+                CustomContainer(
                   height: height * 0.2,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: kCardBorder)),
                   child: Column(
                     // crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      buildRequestEvent(
+                      RequestEvents(
                           title: "requestState".tr,
                           subTitle: "Mar 22,2022",
                           subTitle2: "تم تاكيد الطلب ",
                           color1: kSmallIconColor,
                           color2: kBlackText),
-                      buildRequestEvent(
+                      RequestEvents(
                           title: "requestState".tr,
                           subTitle: "Mar 23,2022",
                           subTitle2: "الطلب قيد المراجعة",
                           color1: kSmallIconColor,
                           color2: kBlackText),
-                      buildRequestEvent(
+                      RequestEvents(
                           title: "requestState".tr,
                           subTitle: "Mar 26,2022",
                           subTitle2: "تم الموافقة",
@@ -118,78 +134,102 @@ class FollowScientificMessage extends StatelessWidget {
                 HeadTopics(
                   title: "commentsRequest".tr,
                 ),
-                Container(
-                  margin:
-                  const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
-                  height: height * 0.1,
-                  decoration: BoxDecoration(
-                    color: kBackgroundCardColor,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      buildRow(
-                          title: "Ahmed",
-                          subTitle: "Mar 22,2022  7:54 PM",
-                          color1: kBlackText,
-                          color2: kAccentColor),
-                      buildRow(
-                          title: "هل يمكن إستخراج البطاقة المدرسية؟",
-                          subTitle: "",
-                          color1: kSmallIconColor,
-                          color2: kBlackText),
-                    ],
+                BlocProvider(
+                  create: (context) => ThesisRepliesCubit()
+                    ..init(widget.myOrderThesis!.id!),
+                  child:
+                  BlocConsumer<ThesisRepliesCubit, ThesisRepliesState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      final cubit = ThesisRepliesCubit.of(context);
+
+                      if (state is ThesisRepliesLoading) {
+                        return const Center(
+                          child: LoadingFadingCircle(),
+                        );
+                      }
+                      if (state is ThesisRepliesSuccess) {
+                        return SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              state.allRepliesThesisModel.data!.isEmpty
+                                  ? const SizedBox.shrink()
+                                  : ListView.builder(
+                                  physics:
+                                  const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: state
+                                      .allRepliesThesisModel.data!.length,
+                                  itemBuilder: (context, index) {
+                                    return Message(
+                                        isMe: state.allRepliesThesisModel
+                                            .data![index].createdBy
+                                            .toString() ==
+                                            id,
+                                        name: state.allRepliesThesisModel
+                                            .data![index].userName
+                                            .toString(),
+                                        comment: state.allRepliesThesisModel
+                                            .data![index].userMessage
+                                            .toString()
+                                            .trim(),
+                                        data: DateConverter.dateConverterMonth(
+                                            "${state.allRepliesThesisModel.data![index].createdDate}"));
+                                    // data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
+                                  }),
+                              CustomTextField(
+                                controller: cubit.addCommentController,
+                                hint: "أضف تعليقك هنا ..!",
+                              ),
+                              buildSizedBox(height),
+                              state is! ThesisRepliesLoading
+                                  ? Center(
+                                  child: SmallButtonSizer(
+                                    onPressed: () {
+                                      cubit.addToCommentThesis(MyRepliesThesis(
+                                          userName: widget.myOrderThesis!
+                                              .applicantName,
+                                          createdDate: widget
+                                              .myOrderThesis!
+                                              .createdDate,
+                                          updatedBy: widget
+                                              .myOrderThesis!.updatedBy,
+                                          userMessage: cubit
+                                              .addCommentController.text
+                                              .trim(),
+                                          thesisDepositionRequestId:
+                                          widget.myOrderThesis!.id));
+                                    },
+                                    title: "addComment".tr,
+                                    color: kSafeAreasColor,
+                                    image: "assets/image/newrequest.png",
+                                  ))
+                                  : const LoadingFadingCircle(),
+                            ],
+                          ),
+                        );
+                      }
+
+                      if (state is ThesisRepliesError) {
+                        return Text(state.msg);
+                      }
+                      return const SizedBox();
+                    },
                   ),
                 ),
-                Container(
-                  margin:
-                  const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
-                  height: height * 0.1,
-                  decoration: BoxDecoration(
-                    color: kBackgroundCardColor,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      buildRow(
-                          title: "EMP",
-                          subTitle: "Mar 22,2022  8:04 PM",
-                          color1: kBlackText,
-                          color2: kAccentColor),
-                      buildRow(
-                          title: "لا , لا يمكن !",
-                          subTitle: "",
-                          color1: kSmallIconColor,
-                          color2: kBlackText),
-                    ],
-                  ),
-                ),
-                CustomTextField(
-                  controller: _addCommentController,
-                  hint: "أضف تعليق",
-                ),
-                SizedBox(
-                  height: height * 0.05,
-                ),
-                Center(
-                    child: SmallButtonSizer(
-                      onPressed: () => Get.to(()=>const PutScientificMessage()),
-                      title: "add".tr,
-                      color: kPrimaryColor,
-                      image: "assets/image/newrequest.png",
-                    ))
               ],
+              //PutScientificMessage()
             ),
           ),
         ),
       ),
     );
   }
-
+  SizedBox buildSizedBox(double height) {
+    return SizedBox(
+      height: height * 0.02,
+    );
+  }
   Container buildContainer({required double height ,required double width , required String title ,
 
     required VoidCallback onPressed1,
@@ -239,53 +279,7 @@ class FollowScientificMessage extends StatelessWidget {
       ),
     );
   }
-  Widget buildRequestEvent({
-    required String title,
-    String? subTitle2,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16, end: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,
-              style: TextStyle(
-                  color: color1, fontSize: 14, fontFamily: 'DinBold')),
-          Text(subTitle2!,
-              style: TextStyle(
-                  color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-          Text(subTitle!,
-              style: const TextStyle(
-                  color: kAccentColor, fontSize: 14, fontFamily: 'DinReguler')),
-        ],
-      ),
-    );
-  }
 
-  Widget buildRow({
-    required String title,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 16, end: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title,
-              style: TextStyle(
-                  color: color1, fontSize: 14, fontFamily: 'DinBold')),
-          Text(subTitle!,
-              style: TextStyle(
-                  color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-        ],
-      ),
-    );
-  }
+
+
 }
