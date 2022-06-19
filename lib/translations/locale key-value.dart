@@ -18,6 +18,8 @@ class LocaleString extends Translations {
           "logout": "Logout",
           "services": "Services",
           "home": "Home",
+          // notifications
+          "notification":"Notifications",
           // Login
           "welcome": "Welcome ..",
           "signIn": "Sign In",
@@ -311,6 +313,8 @@ class LocaleString extends Translations {
           "enterPassword": "من فضلك أدخل رقمك السري!",
           "id": "رقمك الخاص",
           "minPassword": " الحد الأدني لكلمه المرور 11 أنماط ",
+ // notifications
+          "notification":"الإشعارات",
 
           // Forget Password
           "addComment":"أضف تعليق",

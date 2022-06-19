@@ -7,6 +7,7 @@ import 'package:maktabat_alharam/screens/home/pages/views/my_orders/view.dart';
 import 'package:maktabat_alharam/screens/home/view.dart';
 import 'package:maktabat_alharam/screens/our_services/view.dart';
 import 'package:queen/core/helpers/prefs.dart';
+import '../notifications/view.dart';
 import 'page/languages/view.dart';
 import 'page/profile/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -81,7 +82,7 @@ Widget drawer({required context}) {
                             Get.to(()=> const HomeTabScreen());
                           },
                           title: 'home'.tr,
-                          image: 'assets/image/QuestionCircleFill.png'),
+                          image: 'assets/image/homemenue.png'),
                       listTile(
                           onTap: () {
                             Get.back();
@@ -117,12 +118,23 @@ Widget drawer({required context}) {
                           },
                           title: "myOrders".tr,
                           image: 'assets/image/myorder.png'),
+
+                      listTile(
+                          onTap: () {
+
+                            Get.back();
+                            Get.to(()=>const Notifications());
+                          },
+                          title: "notification".tr,
+                          image: 'assets/image/notification.png'),
                       listTile(
                           onTap: (){
                             Get.back();
                             Get.to(()=> ProfileScreen());
 
                           },
+
+
                           title: "myProfile".tr,
                           image: 'assets/image/profileiconr.png'),
                       listTile(
