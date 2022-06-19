@@ -814,7 +814,7 @@ packages:
     source: git
     version: "1.0.0"
   readable:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: readable
       url: "https://pub.dartlang.org"

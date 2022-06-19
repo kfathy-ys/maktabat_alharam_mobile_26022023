@@ -10,8 +10,10 @@ import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
 import '../../../../../widgets/date_convertors.dart';
+import '../../../request_visit/new_order/models/available_dates_model.dart';
 import '../../my_order/models/model.dart';
 import '../models/all_room_model.dart';
+import '../models/room_libraryId_model.dart';
 
 part 'avalible_dates_research_state.dart';
 
@@ -51,12 +53,13 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
 
   AllRooms? roomsID;
   void onRoomsIDChanged(AllRooms value)=> roomsID= value;
-  final dates = <AvailableDatesByRoom>[];
-  final availableDates = <DateTime>[];
+ final rooms = <MyRoomLibraryId>[];
+
+
   Future<void> getAvailableDatesResearch(int libId) async {
     emit(AvalibleDatesResearchLoading());
     try {
-      dates.clear();
+      rooms.clear();
       final res =
       await NetWork.get('Room/GetRoomsByLibraryId/$libId');
 
@@ -66,18 +69,13 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
         throw res.data['message'];
       }
 
-      (res.data['data'] as List).map((e) => dates.add(AvailableDatesByRoom.fromJson(e))).toList();
+      (res.data['data'] as List).map((e) => rooms.add(MyRoomLibraryId.fromJson(e))).toList();
+      //
 
-      if(dates.isNotEmpty) {
-        for(final date in dates){
-          availableDates.add(date.date!);
-        }
-      }
 
-      emit(AvalibleDatesResearchSuccess(availableDatesByRoomModel:
-      AvailableDatesByRoomModel.fromJson(res.data),
-        dates: dates,
-      ));
+
+
+      emit(AvalibleDatesResearchSuccess());
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
@@ -85,12 +83,15 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
     }
   }
 
-  Future<void> getRoomResearch(int roomID) async {
+
+  final dates = <AvailableDatesByRoom>[];
+  final availableDates = <DateTime>[];
+  Future<void> getAvailableValidDatesResearch(int roomID) async {
     emit(AvalibleDatesResearchLoading());
     try {
       dates.clear();
-      final res =
-      await NetWork.get('ResearchRequest/GetResearchAvailableDatesByRoomId/$roomID');
+      final res = await NetWork.get('ResearchRequest/GetResearchAvailableDatesByRoomId/$roomID');
+
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -102,13 +103,12 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
 
       if(dates.isNotEmpty) {
         for(final date in dates){
-          availableDates.add(date.date!);
+          availableDates.add(date.date);
         }
       }
 
-      emit(AvalibleDatesResearchSuccess(availableDatesByRoomModel:
-      AvailableDatesByRoomModel.fromJson(res.data),
-        dates: dates,
+      emit(AvalibleDatesResearchSuccess(
+
       ));
     } catch (e, es) {
       log(e.toString());
@@ -117,32 +117,8 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
     }
   }
 
-  // final periods = <AvailablePeriods>[];
-  // Future<void> getAvailablePeriodsVisit({
-  //   required DateTime selectedDate,
-  // }) async {
-  //   emit(AvailablePeriodLoading());
-  //   try {
-  //     periods.clear();
-  //     final res = await NetWork.get(
-  //         'VisitRequest/GetVisitAvailablePeriodsByDate/${DateConverter.dateConverterOnly(selectedDate.toString())}/${selectedLIB!.id}');
-  //
-  //     if (res.data['status'] == 0 ||
-  //         res.data['status'] == -1 ||
-  //         res.statusCode != 200) {
-  //       throw res.data['message'];
-  //     }
-  //
-  //
-  //     (res.data['data'] as List).map((e) => periods.add(AvailablePeriods.fromJson(e))).toList();
-  //
-  //     emit(AvailablePeriodSuccess());
-  //   } catch (e, es) {
-  //     log(e.toString());
-  //     log(es.toString());
-  //     emit(AvailablePeriodError(msg: e.toString()));
-  //   }
-  // }
+
+
 
   final fullName = Prefs.getString('fullName');
   final email = Prefs.getString('email');

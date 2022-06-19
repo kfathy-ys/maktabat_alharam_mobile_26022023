@@ -11,10 +11,10 @@ class ServiceSelecetdState extends AvalibleDatesResearchState {}
 class SelectedDatesState extends AvalibleDatesResearchState {}
 class AvalibleDatesResearchLoading extends AvalibleDatesResearchState {}
 class AvalibleDatesResearchSuccess extends AvalibleDatesResearchState {
-  final AvailableDatesByRoomModel availableDatesByRoomModel;
-  final List<AvailableDatesByRoom> dates;
+  // final AvailableDatesByRoomModel availableDatesByRoomModel;
+  // final List<AvailableDatesByRoom> dates;
 
-  AvalibleDatesResearchSuccess({required this.dates,required this.availableDatesByRoomModel});
+  AvalibleDatesResearchSuccess();
 }
 class AvalibleDatesResearchError extends AvalibleDatesResearchState {
   final String msg;

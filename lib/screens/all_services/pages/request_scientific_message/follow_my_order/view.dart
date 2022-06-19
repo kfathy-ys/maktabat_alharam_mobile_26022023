@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/follow_my_order/models/model.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/follow_my_order/page/card_file.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 
@@ -72,6 +73,7 @@ class _FollowScientificMessageState extends State<FollowScientificMessage> {
                 HeadTopics(
                   title: "orderFollowUp".tr,
                 ),
+                buildSizedBox(height),
                CustomContainer(
                   height: height * 0.08,
                   child: CardData(
@@ -83,27 +85,20 @@ class _FollowScientificMessageState extends State<FollowScientificMessage> {
                 HeadTopics(
                   title: "requestData".tr,
                 ),
+                buildSizedBox(height),
                 SizedBox(height: height*0.02,),
-                ListView(
-
-                  physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-
-                  children: [
-                    buildContainer( width: width*0.3,height: height*0.1,title: "fullMessage".tr, onPressed1: (){}, ),
-                    buildContainer( width: width*0.3,height: height*0.1,title: "messagesAddress".tr, onPressed1: (){}, ),
-                    buildContainer( width: width*0.3,height: height*0.1,title: "topicIndex".tr, onPressed1: (){}, ),
-                    buildContainer( width: width*0.3,height: height*0.1,title: "arabicExtract".tr, onPressed1: (){}, ),
-                    buildContainer( width: width*0.3,height: height*0.1,title: "englishExtract".tr, onPressed1: (){}, ),
-                    buildContainer( width: width*0.3,height: height*0.1,title: "introduction".tr, onPressed1: (){}, ),
-                    buildContainer( width: width*0.3,height: height*0.1,title: "fullMessage".tr, onPressed1: (){}, ),
-                    buildContainer( width: width*0.3,height: height*0.1,title: "contentPlus".tr, onPressed1: (){}, ),
-
-                  ],
-                ),
+                CardFile( width: width*0.3,height: height*0.1,title: "fullMessage".tr, onPressed1: (){}, ),
+                CardFile( width: width*0.3,height: height*0.1,title: "messagesAddress".tr, onPressed1: (){}, ),
+                CardFile( width: width*0.3,height: height*0.1,title: "topicIndex".tr, onPressed1: (){}, ),
+                CardFile( width: width*0.3,height: height*0.1,title: "arabicExtract".tr, onPressed1: (){}, ),
+                CardFile( width: width*0.3,height: height*0.1,title: "englishExtract".tr, onPressed1: (){}, ),
+                CardFile( width: width*0.3,height: height*0.1,title: "introduction".tr, onPressed1: (){}, ),
+                CardFile( width: width*0.3,height: height*0.1,title: "fullMessage".tr, onPressed1: (){}, ),
+                CardFile( width: width*0.3,height: height*0.1,title: "contentPlus".tr, onPressed1: (){}, ),
                 HeadTopics(
                   title: "orderEvents".tr,
                 ),
+                buildSizedBox(height),
                 CustomContainer(
                   height: height * 0.2,
                   child: Column(
@@ -134,6 +129,7 @@ class _FollowScientificMessageState extends State<FollowScientificMessage> {
                 HeadTopics(
                   title: "commentsRequest".tr,
                 ),
+                buildSizedBox(height),
                 BlocProvider(
                   create: (context) => ThesisRepliesCubit()
                     ..init(widget.myOrderThesis!.id!),
@@ -230,55 +226,7 @@ class _FollowScientificMessageState extends State<FollowScientificMessage> {
       height: height * 0.02,
     );
   }
-  Container buildContainer({required double height ,required double width , required String title ,
 
-    required VoidCallback onPressed1,
-
-
-
-  }) {
-    return Container(
-
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      height: height,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: kCardBorder)
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                width: width,
-                child: SizedBox(
-                  width: width*0.2,
-                  child: Text(title,style:const TextStyle(
-                    fontSize: 14,
-
-                    color: kPrimaryColor,
-                    fontFamily: "DinBold",
-                  ),),
-                ),
-              ),
-              SmallButtonSizerUploadFile(
-                title: "downloadFile".tr,
-                onPressed: onPressed1,
-                color: kAccentColor,
-                image: "assets/image/download.png",
-              ),
-
-            ],
-          ),
-
-        ],
-      ),
-    );
-  }
 
 
 

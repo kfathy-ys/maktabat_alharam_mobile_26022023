@@ -1,30 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_visit/new_order/models/all_libraries_model.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/models/all_room_model.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
 import '../../../../../config/dio_helper/dio.dart';
+import '../new_order/cubit_avalible_dates_research/avalible_dates_research_cubit.dart';
+import '../new_order/models/room_libraryId_model.dart';
 class DropDownListHallName extends StatefulWidget {
 
-  final AllRooms? initial;
-  final ValueChanged<AllRooms> onChanged;
+  final List<MyRoomLibraryId> rooms;
+  final MyRoomLibraryId? initial;
+  final ValueChanged<MyRoomLibraryId> onChanged;
 
-  const DropDownListHallName({Key? key,required this.onChanged ,this.initial}) : super(key: key);
+  const DropDownListHallName({Key? key,required this.onChanged ,this.initial, required this.rooms}) : super(key: key);
 
   @override
   State<DropDownListHallName> createState() => _DropDownListHallNameState();
 }
 
 class _DropDownListHallNameState extends State<DropDownListHallName> {
-  AllRooms? selected;
-  final rooms = <AllRooms>[];
+  MyRoomLibraryId? selected;
   int? valueSelected;
+  AllLibraries? _allLibraries;
   @override
   void initState() {
     if(widget.initial != null) {
       selected = widget.initial;
     }
-    getAllRooms();
+
+
+     // getAllRooms();
     super.initState();
   }
 
@@ -43,7 +50,7 @@ class _DropDownListHallNameState extends State<DropDownListHallName> {
           border: Border.all(color: kPrimaryColor)
       ),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<AllRooms>(
+        child: DropdownButton<MyRoomLibraryId>(
 
           value: selected,
 
@@ -62,7 +69,7 @@ class _DropDownListHallNameState extends State<DropDownListHallName> {
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (AllRooms? newValue) {
+          onChanged: (MyRoomLibraryId? newValue) {
             if (newValue == null) return;
             selected = newValue;
 
@@ -70,9 +77,9 @@ class _DropDownListHallNameState extends State<DropDownListHallName> {
 
             setState(() {});
           },
-          items:  rooms
-              .map<DropdownMenuItem<AllRooms>>((AllRooms value) {
-            return DropdownMenuItem<AllRooms>(
+          items:  widget.rooms
+              .map((value) {
+            return DropdownMenuItem(
               value: value,
               child: Text( value.nameAr!,
                 style: const TextStyle(
@@ -90,11 +97,11 @@ class _DropDownListHallNameState extends State<DropDownListHallName> {
     );
   }
 
-  Future<void> getAllRooms()async{
-    rooms.clear();
-    final res = await NetWork.get('Room/GetAllRooms');
-    (res.data['data'] as List).map((e) => rooms.add(AllRooms.fromJson(e))).toList();
-    setState(() {});
-
-  }
+  // Future<void> getAllRooms()async{
+  //   rooms.clear();
+  //   final res = await NetWork.get('Room/GetAllRooms');
+  //   (res.data['data'] as List).map((e) => rooms.add(AllRooms.fromJson(e))).toList();
+  //   setState(() {});
+  //
+  // }
 }

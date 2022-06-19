@@ -91,18 +91,22 @@ class _ReserveResearchRetreatScreenState
                         // onChanged: cubit.onAuthorityIDChanged
                         onChanged: cubit.selectService,
                       ),
-                      DropDownListLibraryName(onChanged: (value) {
+                       DropDownListLibraryName(onChanged: (value) {
                         cubit.onLibChang(value);
-                        cubit.getAvailableDatesResearch(value.id!);
+                       cubit.getAvailableDatesResearch(value.id!);
                       }),
 
-                      if (cubit.isResearchRetreat)  DropDownListHallName(
+                      if (cubit.isResearchRetreat && cubit.rooms.isNotEmpty)
+                        DropDownListHallName(
+                        rooms: cubit.rooms,
                           onChanged:(value){
-                            cubit.onRoomsIDChanged(value);
+                          //  cubit.onRoomsIDChanged(value);
+                           cubit. getAvailableValidDatesResearch(value.id!);
+
 
                           }),
 
-                      if (cubit.isScientificMaterial) callNumber(),
+                      if (cubit.isScientificMaterial   ) callNumber(),
 
 
                       CustomTextField(
@@ -130,42 +134,47 @@ class _ReserveResearchRetreatScreenState
                         type: TextInputType.phone,
                       ),
                       DropDownListQualifications(onChanged: (value) {
-                        cubit.getRoomResearch(value.id!);
+                       // cubit.getAvailableDatesVisit(value.id!);
                         cubit.onQualificationIDChanged(value);
                       }),
                       buildPadding(title: "requiredDate".tr),
 
-                /*      Container(
-                        // color: kTextFieldColor,
-                        height: height * 0.4,
-                        // width: width * 0.8,
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 28, vertical: 14),
-
-                        decoration: BoxDecoration(
-                            color: kAccentColor,
-                            borderRadius: BorderRadius.circular(8)),
-                        child: SfDateRangePicker(
-                          view: DateRangePickerView.month,
-                          monthViewSettings:
-                              const DateRangePickerMonthViewSettings(
-                                  firstDayOfWeek: 6),
-                          selectionMode:
-                              DateRangePickerSelectionMode.multiRange,
-                          //onSelectionChanged: _onSelectionChanged,
-                          showActionButtons: true,
-                          controller: _datePickerController,
-                          onSubmit: (Object? val) {
-                            log(val.toString());
-                          },
-                          onCancel: () {
-                            _datePickerController.selectedRanges = null;
-                          },
-                        ),
-                      ),*/
+                      // Container(
+                      //   height: height * 0.4,
+                      //   padding: const EdgeInsets.symmetric(horizontal: 12),
+                      //   margin: const EdgeInsets.symmetric(
+                      //       horizontal: 28, vertical: 14),
+                      //
+                      //   decoration: BoxDecoration(
+                      //       color: kHomeColor,
+                      //       border: Border.all(color: kSafeAreasColor),
+                      //
+                      //       borderRadius: BorderRadius.circular(8)),
+                      //   child:  SfDateRangePicker(
+                      //     selectableDayPredicate: (day) {
+                      //       if (cubit.dates.isNotEmpty) {
+                      //         if (cubit.availableDates.contains(day)) {
+                      //           return true;
+                      //         } else {
+                      //           return false;
+                      //         }
+                      //       } else {
+                      //         return true;
+                      //       }
+                      //     },
+                      //
+                      //
+                      //     endRangeSelectionColor: kSafeAreasColor,
+                      //     showActionButtons: true,
+                      //     startRangeSelectionColor: kSafeAreasColor,
+                      //     rangeSelectionColor: kPrimaryColor,
+                      //     view: DateRangePickerView.month,
+                      //     selectionMode: DateRangePickerSelectionMode.range,
+                      //     enableMultiView: true,
+                      //   ),
+                      // ),
                       Container(
-                        // color: kTextFieldColor,
+
                         height: height * 0.4,
                         width: width * 0.8,
                         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -179,151 +188,34 @@ class _ReserveResearchRetreatScreenState
 
                         child: CalendarDatePicker(
                           initialDate: cubit.dates.isNotEmpty
-                              ? cubit.dates.first.date!
+                              ? cubit.dates.first.date
                               : DateTime.now(),
                           firstDate: cubit.dates.isNotEmpty
-                              ? cubit.dates.first.date!
+                              ? cubit.dates.first.date
                               : DateTime.now(),
                           lastDate: cubit.dates.isNotEmpty
-                              ? cubit.dates.last.date!
+                              ? cubit.dates.last.date
                               : DateTime(2031),
-                          onDateChanged: cubit.selectDay,
+                          onDateChanged: (value) {
+
+                          cubit.selectDay(value);
+
+                          },
+                          selectableDayPredicate: (day) {
+                            if (cubit.dates.isNotEmpty) {
+                              if (cubit.availableDates.contains(day)) {
+                                return true;
+                              } else {
+                                return false;
+                              }
+                            } else {
+                              return true;
+                            }
+                          },
 
                         ),
                       ),
-                      /*  buildPadding(title: "visitDate".tr),
-                  Container(
-                    // color: kTextFieldColor,
-                    height: height * 0.4,
-                    width: width * 0.8,
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    margin: const EdgeInsets.symmetric(horizontal: 28,vertical: 14),
 
-                    decoration: BoxDecoration(
-                        color: kAccentColor,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: TableCalendar(
-                      calendarStyle: const CalendarStyle(
-                        outsideDaysVisible: true,
-                        todayDecoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: kButtonGreenDark,
-                          // borderRadius: BorderRadius.circular(5)
-                        ),
-                        selectedDecoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: kPrimaryColor,
-
-                          // borderRadius: BorderRadius.circular(5),
-                        ),
-                        defaultDecoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.all(Radius.circular(5)
-
-                          ),
-                        ),
-                      ),
-                      daysOfWeekStyle: const DaysOfWeekStyle(
-                        weekdayStyle: TextStyle(
-                          color: kSafeAreasColor,
-                          fontSize: 16,
-                          fontFamily: "DinReguler",
-                        ),
-                        weekendStyle: TextStyle(
-                          color: kSafeAreasColor,
-                          fontSize: 16,
-                          fontFamily: "DinReguler",
-                        ),
-                      ),
-                      startingDayOfWeek: StartingDayOfWeek.sunday,
-                      headerStyle: const HeaderStyle(
-                        leftChevronVisible: true,
-                        rightChevronVisible: true,
-                        titleCentered: true,
-                        headerPadding: EdgeInsets.symmetric(horizontal: 30.0),
-                        titleTextStyle: TextStyle(
-                          color: kSafeAreasColor,
-                          fontSize: 16,
-                          fontFamily: "DinReguler",
-                        ),
-                        formatButtonVisible: false,
-                      ),
-                      daysOfWeekHeight: 28.0,
-                      // height between the date rows, default is 52.0
-                      rowHeight: 30.0,
-                      firstDay: DateTime.now(),
-                      lastDay: DateTime(2031),
-                      focusedDay: _focusedDay,
-                      calendarFormat: _calendarFormat,
-                      selectedDayPredicate: (day) {
-                        // Use `selectedDayPredicate` to determine which day is currently selected.
-                        // If this returns true, then `day` will be marked as selected.
-
-                        // Using `isSameDay` is recommended to disregard
-                        // the time-part of compared DateTime objects.
-                        return isSameDay(_selectedDay, day);
-                      },
-                      onDaySelected: (selectedDay, focusedDay) {
-                        if (!isSameDay(_selectedDay, selectedDay)) {
-                          // Call `setState()` when updating the selected day
-                          setState(() {
-                            _selectedDay = selectedDay;
-                            _focusedDay = focusedDay;
-                          });
-                        }
-                      },
-                      onFormatChanged: (format) {
-                        if (_calendarFormat != format) {
-                          // Call `setState()` when updating calendar format
-                          setState(() {
-                            _calendarFormat = format;
-                          });
-                        }
-                      },
-                      onPageChanged: (focusedDay) {
-                        // No need to call `setState()` here
-                        _focusedDay = focusedDay;
-                      },
-                    ),
-                  ),
-                  buildPadding(title: "AvailablePeriods".tr),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 8,horizontal: 22),
-                    height: height * 0.089,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 5,
-                      itemBuilder: (context , int index){
-                        return Container(
-                          height: height * 0.079,
-                          margin: const EdgeInsets.symmetric(horizontal: 4),
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-
-                          decoration: BoxDecoration(
-                              color: kBackgroundCardColor,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text("6:35 PM\t\t".tr,style: const TextStyle(
-                                color: kPrimaryColor,
-                                fontSize: 16,
-                                fontFamily: "DinReguler",
-                              ),),
-                              Text("2:35 PM".tr,style: const TextStyle(
-                                color: kBlackText,
-                                fontSize: 16,
-                                fontFamily: "DinReguler",
-                              ),),
-                            ],
-                          ),
-
-                        );
-                      },
-
-                    ),
-                  ),*/
                       CustomHeightTextField(
                         hint: "visitReason".tr,
                         text: "",
