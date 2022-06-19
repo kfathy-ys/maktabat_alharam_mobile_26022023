@@ -24,7 +24,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     MyHomeScreen(),
     const MyOrdersScreen(),
-     ProfileScreen(),
+    ProfileScreen(),
   ];
   int _selectedIndex = 0;
 

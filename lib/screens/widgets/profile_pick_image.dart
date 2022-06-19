@@ -34,7 +34,7 @@ Widget profilePicContainer(BuildContext context, dynamic? img, String? name,
                           shape: BoxShape.circle,
                           image:img is String?DecorationImage(
                         fit: BoxFit.cover,
-                              image:AssetImage(img)):
+                              image:NetworkImage(img)):
                           DecorationImage(
                               fit: BoxFit.cover ,
                               image:FileImage(img!))

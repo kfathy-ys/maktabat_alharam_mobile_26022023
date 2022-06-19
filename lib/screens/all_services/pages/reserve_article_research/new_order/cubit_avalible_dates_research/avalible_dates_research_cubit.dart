@@ -20,48 +20,50 @@ part 'avalible_dates_research_state.dart';
 class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
   AvalibleDatesResearchCubit() : super(AvalibleDatesResearchInitial());
 
+  bool isResearchRetreat = false;
+  bool isScientificMaterial = false;
 
-   bool isResearchRetreat = false;
-   bool isScientificMaterial = false;
-
- void selectService(int value){
-   if(value == 11){
-     isResearchRetreat = true;
-    isScientificMaterial = false;
-   }
-   if(value == 12){
-     isScientificMaterial = true;
-     isResearchRetreat = false;
-   }
-   if(value == 13) {
-     isScientificMaterial = true;
-     isResearchRetreat = true;
-   }
-   emit(ServiceSelecetdState());
- }
+  /// CheckOut Name Services Id From DropDown Button
+  void selectService(int value) {
+    if (value == 11) {
+      isResearchRetreat = true;
+      isScientificMaterial = false;
+    }
+    if (value == 12) {
+      isScientificMaterial = true;
+      isResearchRetreat = false;
+    }
+    if (value == 13) {
+      isScientificMaterial = true;
+      isResearchRetreat = true;
+    }
+    emit(ServiceSelecetdState());
+  }
 
   AllLibraries? selectedLIB;
-  void onLibChang(AllLibraries value)=> selectedLIB = value;
 
+  void onLibChang(AllLibraries value) => selectedLIB = value;
 
   int? authorityID;
-  int onAuthorityIDChanged(int value)=> authorityID= value;
+
+  int onAuthorityIDChanged(int value) => authorityID = value;
 
   AllGrade? qualificationID;
-  void onQualificationIDChanged(AllGrade value)=> qualificationID= value;
 
+  void onQualificationIDChanged(AllGrade value) => qualificationID = value;
 
   AllRooms? roomsID;
-  void onRoomsIDChanged(AllRooms value)=> roomsID= value;
- final rooms = <MyRoomLibraryId>[];
 
+  void onRoomsIDChanged(AllRooms value) => roomsID = value;
+  final rooms = <MyRoomLibraryId>[];
+
+  /// Get Available Room_Id By Library Name
 
   Future<void> getAvailableDatesResearch(int libId) async {
     emit(AvalibleDatesResearchLoading());
     try {
       rooms.clear();
-      final res =
-      await NetWork.get('Room/GetRoomsByLibraryId/$libId');
+      final res = await NetWork.get('Room/GetRoomsByLibraryId/$libId');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -69,11 +71,9 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
         throw res.data['message'];
       }
 
-      (res.data['data'] as List).map((e) => rooms.add(MyRoomLibraryId.fromJson(e))).toList();
-      //
-
-
-
+      (res.data['data'] as List)
+          .map((e) => rooms.add(MyRoomLibraryId.fromJson(e)))
+          .toList();
 
       emit(AvalibleDatesResearchSuccess());
     } catch (e, es) {
@@ -83,15 +83,16 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
     }
   }
 
-
   final dates = <AvailableDatesByRoom>[];
   final availableDates = <DateTime>[];
+
+  /// Get Available Date In Calender => Then Set DateTime For Reserved
   Future<void> getAvailableValidDatesResearch(int roomID) async {
     emit(AvalibleDatesResearchLoading());
     try {
       dates.clear();
-      final res = await NetWork.get('ResearchRequest/GetResearchAvailableDatesByRoomId/$roomID');
-
+      final res = await NetWork.get(
+          'ResearchRequest/GetResearchAvailableDatesByRoomId/$roomID');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -99,17 +100,17 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
         throw res.data['message'];
       }
 
-      (res.data['data'] as List).map((e) => dates.add(AvailableDatesByRoom.fromJson(e))).toList();
+      (res.data['data'] as List)
+          .map((e) => dates.add(AvailableDatesByRoom.fromJson(e)))
+          .toList();
 
-      if(dates.isNotEmpty) {
-        for(final date in dates){
+      if (dates.isNotEmpty) {
+        for (final date in dates) {
           availableDates.add(date.date);
         }
       }
 
-      emit(AvalibleDatesResearchSuccess(
-
-      ));
+      emit(AvalibleDatesResearchSuccess());
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
@@ -117,32 +118,26 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
     }
   }
 
-
-
+  /// Set Data Request To Create Order
 
   final fullName = Prefs.getString('fullName');
   final email = Prefs.getString('email');
   final phoneNumber = Prefs.getString('phoneNumber');
 
   final createOrder = <MyOrdersToResearch>[];
- // int  visitDateId = 0;
+
   Future<void> createOrderToResearch({
-
-
-
     required String callNum,
-  required int roomId  ,
+    required int roomId,
     required dynamic numberOfVisitors,
     required String visitReason,
     // required int requestStatusId,
   }) async {
     try {
-
       var now = DateTime.now();
-      var dataNow=  DateConverter.dateConverterOnly(now.toString());
+      var dataNow = DateConverter.dateConverterOnly(now.toString());
       final userId = Prefs.getString("userId");
       final body = {
-
         "id": 0,
         "userId": userId,
         "libraryId": selectedLIB!.id,
@@ -165,18 +160,15 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
         "createdDate": dataNow,
         "updatedBy": null,
         "updatedDate": null
-
       };
-      final res =
-      await NetWork.post('ResearchRequest/CreateNewResearchRequest', body: body);
+      final res = await NetWork.post('ResearchRequest/CreateNewResearchRequest',
+          body: body);
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
       }
 
-      emit(CreateOrderSuccess(myOrdersToResearch:
-      MyOrdersToResearch.fromJson(res.data)));
-
-
+      emit(CreateOrderSuccess(
+          myOrdersToResearch: MyOrdersToResearch.fromJson(res.data)));
     } catch (e, st) {
       log(e.toString());
       log(st.toString());
@@ -185,8 +177,10 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
   }
 
 
-  final selectedDates =<DateTime>[];
-  void selectDay(DateTime day){
+  /// Set List To Store Selected Days From Calender
+  final selectedDates = <DateTime>[];
+
+  void selectDay(DateTime day) {
     selectedDates.add(day);
     emit(SelectedDatesState());
   }

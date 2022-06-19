@@ -8,9 +8,9 @@ class UserInfoInitial extends UserInfoState {}
 class UserInfoLoading extends UserInfoState {}
 
 class UserInfoSuccess extends UserInfoState {
-  final UserModel userModel;
+  //final UserModel userModel;
 
-  UserInfoSuccess({required this.userModel});
+  UserInfoSuccess();
 }
 
 class UserInfoError extends UserInfoState {

@@ -130,7 +130,9 @@ Widget drawer({required context}) {
                       listTile(
                           onTap: (){
                             Get.back();
-                            Get.to(()=> ProfileScreen());
+                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>  const HomeTabScreen(index: 2,)
+
+                         ));
 
                           },
 

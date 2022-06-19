@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/drop_down_library_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/cubit_avalible_dates_research/avalible_dates_research_cubit.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/avalible_date.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_hall_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_items.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_qualification.dart';
@@ -23,6 +24,7 @@ import 'package:queen/validation.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../widgets/alerts.dart';
+import '../../../widgets/loading.dart';
 import 'my_order/view.dart';
 
 // ignore: must_be_immutable
@@ -78,171 +80,182 @@ class _ReserveResearchRetreatScreenState
                 listener: (context, state) {},
                 builder: (context, state) {
                   final cubit =
-                      BlocProvider.of<AvalibleDatesResearchCubit>(context);
-                  return ListView(
-                    padding: const EdgeInsets.symmetric(vertical: 18),
-                    physics: const BouncingScrollPhysics(),
-                    children: [
-                      HeadTopics(
-                        title: "RequestReserveArticleOrResearchRetreat".tr,
-                      ),
-                      buildSizedBox(height),
-                      DropDownListServiceName(
-                        // onChanged: cubit.onAuthorityIDChanged
-                        onChanged: cubit.selectService,
-                      ),
-                       DropDownListLibraryName(onChanged: (value) {
-                        cubit.onLibChang(value);
-                       cubit.getAvailableDatesResearch(value.id!);
-                      }),
-
-                      if (cubit.isResearchRetreat && cubit.rooms.isNotEmpty)
-                        DropDownListHallName(
-                        rooms: cubit.rooms,
-                          onChanged:(value){
-                          //  cubit.onRoomsIDChanged(value);
-                           cubit. getAvailableValidDatesResearch(value.id!);
-
-
-                          }),
-
-                      if (cubit.isScientificMaterial   ) callNumber(),
-
-
-                      CustomTextField(
-                        hint: "userName".tr,
-                        dIcon: Icons.drive_file_rename_outline,
-                        label: "userName".tr,
-                        controller: _userController,
-                        validator: qValidator([
-                          IsRequired("thisFieldRequired".tr),
-                        //  IsOptional(),
-                          MaxLength(30),
-                        ]),
-                        type: TextInputType.name,
-                      ),
-                      CustomTextField(
-                        hint: "phone".tr,
-                        dIcon: Icons.phone,
-                        label: "phone".tr,
-                        controller: _phoneController,
-                        validator: qValidator([
-                          IsRequired("phone".tr),
-                      //    IsOptional(),
-                          MaxLength(30),
-                        ]),
-                        type: TextInputType.phone,
-                      ),
-                      DropDownListQualifications(onChanged: (value) {
-                       // cubit.getAvailableDatesVisit(value.id!);
-                        cubit.onQualificationIDChanged(value);
-                      }),
-                      buildPadding(title: "requiredDate".tr),
-
-                      // Container(
-                      //   height: height * 0.4,
-                      //   padding: const EdgeInsets.symmetric(horizontal: 12),
-                      //   margin: const EdgeInsets.symmetric(
-                      //       horizontal: 28, vertical: 14),
-                      //
-                      //   decoration: BoxDecoration(
-                      //       color: kHomeColor,
-                      //       border: Border.all(color: kSafeAreasColor),
-                      //
-                      //       borderRadius: BorderRadius.circular(8)),
-                      //   child:  SfDateRangePicker(
-                      //     selectableDayPredicate: (day) {
-                      //       if (cubit.dates.isNotEmpty) {
-                      //         if (cubit.availableDates.contains(day)) {
-                      //           return true;
-                      //         } else {
-                      //           return false;
-                      //         }
-                      //       } else {
-                      //         return true;
-                      //       }
-                      //     },
-                      //
-                      //
-                      //     endRangeSelectionColor: kSafeAreasColor,
-                      //     showActionButtons: true,
-                      //     startRangeSelectionColor: kSafeAreasColor,
-                      //     rangeSelectionColor: kPrimaryColor,
-                      //     view: DateRangePickerView.month,
-                      //     selectionMode: DateRangePickerSelectionMode.range,
-                      //     enableMultiView: true,
-                      //   ),
-                      // ),
-                      Container(
-
-                        height: height * 0.4,
-                        width: width * 0.8,
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 28, vertical: 14),
-
-                        decoration: BoxDecoration(
-                            border: Border.all(color: kSafeAreasColor),
-                            color: kHomeColor,
-                            borderRadius: BorderRadius.circular(8)),
-
-                        child: CalendarDatePicker(
-                          initialDate: cubit.dates.isNotEmpty
-                              ? cubit.dates.first.date
-                              : DateTime.now(),
-                          firstDate: cubit.dates.isNotEmpty
-                              ? cubit.dates.first.date
-                              : DateTime.now(),
-                          lastDate: cubit.dates.isNotEmpty
-                              ? cubit.dates.last.date
-                              : DateTime(2031),
-                          onDateChanged: (value) {
-
-                          cubit.selectDay(value);
-
-                          },
-                          selectableDayPredicate: (day) {
-                            if (cubit.dates.isNotEmpty) {
-                              if (cubit.availableDates.contains(day)) {
-                                return true;
-                              } else {
-                                return false;
-                              }
-                            } else {
-                              return true;
-                            }
-                          },
-
+                  BlocProvider.of<AvalibleDatesResearchCubit>(context);
+                  return SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      // padding: const EdgeInsets.symmetric(vertical: 18),
+                      // physics: const BouncingScrollPhysics(),
+                      children: [
+                        HeadTopics(
+                          title: "RequestReserveArticleOrResearchRetreat".tr,
                         ),
-                      ),
+                        buildSizedBox(height),
+                        DropDownListServiceName(
+                          onChanged: cubit.selectService,
+                        ),
+                        DropDownListLibraryName(onChanged: (value) {
+                          cubit.onLibChang(value);
+                          cubit.getAvailableDatesResearch(value.id!);
+                        }),
 
-                      CustomHeightTextField(
-                        hint: "visitReason".tr,
-                        text: "",
-                      ),
-                      buildSizedBox(height),
-                      Center(
-                          child: MediaButtonSizer(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            cubit.createOrderToResearch(
-                              callNum: "  ",
-                              roomId: 1,
-                              numberOfVisitors: 1,
-                              visitReason: "visitReason",
-                            );
-                            Alert.success("تم إضافة طلبك بنجاح ");
-                            Get.off(
-                                () => const MyOrderReserveArticleResearch());
-                          } else {
-                            Alert.error("الرجاء التاكيد من الطلب ");
-                          }
-                        },
-                        title: "requestService".tr,
-                        color: kPrimaryColor,
-                        image: "assets/image/rightsah.png",
-                      ))
-                    ],
+                        if (cubit.isResearchRetreat && cubit.rooms.isNotEmpty)
+                          DropDownListHallName(
+                              rooms: cubit.rooms,
+                              onChanged:(value){
+                                //  cubit.onRoomsIDChanged(value);
+                                cubit. getAvailableValidDatesResearch(value.id!);
+
+
+                              }),
+
+                        if (cubit.isScientificMaterial   ) callNumber(),
+
+
+                        CustomTextField(
+                          hint: "userName".tr,
+                          dIcon: Icons.drive_file_rename_outline,
+                          label: "userName".tr,
+                          controller: _userController,
+                          validator: qValidator([
+                            IsRequired("thisFieldRequired".tr),
+                            //  IsOptional(),
+                            MaxLength(30),
+                          ]),
+                          type: TextInputType.name,
+                        ),
+                        CustomTextField(
+                          hint: "phone".tr,
+                          dIcon: Icons.phone,
+                          label: "phone".tr,
+                          controller: _phoneController,
+                          validator: qValidator([
+                            IsRequired("phone".tr),
+                            //    IsOptional(),
+                            MaxLength(30),
+                          ]),
+                          type: TextInputType.phone,
+                        ),
+                        DropDownListQualifications(onChanged: (value) {
+                          // cubit.getAvailableDatesVisit(value.id!);
+                          cubit.onQualificationIDChanged(value);
+                        }),
+                        buildPadding(title: "requiredDate".tr),
+
+                        // Container(
+                        //   height: height * 0.4,
+                        //   padding: const EdgeInsets.symmetric(horizontal: 12),
+                        //   margin: const EdgeInsets.symmetric(
+                        //       horizontal: 28, vertical: 14),
+                        //
+                        //   decoration: BoxDecoration(
+                        //       color: kHomeColor,
+                        //       border: Border.all(color: kSafeAreasColor),
+                        //
+                        //       borderRadius: BorderRadius.circular(8)),
+                        //   child:  SfDateRangePicker(
+                        //     selectableDayPredicate: (day) {
+                        //       if (cubit.dates.isNotEmpty) {
+                        //         if (cubit.availableDates.contains(day)) {
+                        //           return true;
+                        //         } else {
+                        //           return false;
+                        //         }
+                        //       } else {
+                        //         return true;
+                        //       }
+                        //     },
+                        //
+                        //
+                        //     endRangeSelectionColor: kSafeAreasColor,
+                        //     showActionButtons: true,
+                        //     startRangeSelectionColor: kSafeAreasColor,
+                        //     rangeSelectionColor: kPrimaryColor,
+                        //     view: DateRangePickerView.month,
+                        //     selectionMode: DateRangePickerSelectionMode.range,
+                        //     enableMultiView: true,
+                        //   ),
+                        // ),
+                        Container(
+
+                          height: height * 0.4,
+                          width: width * 0.8,
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 28, vertical: 14),
+
+                          decoration: BoxDecoration(
+                              border: Border.all(color: kSafeAreasColor),
+                              color: kHomeColor,
+                              borderRadius: BorderRadius.circular(8)),
+
+                          child: CalendarDatePicker(
+                            initialDate: cubit.dates.isNotEmpty
+                                ? cubit.dates.first.date
+                                : DateTime.now(),
+                            firstDate: cubit.dates.isNotEmpty
+                                ? cubit.dates.first.date
+                                : DateTime.now(),
+                            lastDate: cubit.dates.isNotEmpty
+                                ? cubit.dates.last.date
+                                : DateTime(2031),
+                            onDateChanged: (value) {
+
+                              cubit.selectDay(value);
+
+                            },
+                            selectableDayPredicate: (day) {
+                              if (cubit.dates.isNotEmpty) {
+                                if (cubit.availableDates.contains(day)) {
+                                  return true;
+                                } else {
+                                  return false;
+                                }
+                              } else {
+                                return true;
+                              }
+                            },
+
+                          ),
+                        ),
+                        // if (cubit.dates.isNotEmpty)
+                        //   state is! AvalibleDatesResearchLoading
+                        //       ? CardAvailableDates(
+                        //     periods: cubit.dates,
+                        //   )
+                        //       : const LoadingFadingCircleSmall(),
+                        // if (cubit.dates.isEmpty)
+                        //   const Center(
+                        //     child: Text("لايوجد مواعيد متاحة الان"),
+                        //   ),
+                        CustomHeightTextField(
+                          hint: "visitReason".tr,
+                          text: "",
+                        ),
+                        buildSizedBox(height),
+                        Center(
+                            child: MediaButtonSizer(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  cubit.createOrderToResearch(
+                                    callNum: "  ",
+                                    roomId: 1,
+                                    numberOfVisitors: 1,
+                                    visitReason: "visitReason",
+                                  );
+                                  Alert.success("تم إضافة طلبك بنجاح ");
+                                  Get.off(
+                                          () => const MyOrderReserveArticleResearch());
+                                } else {
+                                  Alert.error("الرجاء التاكيد من الطلب ");
+                                }
+                              },
+                              title: "requestService".tr,
+                              color: kPrimaryColor,
+                              image: "assets/image/rightsah.png",
+                            ))
+                      ],
+                    ),
                   );
                 },
               ),
