@@ -3,6 +3,7 @@ import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customButton.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
+
 class NewPasswordScreen extends StatelessWidget {
   NewPasswordScreen({Key? key}) : super(key: key);
 
@@ -10,7 +11,6 @@ class NewPasswordScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _newPassController = TextEditingController();
   final _confirmPssController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,6 @@ class NewPasswordScreen extends StatelessWidget {
       color: kAppBarColor,
       child: SafeArea(
         child: Scaffold(
-
           backgroundColor: kHomeColor,
           key: _scaffoldKey,
           body: SingleChildScrollView(
@@ -28,20 +27,24 @@ class NewPasswordScreen extends StatelessWidget {
               key: _formKey,
               child: Column(
                 children: [
-                  SizedBox(height: height*0.05,),
+                  SizedBox(
+                    height: height * 0.05,
+                  ),
                   InkWell(
-                    onTap: ()=>Get.back(),
-                    child:  Container(
+                    onTap: () => Get.back(),
+                    child: Container(
                       margin: const EdgeInsetsDirectional.only(start: 280),
-                      child:  Image.asset("assets/image/backbutton.png"),
-                    ),),
-                  SizedBox(height: height*0.3,),
+                      child: Image.asset("assets/image/backbutton.png"),
+                    ),
+                  ),
+                  SizedBox(
+                    height: height * 0.3,
+                  ),
                   CustomTextField(
-
                     hint: "newPassword".tr,
                     icon: Icons.lock_outline,
                     dIcon: Icons.lock_outline,
-                    label:"newPassword".tr ,
+                    label: "newPassword".tr,
                     controller: _newPassController,
                     validator: (String? value) {
                       if (value!.isEmpty) {
@@ -50,14 +53,12 @@ class NewPasswordScreen extends StatelessWidget {
                       return null;
                     },
                     type: TextInputType.phone,
-
                   ),
                   CustomTextField(
-
                     hint: "confirmPass".tr,
                     icon: Icons.lock_outline,
                     dIcon: Icons.lock_outline,
-                    label:"confirmPass".tr ,
+                    label: "confirmPass".tr,
                     controller: _confirmPssController,
                     validator: (String? value) {
                       if (value!.isEmpty) {
@@ -66,12 +67,18 @@ class NewPasswordScreen extends StatelessWidget {
                       return null;
                     },
                     type: TextInputType.phone,
-
                   ),
-                  SizedBox(height: height*0.05,),
-                  CustomButton(color: kSmallIconColor,title:"save".tr ,onPressed: (){},),
-                  SizedBox(height: height*0.01,),
-
+                  SizedBox(
+                    height: height * 0.05,
+                  ),
+                  CustomButton(
+                    color: kSmallIconColor,
+                    title: "save".tr,
+                    onPressed: () {},
+                  ),
+                  SizedBox(
+                    height: height * 0.01,
+                  ),
                 ],
               ),
             ),

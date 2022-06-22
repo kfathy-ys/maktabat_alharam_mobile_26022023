@@ -42,6 +42,7 @@ class LoadingFadingCircle extends StatelessWidget {
     );
   }
 }
+
 class LoadingFadingCircleSmall extends StatelessWidget {
   const LoadingFadingCircleSmall({Key? key}) : super(key: key);
 

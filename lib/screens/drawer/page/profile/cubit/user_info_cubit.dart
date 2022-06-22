@@ -8,8 +8,6 @@ import 'package:maktabat_alharam/screens/drawer/page/profile/cubit/input_data.da
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../config/dio_helper/dio.dart';
-import '../../../../auth/login/model/models.dart';
-import '../models/model.dart';
 
 part 'user_info_state.dart';
 
@@ -64,17 +62,14 @@ class UserInfoCubit extends Cubit<UserInfoState> {
                 filename: userDate.profilePic.path),
       });
       log(res.data.toString());
-        if(res.statusCode == 200  ){
-
-          Prefs.setString("firstName", userDate.firstName!);
-          Prefs.setString("fullName", userDate.userName!);
-          Prefs.setString("email", userDate.email!);
-          Prefs.setString("phoneNumber", userDate.phoneNumber!);
-          Prefs.setString("lastName", userDate.lastName!);
-          emit(UserInfoSuccess());
-        }
-
-
+      if (res.statusCode == 200) {
+        Prefs.setString("firstName", userDate.firstName!);
+        Prefs.setString("fullName", userDate.userName!);
+        Prefs.setString("email", userDate.email!);
+        Prefs.setString("phoneNumber", userDate.phoneNumber!);
+        Prefs.setString("lastName", userDate.lastName!);
+        emit(UserInfoSuccess());
+      }
     } catch (e, st) {
       log(e.toString());
       log(st.toString());

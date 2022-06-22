@@ -12,12 +12,20 @@ part 'update_ask_lib_state.dart';
 
 class UpdateAskLibCubit extends Cubit<UpdateAskLibState> {
   final AskMyOrder askMyOrder;
-  UpdateAskLibCubit(this.askMyOrder) : super(UpdateAskLibInitial()){
-    if(askMyOrder.visitorName != null )userController.text = askMyOrder.visitorName!;
-    if(askMyOrder.visitorEmail != null )emailController.text = askMyOrder.visitorEmail!;
-    if(askMyOrder.visitorMobile != null )phoneController.text = askMyOrder.visitorMobile!;
-    if(askMyOrder.visitorMessage != null )questionController.text = askMyOrder.visitorMessage!;
-    if(askMyOrder.type != null ) initial = askMyOrder.type!;
+  UpdateAskLibCubit(this.askMyOrder) : super(UpdateAskLibInitial()) {
+    if (askMyOrder.visitorName != null) {
+      userController.text = askMyOrder.visitorName!;
+    }
+    if (askMyOrder.visitorEmail != null) {
+      emailController.text = askMyOrder.visitorEmail!;
+    }
+    if (askMyOrder.visitorMobile != null) {
+      phoneController.text = askMyOrder.visitorMobile!;
+    }
+    if (askMyOrder.visitorMessage != null) {
+      questionController.text = askMyOrder.visitorMessage!;
+    }
+    if (askMyOrder.type != null) initial = askMyOrder.type!;
 
     askTypeChanged(initial);
   }
@@ -31,17 +39,15 @@ class UpdateAskLibCubit extends Cubit<UpdateAskLibState> {
   int initial = 0;
 
   int? typeAskId;
-  int askTypeChanged(int value)=> typeAskId= value;
+  int askTypeChanged(int value) => typeAskId = value;
 
   var userId = Prefs.getString("userId");
-
 
   Future<void> updatedOrderAsk({
     required String visitorName,
     required String visitorEmail,
     required String visitorMobile,
     required String question,
-
   }) async {
     emit(UpdateAskLibLoading());
     try {
@@ -63,15 +69,16 @@ class UpdateAskLibCubit extends Cubit<UpdateAskLibState> {
           "updatedDate": DateFormat('yyyy-MM-dd').format(now)
         },
       );
-      if (res.data['status'] == 0 || res.data['status'] == -1 ) {
+      if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data["messages"] ?? res.data;
       }
-      emit(UpdateAskLibSuccess(updateAskModel: UpdateAskModel.fromJson(res.data),));
+      emit(UpdateAskLibSuccess(
+        updateAskModel: UpdateAskModel.fromJson(res.data),
+      ));
     } catch (e, st) {
-
       log(e.toString());
       log(st.toString());
-      emit(UpdateAskLibError(msg:e.toString()));
+      emit(UpdateAskLibError(msg: e.toString()));
     }
   }
 }

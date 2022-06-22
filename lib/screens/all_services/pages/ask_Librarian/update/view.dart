@@ -42,13 +42,13 @@ class UpdatesAskLibrarian extends StatelessWidget {
             child: BlocConsumer<UpdateAskLibCubit, UpdateAskLibState>(
               listener: (context, state) {
                 if (state is UpdateAskLibSuccess) {
-                  Alert.success( "تم التعديل بنجاح");
+                  Alert.success("تم التعديل بنجاح");
 
                   BlocProvider.of<MyOrderAskCubit>(context).getOrderAsk();
-                  Get.to(()=>MyOrderAskLibrarian());
+                  Get.to(() => MyOrderAskLibrarian());
                 }
                 if (state is UpdateAskLibError) {
-                  Alert.error( state.msg.toString());
+                  Alert.error(state.msg.toString());
                 }
               },
               builder: (context, state) {
@@ -124,23 +124,24 @@ class UpdatesAskLibrarian extends StatelessWidget {
                           type: TextInputType.text,
                         ),
                         buildSizedBox(height),
-                        state is! UpdateAskLibLoading ?    Center(
-                            child: MediaButtonSizer(
-                          onPressed: () async {
-                            if (cubit.formKey.currentState!.validate()) {
-                              await cubit.updatedOrderAsk(
-                                visitorName: cubit.userController.text,
-                                visitorEmail: cubit.emailController.text,
-                                visitorMobile:  cubit.phoneController.text,
-                                question: cubit.questionController.text,
-                              );
-                            }
-                          },
-
-                          title: "save".tr,
-                          color: kPrimaryColor,
-                          image: "assets/image/rightsah.png",
-                        )): const LoadingFadingCircle()
+                        state is! UpdateAskLibLoading
+                            ? Center(
+                                child: MediaButtonSizer(
+                                onPressed: () async {
+                                  if (cubit.formKey.currentState!.validate()) {
+                                    await cubit.updatedOrderAsk(
+                                      visitorName: cubit.userController.text,
+                                      visitorEmail: cubit.emailController.text,
+                                      visitorMobile: cubit.phoneController.text,
+                                      question: cubit.questionController.text,
+                                    );
+                                  }
+                                },
+                                title: "save".tr,
+                                color: kPrimaryColor,
+                                image: "assets/image/rightsah.png",
+                              ))
+                            : const LoadingFadingCircle()
                       ],
                     ),
                   ),

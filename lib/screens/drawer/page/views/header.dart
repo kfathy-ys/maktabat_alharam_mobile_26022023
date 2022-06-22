@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 class Header extends StatelessWidget {
   const Header({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  DrawerHeader(
+    return DrawerHeader(
         decoration: const BoxDecoration(
             color: Colors.white,
             image: DecorationImage(
@@ -21,8 +22,8 @@ class Header extends StatelessWidget {
               decoration: BoxDecoration(
                 image: const DecorationImage(
                     image: AssetImage(
-                      'assets/image/3.png',
-                    )),
+                  'assets/image/3.png',
+                )),
                 color: Colors.white,
                 shape: BoxShape.circle,
                 boxShadow: [

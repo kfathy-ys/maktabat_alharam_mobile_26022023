@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
@@ -32,9 +31,7 @@ class NewOrderToReserveScientificResearch extends StatefulWidget {
 
 class _NewOrderToReserveScientificResearchState
     extends State<NewOrderToReserveScientificResearch> {
-
   final formKey = GlobalKey<FormState>();
-
 
   final _emailController = TextEditingController();
 
@@ -56,7 +53,6 @@ class _NewOrderToReserveScientificResearchState
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
@@ -73,8 +69,7 @@ class _NewOrderToReserveScientificResearchState
               //  shrinkWrap: true,
               children: [
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: HeadTopics(
                     title: "RequestVisit".tr,
                   ),
@@ -117,7 +112,8 @@ class _NewOrderToReserveScientificResearchState
                   height: height * 0.4,
                   width: width * 0.8,
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  margin: const EdgeInsets.symmetric(horizontal: 28,vertical: 14),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
 
                   decoration: BoxDecoration(
                       color: kAccentColor,
@@ -126,21 +122,19 @@ class _NewOrderToReserveScientificResearchState
                     calendarStyle: const CalendarStyle(
                       outsideDaysVisible: true,
                       todayDecoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: kButtonGreenDark,
-                         // borderRadius: BorderRadius.circular(5)
+                        shape: BoxShape.rectangle,
+                        color: kButtonGreenDark,
+                        // borderRadius: BorderRadius.circular(5)
                       ),
                       selectedDecoration: BoxDecoration(
                         shape: BoxShape.rectangle,
                         color: kPrimaryColor,
 
-                       // borderRadius: BorderRadius.circular(5),
+                        // borderRadius: BorderRadius.circular(5),
                       ),
                       defaultDecoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.all(Radius.circular(5)
-
-                          ),
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
                       ),
                     ),
                     daysOfWeekStyle: const DaysOfWeekStyle(

@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/follow_my_order/models/model.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/follow_my_order/page/card_file.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
@@ -14,7 +12,6 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizerUploadFile.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../widgets/date_convertors.dart';
@@ -25,17 +22,15 @@ import '../../request_visit/my_orders/page/custom_container.dart';
 import '../my_order/models/model.dart';
 import 'cubit_replies/thesis_replies_cubit.dart';
 
-
 // ignore: must_be_immutable
 class FollowScientificMessage extends StatefulWidget {
+  MyOrderThesis? myOrderThesis;
 
-
-  MyOrderThesis?  myOrderThesis;
-
-  FollowScientificMessage({Key? key,this.myOrderThesis}) : super(key: key);
+  FollowScientificMessage({Key? key, this.myOrderThesis}) : super(key: key);
 
   @override
-  State<FollowScientificMessage> createState() => _FollowScientificMessageState();
+  State<FollowScientificMessage> createState() =>
+      _FollowScientificMessageState();
 }
 
 class _FollowScientificMessageState extends State<FollowScientificMessage> {
@@ -74,7 +69,7 @@ class _FollowScientificMessageState extends State<FollowScientificMessage> {
                   title: "orderFollowUp".tr,
                 ),
                 buildSizedBox(height),
-               CustomContainer(
+                CustomContainer(
                   height: height * 0.08,
                   child: CardData(
                       title: "serviceName".tr,
@@ -86,15 +81,57 @@ class _FollowScientificMessageState extends State<FollowScientificMessage> {
                   title: "requestData".tr,
                 ),
                 buildSizedBox(height),
-                SizedBox(height: height*0.02,),
-                CardFile( width: width*0.3,height: height*0.1,title: "fullMessage".tr, onPressed1: (){}, ),
-                CardFile( width: width*0.3,height: height*0.1,title: "messagesAddress".tr, onPressed1: (){}, ),
-                CardFile( width: width*0.3,height: height*0.1,title: "topicIndex".tr, onPressed1: (){}, ),
-                CardFile( width: width*0.3,height: height*0.1,title: "arabicExtract".tr, onPressed1: (){}, ),
-                CardFile( width: width*0.3,height: height*0.1,title: "englishExtract".tr, onPressed1: (){}, ),
-                CardFile( width: width*0.3,height: height*0.1,title: "introduction".tr, onPressed1: (){}, ),
-                CardFile( width: width*0.3,height: height*0.1,title: "fullMessage".tr, onPressed1: (){}, ),
-                CardFile( width: width*0.3,height: height*0.1,title: "contentPlus".tr, onPressed1: (){}, ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                CardFile(
+                  width: width * 0.3,
+                  height: height * 0.1,
+                  title: "fullMessage".tr,
+                  onPressed1: () {},
+                ),
+                CardFile(
+                  width: width * 0.3,
+                  height: height * 0.1,
+                  title: "messagesAddress".tr,
+                  onPressed1: () {},
+                ),
+                CardFile(
+                  width: width * 0.3,
+                  height: height * 0.1,
+                  title: "topicIndex".tr,
+                  onPressed1: () {},
+                ),
+                CardFile(
+                  width: width * 0.3,
+                  height: height * 0.1,
+                  title: "arabicExtract".tr,
+                  onPressed1: () {},
+                ),
+                CardFile(
+                  width: width * 0.3,
+                  height: height * 0.1,
+                  title: "englishExtract".tr,
+                  onPressed1: () {},
+                ),
+                CardFile(
+                  width: width * 0.3,
+                  height: height * 0.1,
+                  title: "introduction".tr,
+                  onPressed1: () {},
+                ),
+                CardFile(
+                  width: width * 0.3,
+                  height: height * 0.1,
+                  title: "fullMessage".tr,
+                  onPressed1: () {},
+                ),
+                CardFile(
+                  width: width * 0.3,
+                  height: height * 0.1,
+                  title: "contentPlus".tr,
+                  onPressed1: () {},
+                ),
                 HeadTopics(
                   title: "orderEvents".tr,
                 ),
@@ -131,10 +168,9 @@ class _FollowScientificMessageState extends State<FollowScientificMessage> {
                 ),
                 buildSizedBox(height),
                 BlocProvider(
-                  create: (context) => ThesisRepliesCubit()
-                    ..init(widget.myOrderThesis!.id!),
-                  child:
-                  BlocConsumer<ThesisRepliesCubit, ThesisRepliesState>(
+                  create: (context) =>
+                      ThesisRepliesCubit()..init(widget.myOrderThesis!.id!),
+                  child: BlocConsumer<ThesisRepliesCubit, ThesisRepliesState>(
                     listener: (context, state) {},
                     builder: (context, state) {
                       final cubit = ThesisRepliesCubit.of(context);
@@ -151,28 +187,28 @@ class _FollowScientificMessageState extends State<FollowScientificMessage> {
                               state.allRepliesThesisModel.data!.isEmpty
                                   ? const SizedBox.shrink()
                                   : ListView.builder(
-                                  physics:
-                                  const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: state
-                                      .allRepliesThesisModel.data!.length,
-                                  itemBuilder: (context, index) {
-                                    return Message(
-                                        isMe: state.allRepliesThesisModel
-                                            .data![index].createdBy
-                                            .toString() ==
-                                            id,
-                                        name: state.allRepliesThesisModel
-                                            .data![index].userName
-                                            .toString(),
-                                        comment: state.allRepliesThesisModel
-                                            .data![index].userMessage
-                                            .toString()
-                                            .trim(),
-                                        data: DateConverter.dateConverterMonth(
-                                            "${state.allRepliesThesisModel.data![index].createdDate}"));
-                                    // data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
-                                  }),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: state
+                                          .allRepliesThesisModel.data!.length,
+                                      itemBuilder: (context, index) {
+                                        return Message(
+                                            isMe: state.allRepliesThesisModel
+                                                    .data![index].createdBy
+                                                    .toString() ==
+                                                id,
+                                            name: state.allRepliesThesisModel
+                                                .data![index].userName
+                                                .toString(),
+                                            comment: state.allRepliesThesisModel
+                                                .data![index].userMessage
+                                                .toString()
+                                                .trim(),
+                                            data: DateConverter.dateConverterMonth(
+                                                "${state.allRepliesThesisModel.data![index].createdDate}"));
+                                        // data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
+                                      }),
                               CustomTextField(
                                 controller: cubit.addCommentController,
                                 hint: "أضف تعليقك هنا ..!",
@@ -180,26 +216,28 @@ class _FollowScientificMessageState extends State<FollowScientificMessage> {
                               buildSizedBox(height),
                               state is! ThesisRepliesLoading
                                   ? Center(
-                                  child: SmallButtonSizer(
-                                    onPressed: () {
-                                      cubit.addToCommentThesis(MyRepliesThesis(
-                                          userName: widget.myOrderThesis!
-                                              .applicantName,
-                                          createdDate: widget
-                                              .myOrderThesis!
-                                              .createdDate,
-                                          updatedBy: widget
-                                              .myOrderThesis!.updatedBy,
-                                          userMessage: cubit
-                                              .addCommentController.text
-                                              .trim(),
-                                          thesisDepositionRequestId:
-                                          widget.myOrderThesis!.id));
-                                    },
-                                    title: "addComment".tr,
-                                    color: kSafeAreasColor,
-                                    image: "assets/image/newrequest.png",
-                                  ))
+                                      child: SmallButtonSizer(
+                                      onPressed: () {
+                                        cubit.addToCommentThesis(
+                                            MyRepliesThesis(
+                                                userName: widget.myOrderThesis!
+                                                    .applicantName,
+                                                createdDate: widget
+                                                    .myOrderThesis!.createdDate,
+                                                updatedBy:
+                                                    widget.myOrderThesis!
+                                                        .updatedBy,
+                                                userMessage:
+                                                    cubit.addCommentController
+                                                        .text
+                                                        .trim(),
+                                                thesisDepositionRequestId:
+                                                    widget.myOrderThesis!.id));
+                                      },
+                                      title: "addComment".tr,
+                                      color: kSafeAreasColor,
+                                      image: "assets/image/newrequest.png",
+                                    ))
                                   : const LoadingFadingCircle(),
                             ],
                           ),
@@ -221,13 +259,10 @@ class _FollowScientificMessageState extends State<FollowScientificMessage> {
       ),
     );
   }
+
   SizedBox buildSizedBox(double height) {
     return SizedBox(
       height: height * 0.02,
     );
   }
-
-
-
-
 }

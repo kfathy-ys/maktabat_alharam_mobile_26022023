@@ -17,7 +17,6 @@ class ArchiveCubit extends Cubit<ArchiveState> {
 
   OrderArchive? archiveSuggestModel;
 
-
   var userId = Prefs.getString("userId");
 
   Future<void> getOrderArchiveSuggest() async {
@@ -69,7 +68,7 @@ class ArchiveCubit extends Cubit<ArchiveState> {
         "placeOfPublication": placeOfPublication,
         "yearOfPublication": yearOfPublication,
         "standardBookNumber": standardBookNumber,
-        "bookTypeId": typeBookId ,
+        "bookTypeId": typeBookId,
         "additionalInformation": additionalInformation,
         "isArchived": true,
         "createdBy": userId,
@@ -84,20 +83,12 @@ class ArchiveCubit extends Cubit<ArchiveState> {
       emit(ArchiveSuccess(
           archiveSuggestModel: OrderArchiveSuggestModel.fromJson(res.data)));
       await getOrderArchiveSuggest();
-
     } catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(ArchiveError(msg: e.toString()));
     }
   }
-
-
-
-
-
-
-
 
   Future<void> removeFromArchive({
     required int id,
@@ -144,13 +135,10 @@ class ArchiveCubit extends Cubit<ArchiveState> {
       emit(ArchiveSuccess(
           archiveSuggestModel: OrderArchiveSuggestModel.fromJson(res.data)));
       await getOrderArchiveSuggest();
-
     } catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(ArchiveError(msg: e.toString()));
     }
   }
-
-
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
@@ -11,9 +10,7 @@ import 'package:get/get.dart';
 
 import '../view.dart';
 
-
 class ArchiveMyOrdersScreen extends StatelessWidget {
-
   const ArchiveMyOrdersScreen({Key? key}) : super(key: key);
 
   @override
@@ -26,11 +23,9 @@ class ArchiveMyOrdersScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
-
               context: context),
           body: Container(
             margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
@@ -40,7 +35,9 @@ class ArchiveMyOrdersScreen extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               children: [
-                HeadTitleArchieve(description:   "titleMessage".tr,),
+                HeadTitleArchieve(
+                  description: "titleMessage".tr,
+                ),
                 ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -92,7 +89,7 @@ class ArchiveMyOrdersScreen extends StatelessWidget {
                     );
                   },
                 ),
-              /*  Center(
+                /*  Center(
                     child: SmallButtonSizer(
                   onPressed: () {
                     Get.to(() => MyOrderReserveArticleResearch());

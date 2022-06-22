@@ -1,21 +1,22 @@
-
 // ignore_for_file: must_be_immutable
 
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
 
-
 class OrderArchiveSuggestModel extends Equatable {
-  List< OrderArchive>? data;
+  List<OrderArchive>? data;
   List<dynamic>? messages;
   int? status;
   int? dataLength;
 
-  OrderArchiveSuggestModel({this.data, this.messages, this.status, this.dataLength});
+  OrderArchiveSuggestModel(
+      {this.data, this.messages, this.status, this.dataLength});
 
   OrderArchiveSuggestModel.fromJson(Map<String, dynamic> json) {
-    data = json["data"]==null ? null : (json["data"] as List).map((e)=> OrderArchive.fromJson(e)).toList();
+    data = json["data"] == null
+        ? null
+        : (json["data"] as List).map((e) => OrderArchive.fromJson(e)).toList();
     messages = json["messages"] ?? [];
     status = json["status"];
     dataLength = json["dataLength"];
@@ -23,10 +24,10 @@ class OrderArchiveSuggestModel extends Equatable {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if(this.data != null) {
-      data["data"] = this.data?.map((e)=>e.toJson()).toList();
+    if (this.data != null) {
+      data["data"] = this.data?.map((e) => e.toJson()).toList();
     }
-    if(messages != null) {
+    if (messages != null) {
       data["messages"] = messages;
     }
     data["status"] = status;
@@ -35,11 +36,10 @@ class OrderArchiveSuggestModel extends Equatable {
   }
 
   @override
-
-  List<Object?> get props => [data, messages ,status,dataLength];
+  List<Object?> get props => [data, messages, status, dataLength];
 }
 
-class  OrderArchive  extends Equatable{
+class OrderArchive extends Equatable {
   int? id;
   String? visitorName;
   String? visitorEmail;
@@ -59,9 +59,27 @@ class  OrderArchive  extends Equatable{
   String? updatedBy;
   String? updatedDate;
 
-   OrderArchive({this.id, this.visitorName, this.visitorEmail, this.visitorMobile, this.qualifications, this.suggestedBookTitle, this.authorName, this.publisherName, this.placeOfPublication, this.yearOfPublication, this.standardBookNumber, this.bookTypeId, this.additionalInformation, this.isArchived, this.createdBy, this.createdDate, this.updatedBy, this.updatedDate});
+  OrderArchive(
+      {this.id,
+      this.visitorName,
+      this.visitorEmail,
+      this.visitorMobile,
+      this.qualifications,
+      this.suggestedBookTitle,
+      this.authorName,
+      this.publisherName,
+      this.placeOfPublication,
+      this.yearOfPublication,
+      this.standardBookNumber,
+      this.bookTypeId,
+      this.additionalInformation,
+      this.isArchived,
+      this.createdBy,
+      this.createdDate,
+      this.updatedBy,
+      this.updatedDate});
 
-   OrderArchive.fromJson(Map<String, dynamic> json) {
+  OrderArchive.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     visitorName = json["visitorName"];
     visitorEmail = json["visitorEmail"];
@@ -129,5 +147,3 @@ class  OrderArchive  extends Equatable{
     ];
   }
 }
-
-

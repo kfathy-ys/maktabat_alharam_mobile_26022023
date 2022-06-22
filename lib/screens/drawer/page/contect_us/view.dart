@@ -5,22 +5,23 @@ import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:queen/queen.dart' show Launch;
 
 // ignore: must_be_immutable
 class ContactUsScreen extends StatelessWidget {
-
   String phone = "+1 5598 55488";
   String email = "lib@gph.gov.sa";
   String web = "http://stage-lib.cpt-it.com/ar/#";
-  String location = "https://www.google.com/maps/@21.375498,39.833892,18z?hl=en";
-String twitter = "https://twitter.com/GPHLIBRARY";
-String youTube = "https://www.youtube.com/channel/UCfocGgF5-ngvNJQ45NqRoCQ/featured";
-   ContactUsScreen({Key? key}) : super(key: key);
+  String location =
+      "https://www.google.com/maps/@21.375498,39.833892,18z?hl=en";
+  String twitter = "https://twitter.com/GPHLIBRARY";
+  String youTube =
+      "https://www.youtube.com/channel/UCfocGgF5-ngvNJQ45NqRoCQ/featured";
+  ContactUsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-  //  double height = MediaQuery.of(context).size.height;
+    //  double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
       color: kAppBarColor,
@@ -28,7 +29,6 @@ String youTube = "https://www.youtube.com/channel/UCfocGgF5-ngvNJQ45NqRoCQ/featu
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
@@ -49,8 +49,8 @@ String youTube = "https://www.youtube.com/channel/UCfocGgF5-ngvNJQ45NqRoCQ/featu
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     InkWell(
-                      onTap:(){
-                        launch(email);
+                      onTap: () {
+                        Launch.url(email);
                       },
                       child: const Text("lib@gph.gov.sa",
                           style: TextStyle(
@@ -79,9 +79,8 @@ String youTube = "https://www.youtube.com/channel/UCfocGgF5-ngvNJQ45NqRoCQ/featu
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
-                      onTap:(){
-                        launch(web);
-
+                      onTap: () {
+                        Launch.url(web);
                       },
                       child: const Text("http://stage-lib.cpt-it.com",
                           style: TextStyle(
@@ -97,8 +96,8 @@ String youTube = "https://www.youtube.com/channel/UCfocGgF5-ngvNJQ45NqRoCQ/featu
                 ),
               ),
               InkWell(
-                onTap:(){
-                  launch(location);
+                onTap: () {
+                  Launch.url(location);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -132,22 +131,22 @@ String youTube = "https://www.youtube.com/channel/UCfocGgF5-ngvNJQ45NqRoCQ/featu
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
-                      onTap: (){
-                        launch(youTube);
+                      onTap: () {
+                        Launch.url(youTube);
                       },
-                      child: Image.asset("assets/image/youtube.png") ,
+                      child: Image.asset("assets/image/youtube.png"),
                     ),
 
                     InkWell(
-                      onTap: (){
-                        launch(twitter);
+                      onTap: () {
+                        Launch.url(twitter);
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Image.asset("assets/image/Twitter.png"),
                       ),
                     ),
-                   // Image.asset("assets/image/Linkedin.png")
+                    // Image.asset("assets/image/Linkedin.png")
                   ],
                 ),
               )
@@ -160,10 +159,6 @@ String youTube = "https://www.youtube.com/channel/UCfocGgF5-ngvNJQ45NqRoCQ/featu
 
   _launchPhoneURL(String phoneNumber) async {
     String url = 'tel:' + phoneNumber;
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+    Launch.url(url);
   }
 }

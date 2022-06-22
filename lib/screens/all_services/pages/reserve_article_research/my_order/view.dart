@@ -8,7 +8,6 @@ import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_rese
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/update/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
-import 'package:maktabat_alharam/screens/home/pages/views/my_orders/follow_reserved_retreated/view.dart';
 import 'package:maktabat_alharam/screens/widgets/CustomCardButton.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -78,128 +77,146 @@ class MyOrderReserveArticleResearch extends StatelessWidget {
                   if (state is MyOrderResearchSuccess) {
                     return Expanded(
                       child: RefreshIndicator(
-
-                          onRefresh: () async {
-                            cubit.getOrderResearch();
-                            return Future<void>.delayed(const Duration(seconds: 3));
-                          },
-                          backgroundColor: kAccentColor,
-                          color: Colors.white,
-
-                          child:state.orderResearchModel.data!.isEmpty ?
-                          Center(child: customBoldText(title: "لا توجد طلبات الاّن")):
-                      ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: state.orderResearchModel.data!.length,
-                        itemBuilder: (context, int index) {
-                          return CustomContainer(
-                            height: height * 0.5,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CardData(
-                                    title: "nameRequest".tr,
-                                    subTitle: ((state.orderResearchModel
-                                                .data![index].libraryId) ==
-                                            1)
-                                        ? "ReserveArticleOrResearchRetreat".tr
-                                        : ((state.orderResearchModel
-                                                    .data![index].libraryId) ==
-                                                2)
-                                            ? "scientificMaterial".tr
-                                            : ((state
+                        onRefresh: () async {
+                          cubit.getOrderResearch();
+                          return Future<void>.delayed(
+                              const Duration(seconds: 3));
+                        },
+                        backgroundColor: kAccentColor,
+                        color: Colors.white,
+                        child: state.orderResearchModel.data!.isEmpty
+                            ? Center(
+                                child: customBoldText(
+                                    title: "لا توجد طلبات الاّن"))
+                            : ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount:
+                                    state.orderResearchModel.data!.length,
+                                itemBuilder: (context, int index) {
+                                  return CustomContainer(
+                                    height: height * 0.5,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        CardData(
+                                            title: "nameRequest".tr,
+                                            subTitle: ((state
                                                         .orderResearchModel
                                                         .data![index]
                                                         .libraryId) ==
-                                                    3)
-                                                ? "mix".tr
-                                                : "--",
-                                    color1: kSmallIconColor,
-                                    color2: kBlackText),
-                                CardData(
-                                    title: "nameResponsible".tr,
-                                    subTitle: state.orderResearchModel
-                                        .data![index].responsibleName,
-                                    color1: kSmallIconColor,
-                                    color2: kBlackText),
-                                CardData(
-                                    title: "requestDate".tr,
-                                    subTitle: DateConverter.dateConverterMonth(
-                                        state.orderResearchModel.data![index]
-                                            .createdDate
-                                            .toString()),
-                                    color1: kSmallIconColor,
-                                    color2: kSkyButton),
-                                CardData(
-                                    title: "requestState".tr,
-                                    subTitle: ((state
-                                                .orderResearchModel
-                                                .data![index]
-                                                .requestStatusId) ==
-                                            4)
-                                        ? "pending".tr
-                                        : ((state
+                                                    1)
+                                                ? "ReserveArticleOrResearchRetreat"
+                                                    .tr
+                                                : ((state
+                                                            .orderResearchModel
+                                                            .data![index]
+                                                            .libraryId) ==
+                                                        2)
+                                                    ? "scientificMaterial".tr
+                                                    : ((state
+                                                                .orderResearchModel
+                                                                .data![index]
+                                                                .libraryId) ==
+                                                            3)
+                                                        ? "mix".tr
+                                                        : "--",
+                                            color1: kSmallIconColor,
+                                            color2: kBlackText),
+                                        CardData(
+                                            title: "nameResponsible".tr,
+                                            subTitle: state.orderResearchModel
+                                                .data![index].responsibleName,
+                                            color1: kSmallIconColor,
+                                            color2: kBlackText),
+                                        CardData(
+                                            title: "requestDate".tr,
+                                            subTitle: DateConverter
+                                                .dateConverterMonth(state
                                                     .orderResearchModel
                                                     .data![index]
-                                                    .requestStatusId) ==
-                                                5)
-                                            ? "unRespond".tr
-                                            : ((state
+                                                    .createdDate
+                                                    .toString()),
+                                            color1: kSmallIconColor,
+                                            color2: kSkyButton),
+                                        CardData(
+                                            title: "requestState".tr,
+                                            subTitle: ((state
                                                         .orderResearchModel
                                                         .data![index]
                                                         .requestStatusId) ==
-                                                    6)
-                                                ? "rejected".tr
-                                                : "--",
-                                    color1: kSmallIconColor,
-                                    color2: kBlackText),
-                                CardData(
-                                  title: "orderProcedure".tr,
-                                  subTitle: "",
-                                  color1: kBlackText,
-                                  //  color2: kBlackText
-                                ),
-                                CustomCardButton(
-                                  color: kAccentColor,
-                                  title: "followRequest".tr,
-                                  onPressed: () {
-                                    Get.to(() {
-                                      return FollowResearchScreen(myOrdersToResearch: state.orderResearchModel.data![index],);
-                                    });
-                                  },
-                                  image: "assets/image/fulleyes.png",
-                                ),
-                                ((state
-                                    .orderResearchModel
-                                    .data![index]
-                                    .requestStatusId) ==
-                                    5) ?  const SizedBox():
-                                CustomCardButton(
-                                  color: kAccentColor,
-                                  title: "updateRequest".tr,
-                                  onPressed: () => Get.to(() {
-                                    return const UpdateReserveArticleRetreated();
-                                  }),
-                                  image: "assets/image/update.png",
-                                ),
-                                CustomCardButton(
-                                  color: kAccentColor,
-                                  title: "addToArchive".tr,
-                                  onPressed: () {
-                                    cubit.addToArchiveResearch(state.orderResearchModel.data![index]);
-                                  },
+                                                    4)
+                                                ? "pending".tr
+                                                : ((state
+                                                            .orderResearchModel
+                                                            .data![index]
+                                                            .requestStatusId) ==
+                                                        5)
+                                                    ? "unRespond".tr
+                                                    : ((state
+                                                                .orderResearchModel
+                                                                .data![index]
+                                                                .requestStatusId) ==
+                                                            6)
+                                                        ? "rejected".tr
+                                                        : "--",
+                                            color1: kSmallIconColor,
+                                            color2: kBlackText),
+                                        CardData(
+                                          title: "orderProcedure".tr,
+                                          subTitle: "",
+                                          color1: kBlackText,
+                                          //  color2: kBlackText
+                                        ),
+                                        CustomCardButton(
+                                          color: kAccentColor,
+                                          title: "followRequest".tr,
+                                          onPressed: () {
+                                            Get.to(() {
+                                              return FollowResearchScreen(
+                                                myOrdersToResearch: state
+                                                    .orderResearchModel
+                                                    .data![index],
+                                              );
+                                            });
+                                          },
+                                          image: "assets/image/fulleyes.png",
+                                        ),
+                                        ((state.orderResearchModel.data![index]
+                                                    .requestStatusId) ==
+                                                5)
+                                            ? const SizedBox()
+                                            : CustomCardButton(
+                                                color: kAccentColor,
+                                                title: "updateRequest".tr,
+                                                onPressed: () => Get.to(() {
+                                                  return const UpdateReserveArticleRetreated();
+                                                }),
+                                                image:
+                                                    "assets/image/update.png",
+                                              ),
+                                        CustomCardButton(
+                                          color: kAccentColor,
+                                          title: "addToArchive".tr,
+                                          onPressed: () {
+                                            cubit.addToArchiveResearch(state
+                                                .orderResearchModel
+                                                .data![index]);
+                                          },
 
-                                  image: "assets/image/archieve.png",
-                                  //  icon:Icons.cancel_outlined
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                                          image: "assets/image/archieve.png",
+                                          //  icon:Icons.cancel_outlined
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
                       ),
-                    ),);
+                    );
                   }
                   if (state is MyOrderResearchError) {
                     return Text(state.msg);

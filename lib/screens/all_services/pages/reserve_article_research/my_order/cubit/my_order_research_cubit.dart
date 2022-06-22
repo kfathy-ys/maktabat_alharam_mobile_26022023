@@ -47,20 +47,19 @@ class MyOrderResearchCubit extends Cubit<MyOrderResearchState> {
 
   Future<void> addToArchiveResearch(MyOrdersToResearch order) async {
     await archivedOrderCubit.addedResearchToArchive(
-      id: order.id!,
-      libraryId: order.libraryId!,
-      requestTypeId: order.requestTypeId!,
-      responsibleGradeId: order.responsibleGradeId!,
-      responsibleName: order.responsibleName.toString(),
-      responsibleMobile: order.responsibleMobile.toString(),
-      responsibleEmail: order.responsibleMobile.toString(),
-      callNum: order.callNum.toString(),
-      requestStatusId: order.requestStatusId!,
-      createdDate: order.createdDate.toString(),
-      dateFrom: order.dateFrom.toString(),
-      dateTo: order.dateTo.toString(),
-      roomId: order.roomId!.toInt()
-    );
+        id: order.id!,
+        libraryId: order.libraryId!,
+        requestTypeId: order.requestTypeId!,
+        responsibleGradeId: order.responsibleGradeId!,
+        responsibleName: order.responsibleName.toString(),
+        responsibleMobile: order.responsibleMobile.toString(),
+        responsibleEmail: order.responsibleMobile.toString(),
+        callNum: order.callNum.toString(),
+        requestStatusId: order.requestStatusId!,
+        createdDate: order.createdDate.toString(),
+        dateFrom: order.dateFrom.toString(),
+        dateTo: order.dateTo.toString(),
+        roomId: order.roomId!.toInt());
     await getOrderResearch();
     Alert.success("تم إضافة الطلب إلي الأرشيف");
     Get.to(() => const ArchiveReserveArticleScreen());
@@ -68,20 +67,19 @@ class MyOrderResearchCubit extends Cubit<MyOrderResearchState> {
 
   Future<void> removeFromArchiveResearch(MyArchivedOrder order) async {
     await archivedOrderCubit.removeResearchFromArchive(
-      id: order.id!,
-      libraryId: order.libraryId!,
-      requestTypeId: order.requestTypeId!,
-      responsibleGradeId: order.responsibleGradeId!,
-      responsibleName: order.responsibleName.toString(),
-      responsibleMobile: order.responsibleMobile.toString(),
-      responsibleEmail: order.responsibleMobile.toString(),
-      callNum: order.callNum.toString(),
-      requestStatusId: order.requestStatusId!,
-      createdDate: order.createdDate.toString(),
-      dateFrom: order.dateFrom.toString(),
-      dateTo: order.dateTo.toString(),
-        roomId:order.roomId!.toInt()
-    );
+        id: order.id!,
+        libraryId: order.libraryId!,
+        requestTypeId: order.requestTypeId!,
+        responsibleGradeId: order.responsibleGradeId!,
+        responsibleName: order.responsibleName.toString(),
+        responsibleMobile: order.responsibleMobile.toString(),
+        responsibleEmail: order.responsibleMobile.toString(),
+        callNum: order.callNum.toString(),
+        requestStatusId: order.requestStatusId!,
+        createdDate: order.createdDate.toString(),
+        dateFrom: order.dateFrom.toString(),
+        dateTo: order.dateTo.toString(),
+        roomId: order.roomId!.toInt());
 
     await getOrderResearch();
     Alert.success("تم إزلة الطلب من الأرشيف");

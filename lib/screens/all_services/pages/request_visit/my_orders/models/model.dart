@@ -47,16 +47,16 @@ class MyOrderToVisit extends Equatable {
   String? responsibleEmail;
   int? numberOfVisitors;
   String? visitReason;
-  dynamic? reasonOfRejection;
-  dynamic? instructions;
+  dynamic reasonOfRejection;
+  dynamic instructions;
   int? requestStatusId;
-  dynamic? isArchived;
+  dynamic isArchived;
   String? createdBy;
   String? createdDate;
-  dynamic? updatedBy;
-  dynamic? updatedDate;
-  dynamic? visitAvailableDate;
-  dynamic? visitRequestReply;
+  dynamic updatedBy;
+  dynamic updatedDate;
+  dynamic visitAvailableDate;
+  dynamic visitRequestReply;
 
   MyOrderToVisit(
       {this.id,

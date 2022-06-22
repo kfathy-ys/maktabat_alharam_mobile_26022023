@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 /// * with queen
 /// * with dart only
 import 'package:readable/readable.dart';
+
 // ignore: must_be_immutable
 class AvailableDatesByRoomModel extends Equatable {
   List<AvailableDatesByRoom>? data;
@@ -25,7 +26,7 @@ class AvailableDatesByRoomModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
       data["data"] = this.data?.map((e) => e.toJson()).toList();
     }
@@ -41,36 +42,36 @@ class AvailableDatesByRoomModel extends Equatable {
 
 // ignore: must_be_immutable
 class AvailableDatesByRoom extends Equatable {
- final  int id;
- final  int roomId;
- final   DateTime date;
- final  int? researchStatusId;
- final  String? createdBy;
- final   String? createdDate;
- final   dynamic updatedBy;
- final  dynamic updatedDate;
+  final int id;
+  final int roomId;
+  final DateTime date;
+  final int? researchStatusId;
+  final String? createdBy;
+  final String? createdDate;
+  final dynamic updatedBy;
+  final dynamic updatedDate;
 
-  AvailableDatesByRoom(
-      {   required this.id,
-        required this.roomId,
-        required this.date,
+  const AvailableDatesByRoom(
+      {required this.id,
+      required this.roomId,
+      required this.date,
       this.researchStatusId,
-        required  this.createdBy,
-        required  this.createdDate,
+      required this.createdBy,
+      required this.createdDate,
       this.updatedBy,
       this.updatedDate});
 
- factory AvailableDatesByRoom.fromJson(Map<String, dynamic> json) {
+  factory AvailableDatesByRoom.fromJson(Map<String, dynamic> json) {
     return AvailableDatesByRoom(
-        id : json["id"],
-        roomId : json["roomId"] ,
-        date : (json["date"] as String).toDate(),
-        researchStatusId : json["researchStatusId"],
-        createdBy : json["createdBy"],
-        createdDate : json["createdDate"],
-        updatedBy : json["updatedBy"],
-        updatedDate : json["updatedDate"],);
-
+      id: json["id"],
+      roomId: json["roomId"],
+      date: (json["date"] as String).toDate(),
+      researchStatusId: json["researchStatusId"],
+      createdBy: json["createdBy"],
+      createdDate: json["createdDate"],
+      updatedBy: json["updatedBy"],
+      updatedDate: json["updatedDate"],
+    );
 
     // id = json["id"];
     // roomId = json["roomId"];
@@ -83,7 +84,7 @@ class AvailableDatesByRoom extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["roomId"] = roomId;
     data["date"] = date;

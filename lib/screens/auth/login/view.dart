@@ -21,8 +21,7 @@ import '../../widgets/alerts.dart';
 import 'cubit/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
-
-   final  _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -40,13 +39,13 @@ class LoginScreen extends StatelessWidget {
           child: BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
               if (state is LoginSuccess) {
+                Alert.success(state.model.messages.toString());
 
-                Alert.success(  state.model.messages.toString());
-
-                Get.offAll(() =>  HomeTabScreen(userId: state.model.data!.userId!.toString(),));
-              } else if (state is LoginError ) {
-                Alert.error( state.msg.toString());
-
+                Get.offAll(() => HomeTabScreen(
+                      userId: state.model.data!.userId!.toString(),
+                    ));
+              } else if (state is LoginError) {
+                Alert.error(state.msg.toString());
               }
             },
             builder: (context, state) {
@@ -92,23 +91,24 @@ class LoginScreen extends StatelessWidget {
                               MinLength(6, "minPassword".tr),
                               MaxLength(30),
                             ]),
-
                             type: TextInputType.text,
                           ),
                           RecoveryWidget(
                             onTap: () => Get.to(() => ForgetPassword()),
                           ),
-                          state is! LoginLoading ?    CustomButton(
-                            color: kSafeAreasColor,
-                            title: "signIn".tr,
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                cubit.userLogin(
-                                    email: _emailController.text,
-                                    password: _passwordController.text);
-                              }
-                            },
-                          ):  const LoadingFadingCircle(),
+                          state is! LoginLoading
+                              ? CustomButton(
+                                  color: kSafeAreasColor,
+                                  title: "signIn".tr,
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      cubit.userLogin(
+                                          email: _emailController.text,
+                                          password: _passwordController.text);
+                                    }
+                                  },
+                                )
+                              : const LoadingFadingCircle(),
                           /*       Text(
                       "orLoginWith".tr,
                       style: const TextStyle(

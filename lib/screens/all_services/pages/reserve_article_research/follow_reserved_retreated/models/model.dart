@@ -17,7 +17,7 @@ class FollowResearchModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) data["data"] = this.data?.toJson();
     if (messages != null) data["messages"] = messages;
     data["status"] = status;
@@ -34,18 +34,18 @@ class MyFollowResearch extends Equatable {
   String? userId;
   int? libraryId;
   int? roomId;
-  dynamic? researchStartDateId;
-  dynamic? researchEndDateId;
+  dynamic researchStartDateId;
+  dynamic researchEndDateId;
   int? requestTypeId;
   String? responsibleName;
   String? responsibleMobile;
   int? responsibleGradeId;
   String? callNum;
-  dynamic? subjectName;
+  dynamic subjectName;
   String? dateFrom;
   String? dateTo;
-  dynamic? reasonOfRejection;
-  dynamic? instructions;
+  dynamic reasonOfRejection;
+  dynamic instructions;
   int? requestStatusId;
   bool? isArchived;
   String? createdBy;
@@ -53,9 +53,9 @@ class MyFollowResearch extends Equatable {
   String? updatedBy;
   String? updatedDate;
   Room? room;
-  dynamic? researchAvailableStartDate;
-  dynamic? researchAvailableEndDate;
-  dynamic? researchRequestReply;
+  dynamic researchAvailableStartDate;
+  dynamic researchAvailableEndDate;
+  dynamic researchRequestReply;
 
   MyFollowResearch(
       {this.id,
@@ -115,7 +115,7 @@ class MyFollowResearch extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["userId"] = userId;
     data["libraryId"] = libraryId;
@@ -210,7 +210,7 @@ class Room extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["libraryId"] = libraryId;
     data["nameAr"] = nameAr;

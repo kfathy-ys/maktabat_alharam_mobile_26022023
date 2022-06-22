@@ -1,8 +1,5 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_visit/my_orders/page/custom_container.dart';
 import 'package:maktabat_alharam/screens/notifications/page/card_notifications.dart';
 import 'package:maktabat_alharam/screens/widgets/date_convertors.dart';
 

@@ -16,10 +16,7 @@ class OrderSuggestSuccess extends OrderSuggestState {
 class OrderSuggestError extends OrderSuggestState {
   final String meg;
 
-  OrderSuggestError( this.meg);
+  OrderSuggestError(this.meg);
 }
 
-class OrderSuggestEmpty extends OrderSuggestState {
-
-
-}
+class OrderSuggestEmpty extends OrderSuggestState {}

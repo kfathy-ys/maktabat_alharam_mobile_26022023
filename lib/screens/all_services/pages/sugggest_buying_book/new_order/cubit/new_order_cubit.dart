@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:maktabat_alharam/config/dio_helper/dio.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/new_order/models/model.dart';
 import 'package:maktabat_alharam/screens/widgets/date_convertors.dart';
@@ -15,11 +14,10 @@ class NewOrderCubit extends Cubit<NewOrderState> {
 
   CreateOrderModel? createOrderModel;
   int? typeBookId;
-  int onBookTypeChanged(int value)=> typeBookId= value;
+  int onBookTypeChanged(int value) => typeBookId = value;
 
   var userId = Prefs.getString("userId");
   Future<void> createOrderSuggestBook({
-
     required String visitorName,
     required String visitorEmail,
     required String visitorMobile,
@@ -35,7 +33,7 @@ class NewOrderCubit extends Cubit<NewOrderState> {
     emit(NewOrderLoading());
     try {
       var now = DateTime.now();
-    var dataNow=  DateConverter.dateConverterOnly(now.toString());
+      var dataNow = DateConverter.dateConverterOnly(now.toString());
 
       final res = await NetWork.post(
         'Suggestion/CreateNewSuggestion',

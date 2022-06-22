@@ -16,5 +16,5 @@ class RegisterSuccess extends RegisterState {
 class RegisterError extends RegisterState {
   final String msg;
 
-  RegisterError({ required this.msg});
+  RegisterError({required this.msg});
 }

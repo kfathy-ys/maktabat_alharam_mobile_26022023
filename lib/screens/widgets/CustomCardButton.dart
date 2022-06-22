@@ -11,17 +11,21 @@ class CustomCardButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String? title;
   final Color? color;
- // final IconData? icon;
+  // final IconData? icon;
   final String? image;
   final bool isLoading;
   const CustomCardButton(
-      {this.onPressed, this.title, this.color, this.isLoading = false,  this.image});
+      {this.onPressed,
+      this.title,
+      this.color,
+      this.isLoading = false,
+      this.image});
   @override
   Widget build(BuildContext context) {
-   // double height = MediaQuery.of(context).size.height;
+    // double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-      margin: const EdgeInsets.symmetric( horizontal: 14),
+      margin: const EdgeInsets.symmetric(horizontal: 14),
       height: MediaQuery.of(context).size.height / 14,
       width: MediaQuery.of(context).size.width / 1.2,
       child: LegacyRaisedButton(
@@ -32,24 +36,24 @@ class CustomCardButton extends StatelessWidget {
           children: [
             isLoading != true
                 ? Row(
-              children: [
-                Image.asset(image!),
-                SizedBox(width: width*0.02,),
-                Text(
-                  title!,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'DinMedium',
-                      fontSize: 16
-                  ),
-                ),
-
-              ],
-            )
+                    children: [
+                      Image.asset(image!),
+                      SizedBox(
+                        width: width * 0.02,
+                      ),
+                      Text(
+                        title!,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'DinMedium',
+                            fontSize: 16),
+                      ),
+                    ],
+                  )
                 : const SpinKitChasingDots(
-              size: 20,
-              color: Colors.white,
-            ),
+                    size: 20,
+                    color: Colors.white,
+                  ),
           ],
         ),
         color: color ?? kPrimaryColor,

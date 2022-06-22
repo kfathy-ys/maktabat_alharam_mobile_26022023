@@ -4,10 +4,10 @@ import 'package:maktabat_alharam/screens/widgets/loading.dart';
 import 'constants.dart';
 
 // ignore: unnecessary_question_mark
-Widget profilePicContainer(BuildContext context, dynamic? img, String? name,
+Widget profilePicContainer(BuildContext context, dynamic img, String? name,
     String mobile, dynamic onProfilePicTapped, bool loading) {
   return Container(
-     //width: MediaQuery.of(context).size.width,
+    //width: MediaQuery.of(context).size.width,
 //    height: 250,
     decoration: const BoxDecoration(
         //color: kSafeAreasColor,
@@ -16,7 +16,7 @@ Widget profilePicContainer(BuildContext context, dynamic? img, String? name,
         //         bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20))),
         ),
     child: Padding(
-      padding: const EdgeInsetsDirectional.only(top: 20, end: 30,start: 30),
+      padding: const EdgeInsetsDirectional.only(top: 20, end: 30, start: 30),
       child: loading
           ? LoadingSmall()
           : Row(
@@ -31,19 +31,18 @@ Widget profilePicContainer(BuildContext context, dynamic? img, String? name,
                         height: 110,
                         decoration: BoxDecoration(
                             border: Border.all(color: kPrimaryColor),
-                          shape: BoxShape.circle,
-                          image:img is String?DecorationImage(
-                        fit: BoxFit.cover,
-                              image:NetworkImage(img)):
-                          DecorationImage(
-                              fit: BoxFit.cover ,
-                              image:FileImage(img!))
-                          //
-                          // DecorationImage(
-                          //     image: NetworkImage(img!),
-                          //     fit: BoxFit.cover),
-                          // borderRadius: BorderRadius.circular(20),
-                        ),
+                            shape: BoxShape.circle,
+                            image: img is String
+                                ? DecorationImage(
+                                    fit: BoxFit.cover, image: NetworkImage(img))
+                                : DecorationImage(
+                                    fit: BoxFit.cover, image: FileImage(img!))
+                            //
+                            // DecorationImage(
+                            //     image: NetworkImage(img!),
+                            //     fit: BoxFit.cover),
+                            // borderRadius: BorderRadius.circular(20),
+                            ),
                       ),
                     ),
                     const SizedBox(

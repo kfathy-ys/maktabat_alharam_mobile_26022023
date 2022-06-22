@@ -47,16 +47,16 @@ class MyArchiveVisits extends Equatable {
   String? responsibleEmail;
   int? numberOfVisitors;
   String? visitReason;
-  dynamic? reasonOfRejection;
-  dynamic? instructions;
+  dynamic reasonOfRejection;
+  dynamic instructions;
   int? requestStatusId;
   bool? isArchived;
   String? createdBy;
   String? createdDate;
   String? updatedBy;
   String? updatedDate;
-  dynamic? visitAvailableDate;
-  dynamic? visitRequestReply;
+  dynamic visitAvailableDate;
+  dynamic visitRequestReply;
 
   MyArchiveVisits(
       {this.id,

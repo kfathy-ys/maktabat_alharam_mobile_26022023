@@ -3,12 +3,17 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
 enum Opinion { yes, no }
+
 enum AvailableType { accept, refuse }
+
 enum MultiChoose { one, two, three, four }
 
 class SelectorOpenion extends StatefulWidget {
-  final ValueChanged <Opinion> onChange;
-  const SelectorOpenion({Key? key,required this.onChange , }) : super(key: key);
+  final ValueChanged<Opinion> onChange;
+  const SelectorOpenion({
+    Key? key,
+    required this.onChange,
+  }) : super(key: key);
 
   @override
   _SelectorOpenionState createState() => _SelectorOpenionState();

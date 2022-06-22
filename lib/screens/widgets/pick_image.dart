@@ -34,9 +34,7 @@ dynamic openImagePicker(
                       width: 20,
                     ),
                     Text(
-
                       "camera".tr,
-
                       style: _textStyle,
                     ),
                   ],
@@ -47,15 +45,13 @@ dynamic openImagePicker(
                   children: <Widget>[
                     const Icon(
                       Icons.insert_photo,
-                      color:kPrimaryColor,
+                      color: kPrimaryColor,
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     Text(
-
                       "gallery".tr,
-
                       style: _textStyle,
                     ),
                   ],

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,54 +17,53 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   bool loggedIn = true;
 
   @override
   void initState() {
-   //goToHomePage(context);
-super.initState();
+    //goToHomePage(context);
+    super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Image.asset(
-              "assets/image/splash screen.png",
-              fit: BoxFit.fill,
-            ),
-            FadeInUpBig(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 30),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                       Get.offAll(() =>   const HomeTabScreen(index: 0,) );
-                      },
-                      child: Image.asset(
-                        'assets/image/Group 30.png',
-
-                      ),
-                    ),
+      fit: StackFit.expand,
+      children: [
+        Image.asset(
+          "assets/image/splash screen.png",
+          fit: BoxFit.fill,
+        ),
+        FadeInUpBig(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: InkWell(
+                  onTap: () {
+                    Get.offAll(() => const HomeTabScreen(
+                          index: 0,
+                        ));
+                  },
+                  child: Image.asset(
+                    'assets/image/Group 30.png',
                   ),
                 ),
               ),
             ),
-          ],
-        ));
-
-
+          ),
+        ),
+      ],
+    ));
   }
 
   void goToHomePage(BuildContext context) async {
-  //  await GlobalNotification().setUpFirebase();
+    //  await GlobalNotification().setUpFirebase();
 
     try {
       final result = await InternetAddress.lookup('google.com');
@@ -77,18 +75,16 @@ super.initState();
               // seconds: 1,
               seconds: 3,
             ), () {
-         // _bloc.add(AppStarted());
+          // _bloc.add(AppStarted());
         });
       }
     } on SocketException catch (_) {
       showNetworkErrorDialog(context, () {
         Navigator.of(context).pop();
-       Get.to((){
-          loggedIn ?   MyHomeScreen(): const HomeTabScreen();
-       }) ;
+        Get.to(() {
+          loggedIn ? MyHomeScreen() : const HomeTabScreen();
+        });
       });
     }
   }
 }
-
-

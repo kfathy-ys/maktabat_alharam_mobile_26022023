@@ -46,11 +46,11 @@ class AskLibrarian extends StatelessWidget {
           body: BlocConsumer<NewOrderAskCubit, NewOrderState>(
             listener: (context, state) {
               if (state is NewOrderSuccess) {
-                Alert.success( "تم إضافة طلبك بنجاح");
+                Alert.success("تم إضافة طلبك بنجاح");
                 BlocProvider.of<MyOrderAskCubit>(context).getOrderAsk();
-              Get.off(() => MyOrderAskLibrarian());
+                Get.off(() => MyOrderAskLibrarian());
               } else if (state is NewOrderError) {
-                Alert.error( state.msg);
+                Alert.error(state.msg);
               }
             },
             builder: (context, state) {
@@ -63,7 +63,6 @@ class AskLibrarian extends StatelessWidget {
                   child: ListView(
                     padding: const EdgeInsets.symmetric(vertical: 18),
                     physics: const BouncingScrollPhysics(),
-
                     children: [
                       HeadTopics(
                         title: "askStaff".tr,
@@ -104,7 +103,7 @@ class AskLibrarian extends StatelessWidget {
                         controller: _phoneController,
                         validator: qValidator([
                           IsRequired("phoneNumber".tr),
-                         // IsOptional(),
+                          // IsOptional(),
 
                           MaxLength(30),
                         ]),
@@ -126,7 +125,7 @@ class AskLibrarian extends StatelessWidget {
                           ? Center(
                               child: MediaButtonSizer(
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate()){
+                                  if (_formKey.currentState!.validate()) {
                                     cubit.createOrderAskLib(
                                       visitorName: _nameController.text,
                                       visitorEmail: _emailController.text,

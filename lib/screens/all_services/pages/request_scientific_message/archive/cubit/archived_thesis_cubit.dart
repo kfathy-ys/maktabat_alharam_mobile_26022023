@@ -61,8 +61,6 @@ class ArchivedThesisCubit extends Cubit<ArchivedThesisState> {
     required bool isAvailableWithChains,
   }) async {
     try {
-      var now = DateTime.now();
-      var dataNow = DateConverter.dateConverterOnly(now.toString());
       final body = {
         "id": id,
         "userId": userId,
@@ -139,8 +137,6 @@ class ArchivedThesisCubit extends Cubit<ArchivedThesisState> {
     required bool isAvailableWithChains,
   }) async {
     try {
-      var now = DateTime.now();
-      var dataNow = DateConverter.dateConverterOnly(now.toString());
       final body = {
         "id": id,
         "userId": userId,

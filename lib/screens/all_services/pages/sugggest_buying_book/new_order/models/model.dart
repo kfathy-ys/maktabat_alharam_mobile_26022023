@@ -1,9 +1,8 @@
-
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
-class CreateOrderModel  extends Equatable{
-  dynamic? data;
+class CreateOrderModel extends Equatable {
+  dynamic data;
   List<dynamic>? messages;
   int? status;
   int? dataLength;
@@ -20,7 +19,7 @@ class CreateOrderModel  extends Equatable{
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["data"] = this.data;
-    if(messages != null) {
+    if (messages != null) {
       data["messages"] = messages;
     }
     data["status"] = status;
@@ -29,5 +28,5 @@ class CreateOrderModel  extends Equatable{
   }
 
   @override
-  List<Object?> get props => [data , messages,status,dataLength];
+  List<Object?> get props => [data, messages, status, dataLength];
 }

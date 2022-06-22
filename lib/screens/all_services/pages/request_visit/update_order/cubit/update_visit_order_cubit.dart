@@ -14,22 +14,29 @@ import '../model/update_model.dart';
 part 'update_visit_order_state.dart';
 
 class UpdateVisitOrderCubit extends Cubit<UpdateVisitOrderState> {
-
   final MyOrderToVisit order;
-  UpdateVisitOrderCubit(this.order) : super(UpdateVisitOrderInitial()){
-    if(order.responsibleName != null )nameController.text = order.responsibleName!;
-    if(order.responsibleEmail != null )emailController.text = order.responsibleEmail!;
-    if(order.responsibleMobile != null )phoneController.text = order.responsibleMobile!;
-    if(order.numberOfVisitors != null )visitorsController.text = order.numberOfVisitors!.toString() ;
-    if(order.visitReason != null )visitorReasonController.text = order.visitReason!;
+  UpdateVisitOrderCubit(this.order) : super(UpdateVisitOrderInitial()) {
+    if (order.responsibleName != null) {
+      nameController.text = order.responsibleName!;
+    }
+    if (order.responsibleEmail != null) {
+      emailController.text = order.responsibleEmail!;
+    }
+    if (order.responsibleMobile != null) {
+      phoneController.text = order.responsibleMobile!;
+    }
+    if (order.numberOfVisitors != null) {
+      visitorsController.text = order.numberOfVisitors!.toString();
+    }
+    if (order.visitReason != null) {
+      visitorReasonController.text = order.visitReason!;
+    }
 
-    if(order.libraryId != null )initialLibID= order.libraryId! ;
+    if (order.libraryId != null) initialLibID = order.libraryId!;
     onLibChang(initialLibID);
 
-    if(order.authority != null )initialAuthID= order.authority! ;
+    if (order.authority != null) initialAuthID = order.authority!;
     onAuthorityIDChanged(initialAuthID);
-
-
   }
   final formKey = GlobalKey<FormState>();
 
@@ -42,20 +49,18 @@ class UpdateVisitOrderCubit extends Cubit<UpdateVisitOrderState> {
   final visitorsController = TextEditingController();
 
   final visitorReasonController = TextEditingController();
-  int initialLibID =0;
-  int initialAuthID =0;
+  int initialLibID = 0;
+  int initialAuthID = 0;
 
   int libID = 0;
-  void onLibChang(int value)=> libID = value;
-
+  void onLibChang(int value) => libID = value;
 
   int? authorityID;
-  int onAuthorityIDChanged(int value)=> authorityID= value;
+  int onAuthorityIDChanged(int value) => authorityID = value;
 
   final fullName = Prefs.getString('fullName');
   final email = Prefs.getString('email');
   final phoneNumber = Prefs.getString('phoneNumber');
-
 
   final dates = <AvailableDates>[];
   final availableDates = <DateTime>[];
@@ -63,8 +68,8 @@ class UpdateVisitOrderCubit extends Cubit<UpdateVisitOrderState> {
     emit(UpdateAvailableDatesLoading());
     try {
       dates.clear();
-      final res =
-      await NetWork.get('VisitRequest/GetVisitAvailableDatesByLibraryId/$libId');
+      final res = await NetWork.get(
+          'VisitRequest/GetVisitAvailableDatesByLibraryId/$libId');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -72,10 +77,12 @@ class UpdateVisitOrderCubit extends Cubit<UpdateVisitOrderState> {
         throw res.data['message'];
       }
 
-      (res.data['data'] as List).map((e) => dates.add(AvailableDates.fromJson(e))).toList();
+      (res.data['data'] as List)
+          .map((e) => dates.add(AvailableDates.fromJson(e)))
+          .toList();
 
-      if(dates.isNotEmpty) {
-        for(final date in dates){
+      if (dates.isNotEmpty) {
+        for (final date in dates) {
           availableDates.add(date.date);
         }
       }
@@ -91,8 +98,6 @@ class UpdateVisitOrderCubit extends Cubit<UpdateVisitOrderState> {
       emit(UpdateAvailableDatesError(msg: e.toString()));
     }
   }
-
-
 
   final periods = <AvailablePeriods>[];
   Future<void> getUpdatesAvailablePeriodsVisit({
@@ -110,8 +115,9 @@ class UpdateVisitOrderCubit extends Cubit<UpdateVisitOrderState> {
         throw res.data['message'];
       }
 
-
-      (res.data['data'] as List).map((e) => periods.add(AvailablePeriods.fromJson(e))).toList();
+      (res.data['data'] as List)
+          .map((e) => periods.add(AvailablePeriods.fromJson(e)))
+          .toList();
 
       emit(UpdateAvailablePeriodSuccess());
     } catch (e, es) {
@@ -121,17 +127,13 @@ class UpdateVisitOrderCubit extends Cubit<UpdateVisitOrderState> {
     }
   }
 
-
-
   //final createOrder = <MyOrderToVisit>[];
-  int  visitDateId = 0;
+  int visitDateId = 0;
   Future<void> updateOrderToVisit({
     //  required int libraryNamedId,
     // required int visitDateId,
 
-
     // required int authority,
-
 
     required String responsibleName,
     required String responsibleMobile,
@@ -166,15 +168,13 @@ class UpdateVisitOrderCubit extends Cubit<UpdateVisitOrderState> {
         "updatedDate": DateConverter.dateConverterOnly(now.toString())
       };
       final res =
-      await NetWork.post('VisitRequest/UpdateVisitRequest', body: body);
+          await NetWork.post('VisitRequest/UpdateVisitRequest', body: body);
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
       }
 
-      emit(UpdateVisitOrderSuccess(updateVisitRequestModel:
-      UpdateVisitRequestModel.fromJson(res.data)));
-
-
+      emit(UpdateVisitOrderSuccess(
+          updateVisitRequestModel: UpdateVisitRequestModel.fromJson(res.data)));
     } catch (e, st) {
       log(e.toString());
       log(st.toString());

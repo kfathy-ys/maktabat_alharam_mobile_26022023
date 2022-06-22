@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
+
 // ignore: must_be_immutable
 class RequestEvents extends StatelessWidget {
   final String title;
@@ -9,10 +10,13 @@ class RequestEvents extends StatelessWidget {
   Color? color2;
 
   RequestEvents(
-  {Key? key, required this.title, this.subTitle2, this.subTitle, this.color1, this.color2}) : super(key: key);
-
-
-
+      {Key? key,
+      required this.title,
+      this.subTitle2,
+      this.subTitle,
+      this.color1,
+      this.color2})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

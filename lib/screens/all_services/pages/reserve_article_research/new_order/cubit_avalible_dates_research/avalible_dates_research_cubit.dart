@@ -10,7 +10,6 @@ import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
 import '../../../../../widgets/date_convertors.dart';
-import '../../../request_visit/new_order/models/available_dates_model.dart';
 import '../../my_order/models/model.dart';
 import '../models/all_room_model.dart';
 import '../models/room_libraryId_model.dart';
@@ -175,7 +174,6 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
       emit(CreateOrderError(msg: e.toString()));
     }
   }
-
 
   /// Set List To Store Selected Days From Calender
   final selectedDates = <DateTime>[];

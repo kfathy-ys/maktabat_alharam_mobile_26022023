@@ -46,7 +46,7 @@ class MyOrderAskLibrarian extends StatelessWidget {
               height: height,
               width: width,
               child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   HeadTopics(
                     title: "askStaff".tr,
@@ -94,88 +94,108 @@ class MyOrderAskLibrarian extends StatelessWidget {
                             },
                             backgroundColor: kAccentColor,
                             color: Colors.white,
-                            child: state.askOrderModel.data!.isEmpty ?
-                            Center(child: customBoldText(title: "لا توجد طلبات الاّن")): ListView.builder(
-                             physics: const BouncingScrollPhysics(),
-                          //   shrinkWrap: true,
-                              itemCount: state.askOrderModel.data!.length,
-                              itemBuilder: (context, int index) {
-                                return Container(
-                                  margin: const EdgeInsetsDirectional.only(
-                                      bottom: 16.0),
-                                  padding: const EdgeInsetsDirectional.only(
-                                      bottom: 8.0),
-                                  height: height * 0.42,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(color: kCardBorder)),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      CardData(
-                                          title: "requestContent".tr,
+                            child: state.askOrderModel.data!.isEmpty
+                                ? Center(
+                                    child: customBoldText(
+                                        title: "لا توجد طلبات الاّن"))
+                                : ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
+                                    //   shrinkWrap: true,
+                                    itemCount: state.askOrderModel.data!.length,
+                                    itemBuilder: (context, int index) {
+                                      return Container(
+                                        margin:
+                                            const EdgeInsetsDirectional.only(
+                                                bottom: 16.0),
+                                        padding:
+                                            const EdgeInsetsDirectional.only(
+                                                bottom: 8.0),
+                                        height: height * 0.42,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            border:
+                                                Border.all(color: kCardBorder)),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            CardData(
+                                                title: "requestContent".tr,
+                                                subTitle: state.askOrderModel
+                                                    .data![index].visitorMessage
+                                                    .toString(),
+                                                color1: kSmallIconColor,
+                                                color2: kBlackText),
+                                            CardData(
+                                                title: "requestDate".tr,
+                                                subTitle: DateConverter
+                                                    .dateConverterMonth(
+                                                        "${state.askOrderModel.data![index].createdDate}"),
 
-                                          subTitle: state.askOrderModel
-                                              .data![index].visitorMessage.toString(),
-                                          color1: kSmallIconColor,
-                                          color2: kBlackText),
-                                      CardData(
-                                          title: "requestDate".tr,
-                                          subTitle: DateConverter.dateConverterMonth("${state.askOrderModel.data![index].createdDate}"),
+                                                //  subTitle: state.askOrderModel.data![index].createdDate.toString(),
+                                                color1: kSmallIconColor,
+                                                color2: kSkyButton),
+                                            CardData(
+                                                title: "response".tr,
+                                                subTitle: state.askOrderModel
+                                                    .data![index].response
+                                                    .toString(),
+                                                // ((state.askOrderModel.data![index].requestStatusId)==4)? "pending".tr:
+                                                // ((state.askOrderModel.data![index].requestStatusId)==5)? "unRespond".tr:
+                                                // ((state.askOrderModel.data![index].requestStatusId)==6)? "rejected".tr:"--",
 
-                                        //  subTitle: state.askOrderModel.data![index].createdDate.toString(),
-                                          color1: kSmallIconColor,
-                                          color2: kSkyButton),
-                                      CardData(
-                                          title: "response".tr,
-                                          subTitle:state.askOrderModel
-                                              .data![index].response.toString(),
-                                          // ((state.askOrderModel.data![index].requestStatusId)==4)? "pending".tr:
-                                          // ((state.askOrderModel.data![index].requestStatusId)==5)? "unRespond".tr:
-                                          // ((state.askOrderModel.data![index].requestStatusId)==6)? "rejected".tr:"--",
-
-                                          /*state.askOrderModel
+                                                /*state.askOrderModel
                                               .data![index].response.toString(),*/
-                                          color1: kSmallIconColor,
-                                          color2: kBlackText),
-                                      CardData(
-                                        title: "orderProcedure".tr,
-                                        subTitle: "",
-                                        color1: kBlackText,
-                                        //  color2: kBlackText
-                                      ),
-                                      CustomCardButton(
-                                        color: kAccentColor,
-                                        title: "followRequest".tr,
-                                        onPressed: () => Get.to(
-                                            () => FollowAnsweringLibrarian(askMyOrder:state.askOrderModel.data![index] ,)),
-                                        image: "assets/image/fulleyes.png",
-                                      ),
-                                      CustomCardButton(
-                                        color: kAccentColor,
-                                        title: "updateRequest".tr,
-                                        onPressed: () =>
-                                            Get.to(() => UpdatesAskLibrarian(askMyOrder: state
-                                              .askOrderModel.data![index],)),
-                                        image: "assets/image/update.png",
-                                      ),
-                                      CustomCardButton(
-                                        color: kAccentColor,
-                                        title: "addToArchive".tr,
-                                        onPressed: () {
-                                          cubit.addToArchiveAsk(state.askOrderModel.data![index]);
-
-
-                                        },
-                                        image: "assets/image/archieve.png",
-                                      ),
-                                    ],
+                                                color1: kSmallIconColor,
+                                                color2: kBlackText),
+                                            CardData(
+                                              title: "orderProcedure".tr,
+                                              subTitle: "",
+                                              color1: kBlackText,
+                                              //  color2: kBlackText
+                                            ),
+                                            CustomCardButton(
+                                              color: kAccentColor,
+                                              title: "followRequest".tr,
+                                              onPressed: () => Get.to(() =>
+                                                  FollowAnsweringLibrarian(
+                                                    askMyOrder: state
+                                                        .askOrderModel
+                                                        .data![index],
+                                                  )),
+                                              image:
+                                                  "assets/image/fulleyes.png",
+                                            ),
+                                            CustomCardButton(
+                                              color: kAccentColor,
+                                              title: "updateRequest".tr,
+                                              onPressed: () => Get.to(
+                                                  () => UpdatesAskLibrarian(
+                                                        askMyOrder: state
+                                                            .askOrderModel
+                                                            .data![index],
+                                                      )),
+                                              image: "assets/image/update.png",
+                                            ),
+                                            CustomCardButton(
+                                              color: kAccentColor,
+                                              title: "addToArchive".tr,
+                                              onPressed: () {
+                                                cubit.addToArchiveAsk(state
+                                                    .askOrderModel
+                                                    .data![index]);
+                                              },
+                                              image:
+                                                  "assets/image/archieve.png",
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                   ),
-                                );
-                              },
-                            ),
                           ),
                         );
                       }
@@ -184,7 +204,8 @@ class MyOrderAskLibrarian extends StatelessWidget {
                       }
                       if (state is MyOrderAskEmpty) {
                         return Center(
-                            child: customBoldText(title: "لا توجد طلبات الاّن"));
+                            child:
+                                customBoldText(title: "لا توجد طلبات الاّن"));
                       }
                       return const SizedBox();
                     },

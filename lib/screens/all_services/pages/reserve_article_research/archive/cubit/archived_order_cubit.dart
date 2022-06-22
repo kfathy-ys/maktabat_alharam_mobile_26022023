@@ -71,7 +71,7 @@ class ArchivedOrderCubit extends Cubit<ArchivedOrderState> {
         "callNum": callNum,
         "subjectName": null,
         "dateFrom": dateFrom,
-        "dateTo":dateTo,
+        "dateTo": dateTo,
         "reasonOfRejection": null,
         "instructions": null,
         "requestStatusId": requestStatusId,
@@ -115,7 +115,6 @@ class ArchivedOrderCubit extends Cubit<ArchivedOrderState> {
     required String dateFrom,
     required String dateTo,
     required dynamic roomId,
-
   }) async {
     try {
       var now = DateTime.now();
@@ -134,7 +133,7 @@ class ArchivedOrderCubit extends Cubit<ArchivedOrderState> {
         "callNum": callNum,
         "subjectName": null,
         "dateFrom": dateFrom,
-        "dateTo":dateTo,
+        "dateTo": dateTo,
         "reasonOfRejection": null,
         "instructions": null,
         "requestStatusId": requestStatusId,
@@ -147,9 +146,6 @@ class ArchivedOrderCubit extends Cubit<ArchivedOrderState> {
         "researchAvailableStartDate": null,
         "researchAvailableEndDate": null,
         "researchRequestReply": null
-
-
-
       };
 
       /// TODO  Please update EndPoint

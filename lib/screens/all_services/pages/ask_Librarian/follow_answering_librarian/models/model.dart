@@ -1,8 +1,7 @@
-
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
-class AllAskFollowModel extends Equatable{
+class AllAskFollowModel extends Equatable {
   FollowAskOrder? data;
   List<dynamic>? messages;
   int? status;
@@ -19,10 +18,10 @@ class AllAskFollowModel extends Equatable{
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if(this.data != null) {
+    if (this.data != null) {
       data["data"] = this.data?.toJson();
     }
-    if(messages != null) {
+    if (messages != null) {
       data["messages"] = messages;
     }
     data["status"] = status;
@@ -31,12 +30,11 @@ class AllAskFollowModel extends Equatable{
   }
 
   @override
-
-  List<Object?> get props => [data,messages,status,dataLength];
+  List<Object?> get props => [data, messages, status, dataLength];
 }
 
 // ignore: must_be_immutable
-class FollowAskOrder extends Equatable{
+class FollowAskOrder extends Equatable {
   int? id;
   int? type;
   String? visitorName;
@@ -50,7 +48,19 @@ class FollowAskOrder extends Equatable{
   String? updatedBy;
   String? updatedDate;
 
-  FollowAskOrder({this.id, this.type, this.visitorName, this.visitorEmail, this.visitorMobile, this.visitorMessage, this.response, this.isArchived, this.createdBy, this.createdDate, this.updatedBy, this.updatedDate});
+  FollowAskOrder(
+      {this.id,
+      this.type,
+      this.visitorName,
+      this.visitorEmail,
+      this.visitorMobile,
+      this.visitorMessage,
+      this.response,
+      this.isArchived,
+      this.createdBy,
+      this.createdDate,
+      this.updatedBy,
+      this.updatedDate});
 
   FollowAskOrder.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -85,7 +95,6 @@ class FollowAskOrder extends Equatable{
   }
 
   @override
-
   List<Object?> get props {
     return [
       id,
@@ -100,7 +109,6 @@ class FollowAskOrder extends Equatable{
       createdDate,
       updatedBy,
       updatedDate,
-
     ];
   }
 }

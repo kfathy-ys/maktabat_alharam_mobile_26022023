@@ -18,13 +18,13 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 30),
-     height: MediaQuery.of(context).size.height / 14,
-     width: MediaQuery.of(context).size.width / 1.2,
+      height: MediaQuery.of(context).size.height / 14,
+      width: MediaQuery.of(context).size.width / 1.2,
       child: LegacyRaisedButton(
-
-       padding:const EdgeInsetsDirectional.only(bottom: 6.0,),
-
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        padding: const EdgeInsetsDirectional.only(
+          bottom: 6.0,
+        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,15 +36,12 @@ class CustomButton extends StatelessWidget {
                         color: Colors.white,
                         fontFamily: 'DinBold',
                         fontWeight: FontWeight.bold,
-                        fontSize: 20
-                    ),
+                        fontSize: 20),
                   )
                 : const SpinKitChasingDots(
                     size: 20,
                     color: Colors.white,
                   ),
-
-
           ],
         ),
         color: color ?? kPrimaryColor,

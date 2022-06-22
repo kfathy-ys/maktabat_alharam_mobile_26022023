@@ -25,10 +25,12 @@ import 'package:queen/validation/validator.dart';
 
 class UpdateSuggestToBuyBook extends StatefulWidget {
   final OrderModel order;
-  const UpdateSuggestToBuyBook({Key? key,required this.order}) : super(key: key);
+  const UpdateSuggestToBuyBook({Key? key, required this.order})
+      : super(key: key);
   @override
   State<UpdateSuggestToBuyBook> createState() => _UpdateSuggestToBuyBookState();
 }
+
 class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
   @override
   Widget build(BuildContext context) {
@@ -38,20 +40,18 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
       backgroundColor: kHomeColor,
       drawer: drawer(context: context),
       appBar: customAppbar(
-          icons: Icons.arrow_forward_outlined,
-          isIcons: true,
-          context: context),
+          icons: Icons.arrow_forward_outlined, isIcons: true, context: context),
       body: BlocProvider(
         create: (context) => UpdateOrderCubit(widget.order),
         child: BlocConsumer<UpdateOrderCubit, UpdateOrderState>(
           listener: (context, state) {
             if (state is UpdateOrderSuccess) {
-              Alert.success(  "تم التعديل بنجاح");
+              Alert.success("تم التعديل بنجاح");
               BlocProvider.of<OrderSuggestCubit>(context).getOrderSuggest();
-              Get.offAll(()=> const MyOrdersSuggestBuyBookScreen());
+              Get.offAll(() => const MyOrdersSuggestBuyBookScreen());
             }
             if (state is UpdateOrderError) {
-              Alert.error( state.msg.toString());
+              Alert.error(state.msg.toString());
             }
           },
           builder: (context, state) {
@@ -89,7 +89,6 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                       type: TextInputType.name,
                     ),
                     CustomTextField(
-
                       hint: "emailDot".tr,
                       dIcon: Icons.email,
                       label: "emailDot".tr,
@@ -102,7 +101,6 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                       type: TextInputType.emailAddress,
                     ),
                     CustomTextField(
-
                       hint: "phoneNumber".tr,
                       dIcon: Icons.phone_bluetooth_speaker,
                       label: "phoneNumber".tr,
@@ -115,7 +113,6 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                       type: TextInputType.phone,
                     ),
                     CustomTextField(
-
                       hint: "qualifications".tr,
                       dIcon: Icons.verified_user,
                       label: "qualifications".tr,
@@ -128,7 +125,6 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                       type: TextInputType.text,
                     ),
                     CustomTextField(
-
                       hint: "authorAddress".tr,
                       dIcon: Icons.drive_file_rename_outline,
                       label: "authorAddress".tr,
@@ -141,7 +137,6 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                       type: TextInputType.streetAddress,
                     ),
                     CustomTextField(
-
                       hint: "authorName".tr,
                       dIcon: Icons.person_add_alt,
                       label: "authorName".tr,
@@ -154,7 +149,6 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                       type: TextInputType.name,
                     ),
                     CustomTextField(
-
                       hint: "publisherName".tr,
                       dIcon: Icons.person_add_alt,
                       label: "publisherName".tr,
@@ -167,7 +161,6 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                       type: TextInputType.name,
                     ),
                     CustomTextField(
-
                       hint: "publishLocation".tr,
                       dIcon: Icons.location_on_outlined,
                       label: "publishLocation".tr,
@@ -180,7 +173,6 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                       type: TextInputType.streetAddress,
                     ),
                     CustomTextField(
-
                       hint: "publishYear".tr,
                       dIcon: Icons.drive_file_rename_outline,
                       label: "publishYear".tr,
@@ -193,12 +185,10 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                       type: TextInputType.datetime,
                     ),
                     CustomTextField(
-
                       hint: "standardBookNumber".tr,
                       dIcon: Icons.confirmation_number_outlined,
                       label: "standardBookNumber".tr,
                       controller: cubit.standardNumberController,
-
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
                         IsOptional(),
@@ -221,20 +211,25 @@ class _UpdateSuggestToBuyBookState extends State<UpdateSuggestToBuyBook> {
                     ),
                     Center(
                       child: MediaButtonSizer(
-                        onPressed: () async{
+                        onPressed: () async {
                           if (cubit.formKey.currentState!.validate()) {
                             await cubit.updatedOrderSuggestBook(
                               visitorName: cubit.nameController.text,
                               visitorEmail: cubit.emailController.text,
                               visitorMobile: cubit.phoneController.text,
-                              qualifications: cubit.qualificationController.text,
+                              qualifications:
+                                  cubit.qualificationController.text,
                               bookTitle: cubit.addressController.text,
                               authorName: cubit.authorNameController.text,
                               publisherName: cubit.namePublisherController.text,
-                              placeOfPublication: cubit.placePublisherController.text,
-                              yearOfPublication: cubit.yearPublishController.text,
-                              standardBookNumber: cubit.standardNumberController.text,
-                              additionalInformation: cubit.additionalInfoController.text,
+                              placeOfPublication:
+                                  cubit.placePublisherController.text,
+                              yearOfPublication:
+                                  cubit.yearPublishController.text,
+                              standardBookNumber:
+                                  cubit.standardNumberController.text,
+                              additionalInformation:
+                                  cubit.additionalInfoController.text,
                             );
                           }
                         },

@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
 import '../models/all_libraries_model.dart';
@@ -10,16 +9,13 @@ import '../models/all_libraries_model.dart';
 part 'all_libraries_state.dart';
 
 class AllLibrariesCubit extends Cubit<AllLibrariesState> {
-  AllLibrariesCubit() : super(AllLibrariesInitial()){
+  AllLibrariesCubit() : super(AllLibrariesInitial()) {
     getAllAvailableLibrariesVisit();
   }
-
-
 
   Future<void> getAllAvailableLibrariesVisit() async {
     emit(AllLibrariesLoading());
     try {
-      final userId = Prefs.getString("userId");
       final res = await NetWork.get('Library/GetAllLibraries');
 
       if (res.data['status'] == 0 ||
@@ -28,8 +24,8 @@ class AllLibrariesCubit extends Cubit<AllLibrariesState> {
         throw res.data['message'];
       }
 
-      emit(AllLibrariesSuccess(allLibrariesModel:
-      AllLibrariesModel.fromJson(res.data)));
+      emit(AllLibrariesSuccess(
+          allLibrariesModel: AllLibrariesModel.fromJson(res.data)));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());

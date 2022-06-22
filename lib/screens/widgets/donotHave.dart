@@ -9,7 +9,8 @@ class DoNotHave extends StatelessWidget {
   final String? have;
   final VoidCallback? route;
   // ignore: use_key_in_widget_constructors
-  const DoNotHave({required this.text,required this.route,required this.have});
+  const DoNotHave(
+      {required this.text, required this.route, required this.have});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,21 +20,19 @@ class DoNotHave extends StatelessWidget {
         children: [
           Text(have!,
               style: const TextStyle(
-                fontSize: 14,
-                fontFamily: "DinReguler",
-                color: kBlackText,
-                fontWeight: FontWeight.bold
-              )),
+                  fontSize: 14,
+                  fontFamily: "DinReguler",
+                  color: kBlackText,
+                  fontWeight: FontWeight.bold)),
           GestureDetector(
             onTap: route,
             child: Text(text!,
                 style: const TextStyle(
-                  fontSize: 14,
+                    fontSize: 14,
                     decoration: TextDecoration.underline,
-                  fontFamily: "DinMedium",
-                  color: kSkyButton,
-                    fontWeight: FontWeight.bold
-                )),
+                    fontFamily: "DinMedium",
+                    color: kSkyButton,
+                    fontWeight: FontWeight.bold)),
           ),
         ],
       ),

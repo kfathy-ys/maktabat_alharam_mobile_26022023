@@ -15,18 +15,13 @@ import 'package:maktabat_alharam/screens/widgets/loading.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
 import 'package:queen/validation.dart';
 
-import 'package:queen/validation/magic/is_optional.dart';
-import 'package:queen/validation/text/is_not_empty.dart';
-import 'package:queen/validation/text/max_length.dart';
-import 'package:queen/validation/validator.dart';
-
 import '../../../widgets/alerts.dart';
 import 'my_orders/cubit/order_suggest_cubit.dart';
 import 'my_orders/view.dart';
 
 // ignore: must_be_immutable
 class SuggestToBuyBook extends StatelessWidget {
-   SuggestToBuyBook({Key? key}) : super(key: key);
+  SuggestToBuyBook({Key? key}) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
 
@@ -48,7 +43,6 @@ class SuggestToBuyBook extends StatelessWidget {
   final _yearPublishController = TextEditingController();
 
   final _standardNumberController = TextEditingController();
-  final _typeBookController = TextEditingController();
 
   final _addtionalInfoController = TextEditingController();
 
@@ -60,21 +54,16 @@ class SuggestToBuyBook extends StatelessWidget {
       backgroundColor: kHomeColor,
       drawer: drawer(context: context),
       appBar: customAppbar(
-          icons: Icons.arrow_forward_outlined,
-          isIcons: true,
-          context: context),
+          icons: Icons.arrow_forward_outlined, isIcons: true, context: context),
       body: BlocConsumer<NewOrderCubit, NewOrderState>(
         listener: (context, state) {
-           if(state is NewOrderSuccess){
-             Alert.success(  "تم إضافة طلبك بنجاح");
-             BlocProvider.of<OrderSuggestCubit>(context).getOrderSuggest();
-             Get.off(
-                     () => const MyOrdersSuggestBuyBookScreen());
-           }
-           else if (state is NewOrderError){
-             Alert.error(  state.msg);
+          if (state is NewOrderSuccess) {
+            Alert.success("تم إضافة طلبك بنجاح");
+            BlocProvider.of<OrderSuggestCubit>(context).getOrderSuggest();
+            Get.off(() => const MyOrdersSuggestBuyBookScreen());
+          } else if (state is NewOrderError) {
+            Alert.error(state.msg);
           }
-
         },
         builder: (context, state) {
           final cubit = BlocProvider.of<NewOrderCubit>(context);
@@ -85,9 +74,8 @@ class SuggestToBuyBook extends StatelessWidget {
               key: _formKey,
               child: ListView(
                 padding: const EdgeInsets.symmetric(vertical: 18),
-
                 physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
+                shrinkWrap: true,
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -105,7 +93,7 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _nameController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                     // IsOptional(),
+                      // IsOptional(),
                       MaxLength(30),
                     ]),
                     type: TextInputType.name,
@@ -117,7 +105,7 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _emailController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                    //  IsOptional(),
+                      //  IsOptional(),
                       const IsEmail(),
                       MaxLength(30),
                     ]),
@@ -167,7 +155,7 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _authorNameController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                     // IsOptional(),
+                      // IsOptional(),
                       MinLength(5),
                       MaxLength(30),
                     ]),
@@ -180,7 +168,7 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _namePublisherController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                     // IsOptional(),
+                      // IsOptional(),
                       MinLength(5),
                       MaxLength(30),
                     ]),
@@ -206,7 +194,7 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _yearPublishController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                     // IsOptional(),
+                      // IsOptional(),
 
                       MaxLength(30),
                     ]),
@@ -217,7 +205,6 @@ class SuggestToBuyBook extends StatelessWidget {
                     dIcon: Icons.confirmation_number_outlined,
                     label: "standardBookNumber".tr,
                     controller: _standardNumberController,
-
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
                       //IsOptional(),
@@ -227,7 +214,6 @@ class SuggestToBuyBook extends StatelessWidget {
                   ),
                   DropDownBookType(
                     onChanged: cubit.onBookTypeChanged,
-
                   ),
                   buildPadding(title: "additionalInformation".tr),
                   CustomHeightTextField(
@@ -238,32 +224,36 @@ class SuggestToBuyBook extends StatelessWidget {
                   SizedBox(
                     height: height * 0.05,
                   ),
-                  state is! NewOrderLoading ?    Center(
-                    child: MediaButtonSizer(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          cubit.createOrderSuggestBook(
-
-                            visitorName: _nameController.text,
-                            visitorEmail: _emailController.text,
-                            visitorMobile: _phoneController.text,
-                            qualifications: _qualificationController.text,
-                            bookTitle: _addressController.text,
-                            authorName: _authorNameController.text,
-                            publisherName: _namePublisherController.text,
-                            placeOfPublication: _placePublisherController.text,
-                            yearOfPublication: _yearPublishController.text,
-                            standardBookNumber: _standardNumberController.text,
-                            additionalInformation: _addtionalInfoController.text,
-                          );
-
-                        }
-                      },
-                      title: "addOne".tr,
-                      color: kPrimaryColor,
-                      image: "assets/image/rightsah.png",
-                    ),
-                  ): const LoadingFadingCircle(),
+                  state is! NewOrderLoading
+                      ? Center(
+                          child: MediaButtonSizer(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                cubit.createOrderSuggestBook(
+                                  visitorName: _nameController.text,
+                                  visitorEmail: _emailController.text,
+                                  visitorMobile: _phoneController.text,
+                                  qualifications: _qualificationController.text,
+                                  bookTitle: _addressController.text,
+                                  authorName: _authorNameController.text,
+                                  publisherName: _namePublisherController.text,
+                                  placeOfPublication:
+                                      _placePublisherController.text,
+                                  yearOfPublication:
+                                      _yearPublishController.text,
+                                  standardBookNumber:
+                                      _standardNumberController.text,
+                                  additionalInformation:
+                                      _addtionalInfoController.text,
+                                );
+                              }
+                            },
+                            title: "addOne".tr,
+                            color: kPrimaryColor,
+                            image: "assets/image/rightsah.png",
+                          ),
+                        )
+                      : const LoadingFadingCircle(),
                 ],
               ),
             ),

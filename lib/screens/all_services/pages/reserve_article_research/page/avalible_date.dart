@@ -18,12 +18,10 @@ class CardAvailableDates extends StatefulWidget {
 }
 
 class _CardAvailableDatesState extends State<CardAvailableDates> {
-
-  int _selectedTimeId=0;
+  int _selectedTimeId = 0;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 22),
       height: height * 0.089,
@@ -45,67 +43,70 @@ class _CardAvailableDatesState extends State<CardAvailableDates> {
               margin: const EdgeInsets.symmetric(horizontal: 4),
               padding: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
-                  border: _selectedTimeId ==widget.periods[index].id
+                  border: _selectedTimeId == widget.periods[index].id
                       ? Border.all(color: kHomeColor)
                       : Border.all(color: kAccentColor),
-                  color: _selectedTimeId ==widget.periods[index].id ? kAccentColor : kHomeColor,
+                  color: _selectedTimeId == widget.periods[index].id
+                      ? kAccentColor
+                      : kHomeColor,
                   borderRadius: BorderRadius.circular(8)),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-
-                   DateConverter.dateConverterMonth( widget.periods[index].date.toString()),
-                    style: TextStyle(
-                      color: _selectedTimeId ==widget.periods[index].id ? kHomeColor : kAccentColor,
-                      fontSize: 16,
-                      fontFamily: "DinReguler",
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      DateConverter.dateConverterMonth(
+                          widget.periods[index].date.toString()),
+                      style: TextStyle(
+                        color: _selectedTimeId == widget.periods[index].id
+                            ? kHomeColor
+                            : kAccentColor,
+                        fontSize: 16,
+                        fontFamily: "DinReguler",
+                      ),
                     ),
-                  ),
-                //   Text(
-                //     // "6:35 PM\t\t".tr
-                //     parseHtmlString(
-                //       widget.periods[index].periodOfTheDayFromAr ?? '',
-                //     ),
-                //
-                //     // widget.periods[index].periodOfTheDayFromAr ?? '',
-                //     style: TextStyle(
-                //       color: _selectedTimeId ==widget.periods[index].id ? kHomeColor : kAccentColor,
-                //       fontSize: 16,
-                //       overflow: TextOverflow.ellipsis,
-                //       fontFamily: "DinReguler",
-                //     ),
-                //   ),
-                //   const Text(
-                //     ' : ',
-                //     style: TextStyle(
-                //       color: kBlackText,
-                //       fontSize: 16,
-                //       fontFamily: "DinBold",
-                //     ),
-                //   ),
-                //   Text(
-                //     //"2:35 PM".tr,
-                //     widget.periods[index].periodTo ?? '',
-                //     style: TextStyle(
-                //       color: _selectedTimeId ==widget.periods[index].id ? kHomeColor : kAccentColor,
-                //       fontSize: 16,
-                //       fontFamily: "DinReguler",
-                //     ),
-                //   ),
-                //   Text(
-                //     parseHtmlString(
-                //         widget.periods[index].periodOfTheDayToAr ?? ''),
-                //     style: TextStyle(
-                //       color: _selectedTimeId ==widget.periods[index].id ? kHomeColor : kAccentColor,
-                //       overflow: TextOverflow.ellipsis,
-                //       fontSize: 16,
-                //       fontFamily: "DinReguler",
-                //     ),
-                //   ),
-                // ],
-          ]
-          ),
+                    //   Text(
+                    //     // "6:35 PM\t\t".tr
+                    //     parseHtmlString(
+                    //       widget.periods[index].periodOfTheDayFromAr ?? '',
+                    //     ),
+                    //
+                    //     // widget.periods[index].periodOfTheDayFromAr ?? '',
+                    //     style: TextStyle(
+                    //       color: _selectedTimeId ==widget.periods[index].id ? kHomeColor : kAccentColor,
+                    //       fontSize: 16,
+                    //       overflow: TextOverflow.ellipsis,
+                    //       fontFamily: "DinReguler",
+                    //     ),
+                    //   ),
+                    //   const Text(
+                    //     ' : ',
+                    //     style: TextStyle(
+                    //       color: kBlackText,
+                    //       fontSize: 16,
+                    //       fontFamily: "DinBold",
+                    //     ),
+                    //   ),
+                    //   Text(
+                    //     //"2:35 PM".tr,
+                    //     widget.periods[index].periodTo ?? '',
+                    //     style: TextStyle(
+                    //       color: _selectedTimeId ==widget.periods[index].id ? kHomeColor : kAccentColor,
+                    //       fontSize: 16,
+                    //       fontFamily: "DinReguler",
+                    //     ),
+                    //   ),
+                    //   Text(
+                    //     parseHtmlString(
+                    //         widget.periods[index].periodOfTheDayToAr ?? ''),
+                    //     style: TextStyle(
+                    //       color: _selectedTimeId ==widget.periods[index].id ? kHomeColor : kAccentColor,
+                    //       overflow: TextOverflow.ellipsis,
+                    //       fontSize: 16,
+                    //       fontFamily: "DinReguler",
+                    //     ),
+                    //   ),
+                    // ],
+                  ]),
             ),
           );
         },

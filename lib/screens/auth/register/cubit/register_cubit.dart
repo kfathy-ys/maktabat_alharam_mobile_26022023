@@ -20,17 +20,16 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String country,
     required String email,
     required String password,
-   required String userName,
+    required String userName,
   }) async {
     emit(RegisterLoading());
     try {
       final res = await NetWork.post(
         'Accounts/Register',
         body: {
-
           "email": email,
           "password": password,
-          "firstName":fName,
+          "firstName": fName,
           "lastName": lName,
           "nameArabic": fullName,
           "phoneNumber": phone,
@@ -38,13 +37,10 @@ class RegisterCubit extends Cubit<RegisterState> {
           "userName": userName,
           "defaultRole": "Visitor",
           "active": true,
-          "roleName": [
-            "Visitor"
-          ]
-
+          "roleName": ["Visitor"]
         },
       );
-      if (res.data['status'] == 0 ||res.data['status'] == -1) {
+      if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
       }
       emit(RegisterSuccess(RegisterModel.fromJson(res.data)));

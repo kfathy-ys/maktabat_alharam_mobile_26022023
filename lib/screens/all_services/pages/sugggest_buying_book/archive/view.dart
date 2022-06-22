@@ -39,7 +39,6 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
             width: width,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-
               children: [
                 const HeadTitle(),
                 DescriptionSuggest(description: "headBuyBook".tr),
@@ -54,67 +53,85 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
                         child: RefreshIndicator(
                           onRefresh: () async {
                             cubitArchive.getOrderArchiveSuggest();
-                            return Future<void>.delayed(const Duration(seconds: 3));
+                            return Future<void>.delayed(
+                                const Duration(seconds: 3));
                           },
                           backgroundColor: kAccentColor,
                           color: Colors.white,
-                          child:state.archiveSuggestModel.data!.isEmpty ?
-                          Center(child: customBoldText(title: "لا توجد طلبات مؤرشفة الاّن")): ListView.builder(
-                          //  physics: const BouncingScrollPhysics(),
-                            //shrinkWrap: true,
-                            itemCount: state.archiveSuggestModel.data!.length ,
-                            itemBuilder: (context, int index) {
-                              return Container(
-                                margin:
-                                    const EdgeInsetsDirectional.only(bottom: 16.0),
-                                padding:
-                                    const EdgeInsetsDirectional.only(bottom: 8.0),
-                                height: height * 0.33,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(color: kCardBorder)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CardData(
-                                        title: "nameResponsible".tr,
-                                        subTitle: state.archiveSuggestModel
-                                            .data![index].authorName
-                                            .toString(),
-                                        color1: kSmallIconColor,
-                                        color2: kBlackText),
-                                    CardData(
-                                        title: "titleOfBook".tr,
-                                        subTitle: state.archiveSuggestModel
-                                            .data![index].suggestedBookTitle
-                                            .toString(),
-                                        color1: kSmallIconColor,
-                                        color2: kSkyButton),
-                                    CardData(
-                                        title: "requestDate".tr,
-                                        subTitle: DateConverter.dateConverterMonth("${state.archiveSuggestModel.data![index].createdDate}"),
+                          child: state.archiveSuggestModel.data!.isEmpty
+                              ? Center(
+                                  child: customBoldText(
+                                      title: "لا توجد طلبات مؤرشفة الاّن"))
+                              : ListView.builder(
+                                  //  physics: const BouncingScrollPhysics(),
+                                  //shrinkWrap: true,
+                                  itemCount:
+                                      state.archiveSuggestModel.data!.length,
+                                  itemBuilder: (context, int index) {
+                                    return Container(
+                                      margin: const EdgeInsetsDirectional.only(
+                                          bottom: 16.0),
+                                      padding: const EdgeInsetsDirectional.only(
+                                          bottom: 8.0),
+                                      height: height * 0.33,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          border:
+                                              Border.all(color: kCardBorder)),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          CardData(
+                                              title: "nameResponsible".tr,
+                                              subTitle: state
+                                                  .archiveSuggestModel
+                                                  .data![index]
+                                                  .authorName
+                                                  .toString(),
+                                              color1: kSmallIconColor,
+                                              color2: kBlackText),
+                                          CardData(
+                                              title: "titleOfBook".tr,
+                                              subTitle: state
+                                                  .archiveSuggestModel
+                                                  .data![index]
+                                                  .suggestedBookTitle
+                                                  .toString(),
+                                              color1: kSmallIconColor,
+                                              color2: kSkyButton),
+                                          CardData(
+                                              title: "requestDate".tr,
+                                              subTitle: DateConverter
+                                                  .dateConverterMonth(
+                                                      "${state.archiveSuggestModel.data![index].createdDate}"),
 
-                                       // subTitle: state.archiveSuggestModel.data![index].createdDate.toString(),
-                                        color1: kSmallIconColor,
-                                        color2: kBlackText),
-                                    CardData(
-                                      title: "orderProcedure".tr,
-                                      subTitle: "",
-                                      color1: kBlackText,
-                                      //  color2: kBlackText
-                                    ),
-                                    CustomCardButton(
-                                      color: kAccentColor,
-                                      title: "removeFromArchive".tr,
-                                      onPressed: ()=> cubit.removeFromArchive(state.archiveSuggestModel.data![index]),
-                                      image: "assets/image/archieve.png",
-                                    ),
-                                  ],
+                                              // subTitle: state.archiveSuggestModel.data![index].createdDate.toString(),
+                                              color1: kSmallIconColor,
+                                              color2: kBlackText),
+                                          CardData(
+                                            title: "orderProcedure".tr,
+                                            subTitle: "",
+                                            color1: kBlackText,
+                                            //  color2: kBlackText
+                                          ),
+                                          CustomCardButton(
+                                            color: kAccentColor,
+                                            title: "removeFromArchive".tr,
+                                            onPressed: () =>
+                                                cubit.removeFromArchive(state
+                                                    .archiveSuggestModel
+                                                    .data![index]),
+                                            image: "assets/image/archieve.png",
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
                                 ),
-                              );
-                            },
-                          ),
                         ),
                       );
                     }

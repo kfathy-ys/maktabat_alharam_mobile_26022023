@@ -1,4 +1,3 @@
-
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
@@ -87,18 +86,14 @@ customAppBar({required BuildContext context, required VoidCallback press} ) {
 */
 
 AppBar customAppbar(
-    {bool isIcons = false,
-    IconData? icons,
-    String? title,
-
-    context}) {
+    {bool isIcons = false, IconData? icons, String? title, context}) {
   return AppBar(
-    backgroundColor: kSafeAreasColor ,
+    backgroundColor: kSafeAreasColor,
     centerTitle: true,
     actions: [
-      IconButton(onPressed: ()=>Get.back(), icon: const Icon(Icons.arrow_forward)),
+      IconButton(
+          onPressed: () => Get.back(), icon: const Icon(Icons.arrow_forward)),
     ],
-
     elevation: 0,
   );
 }

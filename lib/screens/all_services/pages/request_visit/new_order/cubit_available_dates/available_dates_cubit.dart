@@ -15,16 +15,13 @@ import '../models/avalible_periods_model.dart';
 part 'available_dates_state.dart';
 
 class AvailableDatesCubit extends Cubit<AvailableDatesState> {
-
   AvailableDatesCubit() : super(AvailableDatesInitial());
 
-
-   AllLibraries? selectedLIB;
-  void onLibChang(AllLibraries value)=> selectedLIB = value;
-
+  AllLibraries? selectedLIB;
+  void onLibChang(AllLibraries value) => selectedLIB = value;
 
   int? authorityID;
-  int onAuthorityIDChanged(int value)=> authorityID= value;
+  int onAuthorityIDChanged(int value) => authorityID = value;
 
   final dates = <AvailableDates>[];
   final availableDates = <DateTime>[];
@@ -32,8 +29,8 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
     emit(AvailableDatesLoading());
     try {
       dates.clear();
-      final res =
-          await NetWork.get('VisitRequest/GetVisitAvailableDatesByLibraryId/$libId');
+      final res = await NetWork.get(
+          'VisitRequest/GetVisitAvailableDatesByLibraryId/$libId');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -41,10 +38,12 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
         throw res.data['message'];
       }
 
-      (res.data['data'] as List).map((e) => dates.add(AvailableDates.fromJson(e))).toList();
+      (res.data['data'] as List)
+          .map((e) => dates.add(AvailableDates.fromJson(e)))
+          .toList();
 
-      if(dates.isNotEmpty) {
-        for(final date in dates){
+      if (dates.isNotEmpty) {
+        for (final date in dates) {
           availableDates.add(date.date);
         }
       }
@@ -60,8 +59,6 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
       emit(AvailableDatesError(msg: e.toString()));
     }
   }
-
-
 
   final periods = <AvailablePeriods>[];
   Future<void> getAvailablePeriodsVisit({
@@ -79,8 +76,9 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
         throw res.data['message'];
       }
 
-
-      (res.data['data'] as List).map((e) => periods.add(AvailablePeriods.fromJson(e))).toList();
+      (res.data['data'] as List)
+          .map((e) => periods.add(AvailablePeriods.fromJson(e)))
+          .toList();
 
       emit(AvailablePeriodSuccess());
     } catch (e, es) {
@@ -95,26 +93,22 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
   final phoneNumber = Prefs.getString('phoneNumber');
 
   final createOrder = <MyOrderToVisit>[];
-  int  visitDateId = 0;
+  int visitDateId = 0;
   Future<void> createOrderToVisit({
     //  required int libraryNamedId,
     // required int visitDateId,
 
-
     // required int authority,
-
 
     required String responsibleName,
     required String responsibleMobile,
     required String responsibleEmail,
     required dynamic numberOfVisitors,
     required String visitReason,
-   // required int requestStatusId,
+    // required int requestStatusId,
   }) async {
     try {
-
       var now = DateTime.now();
-      var dataNow=  DateConverter.dateConverterOnly(now.toString());
       final userId = Prefs.getString("userId");
       final body = {
         "id": 0,
@@ -137,21 +131,17 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
         "updatedDate": DateConverter.dateConverterOnly(now.toString())
       };
       final res =
-      await NetWork.post('VisitRequest/CreateNewVisitRequest', body: body);
+          await NetWork.post('VisitRequest/CreateNewVisitRequest', body: body);
       if (res.data['status'] == 0 || res.data['status'] == -1) {
         throw res.data['message'];
       }
 
       emit(CreateOrderSuccess(
           myOrderToVisit: MyOrderToVisit.fromJson(res.data)));
-
-
     } catch (e, st) {
       log(e.toString());
       log(st.toString());
       emit(CreateOrderError(msg: e.toString()));
     }
   }
-
-
 }

@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-import 'package:queen/core/helpers/prefs.dart';
 
-// ignore: must_be_immutable
 class Message extends StatelessWidget {
   final String name;
   final String comment;
@@ -22,24 +20,19 @@ class Message extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var createdBy = Prefs.getString("createdBy");
-    var userId = Prefs.getString("userId");
-    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-      padding:
-          const EdgeInsetsDirectional.only(bottom: 4, top: 4, start: 10, end: 10),
+      padding: const EdgeInsetsDirectional.only(
+          bottom: 4, top: 4, start: 10, end: 10),
       margin: const EdgeInsetsDirectional.only(bottom: 10.0, top: 10.0),
       width: width,
-     // height: height*0.12,
+      // height: height*0.12,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color:  kBackgroundCardColor ),
+          borderRadius: BorderRadius.circular(8), color: kBackgroundCardColor),
 
       child: Column(
-        crossAxisAlignment: isMe
-            ? CrossAxisAlignment.start
-            : CrossAxisAlignment.end,
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.start : CrossAxisAlignment.end,
         children: [
           Text(name,
               maxLines: 1,
@@ -54,23 +47,29 @@ class Message extends StatelessWidget {
               softWrap: true,
               style: const TextStyle(
                   color: kSafeAreasColor, fontSize: 14, fontFamily: 'DinBold')),
-         isMe ?  Align(
-           alignment: AlignmentDirectional.bottomEnd,
-           child: Text(data,
-               maxLines: 1,
-               overflow: TextOverflow.visible,
-               softWrap: true,
-               style: const TextStyle(
-                   color: kAccentColor, fontSize: 14, fontFamily: 'DinBold')),
-         ) :  Align(
-           alignment: AlignmentDirectional.bottomStart,
-           child: Text(data,
-               maxLines: 1,
-               overflow: TextOverflow.visible,
-               softWrap: true,
-               style: const TextStyle(
-                   color: kAccentColor, fontSize: 14, fontFamily: 'DinBold')),
-         ),
+          isMe
+              ? Align(
+                  alignment: AlignmentDirectional.bottomEnd,
+                  child: Text(data,
+                      maxLines: 1,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
+                      style: const TextStyle(
+                          color: kAccentColor,
+                          fontSize: 14,
+                          fontFamily: 'DinBold')),
+                )
+              : Align(
+                  alignment: AlignmentDirectional.bottomStart,
+                  child: Text(data,
+                      maxLines: 1,
+                      overflow: TextOverflow.visible,
+                      softWrap: true,
+                      style: const TextStyle(
+                          color: kAccentColor,
+                          fontSize: 14,
+                          fontFamily: 'DinBold')),
+                ),
         ],
       ),
     );

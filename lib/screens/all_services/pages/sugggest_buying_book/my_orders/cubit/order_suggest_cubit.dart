@@ -48,23 +48,22 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
 
   Future<void> addToArchive(OrderModel order) async {
     await archiveCubit.addedToArchive(
-      id: order.id!,
-      typeBookId: order.bookTypeId!,
-      visitorName: order.visitorName.toString(),
-      visitorEmail: order.visitorEmail.toString(),
-      visitorMobile: order.visitorMobile.toString(),
-      qualifications: order.qualifications.toString(),
-      bookTitle: order.suggestedBookTitle.toString(),
-      authorName: order.authorName.toString(),
-      publisherName: order.publisherName.toString(),
-      placeOfPublication: order.placeOfPublication.toString(),
-      yearOfPublication: order.yearOfPublication.toString(),
-      standardBookNumber: order.standardBookNumber.toString(),
-      additionalInformation: order.additionalInformation.toString(),
-      createdDate:  order.createdDate.toString()
-    );
+        id: order.id!,
+        typeBookId: order.bookTypeId!,
+        visitorName: order.visitorName.toString(),
+        visitorEmail: order.visitorEmail.toString(),
+        visitorMobile: order.visitorMobile.toString(),
+        qualifications: order.qualifications.toString(),
+        bookTitle: order.suggestedBookTitle.toString(),
+        authorName: order.authorName.toString(),
+        publisherName: order.publisherName.toString(),
+        placeOfPublication: order.placeOfPublication.toString(),
+        yearOfPublication: order.yearOfPublication.toString(),
+        standardBookNumber: order.standardBookNumber.toString(),
+        additionalInformation: order.additionalInformation.toString(),
+        createdDate: order.createdDate.toString());
     await getOrderSuggest();
-    Alert.success(  "تم إضافة الطلب إلي الأرشيف");
+    Alert.success("تم إضافة الطلب إلي الأرشيف");
     Get.to(() => const ArchiveSuggestBuyBookScreen());
   }
 
@@ -86,7 +85,7 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
       createdDate: order.createdDate.toString(),
     );
     await getOrderSuggest();
-    Alert.success(  "تم إزلة الطلب من الأرشيف");
+    Alert.success("تم إزلة الطلب من الأرشيف");
     Get.to(() => const MyOrdersSuggestBuyBookScreen());
   }
 }

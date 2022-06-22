@@ -7,14 +7,13 @@ class AppLanguage extends GetxController {
 
   @override
   void onInit() async {
-    // TODO: implement onInit
-    super.onInit();
     LocalStorage localStorage = LocalStorage();
 
     // ignore: unnecessary_null_comparison
-    appLocale = await localStorage.languageSelected ?? 'ar';
+    appLocale = await localStorage.languageSelected;
     update();
     Get.updateLocale(Locale(appLocale));
+    super.onInit();
   }
 
   void changeLanguage(String type) async {

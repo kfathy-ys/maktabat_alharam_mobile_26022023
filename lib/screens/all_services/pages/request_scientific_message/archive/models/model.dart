@@ -22,9 +22,10 @@ class ArchivedThesisModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null)
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
       data["data"] = this.data?.map((e) => e.toJson()).toList();
+    }
     if (messages != null) data["messages"] = messages;
     data["status"] = status;
     data["dataLength"] = dataLength;
@@ -32,7 +33,6 @@ class ArchivedThesisModel extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [data, dataLength, status, messages];
 }
 
@@ -55,60 +55,61 @@ class MyArchivedThesis extends Equatable {
   bool? isAvailableWithChains;
   int? availabilityType;
   String? thesisFile;
-  dynamic? thesisTitleFile;
-  dynamic? subjectsIndexFile;
-  dynamic? arabicExtractFile;
-  dynamic? englishExtractFile;
-  dynamic? introFile;
-  dynamic? collectionFile;
-  dynamic? quarterCollectionFile;
-  dynamic? callNum;
+  dynamic thesisTitleFile;
+  dynamic subjectsIndexFile;
+  dynamic arabicExtractFile;
+  dynamic englishExtractFile;
+  dynamic introFile;
+  dynamic collectionFile;
+  dynamic quarterCollectionFile;
+  dynamic callNum;
   int? requestStatusId;
   bool? isArchived;
-  dynamic? reasonOfRejection;
-  dynamic? instructions;
+  dynamic reasonOfRejection;
+  dynamic instructions;
   String? createdBy;
   String? createdDate;
   String? updatedBy;
   String? updatedDate;
-  dynamic? thesisDepositionRequestReply;
+  dynamic thesisDepositionRequestReply;
 
-  MyArchivedThesis(
-      {this.id,
-      this.userId,
-      this.applicantName,
-      this.universityId,
-      this.faculty,
-      this.department,
-      this.mobile,
-      this.email,
-      this.thesisData,
-      this.thesisTitle,
-      this.scientificDegree,
-      this.yearOfDiscussion,
-      this.numberOfPages,
-      this.numberOfParts,
-      this.isAvailable,
-      this.isAvailableWithChains,
-      this.availabilityType,
-      this.thesisFile,
-      this.thesisTitleFile,
-      this.subjectsIndexFile,
-      this.arabicExtractFile,
-      this.englishExtractFile,
-      this.introFile,
-      this.collectionFile,
-      this.quarterCollectionFile,
-      this.callNum,
-      this.requestStatusId,
-      this.isArchived,
-      this.reasonOfRejection,
-      this.instructions,
-      this.createdBy,
-      this.createdDate,
-      this.updatedBy,
-      this.updatedDate,
-      this.thesisDepositionRequestReply});
+  MyArchivedThesis({
+    this.id,
+    this.userId,
+    this.applicantName,
+    this.universityId,
+    this.faculty,
+    this.department,
+    this.mobile,
+    this.email,
+    this.thesisData,
+    this.thesisTitle,
+    this.scientificDegree,
+    this.yearOfDiscussion,
+    this.numberOfPages,
+    this.numberOfParts,
+    this.isAvailable,
+    this.isAvailableWithChains,
+    this.availabilityType,
+    this.thesisFile,
+    this.thesisTitleFile,
+    this.subjectsIndexFile,
+    this.arabicExtractFile,
+    this.englishExtractFile,
+    this.introFile,
+    this.collectionFile,
+    this.quarterCollectionFile,
+    this.callNum,
+    this.requestStatusId,
+    this.isArchived,
+    this.reasonOfRejection,
+    this.instructions,
+    this.createdBy,
+    this.createdDate,
+    this.updatedBy,
+    this.updatedDate,
+    this.thesisDepositionRequestReply,
+  });
 
   MyArchivedThesis.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -149,7 +150,7 @@ class MyArchivedThesis extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["userId"] = userId;
     data["applicantName"] = applicantName;
@@ -189,7 +190,6 @@ class MyArchivedThesis extends Equatable {
   }
 
   @override
-
   List<Object?> get props {
     return [
       id,

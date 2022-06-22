@@ -47,6 +47,4 @@ class ApiRoutesConfig {
      (EndPoints.kAds + "?search=$txt&per_page=100&page=1")
   */
   static const kAds = kBaseUrl + '/posts?per_page=20';
-
-
 }

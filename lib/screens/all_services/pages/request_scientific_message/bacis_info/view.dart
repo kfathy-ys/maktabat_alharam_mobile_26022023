@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/drop_down_university_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/title.dart';
@@ -26,7 +25,6 @@ class BasicInfoScreen extends StatefulWidget {
 }
 
 class _BasicInfoScreenState extends State<BasicInfoScreen> {
-
   final formKey = GlobalKey<FormState>();
 
   final _nameController = TextEditingController();
@@ -64,7 +62,10 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
               physics: const BouncingScrollPhysics(),
               //  shrinkWrap: true,
               children: [
-                HeadTitle(title: "DepositScientificThesis".tr,subTitle: "basicInfoArrow".tr,),
+                HeadTitle(
+                  title: "DepositScientificThesis".tr,
+                  subTitle: "basicInfoArrow".tr,
+                ),
                 SizedBox(
                   height: height * 0.04,
                 ),
@@ -212,6 +213,4 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
       ],
     );
   }
-
-
 }

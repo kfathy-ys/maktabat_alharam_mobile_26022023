@@ -1,10 +1,6 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/archive/page/views/title.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/archive/cubit/archived_order_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/archive/cubit/archived_order_cubit.dart';
 
 import 'package:maktabat_alharam/screens/drawer/view.dart';
@@ -64,67 +60,118 @@ class ArchiveReserveArticleScreen extends StatelessWidget {
                           child: RefreshIndicator(
                             onRefresh: () async {
                               cubitResearchArchive.getOrderArchiveResearch();
-                              return Future<void>.delayed(const Duration(seconds: 3));
+                              return Future<void>.delayed(
+                                  const Duration(seconds: 3));
                             },
                             backgroundColor: kAccentColor,
                             color: Colors.white,
-                            child:    state.archivedResearchModel.data!.isEmpty ?
-                            Center(child: customBoldText(title: "لا توجد طلبات مؤرشفة الاّن")):
-                            ListView.builder(
-                              physics: const BouncingScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: state.archivedResearchModel.dataLength,
-                              itemBuilder: (context, int index) {
-                                return CustomContainer(
-                                  height: height * 0.33,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      CardData(
-                                          title: "nameRequest".tr,
-                                          subTitle: (state.archivedResearchModel.data![index].libraryId == 1 ) ? "researchRetreat".tr:
-                                          (state.archivedResearchModel.data![index].libraryId == 2 ) ?"scientificMaterial".tr:
-                                           (state.archivedResearchModel.data![index].libraryId == 3 ) ?"mix".tr:"--".tr,
-                                          color1: kSmallIconColor,
-                                          color2: kBlackText),
-                                      CardData(
-                                          title: "nameResponsible".tr,
-                                          subTitle: state.archivedResearchModel.data![index].responsibleName.toString(),
-                                          color1: kSmallIconColor,
-                                          color2: kBlackText),
-                                      CardData(
-                                          title: "requestDate".tr,
-                                          subTitle: DateConverter.dateConverterMonth("${state.archivedResearchModel.data![index].createdDate}"),
+                            child: state.archivedResearchModel.data!.isEmpty
+                                ? Center(
+                                    child: customBoldText(
+                                        title: "لا توجد طلبات مؤرشفة الاّن"))
+                                : ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount:
+                                        state.archivedResearchModel.dataLength,
+                                    itemBuilder: (context, int index) {
+                                      return CustomContainer(
+                                        height: height * 0.33,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            CardData(
+                                                title: "nameRequest".tr,
+                                                subTitle: (state
+                                                            .archivedResearchModel
+                                                            .data![index]
+                                                            .libraryId ==
+                                                        1)
+                                                    ? "researchRetreat".tr
+                                                    : (state
+                                                                .archivedResearchModel
+                                                                .data![index]
+                                                                .libraryId ==
+                                                            2)
+                                                        ? "scientificMaterial"
+                                                            .tr
+                                                        : (state
+                                                                    .archivedResearchModel
+                                                                    .data![
+                                                                        index]
+                                                                    .libraryId ==
+                                                                3)
+                                                            ? "mix".tr
+                                                            : "--".tr,
+                                                color1: kSmallIconColor,
+                                                color2: kBlackText),
+                                            CardData(
+                                                title: "nameResponsible".tr,
+                                                subTitle: state
+                                                    .archivedResearchModel
+                                                    .data![index]
+                                                    .responsibleName
+                                                    .toString(),
+                                                color1: kSmallIconColor,
+                                                color2: kBlackText),
+                                            CardData(
+                                                title: "requestDate".tr,
+                                                subTitle: DateConverter
+                                                    .dateConverterMonth(
+                                                        "${state.archivedResearchModel.data![index].createdDate}"),
 
-                                          //  subTitle:state.archivedResearchModel.data![index].createdDate.toString(),
-                                          color1: kSmallIconColor,
-                                          color2: kSkyButton),
-                                      CardData(
-                                          title: "requestState".tr,
-                                          subTitle:
-                                          ((state.archivedResearchModel.data![index].requestStatusId)==4)? "pending".tr:
-                                          ((state.archivedResearchModel.data![index].requestStatusId)==5)? "unRespond".tr:
-                                          ((state.archivedResearchModel.data![index].requestStatusId)==6)? "rejected".tr:"--",
-                                          color1: kSmallIconColor,
-                                          color2: kBlackText),
-                                      CardData(
-                                        title: "orderProcedure".tr,
-                                        subTitle: "",
-                                        color1: kBlackText,
-                                        //  color2: kBlackText
-                                      ),
-                                      CustomCardButton(
-                                        color: kAccentColor,
-                                        title: "removeFromArchive".tr,
-                                        onPressed: ()=> cubit.removeFromArchiveResearch(state.archivedResearchModel.data![index]),
-                                        image: "assets/image/archieve.png",
-                                      ),
-                                    ],
+                                                //  subTitle:state.archivedResearchModel.data![index].createdDate.toString(),
+                                                color1: kSmallIconColor,
+                                                color2: kSkyButton),
+                                            CardData(
+                                                title: "requestState".tr,
+                                                subTitle: ((state
+                                                            .archivedResearchModel
+                                                            .data![index]
+                                                            .requestStatusId) ==
+                                                        4)
+                                                    ? "pending".tr
+                                                    : ((state
+                                                                .archivedResearchModel
+                                                                .data![index]
+                                                                .requestStatusId) ==
+                                                            5)
+                                                        ? "unRespond".tr
+                                                        : ((state
+                                                                    .archivedResearchModel
+                                                                    .data![
+                                                                        index]
+                                                                    .requestStatusId) ==
+                                                                6)
+                                                            ? "rejected".tr
+                                                            : "--",
+                                                color1: kSmallIconColor,
+                                                color2: kBlackText),
+                                            CardData(
+                                              title: "orderProcedure".tr,
+                                              subTitle: "",
+                                              color1: kBlackText,
+                                              //  color2: kBlackText
+                                            ),
+                                            CustomCardButton(
+                                              color: kAccentColor,
+                                              title: "removeFromArchive".tr,
+                                              onPressed: () => cubit
+                                                  .removeFromArchiveResearch(
+                                                      state
+                                                          .archivedResearchModel
+                                                          .data![index]),
+                                              image:
+                                                  "assets/image/archieve.png",
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                   ),
-                                );
-                              },
-                            ),
                           ),
                         );
                       }

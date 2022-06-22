@@ -11,21 +11,22 @@ class AllGradeModel extends Equatable {
   AllGradeModel({this.data, this.messages, this.status, this.dataLength});
 
   AllGradeModel.fromJson(Map<String, dynamic> json) {
-    this.data = json["data"] == null
+    data = json["data"] == null
         ? null
         : (json["data"] as List).map((e) => AllGrade.fromJson(e)).toList();
-    this.messages = json["messages"] ?? [];
-    this.status = json["status"];
-    this.dataLength = json["dataLength"];
+    messages = json["messages"] ?? [];
+    status = json["status"];
+    dataLength = json["dataLength"];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null)
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
       data["data"] = this.data?.map((e) => e.toJson()).toList();
-    if (this.messages != null) data["messages"] = this.messages;
-    data["status"] = this.status;
-    data["dataLength"] = this.dataLength;
+    }
+    if (messages != null) data["messages"] = messages;
+    data["status"] = status;
+    data["dataLength"] = dataLength;
     return data;
   }
 
@@ -35,7 +36,7 @@ class AllGradeModel extends Equatable {
 
 class AllGrade extends Equatable {
   int? id;
-  dynamic? key;
+  dynamic key;
   String? value;
   String? valueArabic;
   String? domain;
@@ -43,20 +44,20 @@ class AllGrade extends Equatable {
   AllGrade({this.id, this.key, this.value, this.valueArabic, this.domain});
 
   AllGrade.fromJson(Map<String, dynamic> json) {
-    this.id = json["id"];
-    this.key = json["key"];
-    this.value = json["value"];
-    this.valueArabic = json["valueArabic"];
-    this.domain = json["domain"];
+    id = json["id"];
+    key = json["key"];
+    value = json["value"];
+    valueArabic = json["valueArabic"];
+    domain = json["domain"];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data["id"] = this.id;
-    data["key"] = this.key;
-    data["value"] = this.value;
-    data["valueArabic"] = this.valueArabic;
-    data["domain"] = this.domain;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] = id;
+    data["key"] = key;
+    data["value"] = value;
+    data["valueArabic"] = valueArabic;
+    data["domain"] = domain;
     return data;
   }
 

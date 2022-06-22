@@ -49,8 +49,8 @@ class AvailablePeriods extends Equatable {
   String? periodOfTheDayToAr;
   String? createdBy;
   String? createdDate;
-  dynamic? updatedBy;
-  dynamic? updatedDate;
+  dynamic updatedBy;
+  dynamic updatedDate;
 
   AvailablePeriods(
       {this.id,

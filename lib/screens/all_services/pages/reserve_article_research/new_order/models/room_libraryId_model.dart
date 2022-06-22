@@ -22,9 +22,10 @@ class RoomLibraryIdModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null)
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
       data["data"] = this.data?.map((e) => e.toJson()).toList();
+    }
     if (messages != null) data["messages"] = messages;
     data["status"] = status;
     data["dataLength"] = dataLength;
@@ -42,8 +43,8 @@ class MyRoomLibraryId extends Equatable {
   String? nameEn;
   String? createdBy;
   String? createdDate;
-  dynamic? updatedBy;
-  dynamic? updatedDate;
+  dynamic updatedBy;
+  dynamic updatedDate;
 
   MyRoomLibraryId(
       {this.id,
@@ -67,7 +68,7 @@ class MyRoomLibraryId extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["libraryId"] = libraryId;
     data["nameAr"] = nameAr;

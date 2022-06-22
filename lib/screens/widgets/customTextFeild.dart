@@ -56,10 +56,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 6),
-         // height: MediaQuery.of(context).size.height / 12,
-          width: MediaQuery.of(context).size.width / 1.2,
+        // height: MediaQuery.of(context).size.height / 12,
+        width: MediaQuery.of(context).size.width / 1.2,
         child: TextFormField(
-
           onTap: widget.onTap,
           validator: widget.validator,
           controller: widget.controller,
@@ -70,9 +69,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           obscureText: widget.icon == Icons.lock_outline ? _isHidden : false,
           keyboardType: widget.type,
           onChanged: (widget.onsave),
-          style: const TextStyle(
-
-              fontSize: 14, color: kPrimaryColor),
+          style: const TextStyle(fontSize: 14, color: kPrimaryColor),
           decoration: InputDecoration(
             hintText: widget.hint,
             prefixIcon: Icon(
@@ -80,9 +77,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
               color: kPrimaryColor,
             ),
             //labelText: widget.label == true ? "+966" : null,
-            labelText: widget.label ,
-            contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-            icon: widget.isEdit == true ? const Icon(Icons.edit,) : null,
+            labelText: widget.label,
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+            icon: widget.isEdit == true
+                ? const Icon(
+                    Icons.edit,
+                  )
+                : null,
             labelStyle: const TextStyle(
               fontSize: 16,
               color: kPrimaryColor,

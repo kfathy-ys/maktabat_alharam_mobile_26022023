@@ -11,21 +11,28 @@ part 'follow_state.dart';
 
 class FollowCubit extends Cubit<FollowState> {
   final AskMyOrder askMyOrder;
-  FollowCubit({required this.askMyOrder}) : super(FollowInitial()){
-
+  FollowCubit({required this.askMyOrder}) : super(FollowInitial()) {
     getAskFollow(id: askMyOrder.id!);
-    if(askMyOrder.visitorName != null )userController.text = askMyOrder.visitorName!;
-    if(askMyOrder.visitorEmail != null )emailController.text = askMyOrder.visitorEmail!;
-    if(askMyOrder.visitorMobile != null )phoneController.text = askMyOrder.visitorMobile!;
-    if(askMyOrder.visitorMessage != null )questionController.text = askMyOrder.visitorMessage!;
-    if(askMyOrder.response != null )responseController.text = askMyOrder.response!;
+    if (askMyOrder.visitorName != null) {
+      userController.text = askMyOrder.visitorName!;
+    }
+    if (askMyOrder.visitorEmail != null) {
+      emailController.text = askMyOrder.visitorEmail!;
+    }
+    if (askMyOrder.visitorMobile != null) {
+      phoneController.text = askMyOrder.visitorMobile!;
+    }
+    if (askMyOrder.visitorMessage != null) {
+      questionController.text = askMyOrder.visitorMessage!;
+    }
+    if (askMyOrder.response != null) {
+      responseController.text = askMyOrder.response!;
+    }
 
-    if(askMyOrder.type != null ) initial = askMyOrder.type!;
+    if (askMyOrder.type != null) initial = askMyOrder.type!;
 
     askTypeChanged(initial);
   }
-
-
 
   final formKey = GlobalKey<FormState>();
   final userController = TextEditingController();
@@ -37,10 +44,9 @@ class FollowCubit extends Cubit<FollowState> {
   int initial = 0;
 
   int? typeAskId;
-  int askTypeChanged(int value)=> typeAskId= value;
+  int askTypeChanged(int value) => typeAskId = value;
 
   var userId = Prefs.getString("userId");
-
 
   Future<void> getAskFollow({required int id}) async {
     emit(FollowLoading());
@@ -54,7 +60,8 @@ class FollowCubit extends Cubit<FollowState> {
         throw res.data['message'];
       }
 
-      emit(FollowSuccess(allAskFollowModel:  AllAskFollowModel.fromJson(res.data)));
+      emit(FollowSuccess(
+          allAskFollowModel: AllAskFollowModel.fromJson(res.data)));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());

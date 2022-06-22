@@ -1,8 +1,7 @@
-
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
-class LoginModel extends Equatable{
+class LoginModel extends Equatable {
   Data? data;
   List<dynamic>? messages;
   int? status;
@@ -19,10 +18,10 @@ class LoginModel extends Equatable{
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if(this.data != null) {
+    if (this.data != null) {
       data["data"] = this.data?.toJson();
     }
-    if(messages != null) {
+    if (messages != null) {
       data["messages"] = messages;
     }
     data["status"] = status;
@@ -31,12 +30,11 @@ class LoginModel extends Equatable{
   }
 
   @override
-
-  List<Object?> get props => [data,messages,dataLength];
+  List<Object?> get props => [data, messages, dataLength];
 }
 
 // ignore: must_be_immutable
-class Data extends Equatable{
+class Data extends Equatable {
   String? userId;
   String? userName;
   String? firstName;
@@ -49,7 +47,18 @@ class Data extends Equatable{
   String? defaultRoleCode;
   List<String>? roleCode;
 
-  Data({this.userId, this.userName, this.firstName, this.lastName, this.fullName, this.nameArabic, this.email, this.phoneNumber, this.token, this.defaultRoleCode, this.roleCode});
+  Data(
+      {this.userId,
+      this.userName,
+      this.firstName,
+      this.lastName,
+      this.fullName,
+      this.nameArabic,
+      this.email,
+      this.phoneNumber,
+      this.token,
+      this.defaultRoleCode,
+      this.roleCode});
 
   Data.fromJson(Map<String, dynamic> json) {
     userId = json["userId"];
@@ -62,7 +71,8 @@ class Data extends Equatable{
     phoneNumber = json["phoneNumber"];
     token = json["token"];
     defaultRoleCode = json["defaultRoleCode"];
-    roleCode = json["roleCode"]==null ? null : List<String>.from(json["roleCode"]);
+    roleCode =
+        json["roleCode"] == null ? null : List<String>.from(json["roleCode"]);
   }
 
   Map<String, dynamic> toJson() {
@@ -77,13 +87,23 @@ class Data extends Equatable{
     data["phoneNumber"] = phoneNumber;
     data["token"] = token;
     data["defaultRoleCode"] = defaultRoleCode;
-    if(roleCode != null) {
+    if (roleCode != null) {
       data["roleCode"] = roleCode;
     }
     return data;
   }
 
   @override
-
-  List<Object?> get props => [userId,userName,firstName,lastName,fullName,nameArabic,email,phoneNumber,defaultRoleCode,roleCode];
+  List<Object?> get props => [
+        userId,
+        userName,
+        firstName,
+        lastName,
+        fullName,
+        nameArabic,
+        email,
+        phoneNumber,
+        defaultRoleCode,
+        roleCode
+      ];
 }

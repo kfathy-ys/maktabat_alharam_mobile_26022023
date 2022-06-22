@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/my_orders/page/custom_container.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/follow_reserved_retreated/cubit/follow_research_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/follow_reserved_retreated/cubit_replies/replies_research_cubit.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
@@ -137,8 +125,10 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                                                       .requestTypeId) ==
                                                   12)
                                               ? "scientificMaterial".tr
-                                              : ((state.followResearchModel
-                                                          .data!.requestTypeId) ==
+                                              : ((state
+                                                          .followResearchModel
+                                                          .data!
+                                                          .requestTypeId) ==
                                                       13)
                                                   ? "mix".tr
                                                   : "--",
@@ -157,7 +147,8 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                                               : ((state.followResearchModel
                                                           .data!.libraryId) ==
                                                       3)
-                                                  ? "theHolyHaramLibraryWoman".tr
+                                                  ? "theHolyHaramLibraryWoman"
+                                                      .tr
                                                   : "--",
                                       color1: kSmallIconColor,
                                       color2: kBlackText),
@@ -171,18 +162,20 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                                   CardData(
                                       title: "qualification".tr,
                                       subTitle: ((state.followResearchModel
-                                          .data!.responsibleGradeId) ==
-                                          14)
+                                                  .data!.responsibleGradeId) ==
+                                              14)
                                           ? "phDStudent".tr
                                           : ((state.followResearchModel.data!
-                                          .responsibleGradeId) ==
-                                          15)
-                                          ? "masterStudent".tr
-                                          : ((state.followResearchModel
-                                          .data!.responsibleGradeId) ==
-                                          16)
-                                          ? "phDStudentPresidency".tr
-                                          : "--",
+                                                      .responsibleGradeId) ==
+                                                  15)
+                                              ? "masterStudent".tr
+                                              : ((state
+                                                          .followResearchModel
+                                                          .data!
+                                                          .responsibleGradeId) ==
+                                                      16)
+                                                  ? "phDStudentPresidency".tr
+                                                  : "--",
                                       color1: kSmallIconColor,
                                       color2: kBlackText),
                                   CardData(

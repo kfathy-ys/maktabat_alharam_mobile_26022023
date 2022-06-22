@@ -16,15 +16,16 @@ class SmallButtonSizerUploadFile extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final loadingColor;
   // ignore: use_key_in_widget_constructors
-  const SmallButtonSizerUploadFile(
-      {required this.onPressed,
-        required this.title,
-        this.color,
-        this.isLoading = false,
-        this.loadingColor = false, this.image,});
+  const SmallButtonSizerUploadFile({
+    required this.onPressed,
+    required this.title,
+    this.color,
+    this.isLoading = false,
+    this.loadingColor = false,
+    this.image,
+  });
   @override
   Widget build(BuildContext context) {
-
     return InkWell(
       onTap: onPressed,
       child: Container(
@@ -32,32 +33,30 @@ class SmallButtonSizerUploadFile extends StatelessWidget {
         height: MediaQuery.of(context).size.height / 18,
         width: MediaQuery.of(context).size.width / 2.80,
         decoration: BoxDecoration(
-            color: color == kSmallIconColor ? kSmallIconColor : kAccentColor,
-            borderRadius: BorderRadius.circular(8),
-            //border: Border.all(color: kPrimaryColor, width: 1.5)
+          color: color == kSmallIconColor ? kSmallIconColor : kAccentColor,
+          borderRadius: BorderRadius.circular(8),
+          //border: Border.all(color: kPrimaryColor, width: 1.5)
         ),
         child: Center(
           child: isLoading != true
               ? Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset(image!),
-              // SizedBox(width: width*0.02,),
-              Text(
-                  title!,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'DinReguler',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16
-                  )),
-            ],
-          )
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Image.asset(image!),
+                    // SizedBox(width: width*0.02,),
+                    Text(title!,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'DinReguler',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16)),
+                  ],
+                )
               : SpinKitChasingDots(
-            size: 20,
-            color: loadingColor ?? Colors.white,
-          ),
+                  size: 20,
+                  color: loadingColor ?? Colors.white,
+                ),
         ),
       ),
     );

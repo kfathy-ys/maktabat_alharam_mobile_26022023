@@ -37,15 +37,14 @@ class AskArchiveCubit extends Cubit<AskArchiveState> {
     }
   }
 
-  Future<void> addedAskToArchive({
-    required int id,
-    required String visitorName,
-    required String visitorEmail,
-    required String visitorMobile,
-    required String visitorMessage,
-    required int type,
-    required String createdDate
-  }) async {
+  Future<void> addedAskToArchive(
+      {required int id,
+      required String visitorName,
+      required String visitorEmail,
+      required String visitorMobile,
+      required String visitorMessage,
+      required int type,
+      required String createdDate}) async {
     try {
       var now = DateTime.now();
       final body = {
@@ -58,7 +57,7 @@ class AskArchiveCubit extends Cubit<AskArchiveState> {
         "response": "",
         "isArchived": true,
         "createdBy": userId,
-        "createdDate":  createdDate,
+        "createdDate": createdDate,
         "updatedBy": userId,
         "updatedDate": DateFormat('yyyy-MM-dd').format(now)
       };
@@ -76,15 +75,14 @@ class AskArchiveCubit extends Cubit<AskArchiveState> {
     }
   }
 
-  Future<void> removeAskFromArchive({
-    required int id,
-    required String visitorName,
-    required String visitorEmail,
-    required String visitorMobile,
-    required String visitorMessage,
-    required int type,
-    required String createdDate
-  }) async {
+  Future<void> removeAskFromArchive(
+      {required int id,
+      required String visitorName,
+      required String visitorEmail,
+      required String visitorMobile,
+      required String visitorMessage,
+      required int type,
+      required String createdDate}) async {
     try {
       var now = DateTime.now();
       final body = {

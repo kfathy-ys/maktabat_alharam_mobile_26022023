@@ -10,7 +10,7 @@ import '../models/model.dart';
 part 'notifications_state.dart';
 
 class NotificationsCubit extends Cubit<NotificationsState> {
-  NotificationsCubit() : super(NotificationsInitial()){
+  NotificationsCubit() : super(NotificationsInitial()) {
     getNotifications();
   }
 
@@ -18,8 +18,7 @@ class NotificationsCubit extends Cubit<NotificationsState> {
     emit(NotificationsLoading());
     try {
       final userId = Prefs.getString("userId");
-      final res =
-      await NetWork.get('Notification/$userId');
+      final res = await NetWork.get('Notification/$userId');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -27,8 +26,8 @@ class NotificationsCubit extends Cubit<NotificationsState> {
         throw res.data['message'];
       }
 
-      emit(NotificationsSuccess(allNotifications:
-      AllNotifications.fromJson(res.data)));
+      emit(NotificationsSuccess(
+          allNotifications: AllNotifications.fromJson(res.data)));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());

@@ -1,8 +1,5 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
-
 
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 
@@ -22,22 +19,15 @@ import 'package:queen/validation/validator.dart';
 
 import '../view.dart';
 
-
-
-
-
 // ignore: must_be_immutable
 class UpdateMessageScreen extends StatefulWidget {
   const UpdateMessageScreen({Key? key}) : super(key: key);
 
   @override
-  State<UpdateMessageScreen> createState() =>
-      _UpdateMessageScreenState();
+  State<UpdateMessageScreen> createState() => _UpdateMessageScreenState();
 }
 
-class _UpdateMessageScreenState
-    extends State<UpdateMessageScreen> {
-
+class _UpdateMessageScreenState extends State<UpdateMessageScreen> {
   final formKey = GlobalKey<FormState>();
 
   final _firstController = TextEditingController();
@@ -55,7 +45,6 @@ class _UpdateMessageScreenState
   final _sevenController = TextEditingController();
 
   bool value = false;
-
 
   @override
   Widget build(BuildContext context) {
@@ -77,44 +66,78 @@ class _UpdateMessageScreenState
 
             width: width,
             child: ListView(
-              padding: const EdgeInsets.symmetric(vertical: 14,horizontal: 22),
-
+              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               children: [
-
                 Row(
                   children: [
-                    HeadTopics(title: "DepositScientificThesis".tr,),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(bottom: 8,start: 4,end: 4),
-                      child: Text(
-                          "filesMessageArrow".tr,
-                          style: const TextStyle(
-                              color: kPrimaryColor, fontSize: 15, fontFamily: 'DinBold'
-                          )
-                      ),
+                    HeadTopics(
+                      title: "DepositScientificThesis".tr,
                     ),
-
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                          bottom: 8, start: 4, end: 4),
+                      child: Text("filesMessageArrow".tr,
+                          style: const TextStyle(
+                              color: kPrimaryColor,
+                              fontSize: 15,
+                              fontFamily: 'DinBold')),
+                    ),
                   ],
                 ),
-                SizedBox(height: height*0.04,),
-                buildContainer(height: height*0.18,title: "fullMessage".tr, controller: _firstController,  onPressed2: (){}),
-                buildContainer(height: height*0.18,title: "messagesAddress".tr, controller: _secoandController,  onPressed2: (){}),
-                buildContainer(height: height*0.18,title: "topicIndex".tr, controller: _threeController,  onPressed2: (){}),
-                buildContainer(height: height*0.18,title: "arabicExtract".tr, controller: _forthController,  onPressed2: (){}),
-                buildContainer(height: height*0.18,title: "englishExtract".tr, controller: _fiveController,  onPressed2: (){}),
-                buildContainer(height: height*0.18,title: "introduction".tr, controller: _sixController,  onPressed2: (){}),
-                buildContainer(height: height*0.18,title: "fullMessage".tr, controller: _sevenController,  onPressed2: (){}),
-                buildContainer(height: height*0.18,title: "contentPlus".tr, controller: _sevenController,  onPressed2: (){}),
-
-                SizedBox(height: height*0.04,),
+                SizedBox(
+                  height: height * 0.04,
+                ),
+                buildContainer(
+                    height: height * 0.18,
+                    title: "fullMessage".tr,
+                    controller: _firstController,
+                    onPressed2: () {}),
+                buildContainer(
+                    height: height * 0.18,
+                    title: "messagesAddress".tr,
+                    controller: _secoandController,
+                    onPressed2: () {}),
+                buildContainer(
+                    height: height * 0.18,
+                    title: "topicIndex".tr,
+                    controller: _threeController,
+                    onPressed2: () {}),
+                buildContainer(
+                    height: height * 0.18,
+                    title: "arabicExtract".tr,
+                    controller: _forthController,
+                    onPressed2: () {}),
+                buildContainer(
+                    height: height * 0.18,
+                    title: "englishExtract".tr,
+                    controller: _fiveController,
+                    onPressed2: () {}),
+                buildContainer(
+                    height: height * 0.18,
+                    title: "introduction".tr,
+                    controller: _sixController,
+                    onPressed2: () {}),
+                buildContainer(
+                    height: height * 0.18,
+                    title: "fullMessage".tr,
+                    controller: _sevenController,
+                    onPressed2: () {}),
+                buildContainer(
+                    height: height * 0.18,
+                    title: "contentPlus".tr,
+                    controller: _sevenController,
+                    onPressed2: () {}),
+                SizedBox(
+                  height: height * 0.04,
+                ),
                 HeadTopics(
                   title: "orderEvents".tr,
                 ),
                 Container(
                   margin:
-                  const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
+                      const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
                   height: height * 0.2,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
@@ -149,7 +172,7 @@ class _UpdateMessageScreenState
                 ),
                 Container(
                   margin:
-                  const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
+                      const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
                   height: height * 0.1,
                   decoration: BoxDecoration(
                     color: kBackgroundCardColor,
@@ -174,7 +197,7 @@ class _UpdateMessageScreenState
                 ),
                 Container(
                   margin:
-                  const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
+                      const EdgeInsetsDirectional.only(bottom: 20.0, top: 20.0),
                   height: height * 0.1,
                   decoration: BoxDecoration(
                     color: kBackgroundCardColor,
@@ -205,56 +228,49 @@ class _UpdateMessageScreenState
                   height: height * 0.05,
                 ),
                 Row(
-                  mainAxisAlignment:MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     SmallestButton(
-                      onPressed: (){
-                       // PutScientificMessage();
-                       // Get.to(()=>const RequestVisitScreen())
-                      } ,
+                      onPressed: () {
+                        // PutScientificMessage();
+                        // Get.to(()=>const RequestVisitScreen())
+                      },
                       title: "add".tr,
                       color: kPrimaryColor,
                       image: "assets/image/newrequest.png",
                     ),
                     SmallestButton(
-                      onPressed: (){
+                      onPressed: () {
                         // PutScientificMessage();
-                    Get.to(()=>const PutScientificMessage());
-                      } ,
+                        Get.to(() => const PutScientificMessage());
+                      },
                       title: "more".tr,
                       color: kPrimaryColor,
                       image: "assets/image/newrequest.png",
                     ),
                   ],
                 ),
-
-
               ],
             ),
           ),
         ),
       ),
     );
-
-
-
   }
 
-  Container buildContainer({required double height , required String title ,
-    required TextEditingController  controller ,
-
+  Container buildContainer({
+    required double height,
+    required String title,
+    required TextEditingController controller,
     required VoidCallback onPressed2,
-
-
   }) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 8 , vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       height: height,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: kCardBorder)
-      ),
+          border: Border.all(color: kCardBorder)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -263,13 +279,15 @@ class _UpdateMessageScreenState
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width /4.00,
-                child: Text(title,style:const TextStyle(
-                  fontSize: 14,
-
-                  color: kPrimaryColor,
-                  fontFamily: "DinBold",
-                ),),
+                width: MediaQuery.of(context).size.width / 4.00,
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: kPrimaryColor,
+                    fontFamily: "DinBold",
+                  ),
+                ),
               ),
               CustomTextFieldUploadFile(
                 controller: controller,
@@ -293,16 +311,16 @@ class _UpdateMessageScreenState
     );
   }
 
-  ListTile buildListTile({required Color color ,  required String title , required String image}) {
+  ListTile buildListTile(
+      {required Color color, required String title, required String image}) {
     return ListTile(
       horizontalTitleGap: 1,
       //"fillOut".tr
-      title: Text(title, style:  TextStyle(
-          color: color, fontSize: 14, fontFamily: 'DinReguler'
-      )),
+      title: Text(title,
+          style:
+              TextStyle(color: color, fontSize: 14, fontFamily: 'DinReguler')),
       //"assets/image/dot.png"
-      leading:Image.asset(image),
-
+      leading: Image.asset(image),
     );
   }
 
@@ -333,7 +351,7 @@ class _UpdateMessageScreenState
             //  "محتوي الطلب",
 //kSmallIconColor
             style:
-            TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
+                TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
         Text(subTitle!,
             // "هل المكتبة متاحة يوم الجمعة؟",
 //kBlackText
@@ -369,5 +387,4 @@ class _UpdateMessageScreenState
       ),
     );
   }
-
 }

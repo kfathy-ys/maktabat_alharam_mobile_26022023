@@ -5,9 +5,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/my_order/view.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_hall_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_library_name.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_qualification.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/head_topices.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
@@ -16,32 +14,28 @@ import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
 import 'package:queen/validation.dart';
-class UpdateReserveArticleRetreated extends StatefulWidget {
 
+class UpdateReserveArticleRetreated extends StatefulWidget {
   const UpdateReserveArticleRetreated({Key? key}) : super(key: key);
 
   @override
-  State<UpdateReserveArticleRetreated> createState() => _UpdateReserveArticleRetreatedState();
+  State<UpdateReserveArticleRetreated> createState() =>
+      _UpdateReserveArticleRetreatedState();
 }
 
-class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetreated> {
-
+class _UpdateReserveArticleRetreatedState
+    extends State<UpdateReserveArticleRetreated> {
   final formKey = GlobalKey<FormState>();
-
 
   final _emailController = TextEditingController();
 
   final _phoneController = TextEditingController();
-
-
-
 
   dynamic selectedTimeFrom;
   dynamic selectedTimeTo;
 
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
@@ -66,8 +60,7 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
               //  shrinkWrap: true,
               children: [
                 Padding(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: HeadTopics(
                     title: "RequestReserveArticleOrResearchRetreat".tr,
                   ),
@@ -77,7 +70,7 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
                 ),
                 //const DropDownListServiceName(),
                 const DropDownListLibraryName(),
-              //  const DropDownListHallName(),
+                //  const DropDownListHallName(),
                 CustomTextField(
                   hint: "userName".tr,
                   dIcon: Icons.drive_file_rename_outline,
@@ -102,7 +95,7 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
                   ]),
                   type: TextInputType.name,
                 ),
-             //   const DropDownListQualification(),
+                //   const DropDownListQualification(),
                 buildPadding(title: "requiredDate".tr),
                 Container(
                   height: height * 0.08,
@@ -112,7 +105,7 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
                       borderRadius: BorderRadius.circular(8)),
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   margin:
-                  const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+                      const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -129,8 +122,14 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
                         padding: const EdgeInsetsDirectional.only(top: 5),
                         width: width * 0.1,
                         height: height * 0.05,
-                        child: Text("${selectedTimeFrom ?? "" }  ",style: const TextStyle( fontSize: 16, color: kSafeAreasColor,  fontFamily: "DinReguler",),),
-
+                        child: Text(
+                          "${selectedTimeFrom ?? ""}  ",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: kSafeAreasColor,
+                            fontFamily: "DinReguler",
+                          ),
+                        ),
                       ),
                       InkWell(
                           onTap: () {
@@ -149,17 +148,24 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
                         padding: const EdgeInsetsDirectional.only(top: 5),
                         width: width * 0.1,
                         height: height * 0.05,
-                        child: Text("${selectedTimeTo ?? ""}",style: const TextStyle( fontSize: 16, color: kSafeAreasColor,  fontFamily: "DinReguler",),),
+                        child: Text(
+                          "${selectedTimeTo ?? ""}",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: kSafeAreasColor,
+                            fontFamily: "DinReguler",
+                          ),
+                        ),
                       ),
                       InkWell(
-                          onTap: ()  {
+                          onTap: () {
                             _showDatePicker(false);
                           },
                           child: Image.asset("assets/image/twoarrow.png")),
                     ],
                   ),
                 ),
-          /*      buildPadding(title: "visitDate".tr),
+                /*      buildPadding(title: "visitDate".tr),
                 Container(
                   // color: kTextFieldColor,
                   height: height * 0.4,
@@ -293,7 +299,8 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
 
                   ),
                 ),
-              */  CustomHeightTextField(
+              */
+                CustomHeightTextField(
                   hint: "visitReason".tr,
                   text: "",
                 ),
@@ -303,12 +310,13 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
                 ),
                 Center(
                     child: MediaButtonSizer(
-                      onPressed: () {
-                        Get.to(()=>const MyOrderReserveArticleResearch()) ;                     },
-                      title: "saveUpdates".tr,
-                      color: kPrimaryColor,
-                      image: "assets/image/rightsah.png",
-                    ))
+                  onPressed: () {
+                    Get.to(() => const MyOrderReserveArticleResearch());
+                  },
+                  title: "saveUpdates".tr,
+                  color: kPrimaryColor,
+                  image: "assets/image/rightsah.png",
+                ))
               ],
             ),
           ),
@@ -330,26 +338,25 @@ class _UpdateReserveArticleRetreatedState extends State<UpdateReserveArticleRetr
       ),
     );
   }
+
   final now = DateTime.now();
   String? datePicked;
   DateTime? time;
 
-  void _showDatePicker(bool isFrom ) {
-    DatePicker.showTimePicker(context,
-        showTitleActions: true, onChanged: (date) {
-          log('change $date');
-        }, onConfirm: (date) {
-          setState(() {
-            if(isFrom == true){
-              selectedTimeFrom = DateFormat('hh-mm', "en_US").format(date);
-            }else{
-              selectedTimeTo = DateFormat('hh-mm', "en_US").format(date);
+  void _showDatePicker(bool isFrom) {
+    DatePicker.showTimePicker(context, showTitleActions: true,
+        onChanged: (date) {
+      log('change $date');
+    }, onConfirm: (date) {
+      setState(() {
+        if (isFrom == true) {
+          selectedTimeFrom = DateFormat('hh-mm', "en_US").format(date);
+        } else {
+          selectedTimeTo = DateFormat('hh-mm', "en_US").format(date);
+        }
 
-            }
-
-            log('confirm $date');
-          });
-        }, currentTime: DateTime.now());
+        log('confirm $date');
+      });
+    }, currentTime: DateTime.now());
   }
-
 }

@@ -1,13 +1,10 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/cubit/input_data.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/cubit/user_info_cubit.dart';
-import 'package:maktabat_alharam/screens/drawer/page/profile/models/model.dart';
 import 'package:maktabat_alharam/screens/drawer/page/profile/page/views/header.dart';
 import 'package:maktabat_alharam/screens/drawer/page/settings/page/views/data_created.dart';
 import 'package:maktabat_alharam/screens/widgets/alerts.dart';
@@ -20,7 +17,6 @@ import 'package:maktabat_alharam/screens/widgets/profile_pick_image.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'package:queen/validation.dart';
 
-import '../../../auth/login/model/models.dart';
 import '../../../home/view.dart';
 import '../../../widgets/loading.dart';
 
@@ -171,7 +167,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       controller: emailController,
                       validator: qValidator([
                         IsRequired("enterEmail".tr),
-
                         IsEmail("MustBeEmail".tr),
                         MaxLength(30),
                       ]),
@@ -188,7 +183,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       validator: qValidator(
                         [
                           IsRequired("enterCountry".tr),
-
                           MaxLength(30),
                         ],
                       ),
@@ -202,7 +196,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       controller: passController,
                       validator: qValidator([
                         IsRequired("enterPassword".tr),
-
                         MinLength(6, "minPassword".tr),
                         MaxLength(30),
                       ]),
@@ -215,9 +208,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       controller: phoneController,
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
-
-
-                        MinLength(6, ),
+                        MinLength(
+                          6,
+                        ),
                         MaxLength(30),
                       ]),
                       type: TextInputType.phone,
@@ -261,8 +254,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         },
       ),
     );
-
-
   }
 
   Widget _profilePic({required String userName}) {

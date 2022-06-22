@@ -1,8 +1,7 @@
-
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
-class UserModel extends Equatable{
+class UserModel extends Equatable {
   String? firstName;
   String? lastName;
   String? nameArabic;
@@ -31,42 +30,67 @@ class UserModel extends Equatable{
   bool? lockoutEnabled;
   int? accessFailedCount;
 
-  UserModel({this.firstName, this.lastName, this.nameArabic, this.facebookId, this.googleKey, this.pictureUrl, this.joinDate, this.birthDate, this.countryId, this.country, this.active, this.userRoles, this.id, this.userName, this.normalizedUserName, this.email, this.normalizedEmail, this.emailConfirmed, this.passwordHash, this.securityStamp, this.concurrencyStamp, this.phoneNumber, this.phoneNumberConfirmed, this.twoFactorEnabled, this.lockoutEnd, this.lockoutEnabled, this.accessFailedCount});
+  UserModel(
+      {this.firstName,
+      this.lastName,
+      this.nameArabic,
+      this.facebookId,
+      this.googleKey,
+      this.pictureUrl,
+      this.joinDate,
+      this.birthDate,
+      this.countryId,
+      this.country,
+      this.active,
+      this.userRoles,
+      this.id,
+      this.userName,
+      this.normalizedUserName,
+      this.email,
+      this.normalizedEmail,
+      this.emailConfirmed,
+      this.passwordHash,
+      this.securityStamp,
+      this.concurrencyStamp,
+      this.phoneNumber,
+      this.phoneNumberConfirmed,
+      this.twoFactorEnabled,
+      this.lockoutEnd,
+      this.lockoutEnabled,
+      this.accessFailedCount});
   @override
-
   List<Object?> get props {
-    return[
-
-     firstName,
-     lastName,
-     nameArabic,
-     facebookId,
-     googleKey,
-     pictureUrl,
-     joinDate,
-     birthDate,
-     countryId,
-     country,
-     active,
-     userRoles,
-     id,
-     userName,
-     normalizedUserName,
-     email,
-     normalizedEmail,
-     emailConfirmed,
-     passwordHash,
-     securityStamp,
-     concurrencyStamp,
-     phoneNumber,
-     phoneNumberConfirmed,
-     twoFactorEnabled,
-     lockoutEnd,
-     lockoutEnabled,
-     accessFailedCount,
-
+    return [
+      firstName,
+      lastName,
+      nameArabic,
+      facebookId,
+      googleKey,
+      pictureUrl,
+      joinDate,
+      birthDate,
+      countryId,
+      country,
+      active,
+      userRoles,
+      id,
+      userName,
+      normalizedUserName,
+      email,
+      normalizedEmail,
+      emailConfirmed,
+      passwordHash,
+      securityStamp,
+      concurrencyStamp,
+      phoneNumber,
+      phoneNumberConfirmed,
+      twoFactorEnabled,
+      lockoutEnd,
+      lockoutEnabled,
+      accessFailedCount,
     ];
   }
+
   UserModel.fromJson(Map<String, dynamic> json) {
     firstName = json["firstName"];
     lastName = json["lastName"];
@@ -128,6 +152,4 @@ class UserModel extends Equatable{
     data["accessFailedCount"] = accessFailedCount;
     return data;
   }
-
-
 }

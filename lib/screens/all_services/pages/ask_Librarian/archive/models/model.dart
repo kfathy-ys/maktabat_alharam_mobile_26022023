@@ -1,9 +1,8 @@
-
 // ignore_for_file: must_be_immutable
 
 import 'package:equatable/equatable.dart';
 
-class AskArchivedModel extends Equatable{
+class AskArchivedModel extends Equatable {
   List<AskArchiveData>? data;
   List<dynamic>? messages;
   int? status;
@@ -12,7 +11,11 @@ class AskArchivedModel extends Equatable{
   AskArchivedModel({this.data, this.messages, this.status, this.dataLength});
 
   AskArchivedModel.fromJson(Map<String, dynamic> json) {
-    data = json["data"]==null ? null : (json["data"] as List).map((e)=>AskArchiveData.fromJson(e)).toList();
+    data = json["data"] == null
+        ? null
+        : (json["data"] as List)
+            .map((e) => AskArchiveData.fromJson(e))
+            .toList();
     messages = json["messages"] ?? [];
     status = json["status"];
     dataLength = json["dataLength"];
@@ -20,10 +23,10 @@ class AskArchivedModel extends Equatable{
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if(this.data != null) {
-      data["data"] = this.data?.map((e)=>e.toJson()).toList();
+    if (this.data != null) {
+      data["data"] = this.data?.map((e) => e.toJson()).toList();
     }
-    if(messages != null) {
+    if (messages != null) {
       data["messages"] = messages;
     }
     data["status"] = status;
@@ -32,11 +35,10 @@ class AskArchivedModel extends Equatable{
   }
 
   @override
-
-  List<Object?> get props =>[data,messages,status,dataLength];
+  List<Object?> get props => [data, messages, status, dataLength];
 }
 
-class AskArchiveData extends Equatable{
+class AskArchiveData extends Equatable {
   int? id;
   int? type;
   String? visitorName;
@@ -50,7 +52,19 @@ class AskArchiveData extends Equatable{
   String? updatedBy;
   String? updatedDate;
 
-  AskArchiveData({this.id, this.type, this.visitorName, this.visitorEmail, this.visitorMobile, this.visitorMessage, this.response, this.isArchived, this.createdBy, this.createdDate, this.updatedBy, this.updatedDate});
+  AskArchiveData(
+      {this.id,
+      this.type,
+      this.visitorName,
+      this.visitorEmail,
+      this.visitorMobile,
+      this.visitorMessage,
+      this.response,
+      this.isArchived,
+      this.createdBy,
+      this.createdDate,
+      this.updatedBy,
+      this.updatedDate});
 
   AskArchiveData.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -85,22 +99,20 @@ class AskArchiveData extends Equatable{
   }
 
   @override
-
   List<Object?> get props {
     return [
-  id,
-  type,
-  visitorName,
-  visitorEmail,
-  visitorMobile,
-  visitorMessage,
-  response,
-  isArchived,
-  createdBy,
-  createdDate,
-  updatedBy,
-  updatedDate,
-
-  ];
+      id,
+      type,
+      visitorName,
+      visitorEmail,
+      visitorMobile,
+      visitorMessage,
+      response,
+      isArchived,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+    ];
   }
 }

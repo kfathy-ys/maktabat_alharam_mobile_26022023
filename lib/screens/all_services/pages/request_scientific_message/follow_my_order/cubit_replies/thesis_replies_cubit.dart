@@ -1,9 +1,7 @@
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
@@ -31,8 +29,8 @@ class ThesisRepliesCubit extends Cubit<ThesisRepliesState> {
   Future<void> getFollowRepliesThesis() async {
     emit(ThesisRepliesLoading());
     try {
-      final res =
-      await NetWork.get('ThesisDepositionRequest/GetAllThesisDepositionRequestReplies/$id');
+      final res = await NetWork.get(
+          'ThesisDepositionRequest/GetAllThesisDepositionRequestReplies/$id');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -40,8 +38,8 @@ class ThesisRepliesCubit extends Cubit<ThesisRepliesState> {
         throw res.data['message'];
       }
 
-      emit(ThesisRepliesSuccess(allRepliesThesisModel:
-          AllRepliesThesisModel .fromJson(res.data)));
+      emit(ThesisRepliesSuccess(
+          allRepliesThesisModel: AllRepliesThesisModel.fromJson(res.data)));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
@@ -73,8 +71,8 @@ class ThesisRepliesCubit extends Cubit<ThesisRepliesState> {
         throw res.data['message'];
       }
 
-      emit(ThesisRepliesSuccess(allRepliesThesisModel:
-      AllRepliesThesisModel.fromJson(res.data)));
+      emit(ThesisRepliesSuccess(
+          allRepliesThesisModel: AllRepliesThesisModel.fromJson(res.data)));
       await getFollowRepliesThesis();
     } catch (e, st) {
       log(e.toString());
@@ -88,7 +86,6 @@ class ThesisRepliesCubit extends Cubit<ThesisRepliesState> {
       Alert.error("error");
     }
     await addedCommentToFollowThesis(
-
       thesisDepositionRequestId: order.thesisDepositionRequestId!,
       userName: order.userName.toString(),
       userMessage: order.userMessage.toString(),

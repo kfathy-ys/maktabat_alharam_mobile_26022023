@@ -1,12 +1,10 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
-import '../../../../../widgets/date_convertors.dart';
 import '../models/model.dart';
 
 part 'my_archive_visit_state.dart';
@@ -54,8 +52,6 @@ class MyArchiveVisitCubit extends Cubit<MyArchiveVisitState> {
     required String createdDate,
   }) async {
     try {
-      var now = DateTime.now();
-      var dataNow=  DateConverter.dateConverterOnly(now.toString());
       final body = {
         "id": id,
         "userId": userId,
@@ -108,7 +104,6 @@ class MyArchiveVisitCubit extends Cubit<MyArchiveVisitState> {
     required String createdDate,
   }) async {
     try {
-      var now = DateTime.now();
       final body = {
         "id": id,
         "userId": userId,

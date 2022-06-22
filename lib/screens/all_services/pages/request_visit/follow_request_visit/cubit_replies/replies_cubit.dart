@@ -13,31 +13,25 @@ import 'package:flutter/material.dart';
 part 'replies_state.dart';
 
 class RepliesCubit extends Cubit<RepliesState> {
-   int? id;
+  int? id;
   final formKey = GlobalKey<FormState>();
   final addCommentController = TextEditingController();
-  static RepliesCubit of(context)=>BlocProvider.of(context);
-      RepliesCubit() : super(RepliesInitial()) ;
-
+  static RepliesCubit of(context) => BlocProvider.of(context);
+  RepliesCubit() : super(RepliesInitial());
 
   var userId = Prefs.getString("userId");
 
-
-  void init ( int id){
-    this.id=id;
+  void init(int id) {
+    this.id = id;
     getFollowRepliesVisit();
   }
-
-
 
   Future<void> getFollowRepliesVisit() async {
     emit(RepliesLoading());
     try {
       // final userId = Prefs.getString("userId");
-      final res = await NetWork.get(
-          'VisitRequest/GetAllVisitRequestReplies/$id');
-
-
+      final res =
+          await NetWork.get('VisitRequest/GetAllVisitRequestReplies/$id');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -47,8 +41,6 @@ class RepliesCubit extends Cubit<RepliesState> {
 
       emit(RepliesSuccess(
           repliesMessagesModel: RepliesMessagesModel.fromJson(res.data)));
-
-
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
@@ -57,7 +49,6 @@ class RepliesCubit extends Cubit<RepliesState> {
   }
 
   Future<void> addedCommentToFollowVisit({
-
     required int visitRequestId,
     required String userName,
     required String userMessage,
@@ -91,11 +82,10 @@ class RepliesCubit extends Cubit<RepliesState> {
   }
 
   Future<void> addToCommentVisit(RepliesMessage order) async {
-    if( addCommentController.text.trim().isEmpty){
+    if (addCommentController.text.trim().isEmpty) {
       Alert.error("error");
     }
     await addedCommentToFollowVisit(
-
       visitRequestId: order.visitRequestId!,
       userName: order.userName.toString(),
       userMessage: order.userMessage.toString(),

@@ -39,25 +39,21 @@ class CustomTextFieldUploadFile extends StatefulWidget {
     this.line,
   });
   @override
-  _CustomTextFieldUploadFileState createState() => _CustomTextFieldUploadFileState();
+  _CustomTextFieldUploadFileState createState() =>
+      _CustomTextFieldUploadFileState();
 }
 
 class _CustomTextFieldUploadFileState extends State<CustomTextFieldUploadFile> {
-  bool _isHidden = true;
-  void _visibility() {
-    setState(() {
-      _isHidden = !_isHidden;
-    });
-  }
+  final _isHidden = true;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-     // margin: const EdgeInsets.symmetric(horizontal: 6),
-     height: MediaQuery.of(context).size.height / 16,
-      width: MediaQuery.of(context).size.width /2.20,
+      // margin: const EdgeInsets.symmetric(horizontal: 6),
+      height: MediaQuery.of(context).size.height / 16,
+      width: MediaQuery.of(context).size.width / 2.20,
       child: TextFormField(
-       enabled: false,
+        enabled: false,
         onTap: widget.onTap,
         validator: widget.validator,
         controller: widget.controller,
@@ -68,9 +64,7 @@ class _CustomTextFieldUploadFileState extends State<CustomTextFieldUploadFile> {
         obscureText: widget.icon == Icons.lock_outline ? _isHidden : false,
         keyboardType: widget.type,
         onChanged: (widget.onsave),
-        style: const TextStyle(
-
-            fontSize: 14, color: kPrimaryColor),
+        style: const TextStyle(fontSize: 14, color: kPrimaryColor),
         decoration: InputDecoration(
           hintText: "No File Chosen",
           prefixIcon: Icon(
@@ -78,8 +72,9 @@ class _CustomTextFieldUploadFileState extends State<CustomTextFieldUploadFile> {
             color: kPrimaryColor,
           ),
           //labelText: widget.label == true ? "+966" : null,
-          labelText: widget.label ,
-          contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          labelText: widget.label,
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
           labelStyle: const TextStyle(
             fontSize: 16,
             color: kPrimaryColor,

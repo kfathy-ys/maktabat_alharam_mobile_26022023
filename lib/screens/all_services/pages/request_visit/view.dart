@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
@@ -15,9 +14,7 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-import 'package:queen/core/helpers/prefs.dart';
 import 'package:queen/validation.dart';
-
 
 import '../../../widgets/alerts.dart';
 import '../../../widgets/loading.dart';
@@ -44,31 +41,23 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
 
   final _vistorReasonController = TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    final fullName = Prefs.getString('fullName');
-    final email = Prefs.getString('email');
-    final phoneNumber = Prefs.getString('phoneNumber');
 
     return Scaffold(
       backgroundColor: kHomeColor,
       drawer: drawer(context: context),
       appBar: customAppbar(
-          icons: Icons.arrow_forward_outlined,
-          isIcons: true,
-          context: context),
+          icons: Icons.arrow_forward_outlined, isIcons: true, context: context),
       body: Form(
         key: _formKey,
         child: SizedBox(
           height: height,
           width: width,
           child: BlocConsumer<AvailableDatesCubit, AvailableDatesState>(
-            listener: (context, state) {
-            },
+            listener: (context, state) {},
             builder: (context, state) {
               final cubit = BlocProvider.of<AvailableDatesCubit>(context);
               return ListView(
@@ -83,10 +72,7 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                   buildSizedBox(height),
 
                   /// TODO:: DropDownEntityName
-                  DropDownEntityName(
-                    onChanged: cubit.onAuthorityIDChanged
-
-                  ),
+                  DropDownEntityName(onChanged: cubit.onAuthorityIDChanged),
                   CustomTextField(
                     hint: "nameResponsible".tr,
                     dIcon: Icons.drive_file_rename_outline,
@@ -94,8 +80,8 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     controller: _nameController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                     // IsOptional(),
-                   //   NotContains ("^\\s*([A-Za-z]{1,}([\\.,] |[-']| ))+[A-Za-z]+\\.?\\s*\$"),
+                      // IsOptional(),
+                      //   NotContains ("^\\s*([A-Za-z]{1,}([\\.,] |[-']| ))+[A-Za-z]+\\.?\\s*\$"),
                       MaxLength(30),
                     ]),
                     type: TextInputType.name,
@@ -120,7 +106,7 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     controller: _phoneController,
                     validator: qValidator([
                       IsRequired("minPassword".tr),
-                     // IsOptional(),
+                      // IsOptional(),
                       MinLength(11),
                       MaxLength(15),
                     ]),
@@ -133,7 +119,7 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     controller: _visitorsController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                     // IsOptional(),
+                      // IsOptional(),
                       IsNumber(),
                       MinLength(1),
                       MaxLength(30),
@@ -142,9 +128,7 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                   ),
 
                   /// TODO:: DropDownListLibraryName
-                  DropDownListLibraryName(
-
-                      onChanged: (value) {
+                  DropDownListLibraryName(onChanged: (value) {
                     cubit.getAvailableDatesVisit(value.id!);
                     cubit.onLibChang(value);
                   }),
@@ -212,33 +196,31 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     text: "",
                   ),
                   buildSizedBox(height),
-                  state is! AvailableDatesLoading?
-                  Center(
-                    child: MediaButtonSizer(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          cubit.createOrderToVisit(
-                          responsibleName: _nameController.text,
-                          responsibleMobile: _phoneController.text,
-                           responsibleEmail: _emailController.text,
-                            numberOfVisitors: _visitorsController.text,
-                            visitReason: _vistorReasonController.text,
-                           // requestStatusId: 4,
-
-                          );
-                          Alert.success("تم إضافة طلبك بنجاح ");
-                          Get.offAll(() => MyOrderRequestVisitScreen());
-                        }else{
-                          Alert.error("الرجاء التاكيد من الطلب ");
-                        }
-
-
-                      },
-                      title: "requestService".tr,
-                      color: kPrimaryColor,
-                      image: "assets/image/rightsah.png",
-                    ),
-                  )  : const LoadingFadingCircle(),
+                  state is! AvailableDatesLoading
+                      ? Center(
+                          child: MediaButtonSizer(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                cubit.createOrderToVisit(
+                                  responsibleName: _nameController.text,
+                                  responsibleMobile: _phoneController.text,
+                                  responsibleEmail: _emailController.text,
+                                  numberOfVisitors: _visitorsController.text,
+                                  visitReason: _vistorReasonController.text,
+                                  // requestStatusId: 4,
+                                );
+                                Alert.success("تم إضافة طلبك بنجاح ");
+                                Get.offAll(() => MyOrderRequestVisitScreen());
+                              } else {
+                                Alert.error("الرجاء التاكيد من الطلب ");
+                              }
+                            },
+                            title: "requestService".tr,
+                            color: kPrimaryColor,
+                            image: "assets/image/rightsah.png",
+                          ),
+                        )
+                      : const LoadingFadingCircle(),
                 ],
               );
             },

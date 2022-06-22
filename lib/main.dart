@@ -49,13 +49,11 @@ void main() async {
         );
       }));
   SystemChrome.setPreferredOrientations(
-
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-       // systemNavigationBarColor: kButtonRedDark, // navigation bar color
-        statusBarColor: kAppBarColor, // status bar color
-      ));
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    // systemNavigationBarColor: kButtonRedDark, // navigation bar color
+    statusBarColor: kAppBarColor, // status bar color
+  ));
 }
 
 class MaktabatAlharam extends StatelessWidget {
@@ -71,12 +69,9 @@ class MaktabatAlharam extends StatelessWidget {
         BlocProvider<AvailableDatesCubit>(
           create: (context) => AvailableDatesCubit(),
         ),
-
-
         BlocProvider<AvalibleDatesResearchCubit>(
           create: (context) => AvalibleDatesResearchCubit(),
         ),
-
         BlocProvider<NewOrderCubit>(
           create: (context) => NewOrderCubit(),
         ),
@@ -93,47 +88,31 @@ class MaktabatAlharam extends StatelessWidget {
           create: (context) =>
               MyOrderAskCubit(BlocProvider.of<AskArchiveCubit>(context)),
         ),
-
         BlocProvider<OrderSuggestCubit>(
           create: (context) =>
               OrderSuggestCubit(BlocProvider.of<ArchiveCubit>(context)),
         ),
-
-
-         /// TODO ::
         BlocProvider<MyArchiveVisitCubit>(
           create: (context) => MyArchiveVisitCubit(),
         ),
         BlocProvider<VisitOrderCubit>(
           create: (context) =>
               VisitOrderCubit(BlocProvider.of<MyArchiveVisitCubit>(context)),
-
         ),
-
-
-
         BlocProvider<ArchivedOrderCubit>(
           create: (context) => ArchivedOrderCubit(),
         ),
         BlocProvider<MyOrderResearchCubit>(
           create: (context) => MyOrderResearchCubit(
-              BlocProvider.of<ArchivedOrderCubit>(context)
-          ),
+              BlocProvider.of<ArchivedOrderCubit>(context)),
         ),
-
-
-
-
-
         BlocProvider<ArchivedThesisCubit>(
           create: (context) => ArchivedThesisCubit(),
         ),
         BlocProvider<OrderThesisCubit>(
-          create: (context) => OrderThesisCubit( BlocProvider.of<ArchivedThesisCubit>(context)),
+          create: (context) =>
+              OrderThesisCubit(BlocProvider.of<ArchivedThesisCubit>(context)),
         ),
-
-
-
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
         builder: (context, state) {

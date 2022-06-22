@@ -16,15 +16,16 @@ class MediaButtonSizer extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final loadingColor;
   // ignore: use_key_in_widget_constructors
-  const MediaButtonSizer(
-      {required this.onPressed,
-        required this.title,
-        this.color,
-        this.isLoading = false,
-        this.loadingColor = false, this.image,});
+  const MediaButtonSizer({
+    required this.onPressed,
+    required this.title,
+    this.color,
+    this.isLoading = false,
+    this.loadingColor = false,
+    this.image,
+  });
   @override
   Widget build(BuildContext context) {
-
     return InkWell(
       onTap: onPressed,
       child: Container(
@@ -38,25 +39,23 @@ class MediaButtonSizer extends StatelessWidget {
         child: Center(
           child: isLoading != true
               ? Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset(image!),
-              // SizedBox(width: width*0.02,),
-              Text(
-                  title!,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'DinBold',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16
-                  )),
-            ],
-          )
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Image.asset(image!),
+                    // SizedBox(width: width*0.02,),
+                    Text(title!,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'DinBold',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16)),
+                  ],
+                )
               : SpinKitChasingDots(
-            size: 20,
-            color: loadingColor ?? Colors.white,
-          ),
+                  size: 20,
+                  color: loadingColor ?? Colors.white,
+                ),
         ),
       ),
     );

@@ -35,15 +35,13 @@ class SmallButton extends StatelessWidget {
             border: Border.all(color: kPrimaryColor, width: 1.5)),
         child: Center(
           child: isLoading != true
-              ? Text(
-                  title!,
+              ? Text(title!,
                   textAlign: TextAlign.center,
-                style: const TextStyle(
-                color: Colors.white,
-                fontFamily: 'DinBold',
-                fontWeight: FontWeight.bold,
-                fontSize: 20
-                ))
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'DinBold',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20))
               : SpinKitChasingDots(
                   size: 20,
                   color: loadingColor ?? Colors.white,

@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/archive/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/cubit/order_thesis_cubit.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/cubit/order_thesis_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/page/description.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/update/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/head_topices.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
@@ -168,7 +166,11 @@ class MyOrdersScientificMessage extends StatelessWidget {
                                               onPressed: () {
                                                 Prefs.getString("mark");
                                                 Get.to(() =>
-                                                     FollowScientificMessage(myOrderThesis:  state.orderThesisModel.data![index],));
+                                                    FollowScientificMessage(
+                                                      myOrderThesis: state
+                                                          .orderThesisModel
+                                                          .data![index],
+                                                    ));
                                               },
                                               //  icon:  Icons.visibility_outlined
                                               image:

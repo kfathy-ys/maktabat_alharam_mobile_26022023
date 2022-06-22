@@ -2,7 +2,6 @@
 
 import 'package:flutter/cupertino.dart';
 
-
 void showNetworkErrorDialog(BuildContext? context, dynamic onTap) {
   showCupertinoDialog(
     context: context!,
@@ -14,11 +13,10 @@ void showNetworkErrorDialog(BuildContext? context, dynamic onTap) {
 //              :
           "تأكد من الاتصال بالانترنت",
           style: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-              // color: AppTheme.primaryColor,
-              // fontFamily: AppTheme.fontName
-
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
+            // color: AppTheme.primaryColor,
+            // fontFamily: AppTheme.fontName
           ),
         ),
         actions: <Widget>[
@@ -30,10 +28,10 @@ void showNetworkErrorDialog(BuildContext? context, dynamic onTap) {
 //                  :
               "حاول مرة أخرى",
               style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w700,
-                  // color: AppTheme.secondaryColor,
-                  // fontFamily: AppTheme.boldFont
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                // color: AppTheme.secondaryColor,
+                // fontFamily: AppTheme.boldFont
               ),
             ),
           ),

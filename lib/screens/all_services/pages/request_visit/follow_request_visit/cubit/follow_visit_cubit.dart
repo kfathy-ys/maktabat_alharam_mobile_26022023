@@ -12,10 +12,10 @@ part 'follow_visit_state.dart';
 
 class FollowVisitCubit extends Cubit<FollowVisitState> {
   final MyOrderToVisit myFollowOrder;
-  FollowVisitCubit({required this.myFollowOrder}) : super(FollowVisitInitial()){
+  FollowVisitCubit({required this.myFollowOrder})
+      : super(FollowVisitInitial()) {
     getFollowOrderVisit(id: myFollowOrder.id!);
   }
-
 
   var userId = Prefs.getString("userId");
 
@@ -24,7 +24,7 @@ class FollowVisitCubit extends Cubit<FollowVisitState> {
     try {
       final userId = Prefs.getString("userId");
       final res =
-      await NetWork.get('VisitRequest/GetVisitRequestById/$id/$userId');
+          await NetWork.get('VisitRequest/GetVisitRequestById/$id/$userId');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
@@ -32,8 +32,8 @@ class FollowVisitCubit extends Cubit<FollowVisitState> {
         throw res.data['message'];
       }
 
-      emit(FollowVisitSuccess(followOrderVisitModel:
-      FollowOrderVisitModel.fromJson(res.data)));
+      emit(FollowVisitSuccess(
+          followOrderVisitModel: FollowOrderVisitModel.fromJson(res.data)));
     } catch (e, es) {
       log(e.toString());
       log(es.toString());

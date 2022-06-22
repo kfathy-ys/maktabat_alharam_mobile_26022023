@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
+
 class Hints extends StatelessWidget {
   final String title;
 
-  const Hints({Key? key,required this.title}) : super(key: key);
+  const Hints({Key? key, required this.title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsetsDirectional.only(start: 40),
       child: Text(
         title,

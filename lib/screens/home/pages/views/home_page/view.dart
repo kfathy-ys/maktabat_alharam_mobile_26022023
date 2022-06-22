@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'page/views/data.dart';
 
-
 // ignore: must_be_immutable
 class MyHomeScreen extends StatelessWidget {
   final String? userId;
@@ -22,9 +21,7 @@ class MyHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Container(
-
       color: kHomeColor,
       child: SizedBox(
         height: height,
@@ -33,33 +30,39 @@ class MyHomeScreen extends StatelessWidget {
           physics: const PageScrollPhysics(),
           children: [
             token.isNotEmpty
-                ? SizedBox(height: height*0.2 ,child: Image.asset('assets/image/kabah.png',))
+                ? SizedBox(
+                    height: height * 0.2,
+                    child: Image.asset(
+                      'assets/image/kabah.png',
+                    ))
                 : Stack(
-              children: [
-                Image.asset('assets/image/headback.png',
-                  width: double.infinity,
-                  fit: BoxFit.fill,),
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(top: 40),
-                  child: Center(
-                    child: Text("readAndLearn".tr,
-                        style: const TextStyle(
-                            color: kHomeColor,
-                            fontSize: 22,
-                            fontFamily: 'DinBold')),
+                    children: [
+                      Image.asset(
+                        'assets/image/headback.png',
+                        width: double.infinity,
+                        fit: BoxFit.fill,
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(top: 40),
+                        child: Center(
+                          child: Text("readAndLearn".tr,
+                              style: const TextStyle(
+                                  color: kHomeColor,
+                                  fontSize: 22,
+                                  fontFamily: 'DinBold')),
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
             buildSizedBox(height),
             Center(child: customBoldText(title: "welcome".tr)),
             buildSizedBox(height),
             const BannerSlider(),
-            token.isNotEmpty ? buildSizedBox(height):const SizedBox(),
+            token.isNotEmpty ? buildSizedBox(height) : const SizedBox(),
 
             TitleSubTitle(
               onTap: () {
-               // navigateTo(context, OurServicesScreen());
+                // navigateTo(context, OurServicesScreen());
                 Get.to(() => OurServicesScreen());
               },
               title: "ourServices".tr,
@@ -80,16 +83,17 @@ class MyHomeScreen extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         final page = services.ourServices[index].pages;
-                        print(page);
-                        print(Prefs.getString("token").isEmpty);
-                        if(((page == Pages.one) || (page== Pages.two) || (page== Pages.five)) && Prefs.getString("token").isEmpty){
+
+                        if (((page == Pages.one) ||
+                                (page == Pages.two) ||
+                                (page == Pages.five)) &&
+                            Prefs.getString("token").isEmpty) {
                           onWillPopSignIn(context);
                           return;
                         }
                         Get.toNamed(services.ourServices[index].routeName);
                       },
                       child: CardContent(
-
                           fontTitle: 20,
                           fontSubTitle: 14,
                           model: services.ourServices[index]),
@@ -100,6 +104,7 @@ class MyHomeScreen extends StatelessWidget {
             !token.isNotEmpty
                 ? const ToShowMoreAboutOurServices()
                 : const SizedBox(),
+
             ///  buildSizedBox(height),
           ],
         ),
@@ -107,9 +112,7 @@ class MyHomeScreen extends StatelessWidget {
     );
   }
 
-  SizedBox buildSizedBox(double height) => SizedBox(height: height*0.04,);
-
-
-
+  SizedBox buildSizedBox(double height) => SizedBox(
+        height: height * 0.04,
+      );
 }
-

@@ -11,50 +11,46 @@ import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/view.dart';
 
 class AppPages {
-
   static final routes = [
     GetPage(
-      name:  "/MyOrderAskLibrarian",
+      name: "/MyOrderAskLibrarian",
       page: () => MyOrderAskLibrarian(),
-    ),  GetPage(
-      name:  "/AskLibrarian",
+    ),
+    GetPage(
+      name: "/AskLibrarian",
       page: () => AskLibrarian(),
     ),
     GetPage(
-      name:  "/MyOrdersScientificMessage",
+      name: "/MyOrdersScientificMessage",
       page: () => const MyOrdersScientificMessage(),
     ),
-   GetPage(
-  name:  "/PutScientificMessage",
-  page: () => const PutScientificMessage(),
-  ),
-
     GetPage(
-      name:  "/ReserveResearchRetreatScreen",
+      name: "/PutScientificMessage",
+      page: () => const PutScientificMessage(),
+    ),
+    GetPage(
+      name: "/ReserveResearchRetreatScreen",
       page: () => const ReserveResearchRetreatScreen(),
     ),
     GetPage(
-      name:  "/MyOrdersSuggestBuyBookScreen",
-      page: () =>const MyOrdersSuggestBuyBookScreen(),
+      name: "/MyOrdersSuggestBuyBookScreen",
+      page: () => const MyOrdersSuggestBuyBookScreen(),
     ),
-
-
     GetPage(
-      name:  "/MyOrderRequestVisitScreen",
+      name: "/MyOrderRequestVisitScreen",
       page: () => MyOrderRequestVisitScreen(),
     ),
     GetPage(
-      name:  "/FollowRequestVisitScreen",
-      page: () =>FollowRequestVisitScreen(),
+      name: "/FollowRequestVisitScreen",
+      page: () => FollowRequestVisitScreen(),
     ),
-
     GetPage(
-      name:  "/SuggestToBuyBook",
+      name: "/SuggestToBuyBook",
       page: () => SuggestToBuyBook(),
     ),
     GetPage(
-      name:  "/MyOrderReserveArticleResearch",
-      page: () =>const MyOrderReserveArticleResearch(),
+      name: "/MyOrderReserveArticleResearch",
+      page: () => const MyOrderReserveArticleResearch(),
     ),
   ];
 }

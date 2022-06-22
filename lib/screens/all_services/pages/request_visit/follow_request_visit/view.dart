@@ -26,31 +26,29 @@ import 'page/views/request_events.dart';
 class FollowRequestVisitScreen extends StatefulWidget {
   MyOrderToVisit? myFollowOrder;
 
-  FollowRequestVisitScreen({Key? key, this.myFollowOrder }) : super(key: key);
+  FollowRequestVisitScreen({Key? key, this.myFollowOrder}) : super(key: key);
 
   @override
-  State<FollowRequestVisitScreen> createState() => _FollowRequestVisitScreenState();
+  State<FollowRequestVisitScreen> createState() =>
+      _FollowRequestVisitScreenState();
 }
 
 class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
   //final commentController = TextEditingController();
 
-
-
   @override
   void initState() {
     id = Prefs.getString("userId");
 
-
     super.initState();
   }
- String id = "";
+
+  String id = "";
 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    var fullName = Prefs.getString("fullName");
     return SafeArea(
       child: Scaffold(
         backgroundColor: kHomeColor,
@@ -112,8 +110,7 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                           CustomContainer(
                             height: height * 0.4,
                             child: Column(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 CardData(
@@ -135,36 +132,36 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                                     color2: kBlackText),
                                 CardData(
                                     title: "nameResponsible".tr,
-                                    subTitle: state.followOrderVisitModel
-                                        .data!.responsibleName
+                                    subTitle: state.followOrderVisitModel.data!
+                                        .responsibleName
                                         .toString(),
                                     color1: kSmallIconColor,
                                     color2: kBlackText),
                                 CardData(
                                     title: "email".tr,
-                                    subTitle: state.followOrderVisitModel
-                                        .data!.responsibleEmail
+                                    subTitle: state.followOrderVisitModel.data!
+                                        .responsibleEmail
                                         .toString(),
                                     color1: kSmallIconColor,
                                     color2: kBlackText),
                                 CardData(
                                     title: "phoneNumber".tr,
-                                    subTitle: state.followOrderVisitModel
-                                        .data!.responsibleMobile
+                                    subTitle: state.followOrderVisitModel.data!
+                                        .responsibleMobile
                                         .toString(),
                                     color1: kSmallIconColor,
                                     color2: kBlackText),
                                 CardData(
                                     title: "visitsNumbers".tr,
-                                    subTitle: state.followOrderVisitModel
-                                        .data!.numberOfVisitors
+                                    subTitle: state.followOrderVisitModel.data!
+                                        .numberOfVisitors
                                         .toString(),
                                     color1: kSmallIconColor,
                                     color2: kBlackText),
                                 CardData(
                                     title: "visitReason".tr,
-                                    subTitle: state.followOrderVisitModel
-                                        .data!.visitReason
+                                    subTitle: state
+                                        .followOrderVisitModel.data!.visitReason
                                         .toString(),
                                     color1: kSmallIconColor,
                                     color2: kSkyButton),
@@ -179,13 +176,12 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                             height: height * 0.2,
                             child: Column(
                               // crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 RequestEvents(
                                     title: "requestState".tr,
-                                    subTitle: state.followOrderVisitModel
-                                        .data!.createdDate!
+                                    subTitle: state.followOrderVisitModel.data!
+                                        .createdDate!
                                         .substring(0, 10),
                                     subTitle2: ((state.followOrderVisitModel
                                                 .data!.requestStatusId) ==
@@ -206,8 +202,8 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                                     color2: kBlackText),
                                 RequestEvents(
                                     title: "requestState".tr,
-                                    subTitle: state.followOrderVisitModel
-                                        .data!.createdDate!
+                                    subTitle: state.followOrderVisitModel.data!
+                                        .createdDate!
                                         .substring(0, 10),
                                     subTitle2: ((state.followOrderVisitModel
                                                 .data!.requestStatusId) ==
@@ -218,8 +214,8 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                                     color2: kBlackText),
                                 RequestEvents(
                                     title: "requestState".tr,
-                                    subTitle: state.followOrderVisitModel
-                                        .data!.updatedDate!
+                                    subTitle: state.followOrderVisitModel.data!
+                                        .updatedDate!
                                         .substring(0, 10),
                                     subTitle2: ((state.followOrderVisitModel
                                                 .data!.requestStatusId) ==
@@ -245,7 +241,8 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                 title: "commentsRequest".tr,
               ),
               BlocProvider(
-                create: (context) => RepliesCubit( )..init(widget.myFollowOrder!.id!),
+                create: (context) =>
+                    RepliesCubit()..init(widget.myFollowOrder!.id!),
                 child: BlocConsumer<RepliesCubit, RepliesState>(
                   listener: (context, state) {},
                   builder: (context, state) {
@@ -260,67 +257,72 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                       return SingleChildScrollView(
                         child: Column(
                           children: [
-                            state.repliesMessagesModel.data!.isEmpty ? const SizedBox.shrink():
-                            ListView.builder(
+                            state.repliesMessagesModel.data!.isEmpty
+                                ? const SizedBox.shrink()
+                                : ListView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
 
-                               physics: const NeverScrollableScrollPhysics(),
-                               shrinkWrap: true,
-
-                               //  controller: _controller,
-                                itemCount: state.repliesMessagesModel.data!.length,
-                                itemBuilder: (context, index) {
-                                  return  Message(
-                                    isMe: state.repliesMessagesModel.data![index].createdBy.toString() == id,
-                                      name:  state.repliesMessagesModel.data![index].userName.toString() ,
-                                      comment:  state.repliesMessagesModel.data![index].userMessage.toString().trim(),
-                                      data: DateConverter.dateConverterMonth("${state.repliesMessagesModel.data![index].createdDate}"));
-                                     // data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
-                                }),
+                                    //  controller: _controller,
+                                    itemCount:
+                                        state.repliesMessagesModel.data!.length,
+                                    itemBuilder: (context, index) {
+                                      return Message(
+                                          isMe: state.repliesMessagesModel
+                                                  .data![index].createdBy
+                                                  .toString() ==
+                                              id,
+                                          name: state.repliesMessagesModel
+                                              .data![index].userName
+                                              .toString(),
+                                          comment: state.repliesMessagesModel
+                                              .data![index].userMessage
+                                              .toString()
+                                              .trim(),
+                                          data: DateConverter.dateConverterMonth(
+                                              "${state.repliesMessagesModel.data![index].createdDate}"));
+                                      // data: state.repliesMessagesModel.data![index].createdDate.toString().substring(0,10));
+                                    }),
                             CustomTextField(
                               controller: cubit.addCommentController,
                               hint: "أضف تعليقك هنا ..!",
                             ),
                             buildSizedBox(height),
-                            state is! RepliesLoading ?
-                            Center(
-                                child: SmallButtonSizer(
-                                  onPressed: () {
-                                    cubit.addToCommentVisit(
-                                        RepliesMessage(
-                                            userName:   widget.myFollowOrder!.responsibleName,
-                                            createdDate: widget.myFollowOrder!.createdDate,
-                                            updatedBy: widget.myFollowOrder!.updatedBy,
-                                            userMessage:cubit.addCommentController.text.trim() ,
-                                            visitRequestId: widget.myFollowOrder!.id
-                                        ));
-
-                                  },
-                                  title: "addComment".tr,
-                                  color: kSafeAreasColor,
-                                  image: "assets/image/newrequest.png",
-                                )):
-                            const LoadingFadingCircle(),
-
-
-
+                            state is! RepliesLoading
+                                ? Center(
+                                    child: SmallButtonSizer(
+                                    onPressed: () {
+                                      cubit.addToCommentVisit(RepliesMessage(
+                                          userName: widget
+                                              .myFollowOrder!.responsibleName,
+                                          createdDate:
+                                              widget.myFollowOrder!.createdDate,
+                                          updatedBy:
+                                              widget.myFollowOrder!.updatedBy,
+                                          userMessage: cubit
+                                              .addCommentController.text
+                                              .trim(),
+                                          visitRequestId:
+                                              widget.myFollowOrder!.id));
+                                    },
+                                    title: "addComment".tr,
+                                    color: kSafeAreasColor,
+                                    image: "assets/image/newrequest.png",
+                                  ))
+                                : const LoadingFadingCircle(),
                           ],
                         ),
-
                       );
                     }
-
 
                     if (state is RepliesError) {
                       return Text(state.msg);
                     }
                     return const SizedBox();
                   },
-
                 ),
-
               ),
-
-
             ],
           ),
         ),

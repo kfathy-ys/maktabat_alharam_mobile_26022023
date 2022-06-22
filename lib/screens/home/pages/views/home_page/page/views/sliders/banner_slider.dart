@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
 class BannerSlider extends StatelessWidget {
-
   const BannerSlider({
     Key? key,
   }) : super(key: key);
@@ -17,42 +16,43 @@ class BannerSlider extends StatelessWidget {
       //color: Colors.red,
       //color: Colors.yellowAccent,
       //height: height * 0.12,
-    //  width: width*0.4,
+      //  width: width*0.4,
       // height: height * 0.3,
       // width: width,
       child: CarouselSlider.builder(
         itemCount: 5,
         itemBuilder: (context, index, pageViewIndex) {
           return InkWell(
-            onTap: () {
-              //  interstitialAd.show();
+              onTap: () {
+                //  interstitialAd.show();
 
-              // navigateTo(context, BannerDetailsScreen(id: sliders[index].id,));
-            },
-            child: Container(
-             // height: height * 0.12,
-              width: width*0.42,
-              decoration: BoxDecoration(  color: kSmallIconColor,borderRadius: BorderRadius.circular(6)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children:   [
-                  customSliderText(title: "عدد التحميلات ",color: kHomeColor),
-                  customSliderText(title:"358,589 ",color: kAccentColor ),
+                // navigateTo(context, BannerDetailsScreen(id: sliders[index].id,));
+              },
+              child: Container(
+                // height: height * 0.12,
+                width: width * 0.42,
+                decoration: BoxDecoration(
+                    color: kSmallIconColor,
+                    borderRadius: BorderRadius.circular(6)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    customSliderText(
+                        title: "عدد التحميلات ", color: kHomeColor),
+                    customSliderText(title: "358,589 ", color: kAccentColor),
+                  ],
+                ),
+              )
 
-
-
-                ],),
-            )
-
-            // const Sliders(
-            //   title: "عدد التحميلات ",
-            //   subTitle: "33355889 ",
-            // ),
-          );
+              // const Sliders(
+              //   title: "عدد التحميلات ",
+              //   subTitle: "33355889 ",
+              // ),
+              );
         },
         options: CarouselOptions(
-          height: height*0.14,
+          height: height * 0.14,
 
           //aspectRatio: 16 / 2,
           viewportFraction: 0.45,
@@ -69,5 +69,4 @@ class BannerSlider extends StatelessWidget {
       ),
     );
   }
-
 }

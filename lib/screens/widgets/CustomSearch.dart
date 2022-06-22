@@ -43,23 +43,15 @@ class CustomSearch extends StatefulWidget {
 }
 
 class _CustomSearchState extends State<CustomSearch> {
-  bool _isHidden = true;
-  void _visibility() {
-    setState(() {
-      _isHidden = !_isHidden;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
-     // padding: const EdgeInsets.symmetric( horizontal: 10),
-      margin: const EdgeInsets.symmetric( vertical: 10),
+      // padding: const EdgeInsets.symmetric( horizontal: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
 
-       height: MediaQuery.of(context).size.height / 12,
+      height: MediaQuery.of(context).size.height / 12,
       width: MediaQuery.of(context).size.width / 1.2,
       child: TextFormField(
-
         onTap: widget.onTap,
         validator: widget.validator,
         controller: widget.controller,
@@ -67,12 +59,10 @@ class _CustomSearchState extends State<CustomSearch> {
         focusNode: widget.focus,
         readOnly: widget.read,
         maxLines: widget.line == true ? 7 : 1,
-       // obscureText: widget.icon == Icons.lock_outline ? _isHidden : false,
+        // obscureText: widget.icon == Icons.lock_outline ? _isHidden : false,
         keyboardType: widget.type,
         onChanged: (widget.onsave),
-        style: const TextStyle(
-
-            fontSize: 14, color: kPrimaryColor),
+        style: const TextStyle(fontSize: 14, color: kPrimaryColor),
         decoration: InputDecoration(
           hintText: widget.hint,
           // prefixIcon: Text(
@@ -85,9 +75,14 @@ class _CustomSearchState extends State<CustomSearch> {
           //
           // ),
           //labelText: widget.label == true ? "+966" : null,
-          labelText: widget.label ,
-          contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-          icon: widget.isEdit == true ? const Icon(Icons.edit,) : null,
+          labelText: widget.label,
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          icon: widget.isEdit == true
+              ? const Icon(
+                  Icons.edit,
+                )
+              : null,
           labelStyle: const TextStyle(
             fontSize: 16,
             color: kPrimaryColor,
@@ -96,7 +91,9 @@ class _CustomSearchState extends State<CustomSearch> {
           hintStyle: const TextStyle(
               fontSize: 14, color: kTextFieldColor, fontFamily: "DinReguler"),
           // ignore: unrelated_type_equality_checks
-          suffixIcon:  const Icon(Icons.search,) ,
+          suffixIcon: const Icon(
+            Icons.search,
+          ),
           filled: true,
           //prefixText: widget.hint,
           fillColor: Colors.white,

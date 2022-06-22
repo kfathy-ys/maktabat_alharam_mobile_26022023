@@ -1,13 +1,9 @@
-
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:laravel_exception/laravel_exception.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:queen/core.dart';
 
 abstract class NetWork {
-
   static Dio get _dio {
     final _dio = Dio(
       BaseOptions(
@@ -22,60 +18,65 @@ abstract class NetWork {
       ),
     );
     if (kDebugMode) {
-  _dio.interceptors.add(PrettyDioLogger(requestBody: true, requestHeader: true));
+      _dio.interceptors
+          .add(PrettyDioLogger(requestBody: true, requestHeader: true));
     }
     return _dio;
   }
-  Response _validate(Response res) {
-    if (res.statusCode == 500) {
-      throw LServerException.parse(res.data!);
-    }
-    else if (res.statusCode == 404) {
-      throw LNotFoundException.parse(res.data!);
-    }
-    else if (res.statusCode == 422) {
-      throw LValidationException(res.data!);
-    }
-    else if (res.data == null) {
-      throw 'api returend null repsonse';
-    }
-    else if (res.statusCode == 403) {
-      throw res.data['errors']['phone'][0];
-    }
-    return res;
-  }
+  // Response _validate(Response res) {
+  //   if (res.statusCode == 500) {
+  //     throw LServerException.parse(res.data!);
+  //   }
+  //   else if (res.statusCode == 404) {
+  //     throw LNotFoundException.parse(res.data!);
+  //   }
+  //   else if (res.statusCode == 422) {
+  //     throw LValidationException(res.data!);
+  //   }
+  //   else if (res.data == null) {
+  //     throw 'api returend null repsonse';
+  //   }
+  //   else if (res.statusCode == 403) {
+  //     throw res.data['errors']['phone'][0];
+  //   }
+  //   return res;
+  // }
 
-  // TODO :: cant be mocked
   static Future<Response> get(
-      String url, {
-        Map<String, dynamic>? headers,
-        Map<String, dynamic>? queryParams,
-      }) async {
+    String url, {
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? queryParams,
+  }) async {
     return await _dio.get(
       '/$url',
       queryParameters: queryParams,
       options: Options(headers: {
-        'Authorization': Prefs.getString('token',),
-        ...?headers}),
+        'Authorization': Prefs.getString(
+          'token',
+        ),
+        ...?headers
+      }),
     );
   }
 
   static Future<Response> delete(
-      String url, {
-        dynamic body,
-        Map<String, dynamic>? headers,
-        Map<String, dynamic>? queryParams,
-      }) async {
+    String url, {
+    dynamic body,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? queryParams,
+  }) async {
     return await _dio.delete(
       '/$url',
       data: body,
       queryParameters: queryParams,
       options: Options(headers: {
-        'Authorization': Prefs.getString('token',),
-        ...?headers}),
+        'Authorization': Prefs.getString(
+          'token',
+        ),
+        ...?headers
+      }),
     );
   }
-
 
   // Future<Response> delete(
   //     String path, {
@@ -116,11 +117,11 @@ abstract class NetWork {
   // }
 
   static Future<Response> post(
-      String url, {
-        dynamic body,
-        Map<String, dynamic>? headers,
-        Map<String, dynamic>? queryParams,
-      }) async {
+    String url, {
+    dynamic body,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? queryParams,
+  }) async {
     return await _dio.post(
       '/$url',
       data: body,
@@ -128,12 +129,13 @@ abstract class NetWork {
       options: Options(headers: headers),
     );
   }
+
   static Future<Response> put(
-      String url, {
-        dynamic body,
-        Map<String, dynamic>? headers,
-        Map<String, dynamic>? queryParams,
-      }) async {
+    String url, {
+    dynamic body,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? queryParams,
+  }) async {
     return await _dio.post(
       '/$url',
       data: body,
@@ -141,8 +143,4 @@ abstract class NetWork {
       options: Options(headers: headers),
     );
   }
-
-
-
-
 }

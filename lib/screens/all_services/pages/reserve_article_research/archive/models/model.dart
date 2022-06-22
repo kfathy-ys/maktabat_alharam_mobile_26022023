@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 class ArchivedResearchModel {
@@ -7,21 +6,28 @@ class ArchivedResearchModel {
   int? status;
   int? dataLength;
 
-  ArchivedResearchModel({this.data, this.messages, this.status, this.dataLength});
+  ArchivedResearchModel(
+      {this.data, this.messages, this.status, this.dataLength});
 
   ArchivedResearchModel.fromJson(Map<String, dynamic> json) {
-    data = json["data"]==null ? null : (json["data"] as List).map((e)=>MyArchivedOrder.fromJson(e)).toList();
+    data = json["data"] == null
+        ? null
+        : (json["data"] as List)
+            .map((e) => MyArchivedOrder.fromJson(e))
+            .toList();
     messages = json["messages"] ?? [];
     status = json["status"];
     dataLength = json["dataLength"];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if(this.data != null)
-      data["data"] = this.data?.map((e)=>e.toJson()).toList();
-    if(messages != null)
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
+      data["data"] = this.data?.map((e) => e.toJson()).toList();
+    }
+    if (messages != null) {
       data["messages"] = messages;
+    }
     data["status"] = status;
     data["dataLength"] = dataLength;
     return data;
@@ -57,40 +63,65 @@ class MyArchivedOrder extends Equatable {
   dynamic researchAvailableEndDate;
   dynamic researchRequestReply;
 
-  MyArchivedOrder({this.id, this.userId, this.libraryId, this.roomId, this.researchStartDateId, this.researchEndDateId, this.requestTypeId, this.responsibleName, this.responsibleMobile, this.responsibleGradeId, this.callNum, this.subjectName, this.dateFrom, this.dateTo, this.reasonOfRejection, this.instructions, this.requestStatusId, this.isArchived, this.createdBy, this.createdDate, this.updatedBy, this.updatedDate, this.room, this.researchAvailableStartDate, this.researchAvailableEndDate, this.researchRequestReply});
+  MyArchivedOrder(
+      {this.id,
+      this.userId,
+      this.libraryId,
+      this.roomId,
+      this.researchStartDateId,
+      this.researchEndDateId,
+      this.requestTypeId,
+      this.responsibleName,
+      this.responsibleMobile,
+      this.responsibleGradeId,
+      this.callNum,
+      this.subjectName,
+      this.dateFrom,
+      this.dateTo,
+      this.reasonOfRejection,
+      this.instructions,
+      this.requestStatusId,
+      this.isArchived,
+      this.createdBy,
+      this.createdDate,
+      this.updatedBy,
+      this.updatedDate,
+      this.room,
+      this.researchAvailableStartDate,
+      this.researchAvailableEndDate,
+      this.researchRequestReply});
   @override
-
   List<Object?> get props {
-    return[
-     id,
-    userId,
-     libraryId,
-    roomId,
-     researchStartDateId,
-     researchEndDateId,
-     requestTypeId,
-    responsibleName,
-    responsibleMobile,
-     responsibleGradeId,
-    callNum,
-    subjectName,
-    dateFrom,
-    dateTo,
-    reasonOfRejection,
-    instructions,
-     requestStatusId,
-    isArchived,
-    createdBy,
-    createdDate,
-    updatedBy,
-    updatedDate,
-    room,
-    researchAvailableStartDate,
-    researchAvailableEndDate,
-    researchRequestReply,
-
+    return [
+      id,
+      userId,
+      libraryId,
+      roomId,
+      researchStartDateId,
+      researchEndDateId,
+      requestTypeId,
+      responsibleName,
+      responsibleMobile,
+      responsibleGradeId,
+      callNum,
+      subjectName,
+      dateFrom,
+      dateTo,
+      reasonOfRejection,
+      instructions,
+      requestStatusId,
+      isArchived,
+      createdBy,
+      createdDate,
+      updatedBy,
+      updatedDate,
+      room,
+      researchAvailableStartDate,
+      researchAvailableEndDate,
+      researchRequestReply,
     ];
   }
+
   MyArchivedOrder.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     userId = json["userId"];
@@ -121,7 +152,7 @@ class MyArchivedOrder extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["userId"] = userId;
     data["libraryId"] = libraryId;
@@ -150,6 +181,4 @@ class MyArchivedOrder extends Equatable {
     data["researchRequestReply"] = researchRequestReply;
     return data;
   }
-
-
 }

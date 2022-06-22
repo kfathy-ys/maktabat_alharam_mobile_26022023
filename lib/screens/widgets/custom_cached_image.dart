@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -25,24 +24,24 @@ customCachedNetworkImage({
     return Container(
         color: Colors.transparent,
         width: width,
-        child:  CachedNetworkImage(
+        child: CachedNetworkImage(
             imageUrl: url,
             fit: fit,
             placeholder: (_, __) => const Center(
-              child: SpinKitChasingDots(
-                color: kPrimaryColor,
-                size: 20,
-              ),
-            ),
+                  child: SpinKitChasingDots(
+                    color: kPrimaryColor,
+                    size: 20,
+                  ),
+                ),
             errorWidget: (context, url, error) {
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 textDirection: TextDirection.rtl,
                 children: [
                   Image.asset(
-                   'assets/image/logo2021.jpg',
+                    'assets/image/logo2021.jpg',
                     height: 100,
-                    width:width,
+                    width: width,
                     fit: BoxFit.contain,
                   ),
                   Text(
@@ -56,9 +55,7 @@ customCachedNetworkImage({
                   )
                 ],
               );
-            })
-
-    );
+            }));
   }
 }
 
@@ -67,8 +64,7 @@ customCachedNetworkImageWitoutTitle({
   required BuildContext context,
   required BoxFit fit,
 }) {
-
-  if (url == null ||  url.isEmpty) {
+  if (url == null || url.isEmpty) {
     return SizedBox(
       child: Image.asset(
         'assets/image/logo2021.jpg',
@@ -83,28 +79,27 @@ customCachedNetworkImageWitoutTitle({
       width: MediaQuery.of(context).size.width,
       child: (Uri.parse(url).isAbsolute)
           ? CachedNetworkImage(
-          imageUrl: url,
-          fit: fit,
-          placeholder: (_, __) => const Center(
-              child: SpinKitChasingDots(
-                color: kPrimaryColor,
-                size: 15,
-              )),
-          errorWidget: (context, url, error) {
-            return Image.asset(
+              imageUrl: url,
+              fit: fit,
+              placeholder: (_, __) => const Center(
+                      child: SpinKitChasingDots(
+                    color: kPrimaryColor,
+                    size: 15,
+                  )),
+              errorWidget: (context, url, error) {
+                return Image.asset(
+                  'assets/image/logo2021.jpg',
+                  height: 100,
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.contain,
+                );
+              })
+          : Image.asset(
               'assets/image/logo2021.jpg',
               height: 100,
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.contain,
-            );
-          })
-          : Image.asset(
-        'assets/image/logo2021.jpg',
-        height: 100,
-        width: MediaQuery.of(context).size.width,
-        fit: BoxFit.contain,
-      ),
+            ),
     );
   }
-
 }

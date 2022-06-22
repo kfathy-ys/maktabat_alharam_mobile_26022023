@@ -17,21 +17,23 @@ class SmallestButton extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final loadingColor;
   // ignore: use_key_in_widget_constructors
-  const SmallestButton(
-      {required this.onPressed,
-        required this.title,
-        this.color,
-        this.isLoading = false,
-        this.loadingColor = false, this.image,});
+  const SmallestButton({
+    required this.onPressed,
+    required this.title,
+    this.color,
+    this.isLoading = false,
+    this.loadingColor = false,
+    this.image,
+  });
   @override
   Widget build(BuildContext context) {
-double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: onPressed,
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         height: MediaQuery.of(context).size.height / 15,
-        width:width *0.3,
+        width: width * 0.3,
         decoration: BoxDecoration(
             color: color == null ? Colors.white : kSafeAreasColor,
             borderRadius: BorderRadius.circular(8),
@@ -39,40 +41,42 @@ double width = MediaQuery.of(context).size.width;
         child: Center(
           child: isLoading != true
               ? Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Get.locale == const Locale('ar','EG') ?
-              Align(alignment: Alignment.centerLeft,child: Image.asset(image!)):
-              Align(alignment: Alignment.centerRight,child: Image.asset(image!)),
-              Get.locale == const Locale('ar','EG') ?Align(
-                alignment: Alignment.centerLeft ,
-                child: Text(
-                    title!,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'DinBold',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16
-                    )),
-              ):Align(
-                alignment: Alignment.centerRight ,
-                child: Text(
-                    title!,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'DinBold',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16
-                    )),
-              ),
-            ],
-          )
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Get.locale == const Locale('ar', 'EG')
+                        ? Align(
+                            alignment: Alignment.centerLeft,
+                            child: Image.asset(image!))
+                        : Align(
+                            alignment: Alignment.centerRight,
+                            child: Image.asset(image!)),
+                    Get.locale == const Locale('ar', 'EG')
+                        ? Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(title!,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'DinBold',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16)),
+                          )
+                        : Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(title!,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'DinBold',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16)),
+                          ),
+                  ],
+                )
               : SpinKitChasingDots(
-            size: 20,
-            color: loadingColor ?? Colors.white,
-          ),
+                  size: 20,
+                  color: loadingColor ?? Colors.white,
+                ),
         ),
       ),
     );

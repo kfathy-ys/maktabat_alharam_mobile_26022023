@@ -55,6 +55,7 @@ String parseHtmlString(String htmlString) {
 
   return parsedString;
 }
+
 Widget customDivider(double height) => Container(
       width: double.infinity,
       height: height,
@@ -84,70 +85,57 @@ Widget customNormalText({required BuildContext context, String? title}) {
   );
 }
 
-Widget customMeduimBoldText( String? title) {
-  return Text(
-    title!,
-    style: const TextStyle(
-        color: kRoundBorderColor, fontSize: 18, fontFamily: 'NeoSansBold'
-    )
-  );
-}
-Widget customBoldText( {required String title}) {
-  return Text(
-      title,
+Widget customMeduimBoldText(String? title) {
+  return Text(title!,
       style: const TextStyle(
-          color: kBlackText, fontSize: 18, fontFamily: 'DinBold'
-      )
-  );
+          color: kRoundBorderColor, fontSize: 18, fontFamily: 'NeoSansBold'));
 }
-void showAlertDialog(BuildContext context , VoidCallback onTap) {
 
+Widget customBoldText({required String title}) {
+  return Text(title,
+      style: const TextStyle(
+          color: kBlackText, fontSize: 18, fontFamily: 'DinBold'));
+}
+
+void showAlertDialog(BuildContext context, VoidCallback onTap) {
   showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => CupertinoAlertDialog(
-        title: const Text("الأرشيف"),
-        content: const Text( "تاكد إضافة الطلب إلي الارشيف"),
-        actions: <Widget>[
-          CupertinoDialogAction(
-              isDefaultAction: true,
-              onPressed: (){
-                onTap();
-                Get.back();
-              },
-              child:  Text("yes".tr)
-          ),
-          CupertinoDialogAction(
-              textStyle: const TextStyle(color: Colors.red),
-              isDefaultAction: true,
-              onPressed: () async {
-                Navigator.pop(context);
-               // SharedPreferences prefs = await SharedPreferences.getInstance();
-                //prefs.remove('isLogin');
-                Navigator.pop(context);
-              },
-              child:  Text("no".tr)
-          ),
-        ],
-      ));
+            title: const Text("الأرشيف"),
+            content: const Text("تاكد إضافة الطلب إلي الارشيف"),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                  isDefaultAction: true,
+                  onPressed: () {
+                    onTap();
+                    Get.back();
+                  },
+                  child: Text("yes".tr)),
+              CupertinoDialogAction(
+                  textStyle: const TextStyle(color: Colors.red),
+                  isDefaultAction: true,
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    // SharedPreferences prefs = await SharedPreferences.getInstance();
+                    //prefs.remove('isLogin');
+                    Navigator.pop(context);
+                  },
+                  child: Text("no".tr)),
+            ],
+          ));
 }
 
-Widget customSliderText({required String title , required Color color}) {
-  return Text(
-      title,
-      style: TextStyle(
-          color: color, fontSize: 18, fontFamily: 'DinBold'
-      )
-  );
+Widget customSliderText({required String title, required Color color}) {
+  return Text(title,
+      style: TextStyle(color: color, fontSize: 18, fontFamily: 'DinBold'));
 }
 
-Widget customLightText( String? title) {
-  return Text(
-      title!,
+Widget customLightText(String? title) {
+  return Text(title!,
       style: const TextStyle(
-          color: kBlackText, fontSize: 18, fontFamily: 'DinLight'
-      )
-  );
+          color: kBlackText, fontSize: 18, fontFamily: 'DinLight'));
 }
+
 class HexColor extends Color {
   static int _getColorFromHex(String hexColor) {
     hexColor = hexColor.toUpperCase().replaceAll("#", "");
@@ -428,6 +416,7 @@ Future<bool> onWillPop(BuildContext context) async {
 
   return shouldPop ?? false;
 }
+
 Future<bool> onWillPopSignIn(BuildContext context) async {
   final shouldPop = await showDialog(
     context: context,
@@ -452,7 +441,7 @@ Future<bool> onWillPopSignIn(BuildContext context) async {
         CupertinoDialogAction(
             isDefaultAction: true,
             onPressed: () {
-             Navigator.pop(context);
+              Navigator.pop(context);
             },
             child: const Text(
               "إلغاء",
@@ -466,7 +455,7 @@ Future<bool> onWillPopSignIn(BuildContext context) async {
             textStyle: const TextStyle(color: Colors.red),
             isDefaultAction: true,
             onPressed: () {
-              Get.offAll(()=>LoginScreen());
+              Get.offAll(() => LoginScreen());
             },
             child: const Text(
               "تسجيل الدخول",
@@ -483,51 +472,42 @@ Future<bool> onWillPopSignIn(BuildContext context) async {
   return shouldPop ?? false;
 }
 
-
-Future<bool> CustomDialog({required BuildContext context ,  String? title,String? subtitle, String? accept ,String? refuse})async{
+Future<bool> CustomDialog(
+    {required BuildContext context,
+    String? title,
+    String? subtitle,
+    String? accept,
+    String? refuse}) async {
   final shouldPop = await showDialog(
       context: context,
-      builder: (context) =>
-   CupertinoAlertDialog(
-    title: Text(title!
-       , style:  const TextStyle(
-        color: kBlackText, fontSize: 18, fontFamily: 'DinBold'
-    )
-
-    ),
-    content: Text(subtitle!
-        , style:  const TextStyle(
-            color: kBlackText, fontSize: 14, fontFamily: 'DinReguler'
-        )),
-    actions: [
-      CupertinoDialogAction(
-          child: Text(refuse!,
-              style:  const TextStyle(
-                  color: kButtonRedDark, fontSize: 14, fontFamily: 'DinReguler'
-              )
-
-
-          ),
-          onPressed: (){
-            Navigator.of(context).pop();
-          }
-      ),
-      CupertinoDialogAction(
-          child: Text(accept!),
-          onPressed: ()
-          {
-            Navigator.of(context).pop();
-            Prefs.getString("mark");
-             Get.to(()=> const BasicInfoScreen());
-
-          }
-      ),
-
-    ],
-  ));
+      builder: (context) => CupertinoAlertDialog(
+            title: Text(title!,
+                style: const TextStyle(
+                    color: kBlackText, fontSize: 18, fontFamily: 'DinBold')),
+            content: Text(subtitle!,
+                style: const TextStyle(
+                    color: kBlackText, fontSize: 14, fontFamily: 'DinReguler')),
+            actions: [
+              CupertinoDialogAction(
+                  child: Text(refuse!,
+                      style: const TextStyle(
+                          color: kButtonRedDark,
+                          fontSize: 14,
+                          fontFamily: 'DinReguler')),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+              CupertinoDialogAction(
+                  child: Text(accept!),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Prefs.getString("mark");
+                    Get.to(() => const BasicInfoScreen());
+                  }),
+            ],
+          ));
   return shouldPop ?? false;
 }
-
 
 //constant functions
 double sizeFromHeight(BuildContext context, double fraction,

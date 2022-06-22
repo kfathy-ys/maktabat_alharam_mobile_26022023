@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
@@ -14,12 +13,6 @@ import 'package:queen/validation.dart';
 import '../../widgets/alerts.dart';
 import 'cubit/register_cubit.dart';
 import 'page/back_icon.dart';
-import 'package:queen/validation/it/is_email.dart';
-import 'package:queen/validation/magic/is_optional.dart';
-import 'package:queen/validation/text/is_not_empty.dart';
-import 'package:queen/validation/text/max_length.dart';
-import 'package:queen/validation/text/min_length.dart';
-import 'package:queen/validation/validator.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -37,7 +30,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-   // double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
     return Container(
       color: kAppBarColor,
       child: SafeArea(
@@ -48,20 +41,18 @@ class SignUpScreen extends StatelessWidget {
             if (state is RegisterSuccess) {
               /// TODO : Cached Token needed
               //Prefs.setString('token', state.registerModel.);
-            //  Get.offAll(() =>  LoginScreen());
-              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                  LoginScreen()), (Route<dynamic> route) => false);
-              Alert.success(  'تم تسجيل بنجاح');
-
-
+              //  Get.offAll(() =>  LoginScreen());
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  (Route<dynamic> route) => false);
+              Alert.success('تم تسجيل بنجاح');
             } else if (state is RegisterError) {
-              Alert.error(  state.msg);
+              Alert.error(state.msg);
             }
           }, builder: (context, state) {
             final cubit = BlocProvider.of<RegisterCubit>(context);
             return Scaffold(
               backgroundColor: kHomeColor,
-
               body: Form(
                 key: _formKey,
                 child: ListView(
@@ -122,7 +113,6 @@ class SignUpScreen extends StatelessWidget {
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
                         IsOptional(),
-
                         MaxLength(30),
                       ]),
                       type: TextInputType.text,
@@ -145,13 +135,13 @@ class SignUpScreen extends StatelessWidget {
                       label: "countryResidence".tr,
                       hint: "countryResidence".tr,
                       controller: _countryController,
-                      validator: qValidator([
-                        IsRequired("enterCountry".tr),
-                        IsOptional(),
-
-                        MaxLength(30),
-                      ],
-                     ),
+                      validator: qValidator(
+                        [
+                          IsRequired("enterCountry".tr),
+                          IsOptional(),
+                          MaxLength(30),
+                        ],
+                      ),
                       type: TextInputType.streetAddress,
                     ),
                     CustomTextField(
@@ -171,7 +161,6 @@ class SignUpScreen extends StatelessWidget {
 
                     CustomTextField(
                       hint: "phoneNumber".tr,
-
                       dIcon: Icons.phone,
                       label: "phoneNumber".tr,
                       controller: _phoneController,
@@ -235,8 +224,7 @@ class SignUpScreen extends StatelessWidget {
                                     userName: _userNameController.text,
                                     phone: _phoneController.text,
                                     email: _emailController.text,
-                                    password: _passController.text
-                                );
+                                    password: _passController.text);
                               }
                             })
                         : const LoadingFadingCircle(),

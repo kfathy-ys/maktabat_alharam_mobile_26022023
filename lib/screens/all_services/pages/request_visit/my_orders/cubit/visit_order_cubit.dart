@@ -16,7 +16,7 @@ import '../view.dart';
 part 'visit_order_state.dart';
 
 class VisitOrderCubit extends Cubit<VisitOrderState> {
- MyArchiveVisitCubit myArchiveVisitCubit;
+  MyArchiveVisitCubit myArchiveVisitCubit;
 
   VisitOrderCubit(this.myArchiveVisitCubit) : super(VisitOrderInitial()) {
     getOrderVisit();
@@ -45,39 +45,37 @@ class VisitOrderCubit extends Cubit<VisitOrderState> {
 
   Future<void> addToArchiveVisit(MyOrderToVisit order) async {
     await myArchiveVisitCubit.addedVisitToArchive(
-      id: order.id!,
-      libraryId: order.libraryId!,
-      visitDateId: order.visitDateId!,
-      authority: order.authority!,
-      responsibleName: order.responsibleName.toString(),
-      responsibleMobile: order.responsibleMobile.toString(),
-      responsibleEmail: order.responsibleEmail.toString(),
-      numberOfVisitors: order.numberOfVisitors!,
-      visitReason: order.visitReason.toString(),
-      requestStatusId: order.requestStatusId!,
-      createdDate: order.createdDate.toString()
-    );
+        id: order.id!,
+        libraryId: order.libraryId!,
+        visitDateId: order.visitDateId!,
+        authority: order.authority!,
+        responsibleName: order.responsibleName.toString(),
+        responsibleMobile: order.responsibleMobile.toString(),
+        responsibleEmail: order.responsibleEmail.toString(),
+        numberOfVisitors: order.numberOfVisitors!,
+        visitReason: order.visitReason.toString(),
+        requestStatusId: order.requestStatusId!,
+        createdDate: order.createdDate.toString());
     await getOrderVisit();
     Alert.success("تم إضافة الطلب إلي الأرشيف");
-     Get.to(() => const ArchiveRequestToVisitScreen());
+    Get.to(() => const ArchiveRequestToVisitScreen());
   }
 
   Future<void> removeFromArchiveVisit(MyArchiveVisits order) async {
     await myArchiveVisitCubit.removeVisitFromArchive(
-      id: order.id!,
-      libraryId: order.libraryId!,
-      visitDateId: order.visitDateId!,
-      authority: order.authority!,
-      responsibleName: order.responsibleName.toString(),
-      responsibleMobile: order.responsibleMobile.toString(),
-      responsibleEmail: order.responsibleEmail.toString(),
-      numberOfVisitors: order.numberOfVisitors!,
-      visitReason: order.visitReason.toString(),
-      requestStatusId: order.requestStatusId!,
-      createdDate: order.createdDate.toString()
-    );
+        id: order.id!,
+        libraryId: order.libraryId!,
+        visitDateId: order.visitDateId!,
+        authority: order.authority!,
+        responsibleName: order.responsibleName.toString(),
+        responsibleMobile: order.responsibleMobile.toString(),
+        responsibleEmail: order.responsibleEmail.toString(),
+        numberOfVisitors: order.numberOfVisitors!,
+        visitReason: order.visitReason.toString(),
+        requestStatusId: order.requestStatusId!,
+        createdDate: order.createdDate.toString());
     await getOrderVisit();
     Alert.success("تم إزلة الطلب من الأرشيف");
-  Get.to(() =>  MyOrderRequestVisitScreen());
+    Get.to(() => MyOrderRequestVisitScreen());
   }
 }

@@ -9,7 +9,7 @@ class UpdateProfileInputData {
       userName,
       email,
       phoneNumber;
-  var profilePic ;
+  var profilePic;
 
   Map<String, dynamic> toJson() {
     return {
@@ -18,7 +18,10 @@ class UpdateProfileInputData {
       "nameArabic": nameArabic,
       "facebookId": null,
       "googleKey": null,
-      "pictureUrl": profilePic is String ? profilePic : MultipartFile.fromFileSync(profilePic.path,filename: profilePic.path),
+      "pictureUrl": profilePic is String
+          ? profilePic
+          : MultipartFile.fromFileSync(profilePic.path,
+              filename: profilePic.path),
       "joinDate": joinDate,
       "birthDate": birthDate,
       "countryId": null,

@@ -9,50 +9,46 @@ import 'package:maktabat_alharam/screens/our_services/view.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import '../notifications/view.dart';
 import 'page/languages/view.dart';
-import 'page/profile/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
 // double height = MediaQuery.of(context).size.height;
 // double width = MediaQuery.of(context).size.width;
 Widget drawer({required context}) {
-  return
-      Container(
-          margin: const EdgeInsets.only(bottom: 40, top: 65),
-          child: Drawer(
-            shape:
-               const RoundedRectangleBorder(
-                    borderRadius: BorderRadiusDirectional.only(
-                      topEnd:Radius.circular(50) ,
-                        bottomEnd:Radius.circular(50) ,
-                    )),
+  return Container(
+      margin: const EdgeInsets.only(bottom: 40, top: 65),
+      child: Drawer(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadiusDirectional.only(
+          topEnd: Radius.circular(50),
+          bottomEnd: Radius.circular(50),
+        )),
+        backgroundColor: kDrawerBackText,
+        child: Row(
+          children: [
+            const SizedBox(
+              width: 12,
 
-            backgroundColor: kDrawerBackText,
-            child: Row(
-              children: [
-                const SizedBox(
-                  width: 12,
- /// TODo:: Problem width: 12
-                 // width: 12,
-                ),
-                Container(
-                  width: 3,
-                  color: kBackgroundButton,
-                  height: MediaQuery.of(context).size.height - 180,
-                ),
-                SizedBox(
-
-                  /// Todo :::   width: MediaQuery.of(context).size.width - 122,
-                  width: MediaQuery.of(context).size.width - 122,
-                  child: ListView(
-                    shrinkWrap: true,
-                    physics: const BouncingScrollPhysics(),
-                    children: [
-                      Get.locale == const Locale('ar','EG') ?
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child:
-                          Padding(
-                            padding: const EdgeInsetsDirectional.only(top: 25,end: 25),
+              /// TODo:: Problem width: 12
+              // width: 12,
+            ),
+            Container(
+              width: 3,
+              color: kBackgroundButton,
+              height: MediaQuery.of(context).size.height - 180,
+            ),
+            SizedBox(
+              /// Todo :::   width: MediaQuery.of(context).size.width - 122,
+              width: MediaQuery.of(context).size.width - 122,
+              child: ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  Get.locale == const Locale('ar', 'EG')
+                      ? Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.only(
+                                top: 25, end: 25),
                             child: InkWell(
                                 onTap: () => Get.back(),
                                 child: Image.asset(
@@ -60,37 +56,35 @@ Widget drawer({required context}) {
                                   scale: 0.6,
                                 )),
                           ),
-
-                      ):Align(
-                        alignment: Alignment.topRight,
-                        child:  Padding(
-                            padding: const EdgeInsetsDirectional.only(top: 25,start: 25),
+                        )
+                      : Align(
+                          alignment: Alignment.topRight,
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.only(
+                                top: 25, start: 25),
                             child: InkWell(
                                 onTap: () => Get.back(),
                                 child: Image.asset(
-
                                   'assets/image/right arrow.png',
                                   scale: 0.6,
-
                                 )),
                           ),
-
-                      ),
-                      listTile(
-                          onTap: () {
-                            Get.back();
-                            Get.to(()=> const HomeTabScreen());
-                          },
-                          title: 'home'.tr,
-                          image: 'assets/image/homemenue.png'),
-                      listTile(
-                          onTap: () {
-                            Get.back();
-                            Get.to(()=>const AboutLibraryScreen());
-                          },
-                          title: 'aboutLibrary'.tr,
-                          image: 'assets/image/QuestionCircleFill.png'),
-               /*       listTile(
+                        ),
+                  listTile(
+                      onTap: () {
+                        Get.back();
+                        Get.to(() => const HomeTabScreen());
+                      },
+                      title: 'home'.tr,
+                      image: 'assets/image/homemenue.png'),
+                  listTile(
+                      onTap: () {
+                        Get.back();
+                        Get.to(() => const AboutLibraryScreen());
+                      },
+                      title: 'aboutLibrary'.tr,
+                      image: 'assets/image/QuestionCircleFill.png'),
+                  /*       listTile(
                           onTap: () {},
                           title: "generalMare".tr,
                           image: 'assets/image/telegram.png'),
@@ -101,58 +95,51 @@ Widget drawer({required context}) {
                           },
                           title: "newLibrary".tr,
                           image: 'assets/image/newest.png'),*/
-                      listTile(
-                          onTap: () {
-
-                            Get.back();
-                            Get.to(()=>OurServicesScreen());
-
-                          },
-                          title: "servicesLibrary".tr,
-                          image: 'assets/image/pubilcservies.png'),
-                      listTile(
-                          onTap: () {
-
-                            Get.back();
-                            Get.to(()=>const MyOrdersScreen());
-                          },
-                          title: "myOrders".tr,
-                          image: 'assets/image/myorder.png'),
-
-                      listTile(
-                          onTap: () {
-
-                            Get.back();
-                            Get.to(()=>const Notifications());
-                          },
-                          title: "notification".tr,
-                          image: 'assets/image/notification.png'),
-                      listTile(
-                          onTap: (){
-                            Get.back();
-                         Navigator.of(context).push(MaterialPageRoute(builder: (context)=>  const HomeTabScreen(index: 2,)
-
-                         ));
-
-                          },
-
-
-                          title: "myProfile".tr,
-                          image: 'assets/image/profileiconr.png'),
-                      listTile(
-                          onTap: () {
-                            Get.back();
-                            Get.to(()=>ContactUsScreen());
-                          },
-                          title: "contactsUs".tr,
-                          image: 'assets/image/TelephoneFill.png'),
-                      listTile(
-                          onTap: () {
-                            Get.back();
-                            Get.to(()=>LanguagesScreen());
-                          },
-                          title: "languages".tr,
-                          image: 'assets/image/lang.png'),
+                  listTile(
+                      onTap: () {
+                        Get.back();
+                        Get.to(() => OurServicesScreen());
+                      },
+                      title: "servicesLibrary".tr,
+                      image: 'assets/image/pubilcservies.png'),
+                  listTile(
+                      onTap: () {
+                        Get.back();
+                        Get.to(() => const MyOrdersScreen());
+                      },
+                      title: "myOrders".tr,
+                      image: 'assets/image/myorder.png'),
+                  listTile(
+                      onTap: () {
+                        Get.back();
+                        Get.to(() => const Notifications());
+                      },
+                      title: "notification".tr,
+                      image: 'assets/image/notification.png'),
+                  listTile(
+                      onTap: () {
+                        Get.back();
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const HomeTabScreen(
+                                  index: 2,
+                                )));
+                      },
+                      title: "myProfile".tr,
+                      image: 'assets/image/profileiconr.png'),
+                  listTile(
+                      onTap: () {
+                        Get.back();
+                        Get.to(() => ContactUsScreen());
+                      },
+                      title: "contactsUs".tr,
+                      image: 'assets/image/TelephoneFill.png'),
+                  listTile(
+                      onTap: () {
+                        Get.back();
+                        Get.to(() => LanguagesScreen());
+                      },
+                      title: "languages".tr,
+                      image: 'assets/image/lang.png'),
                   /*    listTile(
                           onTap: () {
 
@@ -161,20 +148,20 @@ Widget drawer({required context}) {
                           },
                           title: "settingsV".tr,
                           image: 'assets/image/settings.png'),*/
-                      listTile(
-                          onTap: () {
-                            Get.back();
-                            Get.offAll(()=>LoginScreen());
-                            Prefs.clear();
-                          },
-                          title: "logout".tr,
-                          image: 'assets/image/exit.png'),
-                    ],
-                  ),
-                ),
-              ],
+                  listTile(
+                      onTap: () {
+                        Get.back();
+                        Get.offAll(() => LoginScreen());
+                        Prefs.clear();
+                      },
+                      title: "logout".tr,
+                      image: 'assets/image/exit.png'),
+                ],
+              ),
             ),
-          ));
+          ],
+        ),
+      ));
 }
 
 Padding listTile(

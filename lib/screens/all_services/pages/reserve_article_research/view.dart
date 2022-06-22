@@ -1,13 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/drop_down_library_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/cubit_avalible_dates_research/avalible_dates_research_cubit.dart';
-import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/avalible_date.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_hall_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_items.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_qualification.dart';
@@ -21,10 +16,8 @@ import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'package:queen/validation.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../widgets/alerts.dart';
-import '../../../widgets/loading.dart';
 import 'my_order/view.dart';
 
 // ignore: must_be_immutable
@@ -44,8 +37,6 @@ class _ReserveResearchRetreatScreenState
   final _userController = TextEditingController();
   final _phoneController = TextEditingController();
 
-  final _datePickerController = DateRangePickerController();
-
   String? dropdownValue;
   dynamic selectedTimeFrom;
   dynamic selectedTimeTo;
@@ -53,8 +44,6 @@ class _ReserveResearchRetreatScreenState
   final fullName = Prefs.getString('fullName');
   final email = Prefs.getString('email');
   final phoneNumber = Prefs.getString('phoneNumber');
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +69,7 @@ class _ReserveResearchRetreatScreenState
                 listener: (context, state) {},
                 builder: (context, state) {
                   final cubit =
-                  BlocProvider.of<AvalibleDatesResearchCubit>(context);
+                      BlocProvider.of<AvalibleDatesResearchCubit>(context);
                   return SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,15 +91,12 @@ class _ReserveResearchRetreatScreenState
                         if (cubit.isResearchRetreat && cubit.rooms.isNotEmpty)
                           DropDownListHallName(
                               rooms: cubit.rooms,
-                              onChanged:(value){
+                              onChanged: (value) {
                                 //  cubit.onRoomsIDChanged(value);
-                                cubit. getAvailableValidDatesResearch(value.id!);
-
-
+                                cubit.getAvailableValidDatesResearch(value.id!);
                               }),
 
-                        if (cubit.isScientificMaterial   ) callNumber(),
-
+                        if (cubit.isScientificMaterial) callNumber(),
 
                         CustomTextField(
                           hint: "userName".tr,
@@ -177,18 +163,15 @@ class _ReserveResearchRetreatScreenState
                         //   ),
                         // ),
                         Container(
-
                           height: height * 0.4,
                           width: width * 0.8,
                           padding: const EdgeInsets.symmetric(horizontal: 12),
                           margin: const EdgeInsets.symmetric(
                               horizontal: 28, vertical: 14),
-
                           decoration: BoxDecoration(
                               border: Border.all(color: kSafeAreasColor),
                               color: kHomeColor,
                               borderRadius: BorderRadius.circular(8)),
-
                           child: CalendarDatePicker(
                             initialDate: cubit.dates.isNotEmpty
                                 ? cubit.dates.first.date
@@ -200,9 +183,7 @@ class _ReserveResearchRetreatScreenState
                                 ? cubit.dates.last.date
                                 : DateTime(2031),
                             onDateChanged: (value) {
-
                               cubit.selectDay(value);
-
                             },
                             selectableDayPredicate: (day) {
                               if (cubit.dates.isNotEmpty) {
@@ -215,7 +196,6 @@ class _ReserveResearchRetreatScreenState
                                 return true;
                               }
                             },
-
                           ),
                         ),
                         // if (cubit.dates.isNotEmpty)
@@ -235,25 +215,25 @@ class _ReserveResearchRetreatScreenState
                         buildSizedBox(height),
                         Center(
                             child: MediaButtonSizer(
-                              onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  cubit.createOrderToResearch(
-                                    callNum: "  ",
-                                    roomId: 1,
-                                    numberOfVisitors: 1,
-                                    visitReason: "visitReason",
-                                  );
-                                  Alert.success("تم إضافة طلبك بنجاح ");
-                                  Get.off(
-                                          () => const MyOrderReserveArticleResearch());
-                                } else {
-                                  Alert.error("الرجاء التاكيد من الطلب ");
-                                }
-                              },
-                              title: "requestService".tr,
-                              color: kPrimaryColor,
-                              image: "assets/image/rightsah.png",
-                            ))
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              cubit.createOrderToResearch(
+                                callNum: "  ",
+                                roomId: 1,
+                                numberOfVisitors: 1,
+                                visitReason: "visitReason",
+                              );
+                              Alert.success("تم إضافة طلبك بنجاح ");
+                              Get.off(
+                                  () => const MyOrderReserveArticleResearch());
+                            } else {
+                              Alert.error("الرجاء التاكيد من الطلب ");
+                            }
+                          },
+                          title: "requestService".tr,
+                          color: kPrimaryColor,
+                          image: "assets/image/rightsah.png",
+                        ))
                       ],
                     ),
                   );
@@ -306,8 +286,6 @@ class _ReserveResearchRetreatScreenState
       });
     }, currentTime: DateTime.now());
   }*/
-
-  Widget _selectTextField = const SizedBox();
 
   callNumber() {
     return CustomTextField(

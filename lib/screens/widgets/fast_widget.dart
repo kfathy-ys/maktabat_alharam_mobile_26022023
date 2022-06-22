@@ -1,7 +1,5 @@
 // ignore_for_file: deprecated_member_use
 
-
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:html/parser.dart';
@@ -133,10 +131,11 @@ String parseHtmlString(String htmlString) {
   final String parsedString = parse(document.body!.text).documentElement!.text;
   return parsedString;
 }
+
 Future<void> showMyDialog(
     {required BuildContext context,
-      required String title,
-      required Widget data}) async {
+    required String title,
+    required Widget data}) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: true, // user must tap button!
@@ -149,6 +148,3 @@ Future<void> showMyDialog(
     },
   );
 }
-
-
-

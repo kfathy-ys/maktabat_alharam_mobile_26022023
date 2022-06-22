@@ -7,7 +7,8 @@ class AllRepliesThesisModel extends Equatable {
   int? status;
   int? dataLength;
 
-  AllRepliesThesisModel({this.data, this.messages, this.status, this.dataLength});
+  AllRepliesThesisModel(
+      {this.data, this.messages, this.status, this.dataLength});
 
   AllRepliesThesisModel.fromJson(Map<String, dynamic> json) {
     data = json["data"] == null
@@ -21,9 +22,10 @@ class AllRepliesThesisModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null)
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (this.data != null) {
       data["data"] = this.data?.map((e) => e.toJson()).toList();
+    }
     if (messages != null) data["messages"] = messages;
     data["status"] = status;
     data["dataLength"] = dataLength;
@@ -31,7 +33,6 @@ class AllRepliesThesisModel extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [data, dataLength, status, messages];
 }
 
@@ -43,8 +44,8 @@ class MyRepliesThesis extends Equatable {
   String? userMessage;
   String? createdBy;
   String? createdDate;
-  dynamic? updatedBy;
-  dynamic? updatedDate;
+  dynamic updatedBy;
+  dynamic updatedDate;
 
   MyRepliesThesis(
       {this.id,
@@ -68,7 +69,7 @@ class MyRepliesThesis extends Equatable {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["id"] = id;
     data["thesisDepositionRequestId"] = thesisDepositionRequestId;
     data["userName"] = userName;
@@ -81,7 +82,6 @@ class MyRepliesThesis extends Equatable {
   }
 
   @override
-
   List<Object?> get props {
     return [
       id,

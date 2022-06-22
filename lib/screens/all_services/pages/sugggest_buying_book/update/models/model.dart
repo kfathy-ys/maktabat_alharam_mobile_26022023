@@ -1,19 +1,20 @@
-
 // ignore_for_file: must_be_immutable
 
 import 'package:equatable/equatable.dart';
 
-// ignore: must_be_immutable
-class OrderUpdateSuggestModel extends Equatable{
+class OrderUpdateSuggestModel extends Equatable {
   List<Data>? data;
   List<dynamic>? messages;
   int? status;
   int? dataLength;
 
-  OrderUpdateSuggestModel({this.data, this.messages, this.status, this.dataLength});
+  OrderUpdateSuggestModel(
+      {this.data, this.messages, this.status, this.dataLength});
 
   OrderUpdateSuggestModel.fromJson(Map<String, dynamic> json) {
-    data = json["data"]==null ? null : (json["data"] as List).map((e)=>Data.fromJson(e)).toList();
+    data = json["data"] == null
+        ? null
+        : (json["data"] as List).map((e) => Data.fromJson(e)).toList();
     messages = json["messages"] ?? [];
     status = json["status"];
     dataLength = json["dataLength"];
@@ -21,10 +22,10 @@ class OrderUpdateSuggestModel extends Equatable{
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if(this.data != null) {
-      data["data"] = this.data?.map((e)=>e.toJson()).toList();
+    if (this.data != null) {
+      data["data"] = this.data?.map((e) => e.toJson()).toList();
     }
-    if(messages != null) {
+    if (messages != null) {
       data["messages"] = messages;
     }
     data["status"] = status;
@@ -33,11 +34,10 @@ class OrderUpdateSuggestModel extends Equatable{
   }
 
   @override
-
-  List<Object?> get props => [data, messages ,status,dataLength];
+  List<Object?> get props => [data, messages, status, dataLength];
 }
 
-class Data extends Equatable{
+class Data extends Equatable {
   int? id;
   String? visitorName;
   String? visitorEmail;
@@ -54,10 +54,28 @@ class Data extends Equatable{
   bool? isArchived;
   String? createdBy;
   String? createdDate;
-  dynamic? updatedBy;
-  dynamic? updatedDate;
+  dynamic updatedBy;
+  dynamic updatedDate;
 
-  Data({this.id, this.visitorName, this.visitorEmail, this.visitorMobile, this.qualifications, this.suggestedBookTitle, this.authorName, this.publisherName, this.placeOfPublication, this.yearOfPublication, this.standardBookNumber, this.bookTypeId, this.additionalInformation, this.isArchived, this.createdBy, this.createdDate, this.updatedBy, this.updatedDate});
+  Data(
+      {this.id,
+      this.visitorName,
+      this.visitorEmail,
+      this.visitorMobile,
+      this.qualifications,
+      this.suggestedBookTitle,
+      this.authorName,
+      this.publisherName,
+      this.placeOfPublication,
+      this.yearOfPublication,
+      this.standardBookNumber,
+      this.bookTypeId,
+      this.additionalInformation,
+      this.isArchived,
+      this.createdBy,
+      this.createdDate,
+      this.updatedBy,
+      this.updatedDate});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json["id"];

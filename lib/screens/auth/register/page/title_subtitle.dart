@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
+
 class TextTitleSubTitle extends StatelessWidget {
   const TextTitleSubTitle({Key? key}) : super(key: key);
 

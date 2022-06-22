@@ -6,6 +6,7 @@ import 'package:maktabat_alharam/screens/widgets/customButton.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:timer_count_down/timer_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
+
 class VCodeScreen extends StatefulWidget {
   const VCodeScreen({Key? key}) : super(key: key);
 
@@ -19,7 +20,8 @@ class _VCodeScreenState extends State<VCodeScreen> {
   final formKey = GlobalKey<FormState>();
 
   final _emailController = TextEditingController();
-  final CountdownController _countdownController = CountdownController(autoStart: true);
+  final CountdownController _countdownController =
+      CountdownController(autoStart: true);
 
   void _handleConfirmCode() {
     final text = _emailController.text;
@@ -30,19 +32,18 @@ class _VCodeScreenState extends State<VCodeScreen> {
 
   @override
   void dispose() {
-
     //_pinFieldController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-   // double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
     return Container(
       color: kAppBarColor,
       child: SafeArea(
         child: Scaffold(
-
           backgroundColor: kHomeColor,
           key: _scaffoldKey,
           body: SingleChildScrollView(
@@ -50,19 +51,23 @@ class _VCodeScreenState extends State<VCodeScreen> {
               key: formKey,
               child: Column(
                 children: [
-                  SizedBox(height: height*0.05,),
+                  SizedBox(
+                    height: height * 0.05,
+                  ),
                   InkWell(
-                    onTap: ()=>Get.back(),
-                    child:  Container(
+                    onTap: () => Get.back(),
+                    child: Container(
                       margin: const EdgeInsetsDirectional.only(start: 280),
-                      child:  Image.asset("assets/image/backbutton.png"),
-                    ),),
-                  SizedBox(height: height*0.3,),
+                      child: Image.asset("assets/image/backbutton.png"),
+                    ),
+                  ),
+                  SizedBox(
+                    height: height * 0.3,
+                  ),
                   CustomTextField(
-
                     hint: "EnterVcode".tr,
                     dIcon: Icons.verified_user_outlined,
-                    label:"EnterVcode".tr ,
+                    label: "EnterVcode".tr,
                     controller: _emailController,
                     validator: (String? value) {
                       if (value!.isEmpty) {
@@ -71,13 +76,19 @@ class _VCodeScreenState extends State<VCodeScreen> {
                       return null;
                     },
                     type: TextInputType.emailAddress,
-
                   ),
-              _buildResendCounter(),
-                  SizedBox(height: height*0.05,),
-                  CustomButton(color: kSmallIconColor,title:"confirm".tr ,onPressed: ()=>Get.to(()=>NewPasswordScreen()),),
-                  SizedBox(height: height*0.01,),
-
+                  _buildResendCounter(),
+                  SizedBox(
+                    height: height * 0.05,
+                  ),
+                  CustomButton(
+                    color: kSmallIconColor,
+                    title: "confirm".tr,
+                    onPressed: () => Get.to(() => NewPasswordScreen()),
+                  ),
+                  SizedBox(
+                    height: height * 0.01,
+                  ),
                 ],
               ),
             ),
@@ -85,9 +96,6 @@ class _VCodeScreenState extends State<VCodeScreen> {
         ),
       ),
     );
-
-
-
   }
 
   Widget _buildResendCounter() {
@@ -99,11 +107,12 @@ class _VCodeScreenState extends State<VCodeScreen> {
           const SnackBar(
             backgroundColor: Colors.red,
             content: Text(
-                'If you not sent an verification code please try again !',  style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Cairo',
-                fontSize: 12)),
+                'If you not sent an verification code please try again !',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Cairo',
+                    fontSize: 12)),
           ),
         );
       },

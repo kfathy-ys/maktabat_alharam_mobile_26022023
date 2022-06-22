@@ -1,10 +1,8 @@
-
 // ignore_for_file: must_be_immutable
 
 import 'package:equatable/equatable.dart';
 
-
-class AskOrderModel extends Equatable{
+class AskOrderModel extends Equatable {
   List<AskMyOrder>? data;
   List<dynamic>? messages;
   int? status;
@@ -13,7 +11,9 @@ class AskOrderModel extends Equatable{
   AskOrderModel({this.data, this.messages, this.status, this.dataLength});
 
   AskOrderModel.fromJson(Map<String, dynamic> json) {
-    data = json["data"]==null ? null : (json["data"] as List).map((e)=>AskMyOrder.fromJson(e)).toList();
+    data = json["data"] == null
+        ? null
+        : (json["data"] as List).map((e) => AskMyOrder.fromJson(e)).toList();
     messages = json["messages"] ?? [];
     status = json["status"];
     dataLength = json["dataLength"];
@@ -21,10 +21,10 @@ class AskOrderModel extends Equatable{
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if(this.data != null) {
-      data["data"] = this.data?.map((e)=>e.toJson()).toList();
+    if (this.data != null) {
+      data["data"] = this.data?.map((e) => e.toJson()).toList();
     }
-    if(messages != null) {
+    if (messages != null) {
       data["messages"] = messages;
     }
     data["status"] = status;
@@ -33,11 +33,10 @@ class AskOrderModel extends Equatable{
   }
 
   @override
-
-  List<Object?> get props => [data,messages,status,dataLength];
+  List<Object?> get props => [data, messages, status, dataLength];
 }
 
-class AskMyOrder extends Equatable{
+class AskMyOrder extends Equatable {
   int? id;
   int? type;
   String? visitorName;
@@ -51,7 +50,19 @@ class AskMyOrder extends Equatable{
   String? updatedBy;
   String? updatedDate;
 
-  AskMyOrder({this.id, this.type, this.visitorName, this.visitorEmail, this.visitorMobile, this.visitorMessage, this.response, this.isArchived, this.createdBy, this.createdDate, this.updatedBy, this.updatedDate});
+  AskMyOrder(
+      {this.id,
+      this.type,
+      this.visitorName,
+      this.visitorEmail,
+      this.visitorMobile,
+      this.visitorMessage,
+      this.response,
+      this.isArchived,
+      this.createdBy,
+      this.createdDate,
+      this.updatedBy,
+      this.updatedDate});
 
   AskMyOrder.fromJson(Map<String, dynamic> json) {
     id = json["id"];
@@ -86,7 +97,6 @@ class AskMyOrder extends Equatable{
   }
 
   @override
-
   List<Object?> get props {
     return [
       id,
@@ -101,7 +111,6 @@ class AskMyOrder extends Equatable{
       createdDate,
       updatedBy,
       updatedDate,
-
     ];
   }
 }

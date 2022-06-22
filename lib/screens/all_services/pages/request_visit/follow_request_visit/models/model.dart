@@ -42,16 +42,16 @@ class MyFollowOrder extends Equatable {
   String? responsibleEmail;
   int? numberOfVisitors;
   String? visitReason;
-  dynamic? reasonOfRejection;
-  dynamic? instructions;
+  dynamic reasonOfRejection;
+  dynamic instructions;
   int? requestStatusId;
   bool? isArchived;
   String? createdBy;
   String? createdDate;
-  dynamic? updatedBy;
+  dynamic updatedBy;
   String? updatedDate;
   VisitAvailableDate? visitAvailableDate;
-  dynamic? visitRequestReply;
+  dynamic visitRequestReply;
 
   MyFollowOrder(
       {this.id,
@@ -161,11 +161,11 @@ class VisitAvailableDate extends Equatable {
   int? periodId;
   String? date;
   int? visitStatusId;
-  dynamic? visitRequestId;
+  dynamic visitRequestId;
   String? createdBy;
   String? createdDate;
-  dynamic? updatedBy;
-  dynamic? updatedDate;
+  dynamic updatedBy;
+  dynamic updatedDate;
 
   VisitAvailableDate(
       {this.id,

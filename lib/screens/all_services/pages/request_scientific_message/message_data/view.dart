@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/availability_message/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/title.dart';
@@ -21,7 +20,6 @@ class MessageDataScreen extends StatefulWidget {
 }
 
 class _MessageDataScreenState extends State<MessageDataScreen> {
-
   final formKey = GlobalKey<FormState>();
 
   final _messageAddressController = TextEditingController();
@@ -45,7 +43,6 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
         child: Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
-
           appBar: customAppbar(
               icons: Icons.arrow_forward_outlined,
               isIcons: true,
