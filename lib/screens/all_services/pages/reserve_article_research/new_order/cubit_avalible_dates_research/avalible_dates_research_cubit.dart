@@ -141,7 +141,7 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
         "id": 0,
         "userId": userId,
         "libraryId": selectedLIB!.id,
-        "roomId": null,
+        "roomId": rooms == null ? null : roomId ,
         "researchStartDateId": null,
         "researchEndDateId": null,
         "requestTypeId": authorityID!,
@@ -178,10 +178,19 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
 
 
   /// Set List To Store Selected Days From Calender
-  final selectedDates = <DateTime>[];
-
-  void selectDay(DateTime day) {
-    selectedDates.add(day);
+//  final selectedDates = <DateTime>[];
+  CDateRange? selectedDateRange;
+  void selectDay(CDateRange dateRange) {
+    selectedDateRange = dateRange;
     emit(SelectedDatesState());
   }
+}
+
+class CDateRange {
+  final DateTime startDate;
+  final DateTime endDate;
+
+  CDateRange({required this.startDate,required this.endDate});
+
+
 }

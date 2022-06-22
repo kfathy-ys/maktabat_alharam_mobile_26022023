@@ -15,13 +15,14 @@ class CardNotifications extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 18,vertical: 4),
       padding:
       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      height: height * 0.14,
+      //height: height * 0.1,
       decoration: BoxDecoration(
         color: kBackgroundCardColor,
         borderRadius: BorderRadius.circular(8),
         //  border: Border.all(color: kCardBorder),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children:  [
           AutoSizeText(
             title,

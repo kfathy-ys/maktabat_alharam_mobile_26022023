@@ -73,7 +73,7 @@ class Notifications extends StatelessWidget {
                                             title: "لا توجد إشعارات الاّن"))
                                     : ListView.builder(
                                         itemCount:
-                                            state.allNotifications.dataLength,
+                                            state.allNotifications.data!.length,
                                         physics: const BouncingScrollPhysics(),
                                         shrinkWrap: true,
                                         itemBuilder: (context, int index) {

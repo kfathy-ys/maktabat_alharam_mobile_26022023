@@ -109,6 +109,7 @@ class _PutScientificMessageState
                      onChanged: ( value) {
                        setState(() {
                          this.value = value!;
+                         Prefs.getString('mark');
                        });
                      },
                    ),

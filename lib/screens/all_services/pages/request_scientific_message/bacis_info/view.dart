@@ -29,15 +29,15 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
 
   final formKey = GlobalKey<FormState>();
 
-  final _nameController = TextEditingController();
+  final nameController = TextEditingController();
 
-  final _emailController = TextEditingController();
+  final emailController = TextEditingController();
 
-  final _uniController = TextEditingController();
+  final uniController = TextEditingController();
 
-  final _depController = TextEditingController();
+  final depController = TextEditingController();
 
-  final _phoneController = TextEditingController();
+  final phoneController = TextEditingController();
 
   bool value = false;
 
@@ -72,7 +72,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   hint: "userName".tr,
                   dIcon: Icons.drive_file_rename_outline,
                   label: "userName".tr,
-                  controller: _nameController,
+                  controller: nameController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -85,7 +85,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   hint: "collage".tr,
                   dIcon: Icons.flag_outlined,
                   label: "collage".tr,
-                  controller: _uniController,
+                  controller: uniController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -97,7 +97,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   hint: "email".tr,
                   dIcon: Icons.email,
                   label: "email".tr,
-                  controller: _emailController,
+                  controller: emailController,
                   validator: qValidator([
                     IsRequired("enterEmail".tr),
                     IsOptional(),
@@ -109,7 +109,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   hint: "department".tr,
                   dIcon: Icons.drive_file_rename_outline,
                   label: "department".tr,
-                  controller: _depController,
+                  controller: depController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -121,7 +121,7 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   hint: "phone".tr,
                   dIcon: Icons.phone,
                   label: "phone".tr,
-                  controller: _phoneController,
+                  controller: phoneController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
                     IsOptional(),
@@ -139,7 +139,6 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                     SmallestButton(
                       onPressed: () {
                         Get.back();
-                        //  Get.to(()=> MyOrderBasicInfoScreen());
                       },
                       title: "previous".tr,
                       color: kPrimaryColor,
@@ -147,6 +146,8 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                     ),
                     SmallestButton(
                       onPressed: () {
+
+
                         Get.to(() => const MessageDataScreen());
                       },
                       title: "next".tr,
