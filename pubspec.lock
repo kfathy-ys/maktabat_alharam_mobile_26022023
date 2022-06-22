@@ -141,6 +141,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  date_range_picker:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: fcdc9c793dbaee5fe65511f2c1a6a76d1fafd0de
+      resolved-ref: fcdc9c793dbaee5fe65511f2c1a6a76d1fafd0de
+      url: "https://github.com/ashokavarthanan/date_range_picker.git"
+    source: git
+    version: "2.0.0"
   date_time_picker:
     dependency: "direct main"
     description:

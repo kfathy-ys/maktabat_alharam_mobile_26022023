@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 class UpdateProfileInputData {
   String? firstName,
@@ -11,7 +12,14 @@ class UpdateProfileInputData {
       phoneNumber;
   var profilePic;
 
+
+  /*
+  * this.thesisData.append('jsonString', JSON.stringify(this.thesisDepositionRequest));
+*/
+
   Map<String, dynamic> toJson() {
+
+    var userId = Prefs.getString("userId");
     return {
       "firstName": firstName,
       "lastName": lastName,
@@ -28,7 +36,7 @@ class UpdateProfileInputData {
       "country": null,
       "active": true,
       "userRoles": null,
-      "id": "275b12b8-f898-4e69-8a80-f8f23ebee2f5",
+      "id": userId,
       "userName": userName,
       "normalizedUserName": "MORASHAD0@GMAIL.COM",
       "email": email,

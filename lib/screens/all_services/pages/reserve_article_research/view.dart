@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
+
+import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/drop_down_library_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/cubit_avalible_dates_research/avalible_dates_research_cubit.dart';
@@ -73,8 +77,6 @@ class _ReserveResearchRetreatScreenState
                   return SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      // padding: const EdgeInsets.symmetric(vertical: 18),
-                      // physics: const BouncingScrollPhysics(),
                       children: [
                         HeadTopics(
                           title: "RequestReserveArticleOrResearchRetreat".tr,
@@ -83,18 +85,79 @@ class _ReserveResearchRetreatScreenState
                         DropDownListServiceName(
                           onChanged: cubit.selectService,
                         ),
-                        DropDownListLibraryName(onChanged: (value) {
+                        DropDownListLibraryName(onChanged: (value) async {
                           cubit.onLibChang(value);
                           cubit.getAvailableDatesResearch(value.id!);
+                          if (cubit.isScientificMaterial) {
+                            await cubit
+                                .getAvailableValidDatesResearch(value.id!);
+
+                            final List<DateTime>? picked =
+                                await DateRangePicker.showDatePicker(
+                              selectableDayPredicate: (day) {
+                                if (cubit.dates.isNotEmpty) {
+                                  if (cubit.availableDates.contains(day)) {
+                                    return true;
+                                  } else {
+                                    return false;
+                                  }
+                                } else {
+                                  return true;
+                                }
+                              },
+                              context: context,
+                              initialFirstDate: cubit.dates.isNotEmpty
+                                  ? cubit.dates.first.date
+                                  : DateTime.now(),
+                              initialLastDate: cubit.dates.isNotEmpty
+                                  ? cubit.dates.last.date
+                                  : DateTime(2031),
+                              firstDate: DateTime(2022),
+                              lastDate: DateTime(DateTime.now().year + 10),
+                            );
+                            if (picked!.length == 2) {
+                              print(picked);
+                            }
+                          }
                         }),
 
                         if (cubit.isResearchRetreat && cubit.rooms.isNotEmpty)
                           DropDownListHallName(
-                              rooms: cubit.rooms,
-                              onChanged: (value) {
-                                //  cubit.onRoomsIDChanged(value);
-                                cubit.getAvailableValidDatesResearch(value.id!);
-                              }),
+                            rooms: cubit.rooms,
+                            onChanged: (value) async {
+                              await cubit
+                                  .getAvailableValidDatesResearch(value.id!);
+
+                              final List<DateTime>? picked =
+                                  await DateRangePicker.showDatePicker(
+                                selectableDayPredicate: (day) {
+                                  if (cubit.dates.isNotEmpty) {
+                                    if (cubit.availableDates.contains(day)) {
+                                      return true;
+                                    } else {
+                                      return false;
+                                    }
+                                  } else {
+                                    return true;
+                                  }
+                                },
+                                context: context,
+                                initialFirstDate: cubit.dates.isNotEmpty
+                                    ? cubit.dates.first.date
+                                    : DateTime.now(),
+                                initialLastDate: cubit.dates.isNotEmpty
+                                    ? cubit.dates.last.date
+                                    : DateTime(2031),
+                                firstDate: DateTime(2022),
+                                lastDate: DateTime(DateTime.now().year + 10),
+                              );
+                              if (picked!.length == 2) {
+                                cubit.selectDay(CDateRange(
+                                    startDate: picked.first,
+                                    endDate: picked.last));
+                              }
+                            },
+                          ),
 
                         if (cubit.isScientificMaterial) callNumber(),
 
@@ -128,41 +191,43 @@ class _ReserveResearchRetreatScreenState
                         }),
                         buildPadding(title: "requiredDate".tr),
 
-                        // Container(
-                        //   height: height * 0.4,
-                        //   padding: const EdgeInsets.symmetric(horizontal: 12),
-                        //   margin: const EdgeInsets.symmetric(
-                        //       horizontal: 28, vertical: 14),
-                        //
-                        //   decoration: BoxDecoration(
-                        //       color: kHomeColor,
-                        //       border: Border.all(color: kSafeAreasColor),
-                        //
-                        //       borderRadius: BorderRadius.circular(8)),
-                        //   child:  SfDateRangePicker(
-                        //     selectableDayPredicate: (day) {
-                        //       if (cubit.dates.isNotEmpty) {
-                        //         if (cubit.availableDates.contains(day)) {
-                        //           return true;
-                        //         } else {
-                        //           return false;
-                        //         }
-                        //       } else {
-                        //         return true;
-                        //       }
-                        //     },
-                        //
-                        //
-                        //     endRangeSelectionColor: kSafeAreasColor,
-                        //     showActionButtons: true,
-                        //     startRangeSelectionColor: kSafeAreasColor,
-                        //     rangeSelectionColor: kPrimaryColor,
-                        //     view: DateRangePickerView.month,
-                        //     selectionMode: DateRangePickerSelectionMode.range,
-                        //     enableMultiView: true,
-                        //   ),
-                        // ),
-                        Container(
+                        /*   Container(
+                          height: height * 0.4,
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 28, vertical: 14),
+
+                          decoration: BoxDecoration(
+                              color: kHomeColor,
+                              border: Border.all(color: kSafeAreasColor),
+
+                              borderRadius: BorderRadius.circular(8)),
+                          child:  SfDateRangePicker(
+                            selectableDayPredicate: (day) {
+                              if (cubit.dates.isNotEmpty) {
+                                if (cubit.availableDates.contains(day)) {
+                                  return true;
+                                } else {
+                                  return false;
+                                }
+                              } else {
+                                return true;
+                              }
+                            },
+
+
+                            endRangeSelectionColor: kSafeAreasColor,
+                            showActionButtons: true,
+                            startRangeSelectionColor: kSafeAreasColor,
+                            rangeSelectionColor: kPrimaryColor,
+                            view: DateRangePickerView.month,
+                            selectionMode: DateRangePickerSelectionMode.range,
+                            enableMultiView: true,
+                          ),
+                        ),*/
+
+                        /*  Container(
+
                           height: height * 0.4,
                           width: width * 0.8,
                           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -183,7 +248,9 @@ class _ReserveResearchRetreatScreenState
                                 ? cubit.dates.last.date
                                 : DateTime(2031),
                             onDateChanged: (value) {
-                              cubit.selectDay(value);
+
+                             // cubit.selectDay(value);
+
                             },
                             selectableDayPredicate: (day) {
                               if (cubit.dates.isNotEmpty) {
@@ -197,7 +264,7 @@ class _ReserveResearchRetreatScreenState
                               }
                             },
                           ),
-                        ),
+                        ),*/
                         // if (cubit.dates.isNotEmpty)
                         //   state is! AvalibleDatesResearchLoading
                         //       ? CardAvailableDates(
@@ -269,23 +336,6 @@ class _ReserveResearchRetreatScreenState
   final now = DateTime.now();
   String? datePicked;
   DateTime? time;
-
-/*  void _showDatePicker(bool isFrom) {
-    DatePicker.showTimePicker(context, showTitleActions: true,
-        onChanged: (date) {
-      log('change $date');
-    }, onConfirm: (date) {
-      setState(() {
-        if (isFrom == true) {
-          selectedTimeFrom = DateFormat('hh-mm', "en_US").format(date);
-        } else {
-          selectedTimeTo = DateFormat('hh-mm', "en_US").format(date);
-        }
-
-        log('confirm $date');
-      });
-    }, currentTime: DateTime.now());
-  }*/
 
   callNumber() {
     return CustomTextField(
