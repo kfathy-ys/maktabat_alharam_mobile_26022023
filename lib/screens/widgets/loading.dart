@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+//import 'package:shimmer/shimmer.dart';
 
 import 'constants.dart';
 
@@ -15,6 +16,19 @@ class Loading extends StatelessWidget {
     );
   }
 }
+// class LoadingShimmer extends StatelessWidget {
+//   final Widget? child;
+//
+//   const LoadingShimmer({Key? key,  this.child}) : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return Shimmer.fromColors(
+//         baseColor: Colors.grey[300]!,
+//         highlightColor: Colors.grey[100]!,
+//         enabled: true, child: child!,);
+//   }
+// }
+
 
 // ignore: use_key_in_widget_constructors
 class LoadingSmall extends StatelessWidget {

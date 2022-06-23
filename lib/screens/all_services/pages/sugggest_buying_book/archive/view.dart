@@ -24,8 +24,7 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
 
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
+    return  Scaffold(
         backgroundColor: kHomeColor,
         drawer: drawer(context: context),
         appBar: customAppbar(
@@ -149,7 +148,7 @@ class ArchiveSuggestBuyBookScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
+
   }
 }

@@ -27,8 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Stack(
+    return Stack(
       fit: StackFit.expand,
       children: [
         Image.asset(
@@ -59,12 +58,10 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
       ],
-    ));
+    );
   }
 
   void goToHomePage(BuildContext context) async {
-    //  await GlobalNotification().setUpFirebase();
-
     try {
       final result = await InternetAddress.lookup('google.com');
 

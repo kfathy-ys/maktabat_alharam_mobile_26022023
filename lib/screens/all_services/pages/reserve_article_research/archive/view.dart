@@ -27,10 +27,7 @@ class ArchiveReserveArticleScreen extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     final cubitResearchArchive = BlocProvider.of<ArchivedOrderCubit>(context);
     final cubit = BlocProvider.of<MyOrderResearchCubit>(context);
-    return Container(
-      color: kAppBarColor,
-      child: SafeArea(
-        child: Scaffold(
+    return  Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
           appBar: customAppbar(
@@ -188,8 +185,8 @@ class ArchiveReserveArticleScreen extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
-    );
+        );
+
+
   }
 }
