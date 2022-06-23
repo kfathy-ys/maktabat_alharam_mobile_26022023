@@ -40,10 +40,6 @@ dependencies:
   fluttertoast: ^8.0.7
   awesome_dialog: ^2.1.2
   auto_size_text: ^3.0.0
-  date_range_picker:
-    git:
-      url: https://github.com/ashokavarthanan/date_range_picker.git
-      ref: fcdc9c793dbaee5fe65511f2c1a6a76d1fafd0de
   font_awesome_flutter: ^9.1.0
 
   flutter_datetime_picker:
@@ -80,6 +76,7 @@ dependencies:
     git:
       url: https://github.com/maxzod/queen.git
       ref: f6cc4532a9690809d0ed3c5f1ae8717f1baf38d7
+  provider: ^6.0.3
 
 dev_dependencies:
   flutter_test:

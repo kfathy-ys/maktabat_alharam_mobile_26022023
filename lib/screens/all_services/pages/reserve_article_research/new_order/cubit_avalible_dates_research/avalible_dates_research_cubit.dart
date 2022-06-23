@@ -1,93 +1,114 @@
 import 'dart:developer';
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/new_order/models/all_libraries_model.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/models/all_grads_model.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/models/available_dates_room_model.dart';
-import 'package:meta/meta.dart';
+import 'package:maktabat_alharam/screens/widgets/alerts.dart';
 import 'package:queen/core/helpers/prefs.dart';
+import 'package:syncfusion_flutter_datepicker/src/date_picker/date_picker_manager.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
+import '../../../../../../config/enums.dart';
 import '../../../../../widgets/date_convertors.dart';
-import '../../my_order/models/model.dart';
-import '../models/all_room_model.dart';
+import '../../my_order/view.dart';
 import '../models/room_libraryId_model.dart';
 
-part 'avalible_dates_research_state.dart';
+class AvalibleDatesResearchNotifier extends ChangeNotifier {
+  /// form
+  final formKey = GlobalKey<FormState>();
 
-class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
-  AvalibleDatesResearchCubit() : super(AvalibleDatesResearchInitial());
+  final callController = TextEditingController();
+  final userNameController = TextEditingController();
+  final reasonController = TextEditingController();
+  final phoneController = TextEditingController();
 
-  bool isResearchRetreat = false;
-  bool isScientificMaterial = false;
+  ///  ? end of the form
 
-  /// CheckOut Name Services Id From DropDown Button
-  void selectService(int value) {
-    if (value == 11) {
-      isResearchRetreat = true;
-      isScientificMaterial = false;
-    }
-    if (value == 12) {
-      isScientificMaterial = true;
-      isResearchRetreat = false;
-    }
-    if (value == 13) {
-      isScientificMaterial = true;
-      isResearchRetreat = true;
-    }
-    emit(ServiceSelecetdState());
-  }
-
+  TypeEntityName? selectedType;
   AllLibraries? selectedLIB;
 
-  void onLibChang(AllLibraries value) => selectedLIB = value;
+  bool get hasSelectedType => selectedType != null;
 
   int? authorityID;
-
-  int onAuthorityIDChanged(int value) => authorityID = value;
-
   AllGrade? qualificationID;
+  MyRoomLibraryId? selectedRoom;
+  final rooms = <MyRoomLibraryId>[];
+  final dates = <AvailableDatesByRoom>[];
+
+  /// Set List To Store Selected Days From Calender
+
+  CDateRange? selectedDateRange;
+
+  void onLibChang(AllLibraries value) {
+    selectedLIB = value;
+    if (value.id != null) {
+      getAvailableRoomsByLibId(value.id!);
+    }
+  }
+
+  List<DateTime> get daysToPickFrom => dates.map((e) => e.date).toList();
+  void onTypeChanges(TypeEntityName value) {
+    selectedType = value;
+    selectedRoom = null;
+    selectedLIB = null;
+    dates.clear();
+    daysToPickFrom.clear();
+
+    notifyListeners();
+  }
+
+  void onAuthorityIDChanged(int value) => authorityID = value;
+
+  bool isDayAvialable(
+    DateTime date,
+  ) {
+    if (!hasSelectedType) return false;
+    if (selectedType!.shouldPickFromAviliableRange) {
+      return daysToPickFrom.contains(date);
+    }
+    return true;
+  }
 
   void onQualificationIDChanged(AllGrade value) => qualificationID = value;
 
-  AllRooms? roomsID;
+  void checkIfShouldFetchDates() {
+    if (selectedLIB != null &&
+        selectedRoom != null &&
+        selectedRoom?.id != null &&
+        selectedType!.shouldPickFromAviliableRange) {
+      getAvailableValidDatesByRoomId(selectedRoom!.id!);
+    }
+  }
 
-  void onRoomsIDChanged(AllRooms value) => roomsID = value;
-  final rooms = <MyRoomLibraryId>[];
-
-  /// Get Available Room_Id By Library Name
-
-  Future<void> getAvailableDatesResearch(int libId) async {
-    emit(AvalibleDatesResearchLoading());
+  @protected
+  Future<void> getAvailableRoomsByLibId(int libId) async {
     try {
-      rooms.clear();
       final res = await NetWork.get('Room/GetRoomsByLibraryId/$libId');
-
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
           res.statusCode != 200) {
         throw res.data['message'];
       }
 
-      (res.data['data'] as List)
-          .map((e) => rooms.add(MyRoomLibraryId.fromJson(e)))
-          .toList();
+      rooms.assignAll(
+        (res.data['data'] as List).map(
+          (e) => MyRoomLibraryId.fromJson(e),
+        ),
+      );
 
-      emit(AvalibleDatesResearchSuccess());
+      notifyListeners();
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
-      emit(AvalibleDatesResearchError(msg: e.toString()));
+      notifyListeners();
     }
   }
 
-  final dates = <AvailableDatesByRoom>[];
-  final availableDates = <DateTime>[];
-
   /// Get Available Date In Calender => Then Set DateTime For Reserved
-  Future<void> getAvailableValidDatesResearch(int roomID) async {
-    emit(AvalibleDatesResearchLoading());
+  Future<void> getAvailableValidDatesByRoomId(int roomID) async {
+    notifyListeners();
     try {
       dates.clear();
       final res = await NetWork.get(
@@ -98,89 +119,85 @@ class AvalibleDatesResearchCubit extends Cubit<AvalibleDatesResearchState> {
           res.statusCode != 200) {
         throw res.data['message'];
       }
+      dates.assignAll(
+        (res.data['data'] as List).map(
+          (e) => AvailableDatesByRoom.fromJson(e),
+        ),
+      );
 
-      (res.data['data'] as List)
-          .map((e) => dates.add(AvailableDatesByRoom.fromJson(e)))
-          .toList();
-
-      if (dates.isNotEmpty) {
-        for (final date in dates) {
-          availableDates.add(date.date);
-        }
-      }
-
-      emit(AvalibleDatesResearchSuccess());
+      notifyListeners();
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
-      emit(AvalibleDatesResearchError(msg: e.toString()));
+      notifyListeners();
     }
   }
 
-  /// Set Data Request To Create Order
-
-  final fullName = Prefs.getString('fullName');
-  final email = Prefs.getString('email');
-  final phoneNumber = Prefs.getString('phoneNumber');
-
-  final createOrder = <MyOrdersToResearch>[];
-
-  Future<void> createOrderToResearch({
-    required String callNum,
-    required int roomId,
-    required dynamic numberOfVisitors,
-    required String visitReason,
-    // required int requestStatusId,
-  }) async {
-    try {
-      var now = DateTime.now();
-      var dataNow = DateConverter.dateConverterOnly(now.toString());
-      final userId = Prefs.getString("userId");
-      final body = {
-        "id": 0,
-        "userId": userId,
-        "libraryId": selectedLIB!.id,
-        "roomId": rooms == null ? null : roomId ,
-        "researchStartDateId": null,
-        "researchEndDateId": null,
-        "requestTypeId": authorityID!,
-        "responsibleName": fullName,
-        "responsibleMobile": phoneNumber,
-        "responsibleGradeId": qualificationID!.id!,
-        "callNum": callNum,
-        "subjectName": null,
-        "dateFrom": "2010-03-06T21:45:41.222Z",
-        "dateTo": "1966-03-16T12:49:23.725Z",
-        "reasonOfRejection": null,
-        "instructions": null,
-        "requestStatusId": 4,
-        "isArchived": false,
-        "createdBy": userId,
-        "createdDate": dataNow,
-        "updatedBy": null,
-        "updatedDate": null
-      };
-      final res = await NetWork.post('ResearchRequest/CreateNewResearchRequest',
-          body: body);
-      if (res.data['status'] == 0 || res.data['status'] == -1) {
-        throw res.data['message'];
-      }
-
-      emit(CreateOrderSuccess(
-          myOrdersToResearch: MyOrdersToResearch.fromJson(res.data)));
-    } catch (e, st) {
-      log(e.toString());
-      log(st.toString());
-      emit(CreateOrderError(msg: e.toString()));
-    }
-  }
-
-  /// Set List To Store Selected Days From Calender
-//  final selectedDates = <DateTime>[];
-  CDateRange? selectedDateRange;
   void selectDay(CDateRange dateRange) {
     selectedDateRange = dateRange;
-    emit(SelectedDatesState());
+    notifyListeners();
+  }
+
+  void selectRoom(MyRoomLibraryId room) {
+    selectedRoom = room;
+    checkIfShouldFetchDates();
+  }
+
+  Future<void> submit() async {
+    if (formKey.currentState!.validate()) {
+      try {
+        var now = DateTime.now();
+        var dataNow = DateConverter.dateConverterOnly(now.toString());
+        final userId = Prefs.getString("userId");
+        final body = {
+          "id": 0,
+          "userId": userId,
+          "libraryId": selectedLIB!.id,
+          // "roomId": rooms == null ? null : roomId,
+          "researchStartDateId": null,
+          "researchEndDateId": null,
+          "requestTypeId": authorityID!,
+          // "responsibleName": fullName,
+          // "responsibleMobile": phoneNumber,
+          "responsibleGradeId": qualificationID!.id!,
+          // "callNum": callNum,
+          "subjectName": null,
+          "dateFrom": "2010-03-06T21:45:41.222Z",
+          "dateTo": "1966-03-16T12:49:23.725Z",
+          "reasonOfRejection": null,
+          "instructions": null,
+          "requestStatusId": 4,
+          "isArchived": false,
+          "createdBy": userId,
+          "createdDate": dataNow,
+          "updatedBy": null,
+          "updatedDate": null
+        };
+        final res = await NetWork.post(
+            'ResearchRequest/CreateNewResearchRequest',
+            body: body);
+        if (res.data['status'] == 0 || res.data['status'] == -1) {
+          throw res.data['message'];
+        }
+
+        notifyListeners();
+      } catch (e, st) {
+        log(e.toString());
+        log(st.toString());
+        notifyListeners();
+      }
+      Alert.success("تم إضافة طلبك بنجاح ");
+      Get.off(() => const MyOrderReserveArticleResearch());
+    } else {
+      Alert.error("الرجاء التاكيد من الطلب ");
+    }
+  }
+
+  void onRageChanges(PickerDateRange range) {
+    selectedDateRange = CDateRange(
+      startDate: range.startDate!,
+      endDate: range.endDate!,
+    );
   }
 }
 
@@ -188,7 +205,5 @@ class CDateRange {
   final DateTime startDate;
   final DateTime endDate;
 
-  CDateRange({required this.startDate,required this.endDate});
-
-
+  CDateRange({required this.startDate, required this.endDate});
 }

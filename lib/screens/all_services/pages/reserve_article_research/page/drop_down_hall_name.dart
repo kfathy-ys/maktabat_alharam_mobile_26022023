@@ -89,12 +89,4 @@ class _DropDownListHallNameState extends State<DropDownListHallName> {
       ),
     );
   }
-
-  // Future<void> getAllRooms()async{
-  //   rooms.clear();
-  //   final res = await NetWork.get('Room/GetAllRooms');
-  //   (res.data['data'] as List).map((e) => rooms.add(AllRooms.fromJson(e))).toList();
-  //   setState(() {});
-  //
-  // }
 }

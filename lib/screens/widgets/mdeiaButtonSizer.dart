@@ -16,6 +16,7 @@ class MediaButtonSizer extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final loadingColor;
   // ignore: use_key_in_widget_constructors
+  final double? width;
   const MediaButtonSizer({
     required this.onPressed,
     required this.title,
@@ -23,6 +24,7 @@ class MediaButtonSizer extends StatelessWidget {
     this.isLoading = false,
     this.loadingColor = false,
     this.image,
+    this.width,
   });
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class MediaButtonSizer extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         height: MediaQuery.of(context).size.height / 15,
-        width: MediaQuery.of(context).size.width / 2.72,
+        width: width ?? MediaQuery.of(context).size.width / 2.72,
         decoration: BoxDecoration(
             color: color == null ? Colors.white : kSafeAreasColor,
             borderRadius: BorderRadius.circular(8),

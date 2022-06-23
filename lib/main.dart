@@ -38,22 +38,27 @@ void main() async {
   await GetStorage.init();
   Bloc.observer = MyBlocObserver();
   await App.boot();
-  // Locators.put(NotificationServices());
-  // Locators.put(BannerServices());
-  runApp(QueenBuilder(
+  runApp(
+    QueenBuilder(
       enableDevtools: false,
       builder: (context) {
         return DevicePreview(
-          enabled: true,
+          enabled: false,
           builder: (context) => const MaktabatAlharam(),
         );
-      }));
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    // systemNavigationBarColor: kButtonRedDark, // navigation bar color
-    statusBarColor: kAppBarColor, // status bar color
-  ));
+      },
+    ),
+  );
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      // systemNavigationBarColor: kButtonRedDark, // navigation bar color
+      statusBarColor: kAppBarColor, // status bar color
+    ),
+  );
 }
 
 class MaktabatAlharam extends StatelessWidget {
@@ -69,9 +74,7 @@ class MaktabatAlharam extends StatelessWidget {
         BlocProvider<AvailableDatesCubit>(
           create: (context) => AvailableDatesCubit(),
         ),
-        BlocProvider<AvalibleDatesResearchCubit>(
-          create: (context) => AvalibleDatesResearchCubit(),
-        ),
+   
         BlocProvider<NewOrderCubit>(
           create: (context) => NewOrderCubit(),
         ),
@@ -110,8 +113,9 @@ class MaktabatAlharam extends StatelessWidget {
           create: (context) => ArchivedThesisCubit(),
         ),
         BlocProvider<OrderThesisCubit>(
-          create: (context) =>
-              OrderThesisCubit(BlocProvider.of<ArchivedThesisCubit>(context)),
+          create: (context) => OrderThesisCubit(
+            BlocProvider.of<ArchivedThesisCubit>(context),
+          ),
         ),
       ],
       child: BlocBuilder<SwitchCubit, SwitchState>(
@@ -120,14 +124,10 @@ class MaktabatAlharam extends StatelessWidget {
             getPages: AppPages.routes,
             translations: LocaleString(),
             locale: const Locale('ar', 'EG'),
-
-            // locale: const Locale('en', 'US'),
             popGesture: true,
-
             defaultTransition: g.Transition.zoom,
             debugShowCheckedModeBanner: false,
             theme: state.theme,
-
             title: 'Flutter Theme Cubit',
             home: const SplashScreen(),
           );

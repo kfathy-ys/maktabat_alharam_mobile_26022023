@@ -2,16 +2,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
+
+import '../../../../../config/enums.dart';
 // ignore: must_be_immutable
 
-enum TypeEntityName { researchRetreat, scientificMaterial, mix }
-
 class DropDownListServiceName extends StatefulWidget {
-  final int? initial;
-  final ValueChanged<int> onChanged;
-  const DropDownListServiceName(
-      {Key? key, this.initial, required this.onChanged})
-      : super(key: key);
+  final TypeEntityName? initial;
+  final ValueChanged<TypeEntityName> onChanged;
+  const DropDownListServiceName({
+    Key? key,
+    this.initial,
+    required this.onChanged,
+  }) : super(key: key);
   @override
   State<DropDownListServiceName> createState() =>
       _DropDownListServiceNameState();
@@ -22,24 +24,12 @@ class _DropDownListServiceNameState extends State<DropDownListServiceName> {
   int? valueSelected;
   @override
   void initState() {
-    if (widget.initial != null) {
-      if (widget.initial == 11) {
-        selected = TypeEntityName.researchRetreat;
-        valueSelected = widget.initial;
-      } else if (widget.initial == 12) {
-        selected = TypeEntityName.scientificMaterial;
-        valueSelected = widget.initial;
-      } else {
-        selected = TypeEntityName.mix;
-        valueSelected = widget.initial;
-      }
-    }
+    selected = widget.initial;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    //  double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -76,16 +66,8 @@ class _DropDownListServiceNameState extends State<DropDownListServiceName> {
 
               setState(() {
                 selected = newValue;
-                if (selected == TypeEntityName.researchRetreat) {
-                  /// TODO:: 1,2,3
-                  valueSelected = 11;
-                } else if (selected == TypeEntityName.scientificMaterial) {
-                  /// TODO:: 1,2,3
-                  valueSelected = 12;
-                } else {
-                  valueSelected = 13;
-                }
-                widget.onChanged(valueSelected!);
+
+                widget.onChanged(newValue);
               });
             },
             items: TypeEntityName.values

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/drop_down_library_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/cubit_avalible_dates_research/avalible_dates_research_cubit.dart';
@@ -16,9 +14,12 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
-import 'package:queen/core/helpers/prefs.dart';
+import 'package:provider/provider.dart';
+import 'package:queen/queen.dart' hide NationsTrans;
 import 'package:queen/validation.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
+import '../../../../config/enums.dart';
 import '../../../widgets/alerts.dart';
 import 'my_order/view.dart';
 
@@ -33,284 +34,6 @@ class ReserveResearchRetreatScreen extends StatefulWidget {
 
 class _ReserveResearchRetreatScreenState
     extends State<ReserveResearchRetreatScreen> {
-  final _formKey = GlobalKey<FormState>();
-
-  final _emailController = TextEditingController();
-  final _userController = TextEditingController();
-  final _phoneController = TextEditingController();
-
-  String? dropdownValue;
-  dynamic selectedTimeFrom;
-  dynamic selectedTimeTo;
-
-  final fullName = Prefs.getString('fullName');
-  final email = Prefs.getString('email');
-  final phoneNumber = Prefs.getString('phoneNumber');
-
-  @override
-  Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-    return Container(
-      color: kAppBarColor,
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: kHomeColor,
-          drawer: drawer(context: context),
-          appBar: customAppbar(
-              icons: Icons.arrow_forward_outlined,
-              isIcons: true,
-              context: context),
-          body: Form(
-            key: _formKey,
-            child: SizedBox(
-              height: height,
-              width: width,
-              child: BlocConsumer<AvalibleDatesResearchCubit,
-                  AvalibleDatesResearchState>(
-                listener: (context, state) {},
-                builder: (context, state) {
-                  final cubit =
-                      BlocProvider.of<AvalibleDatesResearchCubit>(context);
-                  return SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        HeadTopics(
-                          title: "RequestReserveArticleOrResearchRetreat".tr,
-                        ),
-                        buildSizedBox(height),
-                        DropDownListServiceName(
-                          onChanged: cubit.selectService,
-                        ),
-                        DropDownListLibraryName(onChanged: (value) async {
-                          cubit.onLibChang(value);
-                          cubit.getAvailableDatesResearch(value.id!);
-                          if (cubit.isScientificMaterial) {
-                            await cubit
-                                .getAvailableValidDatesResearch(value.id!);
-
-                            final List<DateTime>? picked =
-                                await DateRangePicker.showDatePicker(
-                              selectableDayPredicate: (day) {
-                                if (cubit.dates.isNotEmpty) {
-                                  if (cubit.availableDates.contains(day)) {
-                                    return true;
-                                  } else {
-                                    return false;
-                                  }
-                                } else {
-                                  return true;
-                                }
-                              },
-                              context: context,
-                              initialFirstDate: cubit.dates.isNotEmpty
-                                  ? cubit.dates.first.date
-                                  : DateTime.now(),
-                              initialLastDate: cubit.dates.isNotEmpty
-                                  ? cubit.dates.last.date
-                                  : DateTime(2031),
-                              firstDate: DateTime(2022),
-                              lastDate: DateTime(DateTime.now().year + 10),
-                            );
-                            if (picked!.length == 2) {
-                              print(picked);
-                            }
-                          }
-                        }),
-
-                        if (cubit.isResearchRetreat && cubit.rooms.isNotEmpty)
-                          DropDownListHallName(
-                            rooms: cubit.rooms,
-                            onChanged: (value) async {
-                              await cubit
-                                  .getAvailableValidDatesResearch(value.id!);
-
-                              final List<DateTime>? picked =
-                                  await DateRangePicker.showDatePicker(
-                                selectableDayPredicate: (day) {
-                                  if (cubit.dates.isNotEmpty) {
-                                    if (cubit.availableDates.contains(day)) {
-                                      return true;
-                                    } else {
-                                      return false;
-                                    }
-                                  } else {
-                                    return true;
-                                  }
-                                },
-                                context: context,
-                                initialFirstDate: cubit.dates.isNotEmpty
-                                    ? cubit.dates.first.date
-                                    : DateTime.now(),
-                                initialLastDate: cubit.dates.isNotEmpty
-                                    ? cubit.dates.last.date
-                                    : DateTime(2031),
-                                firstDate: DateTime(2022),
-                                lastDate: DateTime(DateTime.now().year + 10),
-                              );
-                              if (picked!.length == 2) {
-                                cubit.selectDay(CDateRange(
-                                    startDate: picked.first,
-                                    endDate: picked.last));
-                              }
-                            },
-                          ),
-
-                        if (cubit.isScientificMaterial) callNumber(),
-
-                        CustomTextField(
-                          hint: "userName".tr,
-                          dIcon: Icons.drive_file_rename_outline,
-                          label: "userName".tr,
-                          controller: _userController,
-                          validator: qValidator([
-                            IsRequired("thisFieldRequired".tr),
-                            //  IsOptional(),
-                            MaxLength(30),
-                          ]),
-                          type: TextInputType.name,
-                        ),
-                        CustomTextField(
-                          hint: "phone".tr,
-                          dIcon: Icons.phone,
-                          label: "phone".tr,
-                          controller: _phoneController,
-                          validator: qValidator([
-                            IsRequired("phone".tr),
-                            //    IsOptional(),
-                            MaxLength(30),
-                          ]),
-                          type: TextInputType.phone,
-                        ),
-                        DropDownListQualifications(onChanged: (value) {
-                          // cubit.getAvailableDatesVisit(value.id!);
-                          cubit.onQualificationIDChanged(value);
-                        }),
-                        buildPadding(title: "requiredDate".tr),
-
-                        /*   Container(
-                          height: height * 0.4,
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 28, vertical: 14),
-
-                          decoration: BoxDecoration(
-                              color: kHomeColor,
-                              border: Border.all(color: kSafeAreasColor),
-
-                              borderRadius: BorderRadius.circular(8)),
-                          child:  SfDateRangePicker(
-                            selectableDayPredicate: (day) {
-                              if (cubit.dates.isNotEmpty) {
-                                if (cubit.availableDates.contains(day)) {
-                                  return true;
-                                } else {
-                                  return false;
-                                }
-                              } else {
-                                return true;
-                              }
-                            },
-
-
-                            endRangeSelectionColor: kSafeAreasColor,
-                            showActionButtons: true,
-                            startRangeSelectionColor: kSafeAreasColor,
-                            rangeSelectionColor: kPrimaryColor,
-                            view: DateRangePickerView.month,
-                            selectionMode: DateRangePickerSelectionMode.range,
-                            enableMultiView: true,
-                          ),
-                        ),*/
-
-                        /*  Container(
-
-                          height: height * 0.4,
-                          width: width * 0.8,
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 28, vertical: 14),
-                          decoration: BoxDecoration(
-                              border: Border.all(color: kSafeAreasColor),
-                              color: kHomeColor,
-                              borderRadius: BorderRadius.circular(8)),
-                          child: CalendarDatePicker(
-                            initialDate: cubit.dates.isNotEmpty
-                                ? cubit.dates.first.date
-                                : DateTime.now(),
-                            firstDate: cubit.dates.isNotEmpty
-                                ? cubit.dates.first.date
-                                : DateTime.now(),
-                            lastDate: cubit.dates.isNotEmpty
-                                ? cubit.dates.last.date
-                                : DateTime(2031),
-                            onDateChanged: (value) {
-
-                             // cubit.selectDay(value);
-
-                            },
-                            selectableDayPredicate: (day) {
-                              if (cubit.dates.isNotEmpty) {
-                                if (cubit.availableDates.contains(day)) {
-                                  return true;
-                                } else {
-                                  return false;
-                                }
-                              } else {
-                                return true;
-                              }
-                            },
-                          ),
-                        ),*/
-                        // if (cubit.dates.isNotEmpty)
-                        //   state is! AvalibleDatesResearchLoading
-                        //       ? CardAvailableDates(
-                        //     periods: cubit.dates,
-                        //   )
-                        //       : const LoadingFadingCircleSmall(),
-                        // if (cubit.dates.isEmpty)
-                        //   const Center(
-                        //     child: Text("لايوجد مواعيد متاحة الان"),
-                        //   ),
-                        CustomHeightTextField(
-                          hint: "visitReason".tr,
-                          text: "",
-                        ),
-                        buildSizedBox(height),
-                        Center(
-                            child: MediaButtonSizer(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              cubit.createOrderToResearch(
-                                callNum: "  ",
-                                roomId: 1,
-                                numberOfVisitors: 1,
-                                visitReason: "visitReason",
-                              );
-                              Alert.success("تم إضافة طلبك بنجاح ");
-                              Get.off(
-                                  () => const MyOrderReserveArticleResearch());
-                            } else {
-                              Alert.error("الرجاء التاكيد من الطلب ");
-                            }
-                          },
-                          title: "requestService".tr,
-                          color: kPrimaryColor,
-                          image: "assets/image/rightsah.png",
-                        ))
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   SizedBox buildSizedBox(double height) {
     return SizedBox(
       height: height * 0.05,
@@ -331,22 +54,126 @@ class _ReserveResearchRetreatScreenState
     );
   }
 
-  final now = DateTime.now();
-  String? datePicked;
-  DateTime? time;
-
-  callNumber() {
-    return CustomTextField(
-      hint: "رقم النداء".tr,
-      dIcon: Icons.drive_file_rename_outline,
-      label: "رقم النداء".tr,
-      controller: _emailController,
-      validator: qValidator([
-        IsRequired("thisFieldRequired".tr),
-        IsOptional(),
-        MaxLength(30),
-      ]),
-      type: TextInputType.name,
+  @override
+  Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    return ChangeNotifierProvider(
+      create: (_) => AvalibleDatesResearchNotifier(),
+      child: Container(
+        color: kAppBarColor,
+        child: Scaffold(
+          backgroundColor: kHomeColor,
+          drawer: drawer(context: context),
+          appBar: customAppbar(
+            icons: Icons.arrow_forward_outlined,
+            isIcons: true,
+            context: context,
+          ),
+          body: Consumer<AvalibleDatesResearchNotifier>(
+            builder: (context, provider, __) {
+              return Form(
+                key: provider.formKey,
+                child: SizedBox(
+                  height: height,
+                  width: width,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        // key: UniqueKey(),
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          HeadTopics(
+                            title: "RequestReserveArticleOrResearchRetreat".tr,
+                          ),
+                          buildSizedBox(height),
+                          DropDownListServiceName(
+                            initial: provider.selectedType,
+                            onChanged: provider.onTypeChanges,
+                          ),
+                          DropDownListLibraryName(
+                            key: UniqueKey(),
+                            onChanged: provider.onLibChang,
+                            initial: provider.selectedLIB,
+                          ),
+                          if (provider.hasSelectedType &&
+                              provider.selectedType!.shouldPickHall)
+                            DropDownListHallName(
+                                initial: provider.selectedRoom,
+                                rooms: provider.rooms,
+                                onChanged: provider.selectRoom),
+                          if (provider.hasSelectedType &&
+                              provider.selectedType!.shouldEnterCallNumber)
+                            CustomTextField(
+                              hint: "رقم النداء".tr,
+                              dIcon: Icons.drive_file_rename_outline,
+                              label: "رقم النداء".tr,
+                              controller: provider.callController,
+                              validator: qValidator([
+                                IsRequired("thisFieldRequired".tr),
+                                MaxLength(30),
+                              ]),
+                              type: TextInputType.number,
+                            ),
+                          CustomTextField(
+                            hint: "userName".tr,
+                            dIcon: Icons.drive_file_rename_outline,
+                            label: "userName".tr,
+                            controller: provider.userNameController,
+                            validator: qValidator([
+                              IsRequired("thisFieldRequired".tr),
+                              MaxLength(30),
+                            ]),
+                            type: TextInputType.name,
+                          ),
+                          CustomTextField(
+                            hint: "phone".tr,
+                            dIcon: Icons.phone,
+                            label: "phone".tr,
+                            controller: provider.phoneController,
+                            validator: qValidator([
+                              IsRequired("phone".tr),
+                              MaxLength(30),
+                            ]),
+                            type: TextInputType.phone,
+                          ),
+                          DropDownListQualifications(
+                            onChanged: (value) {
+                              provider.onQualificationIDChanged(value);
+                            },
+                          ),
+                          CustomHeightTextField(
+                            hint: "visitReason".tr,
+                            text: "",
+                          ),
+                          SfDateRangePicker(
+                            key: UniqueKey(),
+                            onSelectionChanged: (obj) => provider
+                                .onRageChanges(obj.value as PickerDateRange),
+                            selectionMode: DateRangePickerSelectionMode.range,
+                            selectableDayPredicate: provider.isDayAvialable,
+//
+                          ),
+                          buildSizedBox(height),
+                          Center(
+                            child: MediaButtonSizer(
+                              onPressed: provider.submit,
+                              title: "requestService".tr,
+                              color: kPrimaryColor,
+                              image: "assets/image/rightsah.png",
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }
