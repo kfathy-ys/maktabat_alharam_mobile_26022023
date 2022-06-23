@@ -28,8 +28,7 @@ class ArchiveRequestToVisitScreen extends StatelessWidget {
     final cubitVisitArchive = BlocProvider.of<MyArchiveVisitCubit>(context);
 
     final cubit = BlocProvider.of<VisitOrderCubit>(context);
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         backgroundColor: kHomeColor,
         drawer: drawer(context: context),
         appBar: customAppbar(
@@ -144,7 +143,7 @@ class ArchiveRequestToVisitScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
+
   }
 }

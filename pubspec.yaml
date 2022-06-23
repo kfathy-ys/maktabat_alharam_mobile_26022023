@@ -52,6 +52,7 @@ dependencies:
   fluttertoast: ^8.0.7
   awesome_dialog: ^2.1.2
   auto_size_text: ^3.0.0
+
   date_range_picker:
     git:
       url: https://github.com/ashokavarthanan/date_range_picker.git

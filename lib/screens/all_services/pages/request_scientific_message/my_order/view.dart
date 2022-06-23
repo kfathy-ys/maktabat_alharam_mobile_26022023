@@ -28,10 +28,7 @@ class MyOrdersScientificMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Container(
-      color: kAppBarColor,
-      child: SafeArea(
-        child: Scaffold(
+    return  Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
           appBar: customAppbar(
@@ -222,8 +219,7 @@ class MyOrdersScientificMessage extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
-    );
+        );
+
   }
 }

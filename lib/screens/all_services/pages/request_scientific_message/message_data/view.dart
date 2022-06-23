@@ -39,10 +39,7 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Container(
-      color: kAppBarColor,
-      child: SafeArea(
-        child: Scaffold(
+    return  Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
 
@@ -163,9 +160,8 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
               ],
             ),
           ),
-        ),
-      ),
-    );
+        );
+
   }
 
   SizedBox buildSizedBox(double height) => SizedBox(

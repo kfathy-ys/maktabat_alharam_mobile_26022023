@@ -24,10 +24,7 @@ class ArchiveAskLibrarianScreen extends StatelessWidget {
     final cubit = BlocProvider.of<MyOrderAskCubit>(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Container(
-      color: kAppBarColor,
-      child: SafeArea(
-        child: Scaffold(
+    return  Scaffold(
           backgroundColor: kHomeColor,
           drawer: drawer(context: context),
           appBar: customAppbar(
@@ -132,8 +129,6 @@ class ArchiveAskLibrarianScreen extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
-    );
+        );
   }
 }

@@ -28,8 +28,7 @@ super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Stack(
+    return  Stack(
           fit: StackFit.expand,
           children: [
             Image.asset(
@@ -59,13 +58,12 @@ super.initState();
               ),
             ),
           ],
-        ));
+        );
 
 
   }
 
   void goToHomePage(BuildContext context) async {
-  //  await GlobalNotification().setUpFirebase();
 
     try {
       final result = await InternetAddress.lookup('google.com');
