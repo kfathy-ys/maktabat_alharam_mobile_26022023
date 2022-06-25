@@ -110,47 +110,7 @@ class _PutScientificMessageState extends State<PutScientificMessage> {
                 },
               ),
             ),
-            buildListTile(
-                color: kBlackText,
-                title: "fillOut".tr,
-                image: "assets/image/dot.png"),
-            buildListTile(
-                color: kBlackText,
-                title: "delivered".tr,
-                image: "assets/image/dot.png"),
-            buildListTile(
-                color: kBlackText,
-                title: "copy".tr,
-                image: "assets/image/dot.png"),
-            buildListTile(
-                color: kBlackText,
-                title: "numbersTwo".tr,
-                image: "assets/image/dot.png"),
-            buildListTile(
-                color: kSmallIconColor,
-                title: "putting".tr,
-                image: "assets/image/dot.png"),
-            buildListTile(
-                color: kBlackText,
-                title: "fillOut".tr,
-                image: "assets/image/dot.png"),
-            ListTile(
-              title: Text("areYouOk".tr,
-                  style: const TextStyle(
-                      color: kBlackText,
-                      fontSize: 14,
-                      fontFamily: 'DinReguler')),
-              leading: Checkbox(
-                activeColor: kAccentColor,
-                value: value,
-                onChanged: (value) {
-                  setState(() {
-                    this.value = value!;
-                    Prefs.getString('mark');
-                  });
-                },
-              ),
-            ),
+
             Row(
               children: [
                 SizedBox(

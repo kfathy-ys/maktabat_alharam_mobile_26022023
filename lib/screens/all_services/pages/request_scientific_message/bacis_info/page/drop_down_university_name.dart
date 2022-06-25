@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/models/all_university.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 
+import '../../../../../../config/dio_helper/dio.dart';
+
 class DropDownListUniversityName extends StatefulWidget {
-  const DropDownListUniversityName({Key? key}) : super(key: key);
+  final AllUni? initial;
+  final ValueChanged<AllUni> onChanged;
+  const DropDownListUniversityName({Key? key, this.initial, required this.onChanged}) : super(key: key);
 
   @override
   State<DropDownListUniversityName> createState() =>
@@ -12,8 +17,17 @@ class DropDownListUniversityName extends StatefulWidget {
 
 class _DropDownListUniversityNameState
     extends State<DropDownListUniversityName> {
-  String? dropdownValue;
-
+  AllUni? selected;
+  final grads = <AllUni>[];
+  int? valueSelected;
+  @override
+  void initState() {
+    if (widget.initial != null) {
+      selected = widget.initial;
+    }
+    getUni();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     // double height = MediaQuery.of(context).size.height;
@@ -28,8 +42,8 @@ class _DropDownListUniversityNameState
           color: Colors.white,
           border: Border.all(color: kPrimaryColor)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          value: dropdownValue,
+        child: DropdownButton<AllUni>(
+          value: selected,
           // autofocus: true,
           // isDense: true,
           //isExpanded: true,
@@ -50,21 +64,19 @@ class _DropDownListUniversityNameState
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownValue = newValue!;
-            });
+          onChanged: (AllUni? newValue) {
+            if (newValue == null) return;
+            selected = newValue;
+
+            widget.onChanged(selected!);
+
+            setState(() {});
           },
-          items: <String>[
-            "kingSolUni".tr,
-            "kingSodUni".tr,
-            "kingAboUni".tr,
-            "omUni".tr
-          ].map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
+          items: grads.map<DropdownMenuItem<AllUni>>((AllUni value) {
+            return DropdownMenuItem<AllUni>(
               value: value,
               child: Text(
-                value,
+                value.nameAr!,
                 style: const TextStyle(
                   color: kTextColor,
                   fontSize: 16,
@@ -76,5 +88,14 @@ class _DropDownListUniversityNameState
         ),
       ),
     );
+  }
+  Future<void> getUni() async {
+    grads.clear();
+    final res = await NetWork.get('ThesisDepositionRequest/GetAllUniversities');
+    (res.data['data'] as List)
+        .map((e) => grads.add(AllUni.fromJson(e)))
+        .toList();
+    setState(() {});
+
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/cubit/all_uni_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/drop_down_university_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/title.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/message_data/view.dart';
@@ -16,8 +18,11 @@ import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
 
+import '../message_files/cubit/messages_input.dart';
+
 // ignore: must_be_immutable
 class BasicInfoScreen extends StatefulWidget {
+
   const BasicInfoScreen({Key? key}) : super(key: key);
 
   @override
@@ -37,35 +42,40 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
 
   final phoneController = TextEditingController();
 
+
   bool value = false;
+  MessagesFilesInputData filesInputData = MessagesFilesInputData();
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-    return  Scaffold(
-          backgroundColor: kHomeColor,
-          drawer: drawer(context: context),
-          appBar: customAppbar(
-              icons: Icons.arrow_forward_outlined,
-              isIcons: true,
-              context: context),
-          body: SizedBox(
-            height: height,
-            width: width,
-            child: ListView(
-              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
-
-              physics: const BouncingScrollPhysics(),
-              //  shrinkWrap: true,
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    return Scaffold(
+      backgroundColor: kHomeColor,
+      drawer: drawer(context: context),
+      appBar: customAppbar(
+          icons: Icons.arrow_forward_outlined,
+          isIcons: true,
+          context: context),
+      body: Form(
+        key:formKey ,
+        child: SizedBox(
+          height: height,
+          width: width,
+          child: SingleChildScrollView(
+            child: Column(
               children: [
                 HeadTitle(
                   title: "DepositScientificThesis".tr,
                   subTitle: "basicInfoArrow".tr,
                 ),
-                SizedBox(
-                  height: height * 0.04,
-                ),
+                buildSizedBox(height),
                 CustomTextField(
                   hint: "userName".tr,
                   dIcon: Icons.drive_file_rename_outline,
@@ -73,12 +83,32 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   controller: nameController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
+
                     MaxLength(30),
                   ]),
                   type: TextInputType.name,
+                  onsave: (String? value) {
+                    filesInputData.userName = value;
+                  },
                 ),
-                const DropDownListUniversityName(),
+                BlocProvider(
+                  create: (context) => AllUniCubit(),
+                  child: BlocConsumer<AllUniCubit, AllUniState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      final cubit= BlocProvider.of<AllUniCubit>(context);
+                      return DropDownListUniversityName(
+                        onChanged: (value) {
+                          print(value.id.toString());
+                          print(value.nameAr.toString());
+                          filesInputData.universityId = value.id.toString();
+                          cubit.onUniTypeChanged(value);
+
+                        },
+                      );
+                    },
+                  ),
+                ),
                 CustomTextField(
                   hint: "collage".tr,
                   dIcon: Icons.flag_outlined,
@@ -86,10 +116,14 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   controller: uniController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
+
                     MaxLength(30),
                   ]),
                   type: TextInputType.text,
+                  onsave: (String? value) {
+
+                    filesInputData.faculty = value ;
+                  },
                 ),
                 CustomTextField(
                   hint: "email".tr,
@@ -98,10 +132,13 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   controller: emailController,
                   validator: qValidator([
                     IsRequired("enterEmail".tr),
-                    IsOptional(),
+
                     MaxLength(30),
                   ]),
                   type: TextInputType.emailAddress,
+                  onsave: (String? value) {
+                    filesInputData.email = value;
+                  },
                 ),
                 CustomTextField(
                   hint: "department".tr,
@@ -110,10 +147,13 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   controller: depController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
+
                     MaxLength(30),
                   ]),
                   type: TextInputType.text,
+                  onsave: (String? value) {
+                    filesInputData.department = value;
+                  },
                 ),
                 CustomTextField(
                   hint: "phone".tr,
@@ -122,14 +162,15 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   controller: phoneController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
+
                     MaxLength(30),
                   ]),
                   type: TextInputType.phone,
+                  onsave: (String? value) {
+                    filesInputData.phoneNumber = value;
+                  },
                 ),
-                SizedBox(
-                  height: height * 0.04,
-                ),
+                buildSizedBox(height),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   mainAxisSize: MainAxisSize.min,
@@ -144,9 +185,10 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                     ),
                     SmallestButton(
                       onPressed: () {
+                        if(formKey.currentState!.validate()){
 
-
-                        Get.to(() => const MessageDataScreen());
+                        }
+                        Get.to(() =>  MessageDataScreen(filesInputData));
                       },
                       title: "next".tr,
                       color: kPrimaryColor,
@@ -157,8 +199,15 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
               ],
             ),
           ),
-        );
+        ),
+      ),
+    );
+  }
 
+  SizedBox buildSizedBox(double height) {
+    return SizedBox(
+                height: height * 0.04,
+              );
   }
 
   ListTile buildListTile(
@@ -168,46 +217,12 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
       //"fillOut".tr
       title: Text(title,
           style:
-              TextStyle(color: color, fontSize: 14, fontFamily: 'DinReguler')),
+          TextStyle(color: color, fontSize: 14, fontFamily: 'DinReguler')),
       //"assets/image/dot.png"
       leading: Image.asset(image),
     );
   }
 
-  Padding buildPadding({required String title}) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.only(start: 40),
-      child: Text(
-        title,
-        style: const TextStyle(
-          color: kBlackText,
-          fontSize: 16,
-          fontFamily: "DinReguler",
-        ),
-      ),
-    );
-  }
 
-  Row buildRow({
-    required String title,
-    String? subTitle,
-    Color? color1,
-    Color? color2,
-  }) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(title,
-            //  "محتوي الطلب",
-//kSmallIconColor
-            style:
-                TextStyle(color: color1, fontSize: 14, fontFamily: 'DinBold')),
-        Text(subTitle!,
-            // "هل المكتبة متاحة يوم الجمعة؟",
-//kBlackText
-            style: TextStyle(
-                color: color2, fontSize: 14, fontFamily: 'DinReguler')),
-      ],
-    );
-  }
+
 }

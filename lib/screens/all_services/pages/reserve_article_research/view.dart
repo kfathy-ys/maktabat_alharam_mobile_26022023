@@ -143,17 +143,18 @@ class _ReserveResearchRetreatScreenState
                               provider.onQualificationIDChanged(value);
                             },
                           ),
-                          CustomHeightTextField(
-                            hint: "visitReason".tr,
-                            text: "",
-                          ),
+
                           SfDateRangePicker(
                             key: UniqueKey(),
                             onSelectionChanged: (obj) => provider
                                 .onRageChanges(obj.value as PickerDateRange),
                             selectionMode: DateRangePickerSelectionMode.range,
                             selectableDayPredicate: provider.isDayAvialable,
-//
+
+                          ),
+                          CustomHeightTextField(
+                            hint: "visitReason".tr,
+                            text: "",
                           ),
                           buildSizedBox(height),
                           Center(

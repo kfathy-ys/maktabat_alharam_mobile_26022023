@@ -43,7 +43,7 @@ void main() async {
       enableDevtools: false,
       builder: (context) {
         return DevicePreview(
-          enabled: false,
+          enabled: true,
           builder: (context) => const MaktabatAlharam(),
         );
       },

@@ -4,8 +4,10 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/title.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/message_files/cubit/messages_input.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
+import 'package:maktabat_alharam/screens/widgets/alerts.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -21,7 +23,9 @@ import 'package:queen/validation/validator.dart';
 
 // ignore: must_be_immutable
 class MessageFilesScreen extends StatefulWidget {
-  const MessageFilesScreen({Key? key}) : super(key: key);
+  MessagesFilesInputData filesInputData;
+
+  MessageFilesScreen(this.filesInputData, {Key? key}) : super(key: key);
 
   @override
   State<MessageFilesScreen> createState() => _MessageFilesScreenState();
@@ -46,134 +50,240 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
 
   bool value = false;
 
+  MessagesFilesInputData filesInputData = MessagesFilesInputData();
+
+  @override
+  void initState() {
+    filesInputData = widget.filesInputData;
+    print(filesInputData.toJson());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return  Scaffold(
-          backgroundColor: kHomeColor,
-          drawer: drawer(context: context),
-          appBar: customAppbar(
-              icons: Icons.arrow_forward_outlined,
-              isIcons: true,
-              context: context),
-          body: SizedBox(
-            height: height,
-            width: width,
-            child: ListView(
-              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              children: [
-                Row(
+    return Scaffold(
+      backgroundColor: kHomeColor,
+      drawer: drawer(context: context),
+      appBar: customAppbar(
+          icons: Icons.arrow_forward_outlined, isIcons: true, context: context),
+      body: Form(
+        key: formKey,
+        child: SizedBox(
+          height: height,
+          width: width,
+          child: ListView(
+            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
+            children: [
+              Row(
+                children: [
+                  HeadTitle(
+                    title: "DepositScientificThesis".tr,
+                    subTitle: "filesMessageArrow".tr,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: height * 0.04,
+              ),
+              buildContainer(
+                height: height * 0.18,
+                title: "fullMessage".tr,
+                controller: _firstController,
+                onPressed1: () {
+                  _uploadFile(1);
+                },
+                validator: qValidator([
+                  (widget.filesInputData.isThesisFileRequired == true)
+                      ? IsRequired("thisFieldRequired".tr)
+                      : IsOptional(),
+                ]),
+              ),
+              buildContainer(
+                height: height * 0.18,
+                title: "messagesAddress".tr,
+                controller: _secoandController,
+                onPressed1: () {
+                  _uploadFile(2);
+                },
+                validator: qValidator([
+                  (widget.filesInputData.isThesisTitleFileRequired == true)
+                      ? IsRequired("thisFieldRequired".tr)
+                      : IsOptional(),
+                ]),
+              ),
+              buildContainer(
+                height: height * 0.18,
+                title: "topicIndex".tr,
+                controller: _threeController,
+                onPressed1: () {
+                  _uploadFile(3);
+                },
+                validator: qValidator([
+                  (widget.filesInputData.isSubjectsIndexFileRequired == true)
+                      ? IsRequired("thisFieldRequired".tr)
+                      : IsOptional(),
+                ]),
+              ),
+              buildContainer(
+                height: height * 0.18,
+                title: "arabicExtract".tr,
+                controller: _forthController,
+                onPressed1: () {
+                  _uploadFile(4);
+                },
+                validator: qValidator([
+                  (widget.filesInputData.isArabicExtractFileRequired == true)
+                      ? IsRequired("thisFieldRequired".tr)
+                      : IsOptional(),
+                ]),
+              ),
+              buildContainer(
+                height: height * 0.18,
+                title: "englishExtract".tr,
+                controller: _fiveController,
+                onPressed1: () {
+                  _uploadFile(5);
+                },
+                validator: qValidator([
+                  (widget.filesInputData.isEnglishExtractFileRequired == true)
+                      ? IsRequired("thisFieldRequired".tr)
+                      : IsOptional(),
+                ]),
+              ),
+              buildContainer(
+                height: height * 0.18,
+                title: "introduction".tr,
+                controller: _sixController,
+                onPressed1: () {
+                  _uploadFile(6);
+                },
+                validator: qValidator([
+                  (widget.filesInputData.isIntroFileRequired == true)
+                      ? IsRequired("thisFieldRequired".tr)
+                      : IsOptional(),
+                ]),
+              ),
+              buildContainer(
+                height: height * 0.18,
+                title: "fullMessage".tr,
+                controller: _sevenController,
+                onPressed1: () {
+                  _uploadFile(7);
+                },
+                validator: qValidator([
+                  (widget.filesInputData.isCollectionFileRequired == true)
+                      ? IsRequired("thisFieldRequired".tr)
+                      : IsOptional(),
+                ]),
+              ),
+              buildContainer(
+                height: height * 0.18,
+                title: "contentPlus".tr,
+                controller: _eightController,
+                onPressed1: () {
+                  _uploadFile(8);
+                },
+                validator: qValidator([
+                  (widget.filesInputData.isQuarterCollectionFileRequired ==
+                          true)
+                      ? IsRequired("thisFieldRequired".tr)
+                      : IsOptional(),
+                ]),
+              ),
+              SizedBox(
+                height: height * 0.04,
+              ),
+              SizedBox(
+                width: width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    HeadTitle(
-                      title: "DepositScientificThesis".tr,
-                      subTitle: "filesMessageArrow".tr,
+                    SmallestButton(
+                      onPressed: () {
+                        Get.back();
+                        //  Get.to(()=> MyOrderMessageFilesScreen());
+                      },
+                      title: "previous".tr,
+                      color: kPrimaryColor,
+                      image: "assets/image/twoarrowleft.png",
+                    ),
+                    MediaButtonSizer(
+                      onPressed: () {
+                        print(widget.filesInputData.isThesisFileRequired);
+                        print(widget.filesInputData.isThesisTitleFileRequired);
+                        print(
+                            widget.filesInputData.isSubjectsIndexFileRequired);
+                        print(
+                            widget.filesInputData.isArabicExtractFileRequired);
+                        print(
+                            widget.filesInputData.isEnglishExtractFileRequired);
+                        print(widget.filesInputData.isIntroFileRequired);
+                        print(widget.filesInputData.isCollectionFileRequired);
+                        print(widget
+                            .filesInputData.isQuarterCollectionFileRequired);
+                        // if(formKey.currentState!.validate()){
+                        //   Get.to(() => const MyOrdersScientificMessage());
+                        // }
+                        print(filesInputData.thesisTitleFile.toString()+ "رشااااااااااد");
+                        if (widget.filesInputData.isThesisFileRequired ==
+                                true &&
+                            filesInputData.thesisFile == null) {
+                          Alert.error("الرسالة بالكامل مطلوبة ");
+                        } else if (widget
+                                    .filesInputData.isThesisTitleFileRequired ==
+                                true &&
+                            filesInputData.thesisTitleFile == null) {
+                          Alert.error("عنوان الرسالة  مطلوبة ");
+                        } else if (widget.filesInputData
+                                    .isSubjectsIndexFileRequired ==
+                                true &&
+                            filesInputData.subjectsIndexFile == null) {
+                          Alert.error("3 ");
+                        } else if (widget.filesInputData
+                                    .isArabicExtractFileRequired ==
+                                true &&
+                            filesInputData.arabicExtractFile == null) {
+                          Alert.error("4 ");
+                        } else if (widget.filesInputData
+                                    .isEnglishExtractFileRequired ==
+                                true &&
+                            filesInputData.englishExtractFile == null) {
+                          Alert.error("5 ");
+                        } else if (widget.filesInputData.isIntroFileRequired ==
+                                true &&
+                            filesInputData.introFile == null) {
+                          Alert.error("6 ");
+                        } else if (widget
+                                    .filesInputData.isCollectionFileRequired ==
+                                true &&
+                            filesInputData.collectionFile == null) {
+                          Alert.error("7 ");
+                        } else if (widget.filesInputData
+                                    .isQuarterCollectionFileRequired ==
+                                true &&
+                            filesInputData.quarterCollectionFile == null) {
+                          Alert.error("8 ");
+                        } else {
+                          print("Error");
+                        }
+                      },
+                      title: "requestService".tr,
+                      color: kPrimaryColor,
+                      image: "assets/image/rightsah.png",
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: height * 0.04,
-                ),
-                buildContainer(
-                  height: height * 0.18,
-                  title: "fullMessage".tr,
-                  controller: _firstController,
-                  onPressed1: () {
-                    _uploadFile(1);
-                  },
-                ),
-                buildContainer(
-                  height: height * 0.18,
-                  title: "messagesAddress".tr,
-                  controller: _secoandController,
-                  onPressed1: () {
-                    _uploadFile(2);
-                  },
-                ),
-                buildContainer(
-                  height: height * 0.18,
-                  title: "topicIndex".tr,
-                  controller: _threeController,
-                  onPressed1: () {
-                    _uploadFile(3);
-                  },
-                ),
-                buildContainer(
-                  height: height * 0.18,
-                  title: "arabicExtract".tr,
-                  controller: _forthController,
-                  onPressed1: () {
-                    _uploadFile(4);
-                  },
-                ),
-                buildContainer(
-                  height: height * 0.18,
-                  title: "englishExtract".tr,
-                  controller: _fiveController,
-                  onPressed1: () {
-                    _uploadFile(5);
-                  },
-                ),
-                buildContainer(
-                  height: height * 0.18,
-                  title: "introduction".tr,
-                  controller: _sixController,
-                  onPressed1: () {
-                    _uploadFile(6);
-                  },
-                ),
-                buildContainer(
-                  height: height * 0.18,
-                  title: "fullMessage".tr,
-                  controller: _sevenController,
-                  onPressed1: () {
-                    _uploadFile(7);
-                  },
-                ),
-                buildContainer(
-                  height: height * 0.18,
-                  title: "contentPlus".tr,
-                  controller: _eightController,
-                  onPressed1: () {
-                    _uploadFile(8);
-                  },
-                ),
-                SizedBox(
-                  height: height * 0.04,
-                ),
-                SizedBox(
-                  width: width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SmallestButton(
-                        onPressed: () {
-                          Get.back();
-                          //  Get.to(()=> MyOrderMessageFilesScreen());
-                        },
-                        title: "previous".tr,
-                        color: kPrimaryColor,
-                        image: "assets/image/twoarrowleft.png",
-                      ),
-                      MediaButtonSizer(
-                        onPressed: () {
-                          Get.to(() => const MyOrdersScientificMessage());
-                        },
-                        title: "requestService".tr,
-                        color: kPrimaryColor,
-                        image: "assets/image/rightsah.png",
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        );
-
+        ),
+      ),
+    );
   }
 
   dynamic video;
@@ -199,28 +309,37 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
       setState(() {
         if (step == 1) {
           _file1 = file;
+          filesInputData.thesisFile = file;
 
           _firstController.text = file.path;
         } else if (step == 2) {
           _file2 = file;
+          filesInputData.thesisTitleFile = file;
           _secoandController.text = file.path;
         } else if (step == 3) {
           _file3 = file;
+
+          filesInputData.subjectsIndexFile = file;
           _threeController.text = file.path;
         } else if (step == 4) {
           _file4 = file;
+          filesInputData.arabicExtractFile = file;
           _forthController.text = file.path;
         } else if (step == 5) {
           _file5 = file;
+          filesInputData.englishExtractFile = file;
           _fiveController.text = file.path;
         } else if (step == 6) {
           _file6 = file;
+          filesInputData.introFile = file;
           _sixController.text = file.path;
         } else if (step == 7) {
           _file7 = file;
+          filesInputData.collectionFile = file;
           _sevenController.text = file.path;
         } else if (step == 8) {
           _file8 = file;
+          filesInputData.quarterCollectionFile = file;
           _eightController.text = file.path;
         } else {
           log("NOT Catch ONE SORRY FOR THAT .... TRY AGAIN");
@@ -234,6 +353,7 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
   Container buildContainer({
     required double height,
     required String title,
+    required dynamic validator,
     required TextEditingController controller,
     required VoidCallback onPressed1,
   }) {
@@ -264,11 +384,7 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
               ),
               CustomTextFieldUploadFile(
                 controller: controller,
-                validator: qValidator([
-                  IsRequired("thisFieldRequired".tr),
-                  IsOptional(),
-                  // MaxLength(100),
-                ]),
+                validator: validator,
                 type: TextInputType.text,
               ),
             ],

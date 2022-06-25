@@ -24,6 +24,8 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
   final reasonController = TextEditingController();
   final phoneController = TextEditingController();
 
+
+
   ///  ? end of the form
 
   TypeEntityName? selectedType;
@@ -49,6 +51,7 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
   }
 
   List<DateTime> get daysToPickFrom => dates.map((e) => e.date).toList();
+
   void onTypeChanges(TypeEntityName value) {
     selectedType = value;
     selectedRoom = null;
@@ -144,31 +147,66 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
   }
 
   Future<void> submit() async {
+    if (!hasSelectedType) {
+      Alert.error("يجب إختيار إسم الخدمة ");
+      return;
+    }
+    if (selectedLIB == null) {
+      Alert.error("الرجاء إختيار إسم المكتبة ");
+      return;
+    }
+    if (selectedType!.shouldPickHall && selectedLIB == null) {
+      Alert.error('الرجاء إختيار إسم المكتبة ');
+      return;
+    }
+    if (selectedType!.shouldPickHall && selectedRoom == null) {
+      Alert.error('الرجاءإختيار القاعة المحددة ');
+      return;
+    }if (  selectedType!.shouldPickFromAviliableRange && selectedDateRange == null) {
+      Alert.error('يجب إخيتارك لفترة البدء والانهاء ');
+      return;
+    }
+    if (  qualificationID == null) {
+      Alert.error('الرجاء اختيار المؤهل العلمي ');
+      return;
+    }
     if (formKey.currentState!.validate()) {
       try {
         var now = DateTime.now();
         var dataNow = DateConverter.dateConverterOnly(now.toString());
-        final userId = Prefs.getString("userId");
-        final body = {
+
+        final body = <String, Object?>{
           "id": 0,
-          "userId": userId,
-          "libraryId": selectedLIB!.id,
-          // "roomId": rooms == null ? null : roomId,
-          "researchStartDateId": null,
-          "researchEndDateId": null,
-          "requestTypeId": authorityID!,
-          // "responsibleName": fullName,
-          // "responsibleMobile": phoneNumber,
-          "responsibleGradeId": qualificationID!.id!,
-          // "callNum": callNum,
+          "userId": Prefs.getString('userId'),
+          "libraryId": selectedLIB?.id,
+          "roomId": selectedRoom?.id,
+          "researchStartDateId": selectedType!.shouldPickFromAviliableRange
+              ? dates
+                  .firstWhere((e) => selectedDateRange!.startDate == e.date)
+                  .id
+              : null,
+          "researchEndDateId": selectedType!.shouldPickFromAviliableRange
+              ? dates.firstWhere((e) => selectedDateRange!.endDate == e.date).id
+              : null,
+          "requestTypeId": selectedType!.toInt(),
+          "responsibleName": userNameController.text,
+          "responsibleMobile": phoneController.text,
+          "responsibleGradeId": qualificationID!.id,
+          "callNum": userNameController.text,
           "subjectName": null,
-          "dateFrom": "2010-03-06T21:45:41.222Z",
-          "dateTo": "1966-03-16T12:49:23.725Z",
+          "dateFrom":selectedType!.shouldPickFromAviliableRange
+    ? dates
+        .firstWhere((e) => selectedDateRange!.startDate == e.date)
+        .id
+        : null,
+          "dateTo":selectedType!.shouldPickFromAviliableRange
+              ? dates.firstWhere((e) => selectedDateRange!.endDate == e.date).id
+              : null,
           "reasonOfRejection": null,
           "instructions": null,
           "requestStatusId": 4,
           "isArchived": false,
-          "createdBy": userId,
+          "createdBy": Prefs.getString('userId'),
           "createdDate": dataNow,
           "updatedBy": null,
           "updatedDate": null

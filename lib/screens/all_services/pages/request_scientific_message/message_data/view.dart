@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/availability_message/view.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/title.dart';
@@ -12,8 +15,11 @@ import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
 
+import '../message_files/cubit/messages_input.dart';
+
 class MessageDataScreen extends StatefulWidget {
-  const MessageDataScreen({Key? key}) : super(key: key);
+  MessagesFilesInputData filesInputData;
+   MessageDataScreen(this.filesInputData,{Key? key}) : super(key: key);
 
   @override
   State<MessageDataScreen> createState() => _MessageDataScreenState();
@@ -32,26 +38,31 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
 
   final _pagesNumbersController = TextEditingController();
   final _numbersOfPartsController = TextEditingController();
+  MessagesFilesInputData filesInputData = MessagesFilesInputData();
+@override
+  void initState() {
+  filesInputData = widget.filesInputData;
 
+print(filesInputData.toJson());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return  Scaffold(
-          backgroundColor: kHomeColor,
-          drawer: drawer(context: context),
-          appBar: customAppbar(
-              icons: Icons.arrow_forward_outlined,
-              isIcons: true,
-              context: context),
-          body: SizedBox(
-            height: height,
-            width: width,
-            child: ListView(
-              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
+    return Scaffold(
+      backgroundColor: kHomeColor,
+      drawer: drawer(context: context),
+      appBar: customAppbar(
+          icons: Icons.arrow_forward_outlined, isIcons: true, context: context),
+      body: Form(
+        key: formKey,
+        child: SizedBox(
+          height: height,
+          width: width,
+          child: SingleChildScrollView(
+            child: Column(
 
-              physics: const BouncingScrollPhysics(),
-              //  shrinkWrap: true,
               children: [
                 HeadTitle(
                   title: "DepositScientificThesis".tr,
@@ -65,10 +76,12 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
                   controller: _dataMessageController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
                     MaxLength(30),
                   ]),
                   type: TextInputType.text,
+                  onsave: (String? value) {
+                    filesInputData.thesisData = value;
+                  },
                 ),
                 CustomTextField(
                   hint: "messageAddress".tr,
@@ -77,10 +90,12 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
                   controller: _messageAddressController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
                     MaxLength(30),
                   ]),
                   type: TextInputType.text,
+                  onsave: (String? value) {
+                    filesInputData.thesisTitle = value;
+                  },
                 ),
                 CustomTextField(
                   hint: "degree".tr,
@@ -89,10 +104,12 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
                   controller: _degreeController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
                     MaxLength(30),
                   ]),
                   type: TextInputType.text,
+                  onsave: (String? value) {
+                    filesInputData.scientificDegree = value;
+                  },
                 ),
                 CustomTextField(
                   hint: "yearOfDiscussion".tr,
@@ -101,10 +118,12 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
                   controller: _yearOfDiscussionController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
                     MaxLength(30),
                   ]),
                   type: TextInputType.number,
+                  onsave: (String? value) {
+                    filesInputData.yearOfDiscussion = value ;
+                  },
                 ),
                 CustomTextField(
                   hint: "pagesNumbers".tr,
@@ -113,10 +132,13 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
                   controller: _pagesNumbersController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
+
                     MaxLength(30),
                   ]),
                   type: TextInputType.number,
+                  onsave: (String? value) {
+                    filesInputData.numberOfPages = value ;
+                  },
                 ),
                 CustomTextField(
                   hint: "numbersOfParts".tr,
@@ -125,10 +147,13 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
                   controller: _numbersOfPartsController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),
-                    IsOptional(),
+
                     MaxLength(30),
                   ]),
                   type: TextInputType.number,
+                  onsave: (String? value) {
+                    filesInputData.numberOfParts = value;
+                  },
                 ),
                 buildSizedBox(height),
                 Row(
@@ -146,7 +171,10 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
                     ),
                     SmallestButton(
                       onPressed: () {
-                        Get.to(() => const AvailabilityMessageScreen());
+                        if(formKey.currentState!.validate()){
+                          Get.to(() =>  AvailabilityMessageScreen(filesInputData));
+                        }
+
                       },
                       title: "next".tr,
                       color: kPrimaryColor,
@@ -157,8 +185,9 @@ class _MessageDataScreenState extends State<MessageDataScreen> {
               ],
             ),
           ),
-        );
-
+        ),
+      ),
+    );
   }
 
   SizedBox buildSizedBox(double height) => SizedBox(

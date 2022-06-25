@@ -14,27 +14,30 @@ class HeadTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     //  double height = MediaQuery.of(context).size.height;
     //  double width = MediaQuery.of(context).size.width;
-    return Column(
-      children: [
-        Row(
-          children: [
-            HeadTopics(title: title
-                // "DepositScientificThesis".tr,
-                ),
-            Padding(
-              padding:
-                  const EdgeInsetsDirectional.only(bottom: 8, start: 8, end: 4),
-              child: Text(
-                  // "basicInfoArrow".tr,
-                  subTitle,
-                  style: const TextStyle(
-                      color: kPrimaryColor,
-                      fontSize: 15,
-                      fontFamily: 'DinBold')),
-            ),
-          ],
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 22),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              HeadTopics(title: title
+                  // "DepositScientificThesis".tr,
+                  ),
+              Padding(
+                padding:
+                    const EdgeInsetsDirectional.only(bottom: 8, start: 8, end: 4),
+                child: Text(
+                    // "basicInfoArrow".tr,
+                    subTitle,
+                    style: const TextStyle(
+                        color: kPrimaryColor,
+                        fontSize: 15,
+                        fontFamily: 'DinBold')),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

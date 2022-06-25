@@ -9,7 +9,7 @@ enum AvailableType { accept, refuse }
 enum MultiChoose { one, two, three, four }
 
 class SelectorOpenion extends StatefulWidget {
-  final ValueChanged<Opinion> onChange;
+  final ValueChanged<String> onChange;
   const SelectorOpenion({
     Key? key,
     required this.onChange,
@@ -30,6 +30,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return ListView(
+       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 22),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       children: [
@@ -48,6 +49,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
                   groupValue: _opinion,
                   onChanged: (_) {
                     _opinion = Opinion.yes;
+                     widget.onChange("firstAvailabilitySelected");
                     setState(() {});
                   },
                 ),
@@ -71,7 +73,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
                     groupValue: _opinion,
                     onChanged: (_) {
                       setState(() {
-                        widget.onChange(Opinion.no);
+                        widget.onChange("noOption");
                         _opinion = Opinion.no;
                         accept = AvailableType.accept;
                       });
@@ -112,6 +114,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
               groupValue: accept,
               onChanged: (_) {
                 setState(() {
+                  widget.onChange("firstAvailabilitySelected");
                   accept = AvailableType.accept;
                 });
               },
@@ -128,16 +131,14 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
               groupValue: accept,
               onChanged: (_) {
                 setState(() {
+                  widget.onChange("secondAvailabilitySelectedWithFirstOption");
                   accept = AvailableType.refuse;
                 });
               },
             ),
           ),
         ],
-        // Padding(
-        //   padding: const EdgeInsetsDirectional.only(top: 14),
-        //   child: Image.asset("assets/image/bigLine.png"),
-        // ),
+
 
         if (accept == AvailableType.refuse) ...[
           ListTile(
@@ -151,6 +152,7 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
               groupValue: multiChoose,
               onChanged: (MultiChoose? value) {
                 setState(() {
+                  widget.onChange("secondAvailabilitySelectedWithFirstOption");
                   multiChoose = MultiChoose.one;
                 });
               },
@@ -167,6 +169,8 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
               groupValue: multiChoose,
               onChanged: (MultiChoose? value) {
                 setState(() {
+                  widget.onChange("secondAvailabilitySelectedWithSecondOption");
+
                   multiChoose = MultiChoose.two;
                 });
               },
@@ -183,6 +187,8 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
               groupValue: multiChoose,
               onChanged: (MultiChoose? value) {
                 setState(() {
+                  widget.onChange("secondAvailabilitySelectedWithThirdOption");
+
                   multiChoose = MultiChoose.three;
                 });
               },
@@ -199,6 +205,8 @@ class _SelectorOpenionState extends State<SelectorOpenion> {
               groupValue: multiChoose,
               onChanged: (MultiChoose? value) {
                 setState(() {
+                  widget.onChange("secondAvailabilitySelectedWithFourthOption");
+
                   multiChoose = MultiChoose.four;
                 });
               },
