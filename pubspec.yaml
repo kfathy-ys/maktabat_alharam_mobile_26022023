@@ -18,7 +18,9 @@ dependencies:
       path: device_preview
   cupertino_icons: ^1.0.2
   animate_do: ^2.1.0
+  calendar_date_picker2: ^0.1.7
   dio: ^4.0.0
+  animated_text_kit: ^4.2.2
   legacy_buttons: ^0.0.1
   laravel_exception: ^0.0.4
   smooth_page_indicator:

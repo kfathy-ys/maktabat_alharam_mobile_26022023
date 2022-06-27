@@ -13,7 +13,7 @@ class MessagesFilesInputData {
       collectionFile,
       quarterCollectionFile;
 
-  bool ? isThesisFileRequired,
+  bool? isThesisFileRequired,
       isThesisTitleFileRequired,
       isSubjectsIndexFileRequired,
       isArabicExtractFileRequired,
@@ -21,9 +21,9 @@ class MessagesFilesInputData {
       isIntroFileRequired,
       isCollectionFileRequired,
       isQuarterCollectionFileRequired;
-bool ? isAvailable , isAvailableWithChains , availabilityType;
+  bool? isAvailable, isAvailableWithChains;
 
-
+  int? availabilityType;
   String? userName,
       email,
       phoneNumber,
@@ -32,67 +32,66 @@ bool ? isAvailable , isAvailableWithChains , availabilityType;
       thesisData,
       thesisTitle,
       scientificDegree,
-
-   universityId, yearOfDiscussion, numberOfPages, numberOfParts;
+      universityId,
+      yearOfDiscussion,
+      numberOfPages,
+      numberOfParts;
 
   final userId = Prefs.getString("userId");
 
   Map<String, dynamic> toJson() {
     return {
-      "applicantName": userName,
-      "email": email,
-      "mobile": phoneNumber,
-      "universityId": universityId,
-      "faculty": faculty,
-      "department": department,
-      "thesisData": thesisData,
-      "thesisTitle": thesisTitle,
-      "scientificDegree": scientificDegree,
-      "yearOfDiscussion": yearOfDiscussion,
-      "numberOfPages": numberOfPages,
-      "numberOfParts": numberOfParts,
-      "isAvailable": isAvailable,
-      "isAvailableWithChains": isAvailableWithChains,
-      "availabilityType": availabilityType == true ? 1 : 0,
-      "thesisFile": thesisFile == null
+
+      ' "applicantName" ': '"{$userName}"',
+      ' "email" ': '"{$email}"',
+      ' "mobile" ': '"{$phoneNumber}"',
+      ' "universityId" ': '"{$universityId}"',
+      ' "faculty" ': '"{$faculty}"',
+      ' "department" ': '"{$department}"',
+      ' "thesisData" ': '"{$thesisData}"',
+      ' "thesisTitle" ': '"{$thesisTitle}"',
+      ' "scientificDegree" ': '"{$scientificDegree}"',
+      ' "yearOfDiscussion" ': '"{$yearOfDiscussion}"',
+      ' "numberOfPages" ': '"{$numberOfPages}"',
+      ' "numberOfParts" ': '"{$numberOfParts}"',
+      ' "isAvailable" ': isAvailable,
+      ' "isAvailableWithChains" ': isAvailableWithChains,
+      ' "availabilityType" ': availabilityType,
+      ' "thesisFile" ': thesisFile == null
           ? null
           : MultipartFile.fromFileSync(thesisFile!.path,
               filename: thesisFile!.path),
-      "thesisTitleFile": thesisTitleFile == null
+      ' "thesisTitleFile" ': thesisTitleFile == null
           ? null
           : MultipartFile.fromFileSync(thesisTitleFile!.path,
               filename: thesisTitleFile!.path),
-      "subjectsIndexFile": subjectsIndexFile == null
+      ' "subjectsIndexFile" ': subjectsIndexFile == null
           ? null
           : MultipartFile.fromFileSync(subjectsIndexFile!.path,
               filename: subjectsIndexFile!.path),
-      "arabicExtractFile": arabicExtractFile == null
+      ' "arabicExtractFile" ': arabicExtractFile == null
           ? null
           : MultipartFile.fromFileSync(arabicExtractFile!.path,
               filename: arabicExtractFile!.path),
-      "englishExtractFile": englishExtractFile == null
+      ' "englishExtractFile" ': englishExtractFile == null
           ? null
           : MultipartFile.fromFileSync(englishExtractFile!.path,
               filename: englishExtractFile!.path),
-      "introFile": introFile == null
+      ' "introFile" ': introFile == null
           ? null
           : MultipartFile.fromFileSync(introFile!.path,
               filename: introFile!.path),
-      "collectionFile": collectionFile == null
+      ' "collectionFile" ': collectionFile == null
           ? null
           : MultipartFile.fromFileSync(collectionFile!.path,
               filename: collectionFile!.path),
-      "quarterCollectionFile": quarterCollectionFile == null
+      ' "quarterCollectionFile" ': quarterCollectionFile == null
           ? null
           : MultipartFile.fromFileSync(quarterCollectionFile!.path,
               filename: quarterCollectionFile!.path),
-      "userId": userId,
-      "createdBy": userId,
-      "requestStatusId": 4,
-
-
-
-
+      ' "userId" ': userId,
+      ' "createdBy" ': userId,
+      ' "requestStatusId" ': 4,
     };
   }
 }

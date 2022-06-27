@@ -93,7 +93,7 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     controller: _emailController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+                   //   IsOptional(),
                       const IsEmail(),
                       MaxLength(30),
                     ]),
@@ -120,7 +120,7 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
                       // IsOptional(),
-                      IsNumber(),
+                   //   IsNumber(),
                       MinLength(1),
                       MaxLength(30),
                     ]),
@@ -207,7 +207,6 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                                   responsibleEmail: _emailController.text,
                                   numberOfVisitors: _visitorsController.text,
                                   visitReason: _vistorReasonController.text,
-                                  // requestStatusId: 4,
                                 );
                                 Alert.success("تم إضافة طلبك بنجاح ");
                                 Get.offAll(() => MyOrderRequestVisitScreen());

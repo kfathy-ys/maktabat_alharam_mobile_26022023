@@ -1,8 +1,12 @@
+import 'dart:developer';
+
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/page/views/head_topices.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_visit/page/views/drop_down_library_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/cubit_avalible_dates_research/avalible_dates_research_cubit.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/alert_to_make_sure.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_hall_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_items.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_qualification.dart';
@@ -14,6 +18,7 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
+import 'package:maktabat_alharam/screens/widgets/small_texfiled.dart';
 import 'package:provider/provider.dart';
 import 'package:queen/queen.dart' hide NationsTrans;
 import 'package:queen/validation.dart';
@@ -143,14 +148,72 @@ class _ReserveResearchRetreatScreenState
                               provider.onQualificationIDChanged(value);
                             },
                           ),
+                          const AlertMessage(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              CustomSmallTextField(
+                                hint: "From : To",
+                                controller: provider.fromController,
+                                onTap: ()async {
+                                  await  showDateRangePicker(
+                                    context: context,
 
-                          SfDateRangePicker(
-                            key: UniqueKey(),
-                            onSelectionChanged: (obj) => provider
-                                .onRageChanges(obj.value as PickerDateRange),
-                            selectionMode: DateRangePickerSelectionMode.range,
-                            selectableDayPredicate: provider.isDayAvialable,
+                                    firstDate: DateTime(2010),
+                                    lastDate: DateTime(2030),
 
+                                  ).then((value) {
+                                    if(value == null) return;
+                                    provider.fromController.text= '${value.start.toString().substring(0,10) }:\t ${value.end.toString().substring(0,10)} ';
+
+                                    provider.onRageChanges(value);
+                                  });
+
+
+                                },
+                                // validator: qValidator([
+                                //   IsRequired("thisFieldRequired".tr),
+                                // ]),
+                              ),
+
+                            ],
+                          ),
+                          Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: kSafeAreasColor)),
+                              width: width * 0.8,
+                              child: CalendarDatePicker2(
+                                // onDisplayedMonthChanged: (obj) {
+                                //   if (obj == null) return;
+                                //   if (obj.runtimeType == PickerDateRange) {
+                                //     provider
+                                //         .onRageChanges(obj as PickerDateRange);
+                                //   }
+                                // },
+                                selectableDayPredicate: provider.isDayAvialable,
+                                config: CalendarDatePicker2Config(
+                                  calendarType: CalendarDatePicker2Type.range,
+                                ),
+                                initialValue: [],
+                              ),
+                              /*     child: SfDateRangePicker(
+
+                                key: UniqueKey(),
+                                onSelectionChanged: (obj) {
+                                  if(obj.value == null) return;
+                                  if(obj.value.runtimeType == PickerDateRange){
+                                    provider
+                                        .onRageChanges(obj.value);
+                                  }
+                                },
+                                endRangeSelectionColor: Colors.green,
+
+                                selectionMode: DateRangePickerSelectionMode.range,
+                                selectableDayPredicate: provider.isDayAvialable,
+
+                              ),*/
+                            ),
                           ),
                           CustomHeightTextField(
                             hint: "visitReason".tr,
@@ -159,7 +222,7 @@ class _ReserveResearchRetreatScreenState
                           buildSizedBox(height),
                           Center(
                             child: MediaButtonSizer(
-                              onPressed: provider.submit,
+                              onPressed: ()=>provider.submit(),
                               title: "requestService".tr,
                               color: kPrimaryColor,
                               image: "assets/image/rightsah.png",

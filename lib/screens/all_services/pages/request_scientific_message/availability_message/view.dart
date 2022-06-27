@@ -80,35 +80,35 @@ class _AvailabilityMessageScreenState extends State<AvailabilityMessageScreen> {
 
                   if (value == "noOption") {
                     filesInputData.isAvailable =false;
-                    filesInputData.availabilityType =false;
+                    filesInputData.availabilityType =0;
                     filesInputData.isAvailableWithChains =false;
                     onMessageSubmitFalse();
                   }
                   if (value == "firstAvailabilitySelected") {
                     filesInputData.isAvailable =true;
-                    filesInputData.availabilityType =false;
+                    filesInputData.availabilityType =1;
                     filesInputData.isAvailableWithChains =false;
                     onFirstAvailabilitySubmitTrue();
                   }
 
                   if (value == "secondAvailabilitySelectedWithFirstOption") {
                     filesInputData.isAvailableWithChains =true;
-                    filesInputData.availabilityType =true;
+                    filesInputData.availabilityType =1;
                     onSecondAvailabilitySubmitFirst();
                   }
                   if (value == "secondAvailabilitySelectedWithSecondOption") {
                     filesInputData.isAvailableWithChains =true;
-                    filesInputData.availabilityType =true;
+                    filesInputData.availabilityType =2;
                     onSecondAvailabilitySubmitSecond();
                   }
                   if (value == "secondAvailabilitySelectedWithThirdOption") {
                     filesInputData.isAvailableWithChains =true;
-                    filesInputData.availabilityType =true;
+                    filesInputData.availabilityType =3;
                     onSecondAvailabilitySubmitThird();
                   }
                   if (value == "secondAvailabilitySelectedWithFourthOption") {
                     filesInputData.isAvailableWithChains =true;
-                    filesInputData.availabilityType =true;
+                    filesInputData.availabilityType =4;
                     onSecondAvailabilitySubmitFourth();
                   }
                   setState(() {

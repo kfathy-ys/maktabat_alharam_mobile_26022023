@@ -147,14 +147,14 @@ class _UpdateReserveArticleRetreatedState
                             hint: "visitReason".tr,
                             text: "",
                           ),
-                          SfDateRangePicker(
-                            key: UniqueKey(),
-                            onSelectionChanged: (obj) => provider
-                                .onRageChanges(obj.value as PickerDateRange),
-                            selectionMode: DateRangePickerSelectionMode.range,
-                            selectableDayPredicate: provider.isDayAvialable,
-//
-                          ),
+//                           SfDateRangePicker(
+//                             key: UniqueKey(),
+//                             onSelectionChanged: (obj) => provider
+//                                 .onRageChanges(obj.value as PickerDateRange),
+//                             selectionMode: DateRangePickerSelectionMode.range,
+//                             selectableDayPredicate: provider.isDayAvialable,
+// //
+//                           ),
                           buildSizedBox(height),
                           Center(
                             child: MediaButtonSizer(

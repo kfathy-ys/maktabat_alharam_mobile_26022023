@@ -95,10 +95,7 @@ class AvailableDatesCubit extends Cubit<AvailableDatesState> {
   final createOrder = <MyOrderToVisit>[];
   int visitDateId = 0;
   Future<void> createOrderToVisit({
-    //  required int libraryNamedId,
-    // required int visitDateId,
 
-    // required int authority,
 
     required String responsibleName,
     required String responsibleMobile,

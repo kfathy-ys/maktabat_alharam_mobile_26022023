@@ -99,7 +99,7 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                                     state.allOrderVisitModel.data!.length,
                                 itemBuilder: (context, int index) {
                                   return CustomContainer(
-                                    height: height * 0.4,
+                                    height: height * 0.45,
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,

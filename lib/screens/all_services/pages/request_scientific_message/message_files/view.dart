@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/title.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/message_files/cubit/messages_input.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/my_order/view.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/new_order/cubit/new_order_cubit.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 import 'package:maktabat_alharam/screens/widgets/alerts.dart';
 
@@ -68,7 +70,23 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
       drawer: drawer(context: context),
       appBar: customAppbar(
           icons: Icons.arrow_forward_outlined, isIcons: true, context: context),
-      body: Form(
+      body: BlocProvider(
+        create: (context) => NewOrderCubit(),
+  child: BlocConsumer<NewOrderCubit, NewOrderState>(
+  listener: (context, state) {
+    if (state is NewOrderSuccess) {
+      Alert.success("تم إضافة طلبك بنجاح");
+
+      Get.offAll(() => const MyOrdersScientificMessage());
+    } else if (state is NewOrderError) {
+      Alert.error(state.msg.toString());
+    }
+  },
+  builder: (context, state) {
+    final cubit = BlocProvider.of<NewOrderCubit>(context);
+
+
+    return Form(
         key: formKey,
         child: SizedBox(
           height: height,
@@ -243,33 +261,33 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
                                     .isSubjectsIndexFileRequired ==
                                 true &&
                             filesInputData.subjectsIndexFile == null) {
-                          Alert.error("3 ");
+                          Alert.error(" فهرس الموضوعات مطلوب");
                         } else if (widget.filesInputData
                                     .isArabicExtractFileRequired ==
                                 true &&
                             filesInputData.arabicExtractFile == null) {
-                          Alert.error("4 ");
+                          Alert.error("المستخاص العربي مطلوبة ");
                         } else if (widget.filesInputData
                                     .isEnglishExtractFileRequired ==
                                 true &&
                             filesInputData.englishExtractFile == null) {
-                          Alert.error("5 ");
+                          Alert.error("المستخلص الإنجليزي مطلوبة ");
                         } else if (widget.filesInputData.isIntroFileRequired ==
                                 true &&
                             filesInputData.introFile == null) {
-                          Alert.error("6 ");
+                          Alert.error("المقدمة مطلوبة ");
                         } else if (widget
                                     .filesInputData.isCollectionFileRequired ==
                                 true &&
                             filesInputData.collectionFile == null) {
-                          Alert.error("7 ");
+                          Alert.error(" العنوان + فهرس الموضوعات + المستخلص العربي والإنجليزي + المقدمة");
                         } else if (widget.filesInputData
                                     .isQuarterCollectionFileRequired ==
                                 true &&
                             filesInputData.quarterCollectionFile == null) {
-                          Alert.error("8 ");
+                          Alert.error("العنوان + فهرس الموضوعات + المستخلص العربي والإنجليزي + المقدمة + 25% من الرسالة ");
                         } else {
-                          print("Error");
+                        cubit.sendMessagesResearchData(filesInputData: filesInputData);
                         }
                       },
                       title: "requestService".tr,
@@ -282,7 +300,10 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
             ],
           ),
         ),
-      ),
+      );
+  },
+),
+),
     );
   }
 

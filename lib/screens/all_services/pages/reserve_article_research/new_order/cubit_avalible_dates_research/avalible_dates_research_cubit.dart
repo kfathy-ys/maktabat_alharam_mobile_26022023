@@ -23,8 +23,8 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
   final userNameController = TextEditingController();
   final reasonController = TextEditingController();
   final phoneController = TextEditingController();
-
-
+  final fromController = TextEditingController();
+  final toController = TextEditingController();
 
   ///  ? end of the form
 
@@ -38,6 +38,8 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
   MyRoomLibraryId? selectedRoom;
   final rooms = <MyRoomLibraryId>[];
   final dates = <AvailableDatesByRoom>[];
+
+   AvailableDatesByRoom? roomDateAvailableId ;
 
   /// Set List To Store Selected Days From Calender
 
@@ -162,46 +164,56 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
     if (selectedType!.shouldPickHall && selectedRoom == null) {
       Alert.error('الرجاءإختيار القاعة المحددة ');
       return;
-    }if (  selectedType!.shouldPickFromAviliableRange && selectedDateRange == null) {
-      Alert.error('يجب إخيتارك لفترة البدء والانهاء ');
-      return;
     }
-    if (  qualificationID == null) {
+    // if (selectedType!.shouldPickFromAviliableRange &&
+    //     selectedDateRange == null) {
+    //   Alert.error('يجب إخيتارك لفترة البدء والانهاء ');
+    //   return;
+    // }
+    if (qualificationID == null) {
       Alert.error('الرجاء اختيار المؤهل العلمي ');
       return;
     }
+
     if (formKey.currentState!.validate()) {
       try {
         var now = DateTime.now();
         var dataNow = DateConverter.dateConverterOnly(now.toString());
 
+        userNameController.text = Prefs.getString('fullName');
+        phoneController.text = Prefs.getString('phoneNumber');
         final body = <String, Object?>{
           "id": 0,
           "userId": Prefs.getString('userId'),
           "libraryId": selectedLIB?.id,
-          "roomId": selectedRoom?.id,
-          "researchStartDateId": selectedType!.shouldPickFromAviliableRange
-              ? dates
-                  .firstWhere((e) => selectedDateRange!.startDate == e.date)
-                  .id
-              : null,
-          "researchEndDateId": selectedType!.shouldPickFromAviliableRange
-              ? dates.firstWhere((e) => selectedDateRange!.endDate == e.date).id
-              : null,
+          "roomId":  selectedType!.shouldPickFromAviliableRange
+             ?selectedRoom?.id : null,
+          // "researchStartDateId": selectedType!.shouldPickFromAviliableRange
+          //     ? dates
+          //         .firstWhere((e) => selectedDateRange!.startDate == e.date)
+          //         .id
+          //     : null,
+          // "researchEndDateId": selectedType!.shouldPickFromAviliableRange
+          //     ? dates.firstWhere((e) => selectedDateRange!.endDate == e.date).id
+          //     : null,
+          "researchStartDateId": selectedType!.shouldPickFromAviliableRange ?selectedRoom!.id:null,
+          "researchEndDateId": selectedType!.shouldPickFromAviliableRange ?selectedRoom!.id:null,
           "requestTypeId": selectedType!.toInt(),
           "responsibleName": userNameController.text,
-          "responsibleMobile": phoneController.text,
+          "responsibleMobile":  phoneController.text,
           "responsibleGradeId": qualificationID!.id,
           "callNum": userNameController.text,
           "subjectName": null,
-          "dateFrom":selectedType!.shouldPickFromAviliableRange
-    ? dates
-        .firstWhere((e) => selectedDateRange!.startDate == e.date)
-        .id
-        : null,
-          "dateTo":selectedType!.shouldPickFromAviliableRange
-              ? dates.firstWhere((e) => selectedDateRange!.endDate == e.date).id
-              : null,
+          //       "dateFrom":selectedType!.shouldPickFromAviliableRange
+          // ? dates
+          //     .firstWhere((e) => selectedDateRange!.startDate == e.date)
+          //     .id
+          //     : null,
+          //       "dateTo":selectedType!.shouldPickFromAviliableRange
+          //           ? dates.firstWhere((e) => selectedDateRange!.endDate == e.date).id
+          //           : null,
+          "dateFrom": selectedDateRange!.startDate.toString(),
+          "dateTo": selectedDateRange!.endDate.toString(),
           "reasonOfRejection": null,
           "instructions": null,
           "requestStatusId": 4,
@@ -214,28 +226,35 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
         final res = await NetWork.post(
             'ResearchRequest/CreateNewResearchRequest',
             body: body);
+        if(res.statusCode == 500){
+          throw "server error";
+        }
         if (res.data['status'] == 0 || res.data['status'] == -1) {
           throw res.data['message'];
         }
-
+        Alert.success("تم إضافة طلبك بنجاح ");
         notifyListeners();
       } catch (e, st) {
         log(e.toString());
         log(st.toString());
         notifyListeners();
       }
-      Alert.success("تم إضافة طلبك بنجاح ");
-      Get.off(() => const MyOrderReserveArticleResearch());
+
+     // Get.off(() => const MyOrderReserveArticleResearch());
     } else {
       Alert.error("الرجاء التاكيد من الطلب ");
     }
   }
 
-  void onRageChanges(PickerDateRange range) {
-    selectedDateRange = CDateRange(
-      startDate: range.startDate!,
-      endDate: range.endDate!,
-    );
+  void onRageChanges(DateTimeRange range) {
+
+      selectedDateRange = CDateRange(
+        startDate: range.start,
+        endDate: range.end,
+      );
+
+      log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr' + range.toString());
+
   }
 }
 
