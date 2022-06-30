@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
+import 'package:get/get.dart';
 
 class AlertMessage extends StatelessWidget {
   const AlertMessage({Key? key}) : super(key: key);
@@ -28,18 +29,19 @@ class AlertMessage extends StatelessWidget {
             child: AnimatedTextKit(
               animatedTexts: [
                 TyperAnimatedText(
-                  'تحذير هام ! ',textStyle: const TextStyle(
+                  "warning".tr,textStyle: const TextStyle(
                     color: kButtonRedDark, fontSize: 20, fontFamily: 'DinBold'),
                 ),
                 TyperAnimatedText(
-                  'عزيزي العميل ! ',textStyle: buildTextStyle(),
+                  "dear".tr,textStyle: buildTextStyle(),
                 ),
                 TyperAnimatedText(
-                  'يرجي إدخال تاريخ من التواريخ المتاحة فقط ',textStyle:buildAccentTextStyle(),
+                  "avDates".tr,textStyle:buildAccentTextStyle(),
                 ),
-                TyperAnimatedText('للعلم ! التاريخ الغير متاح لم يؤخد بة',textStyle:buildAccentTextStyle()),
-                TyperAnimatedText('تنوبة ! التاريخ الغير متاح يعمل بها فقط',textStyle: buildAccentTextStyle()),
-                TyperAnimatedText('في حالة إختيارك لمادة علمية فقط',textStyle: buildTextStyle()),
+                TyperAnimatedText( "attentions".tr,textStyle:buildAccentTextStyle()),
+                TyperAnimatedText("repentance".tr,textStyle: buildAccentTextStyle()),
+                TyperAnimatedText( "chosen".tr,textStyle: buildTextStyle()),
+                TyperAnimatedText( "press".tr,textStyle: buildTextStyle()),
               ],
               onTap: () {
                 print("Tap Event");

@@ -156,9 +156,9 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                   },
                 ),
                 CustomTextField(
-                  hint: "phone".tr,
+                  hint: "phoneNumber".tr,
                   dIcon: Icons.phone,
-                  label: "phone".tr,
+                  label: "phoneNumber".tr,
                   controller: phoneController,
                   validator: qValidator([
                     IsRequired("thisFieldRequired".tr),

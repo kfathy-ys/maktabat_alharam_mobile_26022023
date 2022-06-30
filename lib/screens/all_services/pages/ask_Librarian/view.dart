@@ -75,7 +75,7 @@ class AskLibrarian extends StatelessWidget {
                         controller: _nameController,
                         validator: qValidator([
                           IsRequired("enterName".tr),
-                          IsOptional(),
+                        //  IsOptional(),
                           MaxLength(30),
                         ]),
                         type: TextInputType.name,
@@ -87,7 +87,7 @@ class AskLibrarian extends StatelessWidget {
                         controller: _emailController,
                         validator: qValidator([
                           IsRequired("enterEmail".tr),
-                          IsOptional(),
+                       //   IsOptional(),
                           IsEmail("MustBeEmail".tr),
                           MaxLength(30),
                         ]),

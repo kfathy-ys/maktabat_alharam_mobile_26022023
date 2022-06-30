@@ -105,7 +105,10 @@ Widget drawer({required context}) {
                   listTile(
                       onTap: () {
                         Get.back();
-                        Get.to(() => const MyOrdersScreen());
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const HomeTabScreen(
+                              index: 1,
+                            )));
                       },
                       title: "myOrders".tr,
                       image: 'assets/image/myorder.png'),

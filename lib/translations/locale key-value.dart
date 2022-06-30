@@ -21,6 +21,7 @@ class LocaleString extends Translations {
           // notifications
           "notification": "Notifications",
           // Login
+          "periods":"From Available Enter Period From : To",
           "welcome": "Welcome ..",
           "signIn": "Sign In",
           "IdentificationNumber": "ID Number",
@@ -38,7 +39,7 @@ class LocaleString extends Translations {
 
           "id": "Id",
           // Forget Password
-          "phone": "Phone Number",
+          "phone": "Phone Number :",
           "email": "Email address",
           "sendCode": "Send VCode",
           "resend": "Resend",
@@ -206,7 +207,7 @@ class LocaleString extends Translations {
           "additionalInformation": "Additional information",
           "name": "Name:",
           "emailDot": "E-mail:",
-          "qualifications": "qualifications:",
+          "qualifications": "qualifications",
           "electronic": "Electronic",
           "paper": "Paper",
           "headBuyBook":
@@ -294,11 +295,19 @@ class LocaleString extends Translations {
           "more": "More",
           "AvailablePeriods": "Available periods",
 
-          "pending": "Pending",
+          "pending": "No response yet",
           "unRespond": "Accepted",
           "rejected": "Rejected",
           "notResponse": "Not Response",
           "refuseReason": "Refuse reason",
+          // warining
+          "warning":"Important Warning !",
+          "dear":"Dear customer !",
+          "avDates":"Enter only one from available dates",
+          "attentions":"Attention! Unavailable date not taken",
+          "repentance":"Unavailable date, only works",
+          "chosen":"If you choose a scientific subject only",
+          "press":"Please click here to choose the period 👇"
         },
         'ar_EG': {
           "aboutLibrary": "عن المكتبة",
@@ -331,11 +340,12 @@ class LocaleString extends Translations {
           "minPassword": " الحد الأدني لكلمه المرور 11 أنماط ",
           // notifications
           "notification": "الإشعارات",
+          "periods":" من الفترات  أدخل المدة المطلوبة من : إلي",
 
           // Forget Password
           "addComment": "أضف تعليق",
 
-          "phone": "رقم الهاتف",
+          "phone": "رقم الهاتف :",
           "email": "البريد الإلكتروني",
           "sendCode": "إرسال الرمز",
           "resend": "إعادة إرسال الرمز",
@@ -592,9 +602,19 @@ class LocaleString extends Translations {
           "contentPlus": "المحتوي + 25% من الرسالة",
           "titleMessage":
               "هي خدمة تمكن طلاب الدراسات العليا داخل وخارج المملكة من إيداع رسالتهم العلمية للمكتبة وفق الشروط التي تحفظ حقوق الملكية الفكرية للمؤلف",
-          "pending": "قيد الإنتظار",
+          "pending": "لم يتم الرد بعد",
           "unRespond": "تم الموافقة",
-          "rejected": "تم رفض الطلب"
+          "rejected": "تم رفض الطلب",
+          // warining
+          // warining
+          "warning":"تحذير هام !",
+          "dear":"عزيزي العميل !",
+          "avDates":"يرجي إدخال تاريخ من التواريخ المتاحة فقط",
+          "attentions":"للعلم ! التاريخ الغير متاح لم يؤخد بة",
+          "repentance":"تنوبة ! التاريخ الغير متاح يعمل بها فقط",
+          "chosen":"في حالة إختيارك لمادة علمية فقط",
+          "press":"الرجاء الضغط هنا لإختيار الفترة  👇 "
+
         }
       };
 }

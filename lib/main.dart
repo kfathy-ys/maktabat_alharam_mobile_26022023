@@ -17,6 +17,7 @@ import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_rese
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/cubit/archive_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/my_orders/cubit/order_suggest_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/new_order/cubit/new_order_cubit.dart';
+import 'package:maktabat_alharam/screens/home/pages/views/my_orders/cubit/all_my_orders_cubit.dart';
 
 import 'package:maktabat_alharam/screens/splash/view.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -71,10 +72,12 @@ class MaktabatAlharam extends StatelessWidget {
         BlocProvider<SwitchCubit>(
           create: (context) => SwitchCubit(),
         ),
+        BlocProvider<AllMyOrdersCubit>(
+          create: (context) => AllMyOrdersCubit(),
+        ),
         BlocProvider<AvailableDatesCubit>(
           create: (context) => AvailableDatesCubit(),
         ),
-   
         BlocProvider<NewOrderCubit>(
           create: (context) => NewOrderCubit(),
         ),

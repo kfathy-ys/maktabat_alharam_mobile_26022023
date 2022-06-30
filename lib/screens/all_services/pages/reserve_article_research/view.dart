@@ -58,7 +58,7 @@ class _ReserveResearchRetreatScreenState
       ),
     );
   }
-
+  List<int> selectedIdRoom =[];
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -110,7 +110,7 @@ class _ReserveResearchRetreatScreenState
                                 onChanged: provider.selectRoom),
                           if (provider.hasSelectedType &&
                               provider.selectedType!.shouldEnterCallNumber)
-                            CustomTextField(
+                          CustomTextField(
                               hint: "رقم النداء".tr,
                               dIcon: Icons.drive_file_rename_outline,
                               label: "رقم النداء".tr,
@@ -122,10 +122,11 @@ class _ReserveResearchRetreatScreenState
                               type: TextInputType.number,
                             ),
                           CustomTextField(
+                            read: true,
                             hint: "userName".tr,
                             dIcon: Icons.drive_file_rename_outline,
                             label: "userName".tr,
-                            controller: provider.userNameController,
+                            controller: provider.userNameController..text = Prefs.getString('fullName'),
                             validator: qValidator([
                               IsRequired("thisFieldRequired".tr),
                               MaxLength(30),
@@ -133,10 +134,11 @@ class _ReserveResearchRetreatScreenState
                             type: TextInputType.name,
                           ),
                           CustomTextField(
-                            hint: "phone".tr,
+                            read: true,
+                            hint: "phoneNumber".tr,
                             dIcon: Icons.phone,
-                            label: "phone".tr,
-                            controller: provider.phoneController,
+                            label: "phoneNumber".tr,
+                            controller: provider.phoneController..text = Prefs.getString('phoneNumber'),
                             validator: qValidator([
                               IsRequired("phone".tr),
                               MaxLength(30),
@@ -153,7 +155,8 @@ class _ReserveResearchRetreatScreenState
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               CustomSmallTextField(
-                                hint: "From : To",
+                                dIcon: Icons.date_range_outlined,
+                                hint: "periods".tr,
                                 controller: provider.fromController,
                                 onTap: ()async {
                                   await  showDateRangePicker(
@@ -164,16 +167,14 @@ class _ReserveResearchRetreatScreenState
 
                                   ).then((value) {
                                     if(value == null) return;
-                                    provider.fromController.text= '${value.start.toString().substring(0,10) }:\t ${value.end.toString().substring(0,10)} ';
+                                    provider.fromController.text= '${value.start.toString().substring(0,10) }\t \t  || \t \t ${value.end.toString().substring(0,10)} ';
 
                                     provider.onRageChanges(value);
                                   });
 
 
                                 },
-                                // validator: qValidator([
-                                //   IsRequired("thisFieldRequired".tr),
-                                // ]),
+
                               ),
 
                             ],
@@ -181,6 +182,7 @@ class _ReserveResearchRetreatScreenState
                           Center(
                             child: Container(
                               decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
                                   border: Border.all(color: kSafeAreasColor)),
                               width: width * 0.8,
                               child: CalendarDatePicker2(
