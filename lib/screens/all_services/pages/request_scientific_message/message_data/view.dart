@@ -15,6 +15,7 @@ import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';
 
+import '../../../../widgets/alerts.dart';
 import '../message_files/cubit/messages_input.dart';
 
 class MessageDataScreen extends StatefulWidget {
@@ -173,8 +174,9 @@ print(filesInputData.toJson());
                       onPressed: () {
                         if(formKey.currentState!.validate()){
                           Get.to(() =>  AvailabilityMessageScreen(filesInputData));
+                          Alert.success("تم تاكيد كافة بيانات الرسالة ");
                         }
-
+                        Alert.error("خطاء ! تاكيد بيانات الرسالة");
                       },
                       title: "next".tr,
                       color: kPrimaryColor,

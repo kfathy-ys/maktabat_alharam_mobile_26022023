@@ -5,6 +5,7 @@ import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_m
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/bacis_info/page/title.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_message/message_data/view.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
+import 'package:maktabat_alharam/screens/widgets/alerts.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
@@ -186,9 +187,12 @@ class _BasicInfoScreenState extends State<BasicInfoScreen> {
                     SmallestButton(
                       onPressed: () {
                         if(formKey.currentState!.validate()){
+                          Get.to(() =>  MessageDataScreen(filesInputData));
+                          Alert.success("تم تاكيد كافة البيانات الأساسية ");
 
                         }
-                        Get.to(() =>  MessageDataScreen(filesInputData));
+                        Alert.error("خطاء ! تاكيد البيانات الأساسية");
+
                       },
                       title: "next".tr,
                       color: kPrimaryColor,

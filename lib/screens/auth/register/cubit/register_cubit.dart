@@ -37,7 +37,9 @@ class RegisterCubit extends Cubit<RegisterState> {
           "userName": userName,
           "defaultRole": "Visitor",
           "active": true,
-          "roleName": ["Visitor"]
+          "activationPageUrl": null,
+          "roleName": ["Visitor"],
+          "userId":null
         },
       );
       if (res.data['status'] == 0 || res.data['status'] == -1) {

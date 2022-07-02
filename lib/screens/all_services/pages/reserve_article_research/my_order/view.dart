@@ -165,6 +165,23 @@ class MyOrderReserveArticleResearch extends StatelessWidget {
                                                         : "--",
                                             color1: kSmallIconColor,
                                             color2: kBlackText),
+
+                                        ((state
+                                            .orderResearchModel
+                                            .data![index]
+                                            .requestStatusId) ==
+                                            6) ?   CardData(
+                                            title: "refuseReason".tr,
+                                            subTitle: (state
+                                                .orderResearchModel
+                                                .data![index]
+                                                .reasonOfRejection)== null ? "pending".tr:state
+                                                .orderResearchModel
+                                                .data![index]
+                                                .reasonOfRejection,
+
+                                            color1: kSmallIconColor,
+                                            color2: kBlackText):const SizedBox.shrink(),
                                         CardData(
                                           title: "orderProcedure".tr,
                                           subTitle: "",

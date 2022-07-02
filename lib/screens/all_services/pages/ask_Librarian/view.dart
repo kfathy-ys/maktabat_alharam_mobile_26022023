@@ -13,6 +13,7 @@ import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
+import 'package:queen/core/helpers/prefs.dart';
 
 import 'package:queen/validation.dart';
 
@@ -72,7 +73,7 @@ class AskLibrarian extends StatelessWidget {
                         hint: "userName".tr,
                         dIcon: Icons.drive_file_rename_outline,
                         label: "userName".tr,
-                        controller: _nameController,
+                        controller: _nameController..text  = Prefs.getString('fullName'),
                         validator: qValidator([
                           IsRequired("enterName".tr),
                         //  IsOptional(),
@@ -84,7 +85,7 @@ class AskLibrarian extends StatelessWidget {
                         dIcon: Icons.email,
                         label: "email".tr,
                         hint: "email".tr,
-                        controller: _emailController,
+                        controller: _emailController..text =Prefs.getString('email'),
                         validator: qValidator([
                           IsRequired("enterEmail".tr),
                        //   IsOptional(),
@@ -97,7 +98,7 @@ class AskLibrarian extends StatelessWidget {
                         hint: "phoneNumber".tr,
                         dIcon: Icons.phone,
                         label: "phoneNumber".tr,
-                        controller: _phoneController,
+                        controller: _phoneController..text= Prefs.getString('phoneNumber'),
                         validator: qValidator([
                           IsRequired("phoneNumber".tr),
                           // IsOptional(),

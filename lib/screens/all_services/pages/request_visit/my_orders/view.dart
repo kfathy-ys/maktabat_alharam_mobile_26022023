@@ -99,7 +99,7 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                                     state.allOrderVisitModel.data!.length,
                                 itemBuilder: (context, int index) {
                                   return CustomContainer(
-                                    height: height * 0.45,
+                                    height: height * 0.5,
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
@@ -150,6 +150,22 @@ class MyOrderRequestVisitScreen extends StatelessWidget {
                                                         : "--",
                                             color1: kSmallIconColor,
                                             color2: kBlackText),
+                                        ((state
+                                            .allOrderVisitModel
+                                            .data![index]
+                                            .requestStatusId) ==
+                                            6)?  CardData(
+                                            title: "refuseReason".tr,
+                                            subTitle: (state
+                                                .allOrderVisitModel
+                                                .data![index]
+                                                .reasonOfRejection) == null ? "":state
+                                                .allOrderVisitModel
+                                                .data![index]
+                                                .reasonOfRejection ,
+
+                                            color1: kSmallIconColor,
+                                            color2: kBlackText):const SizedBox.shrink(),
                                         CardData(
                                           title: "orderProcedure".tr,
                                           subTitle: "",

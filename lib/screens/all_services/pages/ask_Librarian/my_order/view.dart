@@ -19,6 +19,7 @@ import 'package:maktabat_alharam/screens/widgets/loading.dart';
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 
 import '../../../../widgets/date_convertors.dart';
+import '../../request_visit/my_orders/page/custom_container.dart';
 
 class MyOrderAskLibrarian extends StatelessWidget {
   MyOrderAskLibrarian({Key? key}) : super(key: key);
@@ -100,19 +101,10 @@ class MyOrderAskLibrarian extends StatelessWidget {
                                     //   shrinkWrap: true,
                                     itemCount: state.askOrderModel.data!.length,
                                     itemBuilder: (context, int index) {
-                                      return Container(
-                                        margin:
-                                            const EdgeInsetsDirectional.only(
-                                                bottom: 16.0),
-                                        padding:
-                                            const EdgeInsetsDirectional.only(
-                                                bottom: 8.0),
+                                      return CustomContainer(
+
                                         height: height * 0.42,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            border:
-                                                Border.all(color: kCardBorder)),
+
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceAround,
@@ -137,7 +129,8 @@ class MyOrderAskLibrarian extends StatelessWidget {
                                                 color2: kSkyButton),
                                             CardData(
                                                 title: "response".tr,
-                                                subTitle: state.askOrderModel
+                                                subTitle:( state.askOrderModel
+                                                    .data![index].response)== null ? "pending".tr:state.askOrderModel
                                                     .data![index].response
                                                     .toString(),
                                                 // ((state.askOrderModel.data![index].requestStatusId)==4)? "pending".tr:

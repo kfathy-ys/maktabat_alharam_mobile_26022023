@@ -17,7 +17,8 @@ class NewOrderCubit extends Cubit<NewOrderState> {
     try {
       final res = await NetWork.post('ThesisDepositionRequest/CreateOrUpdateThesisDepositionRequestWithAttach',
           body: FormData.fromMap({
-           "jsonString":filesInputData!.toJson(),
+
+           "jsonString":filesInputData!.toJson().toString(),
 
           })
       //     {

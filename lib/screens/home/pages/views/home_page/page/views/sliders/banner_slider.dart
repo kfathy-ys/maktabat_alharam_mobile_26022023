@@ -12,24 +12,16 @@ class BannerSlider extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return SizedBox(
-      // margin: const EdgeInsets.symmetric(vertical: 15),
-      //color: Colors.red,
-      //color: Colors.yellowAccent,
-      //height: height * 0.12,
-      //  width: width*0.4,
-      // height: height * 0.3,
-      // width: width,
+
       child: CarouselSlider.builder(
         itemCount: 5,
         itemBuilder: (context, index, pageViewIndex) {
           return InkWell(
               onTap: () {
-                //  interstitialAd.show();
 
-                // navigateTo(context, BannerDetailsScreen(id: sliders[index].id,));
               },
               child: Container(
-                // height: height * 0.12,
+
                 width: width * 0.42,
                 decoration: BoxDecoration(
                     color: kSmallIconColor,
@@ -45,10 +37,7 @@ class BannerSlider extends StatelessWidget {
                 ),
               )
 
-              // const Sliders(
-              //   title: "عدد التحميلات ",
-              //   subTitle: "33355889 ",
-              // ),
+
               );
         },
         options: CarouselOptions(

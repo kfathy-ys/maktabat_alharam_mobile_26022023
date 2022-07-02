@@ -14,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
+import 'package:queen/core/helpers/prefs.dart';
 import 'package:queen/validation.dart';
 
 import '../../../widgets/alerts.dart';
@@ -74,10 +75,12 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                   /// TODO:: DropDownEntityName
                   DropDownEntityName(onChanged: cubit.onAuthorityIDChanged),
                   CustomTextField(
+                    read: true,
                     hint: "nameResponsible".tr,
                     dIcon: Icons.drive_file_rename_outline,
                     label: "nameResponsible".tr,
-                    controller: _nameController,
+                    controller: _nameController
+                      ..text = Prefs.getString('fullName'),
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
                       // IsOptional(),
@@ -87,27 +90,31 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     type: TextInputType.name,
                   ),
                   CustomTextField(
+                    read: true,
                     hint: "email".tr,
                     dIcon: Icons.email_outlined,
                     label: "email".tr,
-                    controller: _emailController,
+                    controller: _emailController
+                      ..text = Prefs.getString('email'),
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                   //   IsOptional(),
+                      //   IsOptional(),
                       const IsEmail(),
                       MaxLength(30),
                     ]),
                     type: TextInputType.emailAddress,
                   ),
                   CustomTextField(
+                    read: true,
                     hint: "phoneNumber".tr,
                     dIcon: Icons.drive_file_rename_outline,
                     label: "phoneNumber".tr,
-                    controller: _phoneController,
+                    controller: _phoneController
+                      ..text = Prefs.getString('phoneNumber'),
                     validator: qValidator([
                       IsRequired("minPassword".tr),
                       // IsOptional(),
-                      MinLength(11),
+                      // MinLength(11),
                       MaxLength(15),
                     ]),
                     type: TextInputType.phone,
@@ -120,7 +127,7 @@ class _RequestVisitScreenState extends State<RequestVisitScreen> {
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
                       // IsOptional(),
-                   //   IsNumber(),
+                      //   IsNumber(),
                       MinLength(1),
                       MaxLength(30),
                     ]),

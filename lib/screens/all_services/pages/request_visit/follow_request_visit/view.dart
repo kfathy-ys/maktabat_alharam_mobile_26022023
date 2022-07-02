@@ -210,9 +210,13 @@ class _FollowRequestVisitScreenState extends State<FollowRequestVisitScreen> {
                                   color2: kBlackText),
                               RequestEvents(
                                   title: "requestState".tr,
-                                  subTitle: state
-                                      .followOrderVisitModel.data!.updatedDate!
-                                      .substring(0, 10),
+                                  subTitle:   DateConverter.dateConverterMonth(
+                                      state.followOrderVisitModel.data!.updatedDate!.toString()
+                                  ),
+                                  //
+                                  // state
+                                  //     .followOrderVisitModel.data!.updatedDate!
+                                  //     .substring(0, 10),
                                   subTitle2: ((state.followOrderVisitModel.data!
                                               .requestStatusId) ==
                                           5)

@@ -206,11 +206,10 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                                       color2: kSkyButton),
                                   CardData(
                                       title: "refuseReason".tr,
-                                      subTitle: state.followResearchModel.data!
-                                              .reasonOfRejection
-                                              .toString()
-                                              .isEmpty
-                                          ? "فارغ"
+                                      subTitle: (state.followResearchModel.data!
+                                              .reasonOfRejection) == null ? "pending".tr
+
+
                                           : state.followResearchModel.data!
                                               .reasonOfRejection
                                               .toString(),
@@ -267,17 +266,16 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                                                   .data!.requestStatusId) ==
                                               4)
                                           ? "الطلب قيد المراجعه"
-                                          : "---",
+                                          : "الطلب قيد الانتظار",
                                       color1: kSmallIconColor,
                                       color2: kBlackText),
                                   RequestEvents(
                                       title: "requestState".tr,
-                                      subTitle:
+                                      subTitle:state.followResearchModel.data!.updatedDate ==  null  ? "  ":
                                           DateConverter.dateConverterMonth(
-                                        state.followResearchModel.data!
-                                            .updatedDate!
-                                            .toString(),
-                                      ),
+                                              state.followResearchModel.data!.updatedDate.toString()
+                                        ),
+
                                       subTitle2: ((state.followResearchModel
                                                   .data!.requestStatusId) ==
                                               5)

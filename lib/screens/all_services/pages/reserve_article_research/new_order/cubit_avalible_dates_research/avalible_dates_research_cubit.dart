@@ -39,7 +39,7 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
   final rooms = <MyRoomLibraryId>[];
   final dates = <AvailableDatesByRoom>[];
 
-   AvailableDatesByRoom? roomDateAvailableId ;
+  AvailableDatesByRoom? roomDateAvailableId;
 
   /// Set List To Store Selected Days From Calender
 
@@ -187,8 +187,9 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
           "id": 0,
           "userId": Prefs.getString('userId'),
           "libraryId": selectedLIB?.id,
-          "roomId":  selectedType!.shouldPickFromAviliableRange
-             ?selectedRoom?.id : null,
+          "roomId": selectedType!.shouldPickFromAviliableRange
+              ? selectedRoom?.id
+              : null,
           // "researchStartDateId": selectedType!.shouldPickFromAviliableRange
           //     ? dates
           //         .firstWhere((e) => selectedDateRange!.startDate == e.date)
@@ -197,11 +198,15 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
           // "researchEndDateId": selectedType!.shouldPickFromAviliableRange
           //     ? dates.firstWhere((e) => selectedDateRange!.endDate == e.date).id
           //     : null,
-          "researchStartDateId": selectedType!.shouldPickFromAviliableRange ?selectedDateRange?.startId:null,
-          "researchEndDateId": selectedType!.shouldPickFromAviliableRange ?selectedDateRange?.endId:null,
+          "researchStartDateId": selectedType!.shouldPickFromAviliableRange
+              ? selectedDateRange?.startId
+              : null,
+          "researchEndDateId": selectedType!.shouldPickFromAviliableRange
+              ? selectedDateRange?.endId
+              : null,
           "requestTypeId": selectedType!.toInt(),
           "responsibleName": Prefs.getString('fullName'),
-          "responsibleMobile":  Prefs.getString('phoneNumber'),
+          "responsibleMobile": Prefs.getString('phoneNumber'),
           "responsibleGradeId": qualificationID!.id,
           "callNum": callController.text,
           "subjectName": null,
@@ -227,11 +232,11 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
         final res = await NetWork.post(
             'ResearchRequest/CreateNewResearchRequest',
             body: body);
-        if(res.statusCode == 500){
-       throw "Errorrrrrrrrrrrrrrrrrrr 500 " ;
+        if (res.statusCode == 500) {
+          throw "Errorrrrrrrrrrrrrrrrrrr 500 ";
 
-         // throw   (res.data ["messages"][0]["body"]).toString();
-     //     log(res.data["messages"][0]["body"]);
+          // throw   (res.data ["messages"][0]["body"]).toString();
+          //     log(res.data["messages"][0]["body"]);
         }
         if (res.data['status'] == 0 || res.data['status'] == -1) {
           throw res.data['messages'];
@@ -243,36 +248,32 @@ class AvalibleDatesResearchNotifier extends ChangeNotifier {
         log(st.toString());
         notifyListeners();
       }
-
-     // Get.off(() => const MyOrderReserveArticleResearch());
+      Alert.success("تم إضافة طلبك بنجاح ");
+       Get.off(() => const MyOrderReserveArticleResearch());
     } else {
       Alert.error("الرجاء التاكيد من الطلب ");
     }
   }
 
   void onRageChanges(DateTimeRange range) {
-  late  int id1 , id2;
+    late int id1, id2;
 
-    for(final date in dates  ){
-      if(date.date == range.start){
+    for (final date in dates) {
+      if (date.date == range.start) {
         id1 = date.id;
-
       }
-      if(date.date == range.end){
+      if (date.date == range.end) {
         id2 = date.id;
-
       }
     }
-      selectedDateRange = CDateRange(
-        id1,
-        id2,
-        startDate: range.start,
-        endDate: range.end,
+    selectedDateRange = CDateRange(
+      id1,
+      id2,
+      startDate: range.start,
+      endDate: range.end,
+    );
 
-      );
-
-      log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr' + range.toString());
-
+    log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr' + range.toString());
   }
 }
 
@@ -282,5 +283,6 @@ class CDateRange {
   final int startId;
   final int endId;
 
-  CDateRange(this.startId, this.endId, {required this.startDate, required this.endDate});
+  CDateRange(this.startId, this.endId,
+      {required this.startDate, required this.endDate});
 }

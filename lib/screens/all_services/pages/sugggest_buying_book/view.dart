@@ -13,6 +13,7 @@ import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/loading.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
+import 'package:queen/core/helpers/prefs.dart';
 import 'package:queen/validation.dart';
 
 import '../../../widgets/alerts.dart';
@@ -87,10 +88,11 @@ class SuggestToBuyBook extends StatelessWidget {
                     height: height * 0.05,
                   ),
                   CustomTextField(
+                    read: true,
                     hint: "name".tr,
                     dIcon: Icons.drive_file_rename_outline,
                     label: "name".tr,
-                    controller: _nameController,
+                    controller: _nameController..text = Prefs.getString('fullName'),
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
                       // IsOptional(),
@@ -99,10 +101,11 @@ class SuggestToBuyBook extends StatelessWidget {
                     type: TextInputType.name,
                   ),
                   CustomTextField(
+                    read: true,
                     hint: "emailDot".tr,
                     dIcon: Icons.email,
                     label: "emailDot".tr,
-                    controller: _emailController,
+                    controller: _emailController..text= Prefs.getString('email'),
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
                       //  IsOptional(),
@@ -112,14 +115,15 @@ class SuggestToBuyBook extends StatelessWidget {
                     type: TextInputType.emailAddress,
                   ),
                   CustomTextField(
+                    read: true,
                     hint: "phoneNumber".tr,
                     dIcon: Icons.drive_file_rename_outline,
                     label: "phoneNumber".tr,
-                    controller: _phoneController,
+                    controller: _phoneController..text=  Prefs.getString('phoneNumber'),
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
                       //IsOptional(),
-                      MinLength(11),
+                      //MinLength(),
                       MaxLength(14),
                     ]),
                     type: TextInputType.phone,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:maktabat_alharam/screens/auth/register/page/title_subtitle.dart';
+import 'package:maktabat_alharam/screens/auth/vcode/view.dart';
 
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
@@ -43,7 +44,7 @@ class SignUpScreen extends StatelessWidget {
               //Prefs.setString('token', state.registerModel.);
               //  Get.offAll(() =>  LoginScreen());
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  MaterialPageRoute(builder: (context) => const VCodeScreen()),
                   (Route<dynamic> route) => false);
               Alert.success('تم تسجيل بنجاح');
             } else if (state is RegisterError) {
@@ -76,7 +77,7 @@ class SignUpScreen extends StatelessWidget {
                       controller: _firstNameController,
                       validator: qValidator([
                         IsRequired("enterFullName".tr),
-                        IsOptional(),
+                       // IsOptional(),
                         MaxLength(30),
                       ]),
                       type: TextInputType.name,
@@ -88,7 +89,7 @@ class SignUpScreen extends StatelessWidget {
                       controller: _lastNameController,
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
-                        IsOptional(),
+                       // IsOptional(),
                         MaxLength(30),
                       ]),
                       type: TextInputType.name,
@@ -100,7 +101,7 @@ class SignUpScreen extends StatelessWidget {
                       controller: _arabicFullNameController,
                       validator: qValidator([
                         IsRequired("enterFullName".tr),
-                        IsOptional(),
+                       // IsOptional(),
                         MaxLength(30),
                       ]),
                       type: TextInputType.name,
@@ -112,7 +113,7 @@ class SignUpScreen extends StatelessWidget {
                       controller: _userNameController,
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
-                        IsOptional(),
+                      //  IsOptional(),
                         MaxLength(30),
                       ]),
                       type: TextInputType.text,
@@ -124,7 +125,7 @@ class SignUpScreen extends StatelessWidget {
                       controller: _emailController,
                       validator: qValidator([
                         IsRequired("enterEmail".tr),
-                        IsOptional(),
+                       // IsOptional(),
                         IsEmail("MustBeEmail".tr),
                         MaxLength(30),
                       ]),
@@ -138,7 +139,7 @@ class SignUpScreen extends StatelessWidget {
                       validator: qValidator(
                         [
                           IsRequired("enterCountry".tr),
-                          IsOptional(),
+                       //   IsOptional(),
                           MaxLength(30),
                         ],
                       ),
@@ -152,7 +153,7 @@ class SignUpScreen extends StatelessWidget {
                       controller: _passController,
                       validator: qValidator([
                         IsRequired("enterPassword".tr),
-                        IsOptional(),
+                      //  IsOptional(),
                         MinLength(6, "minPassword".tr),
                         MaxLength(30),
                       ]),
@@ -166,8 +167,8 @@ class SignUpScreen extends StatelessWidget {
                       controller: _phoneController,
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
-                        IsOptional(),
-                        Match("not match"),
+                      //  IsOptional(),
+                      //  Match("not match"),
                         MinLength(6, "minPassword".tr),
                         MaxLength(30),
                       ]),
