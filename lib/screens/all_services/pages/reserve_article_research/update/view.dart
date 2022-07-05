@@ -1,3 +1,4 @@
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:maktabat_alharam/config/enums.dart';
 
@@ -7,6 +8,7 @@ import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_rese
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_hall_name.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_items.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/page/drop_down_qualification.dart';
+import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/update/cubit_update/avalible_dates_research_update_cubit.dart';
 import 'package:maktabat_alharam/screens/drawer/view.dart';
 
 import 'package:maktabat_alharam/screens/widgets/appBar.dart';
@@ -19,6 +21,9 @@ import 'package:provider/provider.dart';
 import 'package:queen/queen.dart' hide NationsTrans;
 import 'package:queen/validation.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+
+import '../../../../widgets/small_texfiled.dart';
+import '../page/alert_to_make_sure.dart';
 
 
 
@@ -54,12 +59,13 @@ class _UpdateReserveArticleRetreatedState
     );
   }
 
+  List<int> selectedIdRoom =[];
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return ChangeNotifierProvider(
-      create: (_) => AvalibleDatesResearchNotifier(),
+      create: (_) => AvalibleDatesResearchUpdateNotifier(),
       child: Container(
         color: kAppBarColor,
         child: Scaffold(
@@ -70,7 +76,7 @@ class _UpdateReserveArticleRetreatedState
             isIcons: true,
             context: context,
           ),
-          body: Consumer<AvalibleDatesResearchNotifier>(
+          body: Consumer<AvalibleDatesResearchUpdateNotifier>(
             builder: (context, provider, __) {
               return Form(
                 key: provider.formKey,
@@ -117,10 +123,11 @@ class _UpdateReserveArticleRetreatedState
                               type: TextInputType.number,
                             ),
                           CustomTextField(
+                            read: true,
                             hint: "userName".tr,
                             dIcon: Icons.drive_file_rename_outline,
                             label: "userName".tr,
-                            controller: provider.userNameController,
+                            controller: provider.userNameController..text = Prefs.getString('fullName'),
                             validator: qValidator([
                               IsRequired("thisFieldRequired".tr),
                               MaxLength(30),
@@ -128,10 +135,11 @@ class _UpdateReserveArticleRetreatedState
                             type: TextInputType.name,
                           ),
                           CustomTextField(
-                            hint: "phone".tr,
+                            read: true,
+                            hint: "phoneNumber".tr,
                             dIcon: Icons.phone,
-                            label: "phone".tr,
-                            controller: provider.phoneController,
+                            label: "phoneNumber".tr,
+                            controller: provider.phoneController..text = Prefs.getString('phoneNumber'),
                             validator: qValidator([
                               IsRequired("phone".tr),
                               MaxLength(30),
@@ -143,22 +151,66 @@ class _UpdateReserveArticleRetreatedState
                               provider.onQualificationIDChanged(value);
                             },
                           ),
+                          const AlertMessage(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              CustomSmallTextField(
+                                dIcon: Icons.date_range_outlined,
+                                hint: "periods".tr,
+                                controller: provider.fromController,
+                                onTap: ()async {
+                                  await  showDateRangePicker(
+                                    context: context,
+
+                                    firstDate: DateTime(2010),
+                                    lastDate: DateTime(2030),
+
+                                  ).then((value) {
+                                    if(value == null) return;
+                                    provider.fromController.text= '${value.start.toString().substring(0,10) }\t \t  || \t \t ${value.end.toString().substring(0,10)} ';
+
+                                    provider.onRageChanges(value);
+                                  });
+
+
+                                },
+
+                              ),
+
+                            ],
+                          ),
+                          Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(color: kSafeAreasColor)),
+                              width: width * 0.8,
+                              child: CalendarDatePicker2(
+                                // onDisplayedMonthChanged: (obj) {
+                                //   if (obj == null) return;
+                                //   if (obj.runtimeType == PickerDateRange) {
+                                //     provider
+                                //         .onRageChanges(obj as PickerDateRange);
+                                //   }
+                                // },
+                                selectableDayPredicate: provider.isDayAvialable,
+                                config: CalendarDatePicker2Config(
+                                  calendarType: CalendarDatePicker2Type.range,
+                                ),
+                                initialValue: [],
+                              ),
+
+                            ),
+                          ),
                           CustomHeightTextField(
                             hint: "visitReason".tr,
                             text: "",
                           ),
-//                           SfDateRangePicker(
-//                             key: UniqueKey(),
-//                             onSelectionChanged: (obj) => provider
-//                                 .onRageChanges(obj.value as PickerDateRange),
-//                             selectionMode: DateRangePickerSelectionMode.range,
-//                             selectableDayPredicate: provider.isDayAvialable,
-// //
-//                           ),
                           buildSizedBox(height),
                           Center(
                             child: MediaButtonSizer(
-                              onPressed: provider.submit,
+                              onPressed: ()=>provider.submit(),
                               title: "requestService".tr,
                               color: kPrimaryColor,
                               image: "assets/image/rightsah.png",

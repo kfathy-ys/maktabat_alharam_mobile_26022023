@@ -10,28 +10,68 @@ import '../../../../../../config/dio_helper/dio.dart';
 part 'all_my_orders_state.dart';
 
 class AllMyOrdersCubit extends Cubit<AllMyOrdersState> {
-  AllMyOrdersCubit() : super(AllMyOrdersInitial()){
+  AllMyOrdersCubit() : super(AllMyOrdersInitial()) {
     getAllMyOrders();
   }
+
+  final allMyOrders = <AllMyOrders>[];
+
+
+  String? libId;
+  String onLibIDChanged(String value) => libId = value;
+  String? stateId;
+  String onStateIdChanged(String value) => stateId = value;
 
   Future<void> getAllMyOrders() async {
     emit(AllMyOrdersLoading());
     try {
+      allMyOrders.clear();
       final userId = Prefs.getString("userId");
-      final res =
-      await NetWork.get('User/GetAllUserRequests/$userId');
+      final res = await NetWork.get('User/GetAllUserRequests/$userId');
 
       if (res.data['status'] == 0 ||
           res.data['status'] == -1 ||
           res.statusCode != 200) {
         throw res.data['message'];
       }
-
-      emit(AllMyOrdersSuccess(ordersModel:
-      OrdersModel .fromJson(res.data)));
+      (res.data["data"] as List)
+          .map((e) => allMyOrders.add(AllMyOrders.fromJson(e)))
+          .toList();
+      emit(AllMyOrdersSuccess());
     } catch (e, es) {
       log(e.toString());
       log(es.toString());
+      emit(AllMyOrdersError(msg: e.toString()));
+    }
+  }
+
+  Future<void> getSearchResult({
+    String searchText = "null",
+    String type = "null",
+    String status = "null",
+    String dateFrom = "null",
+    String dateTo = "null",
+  }) async {
+    allMyOrders.clear();
+
+    emit(AllMyOrdersLoading());
+    try {
+      final userId = Prefs.getString("userId");
+      final res = await NetWork.get(
+        "User/GetAllUserRequestsByFilters/$userId/$searchText/$type/$status/$dateFrom/$dateTo",
+      );
+
+      if (res.statusCode != 200) {
+        throw res.data;
+      }
+      (res.data["data"] as List)
+          .map((e) => allMyOrders.add(AllMyOrders.fromJson(e)))
+          .toList();
+
+      emit(AllMyOrdersSuccess());
+    } catch (e, st) {
+      log(e.toString());
+      log(st.toString());
       emit(AllMyOrdersError(msg: e.toString()));
     }
   }

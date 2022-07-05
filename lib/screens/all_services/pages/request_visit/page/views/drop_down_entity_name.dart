@@ -76,7 +76,8 @@ class _DropDownEntityNameState extends State<DropDownEntityName> {
                 selected = newValue;
                 if (selected == TypeEntityName.school) {
                   valueSelected = 1;
-                } else if (selected == TypeEntityName.company) {
+                }
+                else if (selected == TypeEntityName.company) {
                   valueSelected = 2;
                 } else {
                   valueSelected = 3;

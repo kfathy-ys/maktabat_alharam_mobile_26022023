@@ -1,9 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
+enum TypeEntityName { submitted,responded,underReview,done,refused }
 
 class DropDownListStatesOrders extends StatefulWidget {
-  const DropDownListStatesOrders({Key? key}) : super(key: key);
+  final String? initial;
+  final ValueChanged<String> onChanged;
+  const DropDownListStatesOrders({Key? key, this.initial, required this.onChanged})
+      : super(key: key);
 
   @override
   State<DropDownListStatesOrders> createState() =>
@@ -11,8 +16,30 @@ class DropDownListStatesOrders extends StatefulWidget {
 }
 
 class _DropDownListStatesOrdersState extends State<DropDownListStatesOrders> {
-  String? dropdownValue;
-
+  TypeEntityName? selected;
+  String? valueSelected;
+  @override
+  void initState() {
+    if (widget.initial != null) {
+      if (widget.initial =="Submitted") {
+        selected = TypeEntityName.submitted;
+        valueSelected = widget.initial;
+      } else if(widget.initial == "Responded"){
+        selected = TypeEntityName.responded;
+        valueSelected = widget.initial;
+      }else if(widget.initial == "Pending"){
+        selected = TypeEntityName.underReview;
+        valueSelected = widget.initial;
+      }else if(widget.initial == "Approved"){
+        selected = TypeEntityName.done;
+        valueSelected = widget.initial;
+      }else {
+        selected = TypeEntityName.refused;
+        valueSelected = widget.initial;
+      }
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     //  double height = MediaQuery.of(context).size.height;
@@ -27,8 +54,8 @@ class _DropDownListStatesOrdersState extends State<DropDownListStatesOrders> {
           color: Colors.white,
           border: Border.all(color: kPrimaryColor)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          value: dropdownValue,
+        child: DropdownButton<TypeEntityName>(
+          value: selected,
           // autofocus: true,
           //isDense: true,
           isExpanded: true,
@@ -49,27 +76,41 @@ class _DropDownListStatesOrdersState extends State<DropDownListStatesOrders> {
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (String? newValue) {
+          onChanged: (TypeEntityName? newValue) {
+            if (newValue == null) return;
+
             setState(() {
-              dropdownValue = newValue!;
+              selected = newValue;
+              if (selected == TypeEntityName.submitted) {
+                valueSelected = "Submitted";
+              } else if (selected == TypeEntityName.responded) {
+                valueSelected = "Responded";
+              }else if (selected == TypeEntityName.underReview) {
+                valueSelected = "Pending";
+              }else if (selected == TypeEntityName.done) {
+                valueSelected = "Approved";
+              }else {
+                valueSelected = "Rejected";
+              }
+              widget.onChanged(valueSelected!);
             });
           },
-          items: <String>["done".tr, "underReview".tr, "refused".tr]
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(
-                value,
-                style: const TextStyle(
-                  color: kTextColor,
-                  fontSize: 16,
-                  fontFamily: "DinReguler",
+            items: TypeEntityName.values
+                .map<DropdownMenuItem<TypeEntityName>>((TypeEntityName value) {
+              return DropdownMenuItem<TypeEntityName>(
+                value: value,
+                child: Text(
+                  describeEnum(value).tr,
+                  style: const TextStyle(
+                    color: kTextColor,
+                    fontSize: 16,
+                    fontFamily: "DinReguler",
+                  ),
                 ),
-              ),
-            );
-          }).toList(),
+              );
+            }).toList()),
         ),
-      ),
-    );
+      );
+
   }
 }

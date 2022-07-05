@@ -28,6 +28,7 @@ class MyOrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    final cubit = BlocProvider.of<AllMyOrdersCubit>(context);
     return SingleChildScrollView(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
@@ -41,10 +42,37 @@ class MyOrdersScreen extends StatelessWidget {
             HeadTopics(
               title: "myOrders".tr,
             ),
-            const DropDownListOrderName(),
-            const DropDownListStatesOrders(),
-            CustomSearch(
-              hint: "searchWithWord".tr,
+            BlocConsumer<AllMyOrdersCubit, AllMyOrdersState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return DropDownListOrderName(onChanged: (value) {
+                  cubit.onLibIDChanged(value);
+                  BlocProvider.of<AllMyOrdersCubit>(context)
+                      .getSearchResult(type: value);
+                });
+              },
+            ),
+            BlocConsumer<AllMyOrdersCubit, AllMyOrdersState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return DropDownListStatesOrders(onChanged: (value) {
+                  cubit.onStateIdChanged(value);
+                  BlocProvider.of<AllMyOrdersCubit>(context)
+                      .getSearchResult(status: value);
+                });
+              },
+            ),
+            BlocConsumer<AllMyOrdersCubit, AllMyOrdersState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return CustomSearch(
+                  hint: "searchWithWord".tr,
+                  onsave: (value) {
+                    BlocProvider.of<AllMyOrdersCubit>(context)
+                        .getSearchResult(searchText: value);
+                  },
+                );
+              },
             ),
 
             BlocConsumer<AllMyOrdersCubit, AllMyOrdersState>(
@@ -63,12 +91,12 @@ class MyOrdersScreen extends StatelessWidget {
                       },
                       backgroundColor: kAccentColor,
                       color: Colors.white,
-                      child: state.ordersModel.data!.isEmpty
+                      child: cubit.allMyOrders.isEmpty
                           ? Center(
                               child:
                                   customBoldText(title: "لا توجد طلبات الاّن"))
                           : ListView.builder(
-                              itemCount: state.ordersModel.data!.length,
+                              itemCount: cubit.allMyOrders.length,
                               itemBuilder: (context, int index) {
                                 return CustomContainer(
                                   height: height * 0.5,
@@ -80,8 +108,8 @@ class MyOrdersScreen extends StatelessWidget {
                                     children: [
                                       CardData(
                                           title: "nameRequest".tr,
-                                          subTitle: state.ordersModel
-                                                  .data![index].requestNameAr ??
+                                          subTitle: cubit.allMyOrders[index]
+                                                  .requestNameAr ??
                                               "erroe",
                                           color1: kSmallIconColor,
                                           color2: kBlackText),
@@ -94,19 +122,15 @@ class MyOrdersScreen extends StatelessWidget {
                                       CardData(
                                           title: "requestDate".tr,
                                           subTitle:
-
-                                          DateConverter
-                                              .dateConverterMonth(state
-                                              .ordersModel
-                                              .data![index]
-                                              .date
-                                              .toString()),
+                                              DateConverter.dateConverterMonth(
+                                                  cubit.allMyOrders[index].date
+                                                      .toString()),
                                           color1: kSmallIconColor,
                                           color2: kSkyButton),
                                       CardData(
                                           title: "requestState".tr,
-                                          subTitle: state.ordersModel
-                                                  .data![index].statusAr ??
+                                          subTitle: cubit.allMyOrders[index]
+                                                  .statusAr ??
                                               "erroe",
                                           color1: kSmallIconColor,
                                           color2: kBlackText),
@@ -130,7 +154,7 @@ class MyOrdersScreen extends StatelessWidget {
                                         },
                                         image: "assets/image/fulleyes.png",
                                       ),
-                                      // ((state.ordersModel.data![index]
+                                      // ((cubit.allMyOrders[index]
                                       //     .requestStatusId) ==
                                       //     5)
                                       //     ? const SizedBox()

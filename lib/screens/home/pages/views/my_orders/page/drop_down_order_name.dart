@@ -1,17 +1,45 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-
+enum TypeEntityName { requestToBuyBook, requestLibrarian,requestVisit,RequestDepositScientificThesis,RequestReserveArticleOrResearchRetreat }
 class DropDownListOrderName extends StatefulWidget {
-  const DropDownListOrderName({Key? key}) : super(key: key);
+
+
+  final String? initial;
+  final ValueChanged<String> onChanged;
+  const DropDownListOrderName({Key? key, this.initial, required this.onChanged})
+      : super(key: key);
 
   @override
   State<DropDownListOrderName> createState() => _DropDownListOrderNameState();
 }
 
 class _DropDownListOrderNameState extends State<DropDownListOrderName> {
-  String? dropdownValue;
-
+  TypeEntityName? selected;
+  String? valueSelected;
+  @override
+  void initState() {
+    if (widget.initial != null) {
+       if (widget.initial =="Suggestion") {
+        selected = TypeEntityName.requestToBuyBook;
+        valueSelected = widget.initial;
+      } else if(widget.initial == "Inquiry"){
+        selected = TypeEntityName.requestLibrarian;
+        valueSelected = widget.initial;
+      }else if(widget.initial == "VisitRequest"){
+        selected = TypeEntityName.requestVisit;
+        valueSelected = widget.initial;
+      }else if(widget.initial == "ResearchRequest"){
+        selected = TypeEntityName.RequestDepositScientificThesis;
+        valueSelected = widget.initial;
+      }else {
+        selected = TypeEntityName.RequestReserveArticleOrResearchRetreat;
+        valueSelected = widget.initial;
+      }
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     //  double height = MediaQuery.of(context).size.height;
@@ -26,10 +54,9 @@ class _DropDownListOrderNameState extends State<DropDownListOrderName> {
           color: Colors.white,
           border: Border.all(color: kPrimaryColor)),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          value: dropdownValue,
-          // autofocus: true,
-          // isDense: true,
+        child: DropdownButton<TypeEntityName>(
+          value: selected,
+
           isExpanded: true,
           hint: Text(
             "orderName".tr + ' :',
@@ -48,33 +75,41 @@ class _DropDownListOrderNameState extends State<DropDownListOrderName> {
             fontFamily: "DinReguler",
           ),
           underline: null,
-          onChanged: (String? newValue) {
+          onChanged: (TypeEntityName? newValue) {
+            if (newValue == null) return;
+
             setState(() {
-              dropdownValue = newValue!;
+              selected = newValue;
+            if (selected == TypeEntityName.requestToBuyBook) {
+                valueSelected = "Suggestion";
+              } else if (selected == TypeEntityName.requestLibrarian) {
+                valueSelected = "Inquiry";
+              }else if (selected == TypeEntityName.requestVisit) {
+                valueSelected = "VisitRequest";
+              }else if (selected == TypeEntityName.RequestDepositScientificThesis) {
+                valueSelected = "ResearchRequest";
+              }else {
+                valueSelected = "ThesisDeposition";
+              }
+              widget.onChanged(valueSelected!);
             });
           },
-          items: <String>[
-            "requestVisit".tr,
-            "requestLibrarian".tr,
-            "requestToBuyBook".tr,
-            "RequestDepositScientificThesis".tr,
-            "RequestReserveArticleOrResearchRetreat".tr,
-            //  "RequestDepositScientificThesis".tr,
-          ].map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(
-                value,
-                style: const TextStyle(
-                  color: kTextColor,
-                  fontSize: 16,
-                  fontFamily: "DinReguler",
+            items: TypeEntityName.values
+                .map<DropdownMenuItem<TypeEntityName>>((TypeEntityName value) {
+              return DropdownMenuItem<TypeEntityName>(
+                value: value,
+                child: Text(
+                  describeEnum(value).tr,
+                  style: const TextStyle(
+                    color: kTextColor,
+                    fontSize: 16,
+                    fontFamily: "DinReguler",
+                  ),
                 ),
-              ),
-            );
-          }).toList(),
+              );
+            }).toList()),
         ),
-      ),
-    );
+      );
+
   }
 }

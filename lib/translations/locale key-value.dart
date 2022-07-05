@@ -6,7 +6,11 @@ class LocaleString extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
+
           'aboutLibrary': 'The library',
+
+          "submitted":"Submitted",
+           "responded":"Responded",
           "generalMare": "General mare",
           "newLibrary": "Newest",
           "servicesLibrary": "Services ",
@@ -311,6 +315,11 @@ class LocaleString extends Translations {
         },
         'ar_EG': {
           "aboutLibrary": "عن المكتبة",
+
+          "submitted":"تم الإرسال",
+          "responded":"تم الرد",
+
+
           "generalMare": "الفهرس العام",
           "newLibrary": "جديد المكتبة",
           "servicesLibrary": "خدمات المكتبة",

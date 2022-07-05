@@ -55,7 +55,8 @@ class SuggestToBuyBook extends StatelessWidget {
       backgroundColor: kHomeColor,
       drawer: drawer(context: context),
       appBar: customAppbar(
-          icons: Icons.arrow_forward_outlined, isIcons: true, context: context),
+          icons: Icons.arrow_forward_outlined,
+          isIcons: true, context: context),
       body: BlocConsumer<NewOrderCubit, NewOrderState>(
         listener: (context, state) {
           if (state is NewOrderSuccess) {

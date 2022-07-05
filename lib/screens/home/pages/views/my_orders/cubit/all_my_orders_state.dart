@@ -6,9 +6,9 @@ abstract class AllMyOrdersState {}
 class AllMyOrdersInitial extends AllMyOrdersState {}
 class AllMyOrdersLoading extends AllMyOrdersState {}
 class AllMyOrdersSuccess extends AllMyOrdersState {
-  final OrdersModel ordersModel;
 
-  AllMyOrdersSuccess({required this.ordersModel});
+
+  AllMyOrdersSuccess();
 }
 class AllMyOrdersError extends AllMyOrdersState {
   final String msg;
