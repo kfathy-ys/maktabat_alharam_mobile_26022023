@@ -53,9 +53,9 @@ class _CustomSmallTextFieldState extends State<CustomSmallTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-     margin: const EdgeInsets.symmetric(vertical: 12),
+     margin: const EdgeInsets.symmetric(vertical: 10),
       // height: MediaQuery.of(context).size.height / 12,
-      width: MediaQuery.of(context).size.width / 1.25,
+      width: MediaQuery.of(context).size.width / 2.8,
       child: TextFormField(
         onTap: widget.onTap,
         validator: widget.validator,

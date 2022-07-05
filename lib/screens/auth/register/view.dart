@@ -44,7 +44,7 @@ class SignUpScreen extends StatelessWidget {
               //Prefs.setString('token', state.registerModel.);
               //  Get.offAll(() =>  LoginScreen());
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const VCodeScreen()),
+                  MaterialPageRoute(builder: (context) =>  LoginScreen()),
                   (Route<dynamic> route) => false);
               Alert.success('تم تسجيل بنجاح');
             } else if (state is RegisterError) {

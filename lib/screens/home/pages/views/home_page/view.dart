@@ -99,7 +99,15 @@ class MyHomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         customSliderText(
-                            title: state.topThreeModels.data![index].requestName.toString(), color: kHomeColor),
+                            title:
+                            ((state.topThreeModels.data![index].requestName.toString())== "Suggestion")? "suggest".tr :
+                            ((state.topThreeModels.data![index].requestName.toString())== "Visit request")? "RequestVisit".tr:
+                            ((state.topThreeModels.data![index].requestName.toString())== "Research request")? "depositScientificThesis".tr:
+                         "",
+
+
+
+                            color: kHomeColor),
                         customSliderText(title:state.topThreeModels.data![index].requestsCount.toString(), color: kAccentColor),
                       ],
                     ),

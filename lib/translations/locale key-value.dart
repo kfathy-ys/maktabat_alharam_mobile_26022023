@@ -189,6 +189,8 @@ class LocaleString extends Translations {
           "underReview": "Request is under review",
           "refused": "Refused",
           "searchWithWord": "Search .. word",
+           "suggest":"Suggest Buy Book",
+
 
           // request to visit
           "titleHead":
@@ -199,6 +201,8 @@ class LocaleString extends Translations {
           "company": "Company",
           "entity": "Entity",
           "requestService": "Request service",
+          "depositScientificThesis": "Research Request",
+
 
           //Suggestion to buy a book
           "authorAddress": "Author address:",
@@ -315,7 +319,7 @@ class LocaleString extends Translations {
         },
         'ar_EG': {
           "aboutLibrary": "عن المكتبة",
-
+          "suggest":"إقتراح شراء كتاب",
           "submitted":"تم الإرسال",
           "responded":"تم الرد",
 
@@ -404,6 +408,8 @@ class LocaleString extends Translations {
           "SuggestionBuyBook": "اقتراح شراء كتاب",
           "Inter-LibraryExchangeAndLending": "التبادل والإعارة بين المكتبات",
           "RequestDepositScientificThesis": "طلب إيداع رسالة علمية",
+          "depositScientificThesis": "إيداع رسالة علمية",
+
           "SelectiveBroadcastingInformation": "البث الإنتقالي للمعلومات",
           "manuscriptRequest": "طلب مخطوطة",
           "RequestVisit": "طلب زيارة",

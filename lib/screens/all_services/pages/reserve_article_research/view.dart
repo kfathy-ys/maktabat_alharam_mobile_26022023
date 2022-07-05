@@ -17,6 +17,7 @@ import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
+import 'package:maktabat_alharam/screens/widgets/custom_textFornField_range.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
 import 'package:maktabat_alharam/screens/widgets/small_texfiled.dart';
 import 'package:provider/provider.dart';
@@ -154,7 +155,7 @@ class _ReserveResearchRetreatScreenState
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              CustomSmallTextField(
+                              CustomTextFieldRange(
                                 dIcon: Icons.date_range_outlined,
                                 hint: "periods".tr,
                                 controller: provider.fromController,
@@ -165,7 +166,7 @@ class _ReserveResearchRetreatScreenState
                                     firstDate: DateTime(2010),
                                     lastDate: DateTime(2030),
 
-                                  ).then((value) {
+                                  ).then(( value) {
                                     if(value == null) return;
                                     provider.fromController.text= '${value.start.toString().substring(0,10) }\t \t  || \t \t ${value.end.toString().substring(0,10)} ';
 

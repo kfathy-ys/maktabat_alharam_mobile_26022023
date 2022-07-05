@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/my_orders/models/model.dart';
 import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
@@ -15,7 +16,9 @@ class AllMyOrdersCubit extends Cubit<AllMyOrdersState> {
   }
 
   final allMyOrders = <AllMyOrders>[];
-
+  final formKey = GlobalKey<FormState>();
+  final fromController = TextEditingController();
+  final toController = TextEditingController();
 
   String? libId;
   String onLibIDChanged(String value) => libId = value;
@@ -49,8 +52,8 @@ class AllMyOrdersCubit extends Cubit<AllMyOrdersState> {
     String searchText = "null",
     String type = "null",
     String status = "null",
-    String dateFrom = "null",
-    String dateTo = "null",
+    dynamic dateFrom = "null",
+    dynamic dateTo = "null",
   }) async {
     allMyOrders.clear();
 
