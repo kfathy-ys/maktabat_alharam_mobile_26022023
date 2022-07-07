@@ -136,7 +136,7 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _qualificationController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+
                       MaxLength(30),
                     ]),
                     type: TextInputType.text,
@@ -148,7 +148,7 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _addressController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      IsOptional(),
+
                       MaxLength(30),
                     ]),
                     type: TextInputType.streetAddress,
@@ -161,7 +161,7 @@ class SuggestToBuyBook extends StatelessWidget {
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
                       // IsOptional(),
-                      MinLength(5),
+
                       MaxLength(30),
                     ]),
                     type: TextInputType.name,
@@ -173,8 +173,8 @@ class SuggestToBuyBook extends StatelessWidget {
                     controller: _namePublisherController,
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
-                      // IsOptional(),
-                      MinLength(5),
+
+
                       MaxLength(30),
                     ]),
                     type: TextInputType.name,
@@ -187,7 +187,7 @@ class SuggestToBuyBook extends StatelessWidget {
                     validator: qValidator([
                       IsRequired("thisFieldRequired".tr),
                       //IsOptional(),
-                      MinLength(5),
+
                       MaxLength(30),
                     ]),
                     type: TextInputType.streetAddress,

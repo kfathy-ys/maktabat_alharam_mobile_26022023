@@ -31,111 +31,106 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Container(
-      color: kAppBarColor,
-      child: SafeArea(
-        child: BlocProvider(
-          create: (context) => LoginCubit(),
-          child: BlocConsumer<LoginCubit, LoginState>(
-            listener: (context, state) {
-              if (state is LoginSuccess) {
-                Alert.success(state.model.messages.toString());
+    return BlocProvider(
+      create: (context) => LoginCubit(),
+      child: BlocConsumer<LoginCubit, LoginState>(
+        listener: (context, state) {
+          if (state is LoginSuccess) {
+            Alert.success(state.model.messages.toString());
 
-                Get.offAll(() => HomeTabScreen(
-                      userId: state.model.data!.userId!.toString(),
-                    ));
-              } else if (state is LoginError) {
-                Alert.error(state.msg.toString());
-              }
-            },
-            builder: (context, state) {
-              final cubit = BlocProvider.of<LoginCubit>(context);
-              return Scaffold(
-                backgroundColor: kHomeColor,
-                body: SingleChildScrollView(
-                  child: SizedBox(
-                    height: height,
-                    width: width,
-                    child: Form(
-                      autovalidateMode: AutovalidateMode.always,
-                      key: _formKey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset('assets/image/kabah.png'),
-                          customBoldText(title: "welcome".tr),
-                          customLightText("signIn".tr),
-                          CustomTextField(
-                            dIcon: Icons.email,
-                            label: "email".tr,
-                            hint: "email".tr,
-                            controller: _emailController,
-                            validator: qValidator([
-                              IsRequired("enterEmail".tr),
-                              IsOptional(),
-                              IsEmail("MustBeEmail".tr),
-                              MaxLength(30),
-                            ]),
-                            type: TextInputType.emailAddress,
-                          ),
-                          CustomTextField(
-                            hint: "password".tr,
-                            icon: Icons.lock_outline,
-                            dIcon: Icons.lock_outline,
-                            label: "password".tr,
-                            controller: _passwordController,
-                            validator: qValidator([
-                              IsRequired("enterPassword".tr),
-                              IsOptional(),
-                              MinLength(6, "minPassword".tr),
-                              MaxLength(30),
-                            ]),
-                            type: TextInputType.text,
-                          ),
-                          RecoveryWidget(
-                            onTap: () => Get.to(() => ForgetPassword()),
-                          ),
-                          state is! LoginLoading
-                              ? CustomButton(
-                                  color: kSafeAreasColor,
-                                  title: "signIn".tr,
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      cubit.userLogin(
-                                          email: _emailController.text,
-                                          password: _passwordController.text);
-                                    }
-                                  },
-                                )
-                              : const LoadingFadingCircle(),
-                          /*       Text(
-                      "orLoginWith".tr,
-                      style: const TextStyle(
-                          color: kBlackText,
-                          fontSize: 14,
-                          fontFamily: 'DinMedium'),
-                    ),
-                    Image.asset('assets/image/arrowdown.png'),
-                    MediaButton(
-                      onPressed: () {},
-                      title: "nationalAccess".tr,
-                      color: kSafeAreasColor,
-                    ),*/
-                          DoNotHave(
-                            text: "signUpNow".tr,
-                            route: () => Get.to(() => SignUpScreen()),
-                            have: "donHave".tr,
-                          )
-                        ],
+            Get.offAll(() => HomeTabScreen(
+                  userId: state.model.data!.userId!.toString(),
+                ));
+          } else if (state is LoginError) {
+            Alert.error(state.msg.toString());
+          }
+        },
+        builder: (context, state) {
+          final cubit = BlocProvider.of<LoginCubit>(context);
+          return Scaffold(
+            backgroundColor: kHomeColor,
+            body: SingleChildScrollView(
+              child: SizedBox(
+                height: height,
+                width: width,
+                child: Form(
+                  autovalidateMode: AutovalidateMode.always,
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/image/kabah.png'),
+                      customBoldText(title: "welcome".tr),
+                      customLightText("signIn".tr),
+                      CustomTextField(
+                        dIcon: Icons.email,
+                        label: "email".tr,
+                        hint: "email".tr,
+                        controller: _emailController,
+                        validator: qValidator([
+                          IsRequired("enterEmail".tr),
+                          IsOptional(),
+                          IsEmail("MustBeEmail".tr),
+                          MaxLength(30),
+                        ]),
+                        type: TextInputType.emailAddress,
                       ),
-                    ),
+                      CustomTextField(
+                        hint: "password".tr,
+                        icon: Icons.lock_outline,
+                        dIcon: Icons.lock_outline,
+                        label: "password".tr,
+                        controller: _passwordController,
+                        validator: qValidator([
+                          IsRequired("enterPassword".tr),
+                          IsOptional(),
+                          MinLength(6, "minPassword".tr),
+                          MaxLength(30),
+                        ]),
+                        type: TextInputType.text,
+                      ),
+                      RecoveryWidget(
+                        onTap: () => Get.to(() => ForgetPassword()),
+                      ),
+                      state is! LoginLoading
+                          ? CustomButton(
+                              color: kSafeAreasColor,
+                              title: "signIn".tr,
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  cubit.userLogin(
+                                      email: _emailController.text,
+                                      password: _passwordController.text);
+                                }
+                              },
+                            )
+                          : const LoadingFadingCircle(),
+                      /*       Text(
+                  "orLoginWith".tr,
+                  style: const TextStyle(
+                      color: kBlackText,
+                      fontSize: 14,
+                      fontFamily: 'DinMedium'),
+                ),
+                Image.asset('assets/image/arrowdown.png'),
+                MediaButton(
+                  onPressed: () {},
+                  title: "nationalAccess".tr,
+                  color: kSafeAreasColor,
+                ),*/
+                      DoNotHave(
+                        text: "signUpNow".tr,
+                        route: () => Get.to(() => SignUpScreen()),
+                        have: "donHave".tr,
+                      )
+                    ],
                   ),
                 ),
-              );
-            },
-          ),
-        ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

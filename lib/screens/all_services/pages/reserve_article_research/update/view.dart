@@ -16,6 +16,7 @@ import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/customHeightTextFiled.dart';
 import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
+import 'package:maktabat_alharam/screens/widgets/custom_textFornField_range.dart';
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
 import 'package:provider/provider.dart';
 import 'package:queen/queen.dart' hide NationsTrans;
@@ -23,12 +24,15 @@ import 'package:queen/validation.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../../widgets/small_texfiled.dart';
+import '../my_order/models/model.dart';
 import '../page/alert_to_make_sure.dart';
 
 
 
+// ignore: must_be_immutable
 class UpdateReserveArticleRetreated extends StatefulWidget {
-  const UpdateReserveArticleRetreated({Key? key}) : super(key: key);
+  MyOrdersToResearch? myOrdersToResearch;
+   UpdateReserveArticleRetreated({Key? key, required this.myOrdersToResearch}) : super(key: key);
 
   @override
   State<UpdateReserveArticleRetreated> createState() =>
@@ -60,12 +64,13 @@ class _UpdateReserveArticleRetreatedState
   }
 
   List<int> selectedIdRoom =[];
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return ChangeNotifierProvider(
-      create: (_) => AvalibleDatesResearchUpdateNotifier(),
+      create: (_) => AvalibleDatesResearchUpdateNotifier(widget.myOrdersToResearch!),
       child: Container(
         color: kAppBarColor,
         child: Scaffold(
@@ -78,6 +83,7 @@ class _UpdateReserveArticleRetreatedState
           ),
           body: Consumer<AvalibleDatesResearchUpdateNotifier>(
             builder: (context, provider, __) {
+
               return Form(
                 key: provider.formKey,
                 child: SizedBox(
@@ -155,7 +161,7 @@ class _UpdateReserveArticleRetreatedState
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              CustomSmallTextField(
+                              CustomTextFieldRange(
                                 dIcon: Icons.date_range_outlined,
                                 hint: "periods".tr,
                                 controller: provider.fromController,

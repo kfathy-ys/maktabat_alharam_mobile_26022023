@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,43 +28,43 @@ class MyHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Container(
-      color: kHomeColor,
-      child: SizedBox(
-        height: height,
-        child: ListView(
-          // padding: const EdgeInsets.symmetric(vertical: 20),
-          physics: const PageScrollPhysics(),
-          children: [
-            token.isNotEmpty
-                ? SizedBox(
+    return SizedBox(
+      height: height,
+      child: ListView(
+        physics: const BouncingScrollPhysics(),
+        children: [
+          token.isNotEmpty
+              ? FadeInDown(
+
+                child: SizedBox(
                     height: height * 0.2,
                     child: Image.asset(
                       'assets/image/kabah.png',
-                    ))
-                : Stack(
-                    children: [
-                      Image.asset(
-                        'assets/image/headback.png',
-                        width: double.infinity,
-                        fit: BoxFit.fill,
+                    )),
+              )
+              : Stack(
+                  children: [
+                    Image.asset(
+                      'assets/image/headback.png',
+                      width: double.infinity,
+                      fit: BoxFit.fill,
+                    ),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(top: 40),
+                      child: Center(
+                        child: Text("readAndLearn".tr,
+                            style: const TextStyle(
+                                color: kHomeColor,
+                                fontSize: 22,
+                                fontFamily: 'DinBold')),
                       ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.only(top: 40),
-                        child: Center(
-                          child: Text("readAndLearn".tr,
-                              style: const TextStyle(
-                                  color: kHomeColor,
-                                  fontSize: 22,
-                                  fontFamily: 'DinBold')),
-                        ),
-                      )
-                    ],
-                  ),
-            buildSizedBox(height),
-            Center(child: customBoldText(title: "welcome".tr)),
-            buildSizedBox(height),
-             BlocProvider(
+                    )
+                  ],
+                ),
+          buildSizedBox(height),
+          Center(child: customBoldText(title: "welcome".tr)),
+          buildSizedBox(height),
+           BlocProvider(
   create: (context) => TopThreeCubit(),
   child: BlocConsumer<TopThreeCubit, TopThreeState>(
   listener: (context, state) {},
@@ -71,68 +72,59 @@ class MyHomeScreen extends StatelessWidget {
 
 
     if (state is TopThreeLoading) {
-      return SizedBox(
-
-        child: Shimmer.fromColors(
-          baseColor: Colors.grey[300]!,
-          highlightColor: Colors.grey[100]!,
-
-          enabled: true,
-          child: SizedBox()
-        ),
-      );
+    return const LoadingFadingCircle();
     }
     if (state is TopThreeSuccess) {
-        return SizedBox(
+      return SizedBox(
 
-              child: CarouselSlider.builder(
-                itemCount: state.topThreeModels.data!.length,
-                itemBuilder: (context, index, pageViewIndex) {
-                  return Container(
+            child: CarouselSlider.builder(
+              itemCount: state.topThreeModels.data!.length,
+              itemBuilder: (context, index, pageViewIndex) {
+                return Container(
 
-                    width: width * 0.42,
-                    decoration: BoxDecoration(
-                        color: kSmallIconColor,
-                        borderRadius: BorderRadius.circular(6)),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        customSliderText(
-                            title:
-                            ((state.topThreeModels.data![index].requestName.toString())== "Suggestion")? "suggest".tr :
-                            ((state.topThreeModels.data![index].requestName.toString())== "Visit request")? "RequestVisit".tr:
-                            ((state.topThreeModels.data![index].requestName.toString())== "Research request")? "depositScientificThesis".tr:
-                         "",
+                  width: width * 0.42,
+                  decoration: BoxDecoration(
+                      color: kSmallIconColor,
+                      borderRadius: BorderRadius.circular(6)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      customSliderText(
+                          title:
+                          ((state.topThreeModels.data![index].requestName.toString())== "Suggestion")? "suggest".tr :
+                          ((state.topThreeModels.data![index].requestName.toString())== "Visit request")? "RequestVisit".tr:
+                          ((state.topThreeModels.data![index].requestName.toString())== "Research request")? "depositScientificThesis".tr:
+                       "",
 
 
 
-                            color: kHomeColor),
-                        customSliderText(title:state.topThreeModels.data![index].requestsCount.toString(), color: kAccentColor),
-                      ],
-                    ),
-                  );
-                },
-                options: CarouselOptions(
-                  height: height * 0.14,
+                          color: kHomeColor),
+                      customSliderText(title:state.topThreeModels.data![index].requestsCount.toString(), color: kAccentColor),
+                    ],
+                  ),
+                );
+              },
+              options: CarouselOptions(
+                height: height * 0.14,
 
-                  //aspectRatio: 16 / 2,
-                  viewportFraction: 0.45,
-                  initialPage: 0,
-                  enableInfiniteScroll: true,
-                  reverse: false,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 3),
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enlargeCenterPage: true,
-                  scrollDirection: Axis.horizontal,
-                ),
+                //aspectRatio: 16 / 2,
+                viewportFraction: 0.45,
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlay: true,
+                autoPlayInterval: const Duration(seconds: 3),
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                scrollDirection: Axis.horizontal,
               ),
-            );
+            ),
+          );
     }
     if (state is TopThreeError) {
-      return Text(state.msg);
+    return Text(state.msg);
     }
 
     return const SizedBox();
@@ -141,56 +133,54 @@ class MyHomeScreen extends StatelessWidget {
   },
 ),
 ),
-            token.isNotEmpty ? buildSizedBox(height) : const SizedBox(),
+          token.isNotEmpty ? buildSizedBox(height) : const SizedBox(),
 
-            TitleSubTitle(
-              onTap: () {
-                // navigateTo(context, OurServicesScreen());
-                Get.to(() => OurServicesScreen());
-              },
-              title: "ourServices".tr,
-              subtTitle: "allServices".tr,
-            ),
-            //  buildSizedBox(height),
+          TitleSubTitle(
+            onTap: () {
+              Get.to(() => OurServicesScreen());
+            },
+            title: "ourServices".tr,
+            subtTitle: "allServices".tr,
+          ),
+          //  buildSizedBox(height),
 
-            SizedBox(
-              // width: width*0.3,
-              height: height * 0.25,
-              child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: services.ourServices.length,
-                  itemBuilder: (context, int index) {
-                    return InkWell(
-                      onTap: () {
-                        final page = services.ourServices[index].pages;
+          SizedBox(
+            // width: width*0.3,
+            height: height * 0.25,
+            child: ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                itemCount: services.ourServices.length,
+                itemBuilder: (context, int index) {
+                  return InkWell(
+                    onTap: () {
+                      final page = services.ourServices[index].pages;
 
-                        if (((page == Pages.one) ||
-                                (page == Pages.two) ||
-                                (page == Pages.five)) &&
-                            Prefs.getString("token").isEmpty) {
-                          onWillPopSignIn(context);
-                          return;
-                        }
-                        Get.toNamed(services.ourServices[index].routeName);
-                      },
-                      child: CardContent(
-                          fontTitle: 20,
-                          fontSubTitle: 14,
-                          model: services.ourServices[index]),
-                    );
-                  }),
-            ),
-            // buildSizedBox(height),
-            !token.isNotEmpty
-                ? const ToShowMoreAboutOurServices()
-                : const SizedBox(),
+                      if (((page == Pages.three) ||
+                              (page == Pages.four) ||
+                              (page == Pages.five)) &&
+                          Prefs.getString("token").isEmpty) {
+                        onWillPopSignIn(context);
+                        return;
+                      }
+                      Get.toNamed(services.ourServices[index].routeName);
+                    },
+                    child: CardContent(
+                        fontTitle: 20,
+                        fontSubTitle: 14,
+                        model: services.ourServices[index]),
+                  );
+                }),
+          ),
+          // buildSizedBox(height),
+          !token.isNotEmpty
+              ? const ToShowMoreAboutOurServices()
+              : const SizedBox(),
 
-            ///  buildSizedBox(height),
-          ],
-        ),
+          ///  buildSizedBox(height),
+        ],
       ),
     );
   }

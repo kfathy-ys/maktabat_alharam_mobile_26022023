@@ -60,6 +60,7 @@ class AllMyOrdersCubit extends Cubit<AllMyOrdersState> {
     emit(AllMyOrdersLoading());
     try {
       final userId = Prefs.getString("userId");
+      print("${"User/GetAllUserRequestsByFilters/$userId/$searchText/$type/$status/$dateFrom/$dateTo"}");
       final res = await NetWork.get(
         "User/GetAllUserRequestsByFilters/$userId/$searchText/$type/$status/$dateFrom/$dateTo",
       );

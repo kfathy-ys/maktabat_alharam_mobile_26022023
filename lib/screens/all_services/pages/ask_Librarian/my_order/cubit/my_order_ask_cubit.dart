@@ -53,7 +53,7 @@ class MyOrderAskCubit extends Cubit<MyOrderAskState> {
       createdDate: order.createdDate.toString(),
     );
     await getOrderAsk();
-    Alert.success("تم إضافة الطلب إلي الأرشيف");
+    Alert.success("alertAddToArchive".tr);
     Get.to(() => const ArchiveAskLibrarianScreen());
   }
 
@@ -68,7 +68,7 @@ class MyOrderAskCubit extends Cubit<MyOrderAskState> {
       createdDate: order.createdDate.toString(),
     );
     await getOrderAsk();
-    Alert.success("تم إزلة الطلب من الأرشيف");
+    Alert.success( "alertRemoveToArchive".tr);
     Get.to(() => MyOrderAskLibrarian());
   }
 }

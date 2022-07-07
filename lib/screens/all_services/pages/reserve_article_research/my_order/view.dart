@@ -210,7 +210,8 @@ class MyOrderReserveArticleResearch extends StatelessWidget {
                                                 color: kAccentColor,
                                                 title: "updateRequest".tr,
                                                 onPressed: () => Get.to(() {
-                                                  return const UpdateReserveArticleRetreated();
+                                                  return  UpdateReserveArticleRetreated(
+                                                    myOrdersToResearch:  state.orderResearchModel.data![index],);
                                                 }),
                                                 image:
                                                     "assets/image/update.png",

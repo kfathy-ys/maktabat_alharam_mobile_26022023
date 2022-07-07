@@ -315,7 +315,11 @@ class LocaleString extends Translations {
           "attentions":"Attention! Unavailable date not taken",
           "repentance":"Unavailable date, only works",
           "chosen":"If you choose a scientific subject only",
-          "press":"Please click here to choose the period 👇"
+          "press":"Please click here to choose the period 👇",
+          "alertAddToArchive":"Request has been added to archive",
+          "alertRemoveToArchive":"Request has been removed from archive",
+
+          "des":"The Library of the Holy Mosque in Makkah is considered one of the scientific and cultural edifices in Makkah Al-Mukarramah (the holy capital) that has communicated with its patrons for years, as it interacted with them with what it prepared for them of information containers in different forms and what it provides for them throughout the week, in two shifts, morning and evening, and with various services that keep pace with modern developments, which made it live up to Because, by the grace of God, it will become one of the most important libraries because its name is associated with the purest of all regions and the heart of the hearts of Muslims. And with the services it provides to researchers, readers, students of knowledge, pilgrims and Umrah pilgrims, and women as well as their share, just like men. The library has invested what God has blessed it with capabilities and features, so it worked to develop its services and rehabilitate its employees to keep pace with the renaissance that our country is experiencing in all fields and to go hand in hand with its guests the rest of the libraries and information centers and made use of that All for its pioneers to take from its particular."
         },
         'ar_EG': {
           "aboutLibrary": "عن المكتبة",
@@ -628,7 +632,10 @@ class LocaleString extends Translations {
           "attentions":"للعلم ! التاريخ الغير متاح لم يؤخد بة",
           "repentance":"تنوبة ! التاريخ الغير متاح يعمل بها فقط",
           "chosen":"في حالة إختيارك لمادة علمية فقط",
-          "press":"الرجاء الضغط هنا لإختيار الفترة  👇 "
+          "press":"الرجاء الضغط هنا لإختيار الفترة  👇 ",
+          "alertAddToArchive":"تم إضافة الطلب إلي الأرشيف",
+          "alertRemoveToArchive":"تم إزلة الطلب من الأرشيف",
+          "des":"تعتبر مكتبة الحرم المكي الشريف أحد الصروح العلمية الثقافية بمكة المكرمة (العاصمة المقدسة) التي تواصلت مع روادها لسنين مضت حيث تفاعلت معهم بما هيأته لهم من أوعية معلومات بأشكال مختلفة وما تقدمه لهم طيلة أيام الأسبوع على فترتين صباحية ومسائية وبخدمات متنوعة تتواكب والمستجدات الحديثة مما جعلها ترقى لأن تصبح بتوفيق الله إحدى أهم المكتبات لاقتران اسمها بأطهر البقاع قاطبة ومهوى أفئدة المسلمين. وبما تقدمه من خدمات للباحثين والقراء وطالبي العلم والحجاج والمعتمرين ، وللنساء كذلك نصيبهن أسوة بالرجال واستثمرت المكتبة ما حباها الله من إمكانات ومميزات فعملت على تطوير خدماتها وتأهيل منسوبيها لتواكب النهضة التي تعيشها بلادنا في كافة المجالات ولتسير جنباً إلى جنب مع وضيفاتها بقية المكتبات ومراكز المعلومات وسخرت ذلك كله لروادها للنهل من معينها."
 
         }
       };

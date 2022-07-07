@@ -68,7 +68,7 @@ class OrderThesisCubit extends Cubit<OrderThesisState> {
     );
 
     await getOrderThesis();
-    Alert.success("تم إضافة الطلب إلي الأرشيف");
+    Alert.success("alertAddToArchive".tr);
     Get.to(() => const ArchiveScientificMessageScreen());
   }
 
@@ -96,7 +96,7 @@ class OrderThesisCubit extends Cubit<OrderThesisState> {
     );
 
     await getOrderThesis();
-    Alert.success("تم إزلة الطلب من الأرشيف");
+    Alert.success( "alertRemoveToArchive".tr);
     Get.to(() => const MyOrdersScientificMessage());
   }
 }

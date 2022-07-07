@@ -76,7 +76,6 @@ class UpdatesAskLibrarian extends StatelessWidget {
                           controller: cubit.userController,
                           validator: qValidator([
                             IsRequired("enterName".tr),
-                            IsOptional(),
                             MaxLength(30),
                           ]),
                           type: TextInputType.name,
@@ -89,7 +88,6 @@ class UpdatesAskLibrarian extends StatelessWidget {
                           controller: cubit.emailController,
                           validator: qValidator([
                             IsRequired("enterEmail".tr),
-                            IsOptional(),
                             IsEmail("MustBeEmail".tr),
                             MaxLength(30),
                           ]),
@@ -103,8 +101,7 @@ class UpdatesAskLibrarian extends StatelessWidget {
                           controller: cubit.phoneController,
                           validator: qValidator([
                             IsRequired("phone".tr),
-                            //IsOptional(),
-                            MinLength(11),
+
                             MaxLength(14),
                           ]),
                           type: TextInputType.phone,
@@ -115,7 +112,6 @@ class UpdatesAskLibrarian extends StatelessWidget {
                           controller: cubit.questionController,
                           validator: qValidator([
                             IsRequired("question".tr),
-                            IsOptional(),
                             MaxLength(80),
                           ]),
                           type: TextInputType.text,

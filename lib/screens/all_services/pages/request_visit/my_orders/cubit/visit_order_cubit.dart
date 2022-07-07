@@ -57,7 +57,7 @@ class VisitOrderCubit extends Cubit<VisitOrderState> {
         requestStatusId: order.requestStatusId!,
         createdDate: order.createdDate.toString());
     await getOrderVisit();
-    Alert.success("تم إضافة الطلب إلي الأرشيف");
+    Alert.success("alertAddToArchive".tr);
     Get.to(() => const ArchiveRequestToVisitScreen());
   }
 
@@ -75,7 +75,7 @@ class VisitOrderCubit extends Cubit<VisitOrderState> {
         requestStatusId: order.requestStatusId!,
         createdDate: order.createdDate.toString());
     await getOrderVisit();
-    Alert.success("تم إزلة الطلب من الأرشيف");
+    Alert.success( "alertRemoveToArchive".tr);
     Get.to(() => MyOrderRequestVisitScreen());
   }
 }

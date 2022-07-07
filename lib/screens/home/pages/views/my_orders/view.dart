@@ -25,11 +25,8 @@ import 'page/drop_down_state_name.dart';
 class MyOrdersScreen extends StatelessWidget {
   MyOrdersScreen({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
-    Object? arguments;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     final cubit = BlocProvider.of<AllMyOrdersCubit>(context);
@@ -49,10 +46,12 @@ class MyOrdersScreen extends StatelessWidget {
               BlocConsumer<AllMyOrdersCubit, AllMyOrdersState>(
                 listener: (context, state) {},
                 builder: (context, state) {
-                  return DropDownListOrderName(onChanged: (value) {
-                    cubit.onLibIDChanged(value);
+                  return DropDownListOrderName(
+                      onChanged: (value) {
+                        print("${value}");
+                        cubit.onLibIDChanged(value);
                     BlocProvider.of<AllMyOrdersCubit>(context)
-                        .getSearchResult(type: value);
+                        .getSearchResult(type: value,status: cubit.stateId.toString());
                   });
                 },
               ),
@@ -61,8 +60,8 @@ class MyOrdersScreen extends StatelessWidget {
                 builder: (context, state) {
                   return DropDownListStatesOrders(onChanged: (value) {
                     cubit.onStateIdChanged(value);
-                    BlocProvider.of<AllMyOrdersCubit>(context)
-                        .getSearchResult(status: value);
+                    BlocProvider.of<AllMyOrdersCubit>(context).getSearchResult(
+                      status: value,type: cubit.libId.toString(),);
                   });
                 },
               ),
@@ -96,13 +95,15 @@ class MyOrdersScreen extends StatelessWidget {
                               firstDate: DateTime(2022),
                               lastDate: DateTime(2030),
                             ).then((value) {
-                              print("errrrrrrrrrrrrrrrrrrrrrr${value is DateTime}");
-                              print("Arrrrrrrrrrrrrrrrrrrrrrrr${value }");
+                              print(
+                                  "errrrrrrrrrrrrrrrrrrrrrr${value is DateTime}");
+                              print("Arrrrrrrrrrrrrrrrrrrrrrrr${value}");
                               if (value == null) return;
-                                cubit.getSearchResult(
-                                          dateFrom: value.toString())   ;
+                              cubit.getSearchResult(dateFrom: value.toString());
 
-                                cubit.fromController.text = DateConverter.dateConverterOnly(value.toString());
+                              cubit.fromController.text =
+                                  DateConverter.dateConverterOnly(
+                                      value.toString());
                             });
                           });
                     },
@@ -123,11 +124,10 @@ class MyOrdersScreen extends StatelessWidget {
                               lastDate: DateTime(2030),
                             ).then((value) {
                               if (value == null) return;
-                              cubit
-                                  .getSearchResult(
-                                  dateTo: value) ;
-                              cubit.toController.text = DateConverter.dateConverterOnly(value.toString());
-
+                              cubit.getSearchResult(dateTo: value);
+                              cubit.toController.text =
+                                  DateConverter.dateConverterOnly(
+                                      value.toString());
                             });
                           });
                     },

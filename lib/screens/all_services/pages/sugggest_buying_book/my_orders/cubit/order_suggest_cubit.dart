@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:get/route_manager.dart';
 import 'package:maktabat_alharam/config/dio_helper/dio.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/cubit/archive_cubit.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/sugggest_buying_book/archive/models/model.dart';
@@ -12,6 +11,7 @@ import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../widgets/alerts.dart';
+import 'package:get/get.dart';
 
 part 'order_suggest_state.dart';
 
@@ -63,7 +63,7 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
         additionalInformation: order.additionalInformation.toString(),
         createdDate: order.createdDate.toString());
     await getOrderSuggest();
-    Alert.success("تم إضافة الطلب إلي الأرشيف");
+    Alert.success("alertAddToArchive".tr);
     Get.to(() => const ArchiveSuggestBuyBookScreen());
   }
 
@@ -85,7 +85,7 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
       createdDate: order.createdDate.toString(),
     );
     await getOrderSuggest();
-    Alert.success("تم إزلة الطلب من الأرشيف");
+    Alert.success( "alertRemoveToArchive".tr);
     Get.to(() => const MyOrdersSuggestBuyBookScreen());
   }
 }

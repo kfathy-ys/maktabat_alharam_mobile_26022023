@@ -7,6 +7,27 @@ enum Pages { one, two, three, four, five }
 
 class OurServicesContent {
   List<OurServicesModel> ourServices = [
+
+    OurServicesModel(
+      pages: Pages.one,
+      routeName: "/MyOrderAskLibrarian",
+      title: "askStaff".tr,
+      subTitle: "head".tr,
+      icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
+          color: kSmallIconColor),
+    ),
+    OurServicesModel(
+      pages: Pages.two,
+      routeName: "/MyOrdersSuggestBuyBookScreen",
+      title: "SuggestionBuyBook".tr,
+      subTitle: "headBuyBook".tr,
+      icon: const ImageIcon(
+        AssetImage(
+          "assets/image/bigBuyBook.png",
+        ),
+        color: kSmallIconColor,
+      ),
+    ),
 /*
     OurServicesModel(
       routeName: "/FollowAnsweringLibrarian",
@@ -20,7 +41,7 @@ class OurServicesContent {
     ),
 */
     OurServicesModel(
-      pages: Pages.one,
+      pages: Pages.three,
       routeName: "/MyOrdersScientificMessage",
       title: "RequestDepositScientificThesis".tr,
       subTitle: "titleMessage".tr,
@@ -48,7 +69,7 @@ class OurServicesContent {
       ),
     ),*/
     OurServicesModel(
-      pages: Pages.two,
+      pages: Pages.four,
       routeName: "/MyOrderReserveArticleResearch",
       title: "RequestReserveArticleOrResearchRetreat".tr,
       subTitle: "headReserve".tr,
@@ -56,26 +77,7 @@ class OurServicesContent {
           AssetImage("assets/image/bigRquestSubjectSientific.png"),
           color: kSmallIconColor),
     ),
-    OurServicesModel(
-      pages: Pages.three,
-      routeName: "/MyOrderAskLibrarian",
-      title: "askStaff".tr,
-      subTitle: "head".tr,
-      icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
-          color: kSmallIconColor),
-    ),
-    OurServicesModel(
-      pages: Pages.four,
-      routeName: "/MyOrdersSuggestBuyBookScreen",
-      title: "SuggestionBuyBook".tr,
-      subTitle: "headBuyBook".tr,
-      icon: const ImageIcon(
-        AssetImage(
-          "assets/image/bigBuyBook.png",
-        ),
-        color: kSmallIconColor,
-      ),
-    ),
+
     OurServicesModel(
       pages: Pages.five,
       routeName: "/MyOrderRequestVisitScreen",
@@ -149,6 +151,26 @@ class OurServicesGridCard {
 */
     OurServicesModel(
       pages: Pages.one,
+      routeName: "/MyOrderAskLibrarian",
+      title: "askStaff".tr,
+      subTitle: "head".tr,
+      icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
+          color: kSmallIconColor),
+    ),
+    OurServicesModel(
+      pages: Pages.two,
+      routeName: "/MyOrdersSuggestBuyBookScreen",
+      title: "SuggestionBuyBook".tr,
+      subTitle: "headBuyBook".tr,
+      icon: const ImageIcon(
+        AssetImage(
+          "assets/image/bigBuyBook.png",
+        ),
+        color: kSmallIconColor,
+      ),
+    ),
+    OurServicesModel(
+      pages: Pages.three,
       routeName: "/MyOrdersScientificMessage",
       title: "RequestDepositScientificThesis".tr,
       subTitle: "titleMessage".tr,
@@ -176,7 +198,7 @@ class OurServicesGridCard {
       ),
     ),*/
     OurServicesModel(
-      pages: Pages.two,
+      pages: Pages.four,
       routeName: "/MyOrderReserveArticleResearch",
       title: "RequestReserveArticleOrResearchRetreat".tr,
       subTitle: "headReserve".tr,
@@ -184,26 +206,7 @@ class OurServicesGridCard {
           AssetImage("assets/image/bigRquestSubjectSientific.png"),
           color: kSmallIconColor),
     ),
-    OurServicesModel(
-      pages: Pages.three,
-      routeName: "/MyOrderAskLibrarian",
-      title: "askStaff".tr,
-      subTitle: "head".tr,
-      icon: const ImageIcon(AssetImage("assets/image/BigEmptyQuestion.png"),
-          color: kSmallIconColor),
-    ),
-    OurServicesModel(
-      pages: Pages.four,
-      routeName: "/MyOrdersSuggestBuyBookScreen",
-      title: "SuggestionBuyBook".tr,
-      subTitle: "headBuyBook".tr,
-      icon: const ImageIcon(
-        AssetImage(
-          "assets/image/bigBuyBook.png",
-        ),
-        color: kSmallIconColor,
-      ),
-    ),
+
     OurServicesModel(
       pages: Pages.five,
       routeName: "/MyOrderRequestVisitScreen",

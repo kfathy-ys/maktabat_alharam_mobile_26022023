@@ -90,7 +90,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         },
         builder: (context, state) {
           final cubit = BlocProvider.of<UserInfoCubit>(context);
-
+          print("${cubit.date}");
+          print("${cubit.requestNumber}");
           return Form(
             key: formKey,
             child: SizedBox(
@@ -108,7 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       controller: firstNameController,
                       validator: qValidator([
                         IsRequired("enterFullName".tr),
-                        IsOptional(),
+
                         MaxLength(30),
                       ]),
                       type: TextInputType.name,
@@ -123,7 +124,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       controller: lastNameController,
                       validator: qValidator([
                         IsRequired("thisFieldRequired".tr),
-                        IsOptional(),
+
                         MaxLength(30),
                       ]),
                       type: TextInputType.name,
@@ -138,7 +139,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       controller: arabicFullNameController,
                       validator: qValidator([
                         IsRequired("enterFullName".tr),
-                        IsOptional(),
+
                         MaxLength(30),
                       ]),
                       type: TextInputType.name,
@@ -146,7 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         _profileInputData.nameArabic = value;
                       },
                     ),
-                    CustomTextField(
+           /*         CustomTextField(
                       hint: "userName".tr,
                       dIcon: Icons.person,
                       label: "userName".tr,
@@ -159,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onsave: (String? value) {
                         _profileInputData.userName = value;
                       },
-                    ),
+                    ),*/
                     CustomTextField(
                       dIcon: Icons.email,
                       label: "email".tr,
@@ -175,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         _profileInputData.email = value;
                       },
                     ),
-                    CustomTextField(
+              /*      CustomTextField(
                       dIcon: Icons.real_estate_agent,
                       label: "countryResidence".tr,
                       hint: "countryResidence".tr,
@@ -200,7 +201,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         MaxLength(30),
                       ]),
                       type: TextInputType.text,
-                    ),
+                    ),*/
                     CustomTextField(
                       hint: "phoneNumber".tr,
                       dIcon: Icons.phone,
@@ -241,8 +242,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               fontSize: 18,
                               fontFamily: 'DinLight')),
                     ),
-                    DateCreated(typeDate: "hijri".tr, date: "15-5-1443"),
-                    DateCreated(typeDate: "century".tr, date: "15-5-2022"),
+                    DateCreated(typeDate: "hijri".tr, date:cubit.date ),
+                    DateCreated(typeDate: "century".tr, date:cubit.requestNumber ),
                     SizedBox(
                       height: height * 0.05,
                     ),

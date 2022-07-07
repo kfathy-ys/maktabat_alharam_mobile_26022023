@@ -13,11 +13,14 @@ part 'user_info_state.dart';
 
 class UserInfoCubit extends Cubit<UserInfoState> {
   // ignore: empty_constructor_bodies
-  UserInfoCubit() : super(UserInfoInitial()) {}
+  UserInfoCubit() : super(UserInfoInitial()) {
+    //getUserInfo();
+  }
   final fullName = Prefs.getString('fullName');
   final email = Prefs.getString('email');
   final phoneNumber = Prefs.getString('phoneNumber');
-
+  final requestNumber = Prefs.getString('numberOfRequests');
+  final date = Prefs.getString('joinDate');
   final formKey = GlobalKey<FormState>();
 
   final emailController = TextEditingController();
@@ -31,26 +34,32 @@ class UserInfoCubit extends Cubit<UserInfoState> {
 
   dynamic image = "assets/image/kabah.png";
 
-  // Future<void> getUserInfo() async {
-  //   emit(UserInfoLoading());
-  //   try {
-  //     final userId = Prefs.getString("userId");
-  //     final res = await NetWork.get('User/$userId');
-  //
-  //     if (res.data['status'] == 0 ||
-  //         res.data['status'] == -1 ||
-  //         res.statusCode != 200) {
-  //       throw res.data['message'];
-  //     }
-  //
-  //     emit(UserInfoSuccess());
-  //
-  //   } catch (e, es) {
-  //     log(e.toString());
-  //     log(es.toString());
-  //     emit(UserInfoError(msg: e.toString()));
-  //   }
-  // }
+  Future<void> getUserInfo() async {
+    emit(UserInfoLoading());
+    try {
+      final userId = Prefs.getString("userId");
+      final res = await NetWork.get('User/GetUserById/$userId');
+
+      if (res.data['status'] == 0 ||
+          res.data['status'] == -1 ||
+          res.statusCode != 200) {
+        throw res.data['message'];
+      }
+      Prefs.setString("token", res.data["data"]["numberOfRequests"]);
+      Prefs.setString("userId", res.data["data"]["joinDate"]).toString();
+      //data.numberOfRequests
+
+      log("${res.data["data"]["numberOfRequests"]}");
+      log("${res.data["data"]["joinDate"]}");
+
+      emit(UserInfoSuccess());
+
+    } catch (e, es) {
+      log(e.toString());
+      log(es.toString());
+      emit(UserInfoError(msg: e.toString()));
+    }
+  }
   Future<void> updatedUserInfo({UpdateProfileInputData? userDate}) async {
     emit(UserInfoLoading());
     try {

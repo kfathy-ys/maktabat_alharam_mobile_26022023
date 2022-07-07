@@ -134,17 +134,17 @@ class _FollowResearchScreenState extends State<FollowResearchScreen> {
                                       color2: kBlackText),
                                   CardData(
                                       title: "libraryName".tr,
-                                      subTitle: ((state.followResearchModel
-                                                  .data!.libraryId) ==
+                                      subTitle: (state.followResearchModel
+                                                  .data!.libraryId ==
                                               1)
                                           ? "تست".tr
-                                          : ((state.followResearchModel.data!
-                                                      .libraryId) ==
+                                          : (state.followResearchModel.data!
+                                                      .libraryId ==
                                                   2)
                                               ? "theHolyHaramLibraryMen".tr
-                                              : ((state.followResearchModel
+                                              : (state.followResearchModel
                                                           .data!.libraryId) ==
-                                                      3)
+                                                      3
                                                   ? "theHolyHaramLibraryWoman"
                                                       .tr
                                                   : "--",

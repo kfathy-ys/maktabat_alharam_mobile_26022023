@@ -17,7 +17,29 @@ import '../../my_order/models/model.dart';
 import '../../my_order/view.dart';
 
 class AvalibleDatesResearchUpdateNotifier extends ChangeNotifier {
-  MyOrdersToResearch? myOrdersToResearch;
+ final  MyOrdersToResearch order;
+
+/*  @override
+  void notifyListeners() {
+
+    if (order!.callNum != null) {
+      callController.text = order!.callNum!.toString();
+    }
+    if (order!.researchRequestReply != null) {
+      reasonController.text = order!.researchRequestReply!;
+    }
+
+    if (order!.libraryId != null) selectedLIB = order!.libraryId! as AllLibraries?;
+    onLibChang(selectedLIB!);
+
+    if (order!.responsibleGradeId != null) qualificationID = order!.responsibleGradeId! as AllGrade?;
+    onQualificationIDChanged(qualificationID!);
+
+    if (order!.requestTypeId != null) authorityID = order!.requestTypeId! ;
+    onAuthorityIDChanged(authorityID!);
+    super.notifyListeners();
+  }*/
+
   final formKey = GlobalKey<FormState>();
 
   final callController = TextEditingController();
@@ -31,6 +53,8 @@ class AvalibleDatesResearchUpdateNotifier extends ChangeNotifier {
 
   TypeEntityName? selectedType;
   AllLibraries? selectedLIB;
+
+  AvalibleDatesResearchUpdateNotifier(this.order);
 
   bool get hasSelectedType => selectedType != null;
 
@@ -185,7 +209,7 @@ class AvalibleDatesResearchUpdateNotifier extends ChangeNotifier {
         userNameController.text = Prefs.getString('fullName');
         phoneController.text = Prefs.getString('phoneNumber');
         final body = <String, Object?>{
-          "id": myOrdersToResearch!.id,
+          "id": order.id,
           "userId": Prefs.getString('userId'),
           "libraryId": selectedLIB?.id,
           "roomId": selectedType!.shouldPickFromAviliableRange
@@ -220,8 +244,8 @@ class AvalibleDatesResearchUpdateNotifier extends ChangeNotifier {
           "isArchived": false,
           "createdBy": Prefs.getString('userId'),
           "createdDate": dataNow,
-          "updatedBy": null,
-          "updatedDate": null
+          "updatedBy": Prefs.getString('userId'),
+          "updatedDate": dataNow
         };
         final res = await NetWork.post(
             'ResearchRequest/UpdateResearchRequest',

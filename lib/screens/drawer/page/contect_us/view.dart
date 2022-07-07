@@ -63,11 +63,14 @@ class ContactUsScreen extends StatelessWidget {
                       onTap: () {
                         _launchPhoneURL(phone);
                       },
-                      child: const Text("+1 5598 55488",
-                          style: TextStyle(
-                              color: kBlackText,
-                              fontSize: 16,
-                              fontFamily: 'DinLight')),
+                      child: const Directionality(
+                        textDirection:TextDirection.ltr ,
+                        child: Text("+1 5598 55488",
+                            style: TextStyle(
+                                color: kBlackText,
+                                fontSize: 16,
+                                fontFamily: 'DinLight')),
+                      ),
                     ),
                     Image.asset("assets/image/bigPhone.png"),
                   ],

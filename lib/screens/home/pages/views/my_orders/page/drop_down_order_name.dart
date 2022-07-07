@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
-enum TypeEntityName { requestToBuyBook, requestLibrarian,requestVisit,RequestDepositScientificThesis,RequestReserveArticleOrResearchRetreat }
+enum TypeEntityName { requestToBuyBook, requestLibrarian,requestVisit,RequestReserveArticleOrResearchRetreat,RequestDepositScientificThesis, }
 class DropDownListOrderName extends StatefulWidget {
 
 
@@ -31,10 +31,10 @@ class _DropDownListOrderNameState extends State<DropDownListOrderName> {
         selected = TypeEntityName.requestVisit;
         valueSelected = widget.initial;
       }else if(widget.initial == "ResearchRequest"){
-        selected = TypeEntityName.RequestDepositScientificThesis;
+        selected = TypeEntityName.RequestReserveArticleOrResearchRetreat;
         valueSelected = widget.initial;
       }else {
-        selected = TypeEntityName.RequestReserveArticleOrResearchRetreat;
+        selected = TypeEntityName.RequestDepositScientificThesis;
         valueSelected = widget.initial;
       }
     }
@@ -86,7 +86,7 @@ class _DropDownListOrderNameState extends State<DropDownListOrderName> {
                 valueSelected = "Inquiry";
               }else if (selected == TypeEntityName.requestVisit) {
                 valueSelected = "VisitRequest";
-              }else if (selected == TypeEntityName.RequestDepositScientificThesis) {
+              }else if (selected == TypeEntityName.RequestReserveArticleOrResearchRetreat) {
                 valueSelected = "ResearchRequest";
               }else {
                 valueSelected = "ThesisDeposition";

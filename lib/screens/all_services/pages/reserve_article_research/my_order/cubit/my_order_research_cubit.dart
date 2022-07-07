@@ -61,7 +61,7 @@ class MyOrderResearchCubit extends Cubit<MyOrderResearchState> {
         dateTo: order.dateTo.toString(),
         roomId: order.roomId!.toInt());
     await getOrderResearch();
-    Alert.success("تم إضافة الطلب إلي الأرشيف");
+    Alert.success("alertAddToArchive".tr);
     Get.to(() => const ArchiveReserveArticleScreen());
   }
 
@@ -82,7 +82,7 @@ class MyOrderResearchCubit extends Cubit<MyOrderResearchState> {
         roomId: order.roomId!.toInt());
 
     await getOrderResearch();
-    Alert.success("تم إزلة الطلب من الأرشيف");
+    Alert.success( "alertRemoveToArchive".tr);
     Get.to(() => const MyOrderReserveArticleResearch());
   }
 }

@@ -53,9 +53,10 @@ class OurServicesScreen extends StatelessWidget {
                     onTap: () {
                       final page =
                           ourServicesGridCard.ourServicesGrid[index].pages;
-                      if (((page == Pages.one) ||
-                              (page == Pages.two) ||
-                              (page == Pages.five)) &&
+
+                      if (((page == Pages.three) ||
+                          (page == Pages.four) ||
+                          (page == Pages.five)) &&
                           Prefs.getString("token").isEmpty) {
                         onWillPopSignIn(context);
                         return;

@@ -41,10 +41,10 @@ class AboutLibraryScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: FadeInUp(
-                    child: const Text(
-                      KeysConfig.kLoramText,
+                    child:  Text(
+                      "des".tr,
                       textAlign: TextAlign.justify,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: kBlackText,
                           fontSize: 18,
                           fontFamily: "DinUltraLight"),
