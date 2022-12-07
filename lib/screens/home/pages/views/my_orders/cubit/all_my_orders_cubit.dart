@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:maktabat_alharam/screens/home/pages/views/my_orders/models/model.dart';
-import 'package:meta/meta.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
@@ -60,7 +59,7 @@ class AllMyOrdersCubit extends Cubit<AllMyOrdersState> {
     emit(AllMyOrdersLoading());
     try {
       final userId = Prefs.getString("userId");
-      print("${"User/GetAllUserRequestsByFilters/$userId/$searchText/$type/$status/$dateFrom/$dateTo"}");
+      print("User/GetAllUserRequestsByFilters/$userId/$searchText/$type/$status/$dateFrom/$dateTo");
       final res = await NetWork.get(
         "User/GetAllUserRequestsByFilters/$userId/$searchText/$type/$status/$dateFrom/$dateTo",
       );

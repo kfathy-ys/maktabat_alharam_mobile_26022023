@@ -79,7 +79,7 @@ class ArchiveMyOrdersScreen extends StatelessWidget {
                             color: kAccentColor,
                             title: "removeFromArchive".tr,
                             onPressed: () {
-                              Get.to(() =>  MyOrdersScreen());
+                              Get.to(() =>  const MyOrdersScreen());
                             },
                             //  icon:  Icons.visibility_outlined
                             image: "assets/image/archieve.png",

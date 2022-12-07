@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:maktabat_alharam/screens/all_services/pages/ask_Librarian/my_order/page/views/cardContent.dart';
@@ -10,20 +9,17 @@ import 'package:maktabat_alharam/screens/widgets/CustomSearch.dart';
 import 'package:maktabat_alharam/screens/widgets/constants.dart';
 import 'package:get/get.dart';
 
-import 'package:maktabat_alharam/screens/widgets/smallButtonSizer.dart';
 import 'package:maktabat_alharam/screens/widgets/small_texfiled.dart';
 
 import '../../../../all_services/pages/request_visit/my_orders/page/custom_container.dart';
 import '../../../../widgets/date_convertors.dart';
 import '../../../../widgets/loading.dart';
-import 'archive/view.dart';
-import 'follow_reserved_retreated/view.dart';
 import 'page/drop_down_order_name.dart';
 import 'page/drop_down_state_name.dart';
 
 // ignore: must_be_immutable
 class MyOrdersScreen extends StatelessWidget {
-  MyOrdersScreen({Key? key}) : super(key: key);
+  const MyOrdersScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +44,7 @@ class MyOrdersScreen extends StatelessWidget {
                 builder: (context, state) {
                   return DropDownListOrderName(
                       onChanged: (value) {
-                        print("${value}");
+                        print(value);
                         cubit.onLibIDChanged(value);
                     BlocProvider.of<AllMyOrdersCubit>(context)
                         .getSearchResult(type: value,status: cubit.stateId.toString());
@@ -97,7 +93,7 @@ class MyOrdersScreen extends StatelessWidget {
                             ).then((value) {
                               print(
                                   "errrrrrrrrrrrrrrrrrrrrrr${value is DateTime}");
-                              print("Arrrrrrrrrrrrrrrrrrrrrrrr${value}");
+                              print("Arrrrrrrrrrrrrrrrrrrrrrrr$value");
                               if (value == null) return;
                               cubit.getSearchResult(dateFrom: value.toString());
 

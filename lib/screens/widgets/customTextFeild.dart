@@ -83,6 +83,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             icon: widget.isEdit == true
                 ? const Icon(
                     Icons.edit,
+              color: kPrimaryColor,
                   )
                 : null,
             labelStyle: const TextStyle(
@@ -108,6 +109,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   )
                 : null,
             filled: true,
+
             //prefixText: widget.hint,
             fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(

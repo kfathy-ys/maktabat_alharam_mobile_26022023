@@ -26,25 +26,25 @@ class OrderSuggestCubit extends Cubit<OrderSuggestState> {
   }
 
   Future<void> getOrderSuggest() async {
-    emit(OrderSuggestLoading());
-    try {
-      final userId = Prefs.getString("userId");
-      final res = await NetWork.get('Suggestion/GetAllSuggestions/$userId');
+  emit(OrderSuggestLoading());
+  try {
+  final userId = Prefs.getString("userId");
+  final res = await NetWork.get('Suggestion/GetAllSuggestions/$userId');
 
-      if (res.data['status'] == 0 ||
-          res.data['status'] == -1 ||
-          res.statusCode != 200) {
-        throw res.data['message'];
-      }
-
-      emit(OrderSuggestSuccess(
-          orderSuggestModel: OrderSuggestModel.fromJson(res.data)));
-    } catch (e, es) {
-      log(e.toString());
-      log(es.toString());
-      emit(OrderSuggestError(e.toString()));
-    }
+  if (res.data['status'] == 0 ||
+  res.data['status'] == -1 ||
+  res.statusCode != 200) {
+  throw res.data['message'];
   }
+
+  emit(OrderSuggestSuccess(
+  orderSuggestModel: OrderSuggestModel.fromJson(res.data)));
+  } catch (e, es) {
+  log(e.toString());
+  log(es.toString());
+  emit(OrderSuggestError(e.toString()));
+  }
+}
 
   Future<void> addToArchive(OrderModel order) async {
     await archiveCubit.addedToArchive(

@@ -7,7 +7,6 @@ import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_rese
 import 'package:maktabat_alharam/screens/all_services/pages/reserve_article_research/new_order/models/available_dates_room_model.dart';
 import 'package:maktabat_alharam/screens/widgets/alerts.dart';
 import 'package:queen/core/helpers/prefs.dart';
-import 'package:syncfusion_flutter_datepicker/src/date_picker/date_picker_manager.dart';
 
 import '../../../../../../config/dio_helper/dio.dart';
 import '../../../../../../config/enums.dart';

@@ -18,6 +18,7 @@ import 'package:maktabat_alharam/screens/widgets/customTextFieldToUploadFile.dar
 import 'package:maktabat_alharam/screens/widgets/mdeiaButtonSizer.dart';
 import 'package:maktabat_alharam/screens/widgets/smallButtonSizerUploadFile.dart';
 import 'package:maktabat_alharam/screens/widgets/smallestButton.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
@@ -111,9 +112,20 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
                 height: height * 0.18,
                 title: "fullMessage".tr,
                 controller: _firstController,
-                onPressed1: () {
-                  _uploadFile(1);
+                onPressed1: () async {
+                  if (await Permission.storage
+                      .request()
+                      .isGranted) {
+                    _uploadFile(1);
+                  } else {
+                    Alert.error(
+                        "يجب الحصول علي تصريح الوصول الي الملفات");
+                  }
                 },
+
+
+
+
                 validator: qValidator([
                   (widget.filesInputData.isThesisFileRequired == true)
                       ? IsRequired("thisFieldRequired".tr)
@@ -124,8 +136,15 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
                 height: height * 0.18,
                 title: "messagesAddress".tr,
                 controller: _secoandController,
-                onPressed1: () {
-                  _uploadFile(2);
+                onPressed1: () async {
+                  if (await Permission.storage
+                      .request()
+                      .isGranted) {
+                    _uploadFile(2);
+                  } else {
+                    Alert.error(
+                        "يجب الحصول علي تصريح الوصول الي الملفات");
+                  }
                 },
                 validator: qValidator([
                   (widget.filesInputData.isThesisTitleFileRequired == true)
@@ -137,8 +156,15 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
                 height: height * 0.18,
                 title: "topicIndex".tr,
                 controller: _threeController,
-                onPressed1: () {
-                  _uploadFile(3);
+                onPressed1: () async {
+                  if (await Permission.storage
+                      .request()
+                      .isGranted) {
+                    _uploadFile(3);
+                  } else {
+                    Alert.error(
+                        "يجب الحصول علي تصريح الوصول الي الملفات");
+                  }
                 },
                 validator: qValidator([
                   (widget.filesInputData.isSubjectsIndexFileRequired == true)
@@ -150,8 +176,15 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
                 height: height * 0.18,
                 title: "arabicExtract".tr,
                 controller: _forthController,
-                onPressed1: () {
-                  _uploadFile(4);
+                onPressed1: () async {
+                  if (await Permission.storage
+                      .request()
+                      .isGranted) {
+                    _uploadFile(4);
+                  } else {
+                    Alert.error(
+                        "يجب الحصول علي تصريح الوصول الي الملفات");
+                  }
                 },
                 validator: qValidator([
                   (widget.filesInputData.isArabicExtractFileRequired == true)
@@ -163,8 +196,15 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
                 height: height * 0.18,
                 title: "englishExtract".tr,
                 controller: _fiveController,
-                onPressed1: () {
-                  _uploadFile(5);
+                onPressed1: () async {
+                  if (await Permission.storage
+                      .request()
+                      .isGranted) {
+                    _uploadFile(5);
+                  } else {
+                    Alert.error(
+                        "يجب الحصول علي تصريح الوصول الي الملفات");
+                  }
                 },
                 validator: qValidator([
                   (widget.filesInputData.isEnglishExtractFileRequired == true)
@@ -176,8 +216,15 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
                 height: height * 0.18,
                 title: "introduction".tr,
                 controller: _sixController,
-                onPressed1: () {
-                  _uploadFile(6);
+                onPressed1: () async {
+                  if (await Permission.storage
+                      .request()
+                      .isGranted) {
+                    _uploadFile(6);
+                  } else {
+                    Alert.error(
+                        "يجب الحصول علي تصريح الوصول الي الملفات");
+                  }
                 },
                 validator: qValidator([
                   (widget.filesInputData.isIntroFileRequired == true)
@@ -189,8 +236,15 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
                 height: height * 0.18,
                 title: "fullMessage".tr,
                 controller: _sevenController,
-                onPressed1: () {
-                  _uploadFile(7);
+                onPressed1: () async {
+                  if (await Permission.storage
+                      .request()
+                      .isGranted) {
+                    _uploadFile(7);
+                  } else {
+                    Alert.error(
+                        "يجب الحصول علي تصريح الوصول الي الملفات");
+                  }
                 },
                 validator: qValidator([
                   (widget.filesInputData.isCollectionFileRequired == true)
@@ -202,8 +256,15 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
                 height: height * 0.18,
                 title: "contentPlus".tr,
                 controller: _eightController,
-                onPressed1: () {
-                  _uploadFile(8);
+                onPressed1: () async {
+                  if (await Permission.storage
+                      .request()
+                      .isGranted) {
+                    _uploadFile(8);
+                  } else {
+                    Alert.error(
+                        "يجب الحصول علي تصريح الوصول الي الملفات");
+                  }
                 },
                 validator: qValidator([
                   (widget.filesInputData.isQuarterCollectionFileRequired ==
@@ -333,7 +394,9 @@ class _MessageFilesScreenState extends State<MessageFilesScreen> {
           filesInputData.thesisFile = file;
 
           _firstController.text = file.path;
-        } else if (step == 2) {
+        }
+        else if (step == 2)
+        {
           _file2 = file;
           filesInputData.thesisTitleFile = file;
           _secoandController.text = file.path;

@@ -9,6 +9,8 @@ import 'package:maktabat_alharam/screens/all_services/pages/request_scientific_m
 import 'package:maktabat_alharam/screens/auth/login/view.dart';
 import 'package:queen/core/helpers/prefs.dart';
 
+import 'alerts.dart';
+
 const kPrimaryColor = Color(0xFF258270);
 
 const kSuccessAlertColor = Color(0xFF000080);
@@ -119,6 +121,35 @@ void showAlertDialog(BuildContext context, VoidCallback onTap) {
                     // SharedPreferences prefs = await SharedPreferences.getInstance();
                     //prefs.remove('isLogin');
                     Navigator.pop(context);
+                  },
+                  child: Text("no".tr)),
+            ],
+          ));
+}
+void showAlertDialogOpenCamera(BuildContext context, VoidCallback onTap) {
+  showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+            title: const Text("الكاميرا"),
+            content: const Text("هل تريد الوصول الي الكاميرا "),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                  isDefaultAction: true,
+                  onPressed: () {
+                    onTap();
+                    Get.back();
+                  },
+                  child: Text("yes".tr)),
+              CupertinoDialogAction(
+                  textStyle: const TextStyle(color: Colors.red),
+                  isDefaultAction: true,
+                  onPressed: () async {
+                    Alert.error(
+                               "يجب الحصول علي تصريح الوصول الي الكاميرا");
+
+                        Navigator.pop(context);
+
+
                   },
                   child: Text("no".tr)),
             ],

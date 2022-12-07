@@ -14,7 +14,6 @@ import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 
 import 'package:maktabat_alharam/screens/widgets/smallestButton.dart';
 
-import 'package:queen/validation/magic/is_optional.dart';
 import 'package:queen/validation/text/is_not_empty.dart';
 import 'package:queen/validation/text/max_length.dart';
 import 'package:queen/validation/validator.dart';

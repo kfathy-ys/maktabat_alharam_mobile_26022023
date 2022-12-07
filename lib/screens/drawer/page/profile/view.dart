@@ -14,6 +14,7 @@ import 'package:maktabat_alharam/screens/widgets/customTextFeild.dart';
 import 'package:maktabat_alharam/screens/widgets/mediaButton.dart';
 import 'package:maktabat_alharam/screens/widgets/pick_image.dart';
 import 'package:maktabat_alharam/screens/widgets/profile_pick_image.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:queen/core/helpers/prefs.dart';
 import 'package:queen/validation.dart';
 
@@ -90,8 +91,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         },
         builder: (context, state) {
           final cubit = BlocProvider.of<UserInfoCubit>(context);
-          print("${cubit.date}");
-          print("${cubit.requestNumber}");
+          print(cubit.date);
+          print(cubit.requestNumber);
           return Form(
             key: formKey,
             child: SizedBox(
@@ -101,12 +102,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     HeaderTitle(icon: Icons.person, title: "myProfile".tr),
-                    _profilePic(userName: "fakeName".tr),
+                    _profilePic(userName: Prefs.getString('fullName')),
                     CustomTextField(
                       dIcon: Icons.person,
                       label: "firstName".tr,
                       hint: "firstName".tr,
                       controller: firstNameController,
+                      isEdit: true,
+
                       validator: qValidator([
                         IsRequired("enterFullName".tr),
 
@@ -118,6 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                     ),
                     CustomTextField(
+                      isEdit: true,
                       dIcon: Icons.person,
                       label: "lastName".tr,
                       hint: "lastName".tr,
@@ -133,6 +137,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                     ),
                     CustomTextField(
+                      isEdit: true,
                       dIcon: Icons.drive_file_rename_outline,
                       label: "arabicFullName".tr,
                       hint: "arabicFullName".tr,
@@ -162,6 +167,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                     ),*/
                     CustomTextField(
+                      isEdit: true,
                       dIcon: Icons.email,
                       label: "email".tr,
                       hint: "email".tr,
@@ -203,6 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       type: TextInputType.text,
                     ),*/
                     CustomTextField(
+                      isEdit: true,
                       hint: "phoneNumber".tr,
                       dIcon: Icons.phone,
                       label: "phoneNumber".tr,
@@ -259,14 +266,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget _profilePic({required String userName}) {
     return profilePicContainer(context, image, userName, "changeImage".tr, () {
-      openImagePicker(
+       openImagePicker(
           context: context,
           onCameraTapped: () {
-            _getPic(context, ImageSource.camera);
+            showAlertDialogOpenCamera(context, () {
+              _getPic(context, ImageSource.camera);
+
+            });
           },
-          onGalleryTapped: () {
-            _getPic(context, ImageSource.gallery);
-          });
+
+
+
+          //     () async{
+          //
+          //
+          //   if ( await Permission.photos
+          //       .request()
+          //       .isGranted  ) {
+          //     _getPic(context, ImageSource.camera);
+          //
+          //   } else {
+          //     Alert.error(
+          //         "يجب الحصول علي تصريح الوصول الي الكاميرا");
+          //   }
+          // },
+          //
+
+
+          onGalleryTapped:
+              () async {
+            if (await Permission.storage
+                .request()
+                .isGranted  ) {
+              _getPic(context, ImageSource.gallery);
+
+            } else {
+              Alert.error(
+                  "يجب الحصول علي تصريح الوصول الي الملفات");
+            }
+          },
+
+        );
     }, false);
   }
 

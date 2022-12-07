@@ -23,7 +23,7 @@ class HomeTabScreen extends StatefulWidget {
 class _HomeTabScreenState extends State<HomeTabScreen> {
   static final List<Widget> _widgetOptions = <Widget>[
     MyHomeScreen(),
-     MyOrdersScreen(),
+     const MyOrdersScreen(),
     const ProfileScreen(),
   ];
   int _selectedIndex = 0;
